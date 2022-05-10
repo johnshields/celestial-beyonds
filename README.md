@@ -8,7 +8,7 @@ alt="GSA Logo" width="600" height="250"/>
 ***
 
 # Project Details
-| **Project Title** | The Celesltial Beyonds |
+| **Project Title** | The Celestial Beyonds |
 | :------------- |:-------------|
 | **Course**               | MSc Serious Games and Virtual Reality |
 | **Module**               | MSc Dissertation |
