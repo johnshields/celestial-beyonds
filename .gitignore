@@ -2,13 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
+/celestial-beyonds_src/[Ll]ibrary/
+/celestial-beyonds_src/[Tt]emp/
+/celestial-beyonds_src/[Oo]bj/
+/celestial-beyonds_src/[Bb]uild/
 /[Bb]uilds/
-/[Ll]ogs/
-/[Mm]emoryCaptures/
+/celestial-beyonds_src/[Ll]ogs/
+/celestial-beyonds_src/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -20,7 +20,8 @@
 [Aa]ssets/Plugins/Editor/JetBrains*
 
 # Visual Studio cache directory
-.vs/
+/celestial-beyonds_src/.vs/
+/celestial-beyonds_src/.idea/
 
 # Gradle cache directory
 .gradle/
