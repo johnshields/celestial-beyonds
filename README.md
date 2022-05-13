@@ -18,8 +18,8 @@ alt="GSA Logo" width="600" height="250"/>
 
 ***
 
-<a href="https://i.ibb.co/DtFV98d/captain-hume-v005.png" >
-<p align="center"><img src="https://i.ibb.co/DtFV98d/captain-hume-v005.png"
+<a href="https://https://i.ibb.co/G5DsqK5/captain-hume-and-moonbeam.png" >
+<p align="center"><img src="https://i.ibb.co/G5DsqK5/captain-hume-and-moonbeam.png"
 alt="cb_logo" width="auto" height="auto"/>
 </p></a>
 
