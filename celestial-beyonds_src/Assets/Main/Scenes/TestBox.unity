@@ -385,6 +385,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -450,13 +451,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.010189398, y: 0.017754013, z: 0.00016907345, w: 0.9997905}
-  m_LocalPosition: {x: 1.0989585, y: 0.46560708, z: -1.9167991}
+  m_LocalRotation: {x: 0.066257514, y: 0.007553239, z: -0.000511285, w: 0.9977738}
+  m_LocalPosition: {x: 0.5415095, y: 0.5561201, z: -1.4522556}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f695fdb5ada526146a33b064da8991b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothSpeed: 5
 --- !u!4 &34287689250848907
 Transform:
   m_ObjectHideFlags: 0
@@ -2536,7 +2550,7 @@ GameObject:
   - component: {fileID: 6289255769691467143}
   m_Layer: 0
   m_Name: CaptainHume
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2569,7 +2583,7 @@ Rigidbody:
   m_GameObject: {fileID: 6289255769691467141}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -2602,6 +2616,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8641637d8985b98429efa39a89d2c2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementForce: 1
+  jumpForce: 3
+  maxSpeed: 1
+  playerCam: {fileID: 963194227}
 --- !u!4 &6331925435017278538
 Transform:
   m_ObjectHideFlags: 0
