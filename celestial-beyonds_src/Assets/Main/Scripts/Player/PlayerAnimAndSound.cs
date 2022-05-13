@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +15,8 @@ public class PlayerAnimAndSound : MonoBehaviour
     private Rigidbody _rb;
     private InputProfiler _controls;
     private GameObject _player;
-    private int _profile;
+    private int _profile, _jumpActive;
+    private bool _action;
 
     private void Awake()
     {
@@ -26,10 +29,38 @@ public class PlayerAnimAndSound : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _animator = GetComponent<Animator>();
         _profile = Animator.StringToHash("Profile");
+        _jumpActive = Animator.StringToHash("JumpActive");
     }
 
     private void Update()
     {
-        _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
+        if(!_action)
+            _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
+    }
+    
+    private void OnEnable()
+    {
+        _controls.Profiler.Jump.started += Jump;
+        _controls.Profiler.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _controls.Profiler.Jump.started -= Jump;
+        _controls.Profiler.Disable();
+    }
+    
+    private void Jump(InputAction.CallbackContext obj)
+    {
+        _action = true;
+        _animator.SetFloat(_profile, 5);
+        _animator.SetTrigger(_jumpActive);
+        StartCoroutine(ActionOver());
+    }
+
+    IEnumerator ActionOver()
+    {
+        yield return new WaitForSeconds(.5f);
+        _action = false;
     }
 }

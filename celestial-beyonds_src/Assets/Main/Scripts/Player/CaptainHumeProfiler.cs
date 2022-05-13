@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +13,8 @@ public class CaptainHumeProfiler : MonoBehaviour
     private Rigidbody _rb;
     public float movementForce = 1f, jumpForce = 5f, maxSpeed = 5f;
     private Vector3 forceDir = Vector3.zero;
-
+    private bool _grounded;
+    
     public Camera playerCam;
 
     private void Awake()
@@ -45,14 +47,6 @@ public class CaptainHumeProfiler : MonoBehaviour
         _rb.AddForce(forceDir, ForceMode.Impulse);
         forceDir = Vector3.zero;
 
-        if (_rb.velocity.y < 0f)
-            _rb.velocity += Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
-
-        var hVelocity = _rb.velocity;
-        hVelocity.y = 0;
-        if (hVelocity.sqrMagnitude > maxSpeed * maxSpeed)
-            _rb.velocity = hVelocity.normalized * maxSpeed + Vector3.up * _rb.velocity.y;
-        
         LookAt();
     }
 
@@ -83,20 +77,15 @@ public class CaptainHumeProfiler : MonoBehaviour
         return right.normalized;
     }
 
+    private void OnCollisionEnter()
+    {
+        _grounded = true;
+    }
+    
     private void JumpActive(InputAction.CallbackContext obj)
     {
-        if (Grounded())
-        {
-            forceDir += Vector3.up * jumpForce;
-        }
-    }
-
-    private bool Grounded()
-    {
-        var ray = new Ray(transform.position + Vector3.up * 0.25f, Vector3.down);
-        if (Physics.Raycast(ray, out _, 0.3f))
-            return true;
-        else
-            return false;
+        if (!_grounded) return;
+        _rb.velocity = transform.TransformDirection(0, jumpForce, 0);
+        _grounded = false;
     }
 }
