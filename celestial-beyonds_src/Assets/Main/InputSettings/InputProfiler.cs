@@ -19,7 +19,7 @@ public class @InputProfiler : IInputActionCollection, IDisposable
             ""id"": ""f49beba3-b51d-4298-91c1-76778cf0afc4"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""MoveKeys"",
                     ""type"": ""Button"",
                     ""id"": ""433e7d36-1d4a-4534-ac5f-90e04cb514fa"",
                     ""expectedControlType"": ""Button"",
@@ -49,6 +49,14 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MoveController"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""e2ace138-0330-43c6-bba4-c2af5ffdc4c7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -59,7 +67,7 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeys"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -70,7 +78,7 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeys"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -81,7 +89,7 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeys"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -92,7 +100,7 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeys"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -103,7 +111,7 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeys"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -114,7 +122,7 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeys"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -125,7 +133,7 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeys"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -136,7 +144,7 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeys"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -147,7 +155,7 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeys"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -158,7 +166,7 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeys"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -166,6 +174,17 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""0448eba7-1b3c-4a14-80dc-c5ae8ee07d61"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e445b561-c31c-435f-b9a9-2a39f373eb04"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -186,12 +205,45 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""9ce0c4f8-7522-4a04-986f-db6ec03e37f8"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4bc11560-f570-4ebe-b5ab-39e9f31b1126"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54dff0cd-19d0-4109-b9b8-a7f5ad922c43"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6848edb-09f0-4db7-b3c5-4f7eb43e2d8d"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveController"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -202,10 +254,11 @@ public class @InputProfiler : IInputActionCollection, IDisposable
 }");
         // Profiler
         m_Profiler = asset.FindActionMap("Profiler", throwIfNotFound: true);
-        m_Profiler_Move = m_Profiler.FindAction("Move", throwIfNotFound: true);
+        m_Profiler_MoveKeys = m_Profiler.FindAction("MoveKeys", throwIfNotFound: true);
         m_Profiler_Jump = m_Profiler.FindAction("Jump", throwIfNotFound: true);
         m_Profiler_Attack = m_Profiler.FindAction("Attack", throwIfNotFound: true);
         m_Profiler_Look = m_Profiler.FindAction("Look", throwIfNotFound: true);
+        m_Profiler_MoveController = m_Profiler.FindAction("MoveController", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -255,18 +308,20 @@ public class @InputProfiler : IInputActionCollection, IDisposable
     // Profiler
     private readonly InputActionMap m_Profiler;
     private IProfilerActions m_ProfilerActionsCallbackInterface;
-    private readonly InputAction m_Profiler_Move;
+    private readonly InputAction m_Profiler_MoveKeys;
     private readonly InputAction m_Profiler_Jump;
     private readonly InputAction m_Profiler_Attack;
     private readonly InputAction m_Profiler_Look;
+    private readonly InputAction m_Profiler_MoveController;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
         public ProfilerActions(@InputProfiler wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Profiler_Move;
+        public InputAction @MoveKeys => m_Wrapper.m_Profiler_MoveKeys;
         public InputAction @Jump => m_Wrapper.m_Profiler_Jump;
         public InputAction @Attack => m_Wrapper.m_Profiler_Attack;
         public InputAction @Look => m_Wrapper.m_Profiler_Look;
+        public InputAction @MoveController => m_Wrapper.m_Profiler_MoveController;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -276,9 +331,9 @@ public class @InputProfiler : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_ProfilerActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnMove;
+                @MoveKeys.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnMoveKeys;
+                @MoveKeys.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnMoveKeys;
+                @MoveKeys.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnMoveKeys;
                 @Jump.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJump;
@@ -288,13 +343,16 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnLook;
+                @MoveController.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnMoveController;
+                @MoveController.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnMoveController;
+                @MoveController.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnMoveController;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
+                @MoveKeys.started += instance.OnMoveKeys;
+                @MoveKeys.performed += instance.OnMoveKeys;
+                @MoveKeys.canceled += instance.OnMoveKeys;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -304,15 +362,19 @@ public class @InputProfiler : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @MoveController.started += instance.OnMoveController;
+                @MoveController.performed += instance.OnMoveController;
+                @MoveController.canceled += instance.OnMoveController;
             }
         }
     }
     public ProfilerActions @Profiler => new ProfilerActions(this);
     public interface IProfilerActions
     {
-        void OnMove(InputAction.CallbackContext context);
+        void OnMoveKeys(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnMoveController(InputAction.CallbackContext context);
     }
 }

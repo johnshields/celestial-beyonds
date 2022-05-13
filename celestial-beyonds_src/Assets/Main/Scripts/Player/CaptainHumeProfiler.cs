@@ -6,7 +6,7 @@ public class CaptainHumeProfiler : MonoBehaviour
 {
     // input
     private InputProfiler _controls;
-    private InputAction _move;
+    private InputAction _moveKeys, _moveController;
     
     // movement
     private Rigidbody _rb;
@@ -24,7 +24,8 @@ public class CaptainHumeProfiler : MonoBehaviour
     private void OnEnable()
     {
         _controls.Profiler.Jump.started += JumpActive;
-        _move = _controls.Profiler.Move;
+        _moveKeys = _controls.Profiler.MoveKeys;
+        _moveController = _controls.Profiler.MoveController;
         _controls.Profiler.Enable();
     }
     
@@ -36,8 +37,10 @@ public class CaptainHumeProfiler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        forceDir += _move.ReadValue<Vector2>().x * GetCameraRight(playerCam) * movementForce;
-        forceDir += _move.ReadValue<Vector2>().y * GetCameraForward(playerCam) * movementForce;
+        forceDir += _moveKeys.ReadValue<Vector2>().x * GetCameraRight(playerCam) * movementForce;
+        forceDir += _moveKeys.ReadValue<Vector2>().y * GetCameraForward(playerCam) * movementForce;
+        forceDir += _moveController.ReadValue<Vector2>().x * GetCameraRight(playerCam) * movementForce;
+        forceDir += _moveController.ReadValue<Vector2>().y * GetCameraForward(playerCam) * movementForce;
         
         _rb.AddForce(forceDir, ForceMode.Impulse);
         forceDir = Vector3.zero;
@@ -58,7 +61,9 @@ public class CaptainHumeProfiler : MonoBehaviour
         var direction = _rb.velocity;
         direction.y = 0f;
 
-        if (_move.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
+        if (_moveKeys.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
+            _rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
+        else if(_moveController.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
             _rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
         else
             _rb.angularVelocity = Vector3.zero;
