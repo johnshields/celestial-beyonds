@@ -60,7 +60,7 @@ public class PlayerAnimAndSound : MonoBehaviour
 
     IEnumerator ActionOver()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.6f);
         _action = false;
     }
 }

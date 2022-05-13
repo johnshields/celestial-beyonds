@@ -85,7 +85,7 @@ public class CaptainHumeProfiler : MonoBehaviour
     private void JumpActive(InputAction.CallbackContext obj)
     {
         if (!_grounded) return;
-        _rb.velocity = transform.TransformDirection(0, jumpForce, 0);
+        _rb.velocity = transform.TransformDirection(0, jumpForce, 1f);
         _grounded = false;
     }
 }
