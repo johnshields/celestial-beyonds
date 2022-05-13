@@ -1,16 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoonbeamProfiler : MonoBehaviour
 {
-    private void Start()
-    {
-        
-    }
+    public GameObject target;
 
     private void Update()
     {
-        
+        transform.LookAt(target.transform);
     }
 }

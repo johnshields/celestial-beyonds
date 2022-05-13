@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18427372, g: 0.21159357, b: 0.33884963, a: 1}
+  m_IndirectSpecularColor: {r: 0.1609855, g: 0.19029567, b: 0.32899237, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -122,7 +122,37 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: adb03eebc2a7ef0409a4ba131fc6f49c, type: 2}
+--- !u!1 &77690138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 77690139}
+  m_Layer: 0
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &77690139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77690138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.336, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2434042941576485261}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &493041214
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515416638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.21499556, y: 0.5367761, z: 0.37611508}
+  m_LocalPosition: {x: 0.252, y: 0.5367761, z: 0.37611508}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 543450652957900167}
@@ -376,7 +406,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &829576248
 MeshCollider:
@@ -610,7 +640,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038113543}
   m_LocalRotation: {x: 0.21649504, y: 0.16363986, z: -0.047921363, w: 0.9612781}
-  m_LocalPosition: {x: -0.007, y: 0.0043, z: 0.0156}
+  m_LocalPosition: {x: -0.006, y: 0.0043, z: 0.015}
   m_LocalScale: {x: -0.041404847, y: -0.043122895, z: -0.040927894}
   m_Children: []
   m_Father: {fileID: 402376560250128798}
@@ -1053,7 +1083,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -1069,6 +1099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8b23b4ec15b334786ac4a2ffee42d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 77690138}
 --- !u!1 &990541135290880290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,6 +1746,7 @@ Transform:
   - {fileID: 8603549735380445695}
   - {fileID: 7896824333962115353}
   - {fileID: 77279768706306579}
+  - {fileID: 77690139}
   m_Father: {fileID: 493041215}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1955,6 +1987,7 @@ GameObject:
   - component: {fileID: 3066007434264232762}
   - component: {fileID: 3066007434264232761}
   - component: {fileID: 3066007434264232760}
+  - component: {fileID: 3066007434264232765}
   m_Layer: 0
   m_Name: CaptainHume
   m_TagString: Player
@@ -1975,7 +2008,7 @@ CapsuleCollider:
   m_Radius: 0.11443005
   m_Height: 0.6055813
   m_Direction: 1
-  m_Center: {x: -0, y: 0.30210495, z: -0.0041423663}
+  m_Center: {x: -0, y: 0.3, z: -0.0041423663}
 --- !u!54 &3066007434264232761
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2040,6 +2073,28 @@ MonoBehaviour:
   jumpForce: 5
   maxSpeed: 0.5
   playerCam: {fileID: 963194227}
+--- !u!195 &3066007434264232765
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066007434264232759}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: -0.075
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!4 &3229408616664170262
 Transform:
   m_ObjectHideFlags: 0
