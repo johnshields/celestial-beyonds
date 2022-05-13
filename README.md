@@ -18,10 +18,15 @@ alt="GSA Logo" width="600" height="250"/>
 
 ***
 
-<p align="center"><img src="https://github.com/johnshields/celestial-beyonds/blob/main/workings/art/design/LOGO.png?raw=true"
-alt="Logo" width="auto" height="auto"/>
-</p>
+<a href="https://i.ibb.co/DtFV98d/captain-hume-v005.png" >
+<p align="center"><img src="https://i.ibb.co/DtFV98d/captain-hume-v005.png"
+alt="cb_logo" width="auto" height="auto"/>
+</p></a>
 
 ***
 Dissertation project that is a space hub exploration game that focuses on A.I. companionship in Serious Games.
+***
+
+###### END OF README
+
 ***
