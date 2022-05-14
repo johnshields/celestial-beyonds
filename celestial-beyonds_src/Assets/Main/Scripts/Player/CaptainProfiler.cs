@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -85,8 +86,19 @@ namespace Main.Scripts.Player
         private void JumpActive(InputAction.CallbackContext obj)
         {
             if (!grounded) return;
-            _rb.velocity = transform.TransformDirection(0, jumpForce, 1f);
+            StartCoroutine(DoAction());
             grounded = false;
+        }
+
+        private IEnumerator DoAction()
+        {
+            float delay;
+            if (_rb.velocity.x == 0)
+                delay = 0.5f;
+            else
+                delay = 0;
+            yield return new WaitForSeconds(delay);
+            _rb.velocity = transform.TransformDirection(0, jumpForce, 1f);
         }
     }
 }

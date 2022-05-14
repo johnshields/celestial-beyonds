@@ -4,12 +4,17 @@ namespace Main.Scripts.UI
 {
     public class Compass : MonoBehaviour
     {
-        public Transform target;
+        private Transform _target;
         private Vector3 _vector;
+
+        private void Start()
+        {
+            _target = GameObject.FindGameObjectWithTag("Target").transform;
+        }
 
         private void Update()
         {
-            _vector.z = target.eulerAngles.y;
+            _vector.z = _target.eulerAngles.y;
             transform.localEulerAngles = _vector;
         }
     }

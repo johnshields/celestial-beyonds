@@ -15,7 +15,7 @@ namespace Main.Scripts.Player
         private Rigidbody _rb;
         private InputProfiler _controls;
         private GameObject _player;
-        private int _profile;
+        private int _profile, _jump;
 
         private void Awake()
         {
@@ -28,6 +28,7 @@ namespace Main.Scripts.Player
             _player = GameObject.FindGameObjectWithTag("Player");
             _animator = GetComponent<Animator>();
             _profile = Animator.StringToHash("Profile");
+            _jump = Animator.StringToHash("JumpActive");
         }
 
         private void Update()
@@ -49,10 +50,9 @@ namespace Main.Scripts.Player
     
         private void Jump(InputAction.CallbackContext obj)
         {
-            if(CaptainProfiler.grounded)
-            {
-                _animator.SetFloat(_profile, 3.5f);
-            }
+            if (!CaptainProfiler.grounded || _rb.velocity.x != 0) return;
+            _animator.SetFloat(_profile, 3.5f);
+            _animator.SetTrigger(_jump);
         }
     }
 }
