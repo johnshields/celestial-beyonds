@@ -92,13 +92,8 @@ namespace Main.Scripts.Player
 
         private IEnumerator DoAction()
         {
-            float delay;
-            if (_rb.velocity.x == 0)
-                delay = 0.5f;
-            else
-                delay = 0;
-            yield return new WaitForSeconds(delay);
-            _rb.velocity = transform.TransformDirection(0, jumpForce, 1f);
+            yield return new WaitForSeconds(0.5f);
+            _rb.velocity = transform.TransformDirection(0, jumpForce, 0f);
         }
     }
 }

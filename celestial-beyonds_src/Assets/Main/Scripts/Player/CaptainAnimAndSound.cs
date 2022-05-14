@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -50,9 +49,8 @@ namespace Main.Scripts.Player
     
         private void Jump(InputAction.CallbackContext obj)
         {
-            if (!CaptainProfiler.grounded || _rb.velocity.x != 0) return;
-            _animator.SetFloat(_profile, 3.5f);
-            _animator.SetTrigger(_jump);
+            if (CaptainProfiler.grounded)
+                _animator.SetTrigger(_jump);
         }
     }
 }
