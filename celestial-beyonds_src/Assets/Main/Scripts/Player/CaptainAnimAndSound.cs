@@ -14,7 +14,7 @@ namespace Main.Scripts.Player
         private Rigidbody _rb;
         private InputProfiler _controls;
         private GameObject _player;
-        private int _profile, _jump;
+        private int _profile, _jump, _melee0ne, _meleeTwo;
 
         private void Awake()
         {
@@ -28,29 +28,40 @@ namespace Main.Scripts.Player
             _animator = GetComponent<Animator>();
             _profile = Animator.StringToHash("Profile");
             _jump = Animator.StringToHash("JumpActive");
+            _melee0ne = Animator.StringToHash("Melee_1");
+            _meleeTwo = Animator.StringToHash("Melee_2");
         }
 
         private void Update()
-        { 
+        {
             _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
         }
-    
+
         private void OnEnable()
         {
             _controls.Profiler.Jump.started += Jump;
+            _controls.Profiler.Attack.started += MeleeAttack;
             _controls.Profiler.Enable();
         }
 
         private void OnDisable()
         {
             _controls.Profiler.Jump.started -= Jump;
+            _controls.Profiler.Attack.started -= MeleeAttack;
             _controls.Profiler.Disable();
         }
-    
+
         private void Jump(InputAction.CallbackContext obj)
         {
             if (CaptainProfiler.grounded)
                 _animator.SetTrigger(_jump);
+        }
+
+        private void MeleeAttack(InputAction.CallbackContext obj)
+        {
+            var attackBool = Random.Range(0, 2);
+            print(attackBool);
+            _animator.SetTrigger(attackBool == 0 ? _melee0ne : _meleeTwo);
         }
     }
 }
