@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /*
  * CameraProfiler
  * Script for getting Camera to follow the player.
  */
-namespace Player
+namespace Main.Scripts.Player
 {
     public class CameraProfiler : MonoBehaviour
     {
