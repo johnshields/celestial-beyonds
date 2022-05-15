@@ -18,8 +18,8 @@ alt="GSA Logo" width="600" height="250"/>
 
 ***
 
-<a href="hhttps://i.ibb.co/Yy7K2C2/cb-cover.png" >
-<p align="center"><img src="https://i.ibb.co/Yy7K2C2/cb-cover.png"
+<a href="https://i.ibb.co/YkK18yP/Screenshot-from-2022-05-15-17-12-16.png" >
+<p align="center"><img src="https://i.ibb.co/YkK18yP/Screenshot-from-2022-05-15-17-12-16.png"
 alt="cb_logo" width="auto" height="auto"/>
 </p></a>
 
