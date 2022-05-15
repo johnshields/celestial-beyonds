@@ -71,6 +71,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e778ed4-7960-4d05-be51-839357fbd72e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -260,6 +269,28 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""MoveController"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ad8b6db-b7a0-4e0e-8043-32059875d4aa"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45c8c501-058a-45ed-b3ef-7b8ba69df068"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -273,6 +304,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_Attack = m_Profiler.FindAction("Attack", throwIfNotFound: true);
         m_Profiler_Look = m_Profiler.FindAction("Look", throwIfNotFound: true);
         m_Profiler_MoveController = m_Profiler.FindAction("MoveController", throwIfNotFound: true);
+        m_Profiler_Dodge = m_Profiler.FindAction("Dodge", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,6 +369,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_Attack;
     private readonly InputAction m_Profiler_Look;
     private readonly InputAction m_Profiler_MoveController;
+    private readonly InputAction m_Profiler_Dodge;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
@@ -346,6 +379,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Profiler_Attack;
         public InputAction @Look => m_Wrapper.m_Profiler_Look;
         public InputAction @MoveController => m_Wrapper.m_Profiler_MoveController;
+        public InputAction @Dodge => m_Wrapper.m_Profiler_Dodge;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -370,6 +404,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @MoveController.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnMoveController;
                 @MoveController.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnMoveController;
                 @MoveController.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnMoveController;
+                @Dodge.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDodge;
+                @Dodge.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDodge;
+                @Dodge.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDodge;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
@@ -389,6 +426,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @MoveController.started += instance.OnMoveController;
                 @MoveController.performed += instance.OnMoveController;
                 @MoveController.canceled += instance.OnMoveController;
+                @Dodge.started += instance.OnDodge;
+                @Dodge.performed += instance.OnDodge;
+                @Dodge.canceled += instance.OnDodge;
             }
         }
     }
@@ -400,5 +440,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnMoveController(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
     }
 }

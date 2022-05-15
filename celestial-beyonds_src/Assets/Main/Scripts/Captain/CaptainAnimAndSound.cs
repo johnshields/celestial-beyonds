@@ -14,10 +14,11 @@ namespace Main.Scripts.Captain
         private Rigidbody _rb;
         private InputProfiler _controls;
         private GameObject _player, _footsteps;
-        private int _profile, _jump, _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
+        private int _profile, _jump, _dodge;
+        private int _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
         private AudioSource _audio;
         public AudioClip[] meleeSFX;
-        public float delayAttack = 1f;
+        public float delayAction = 1f, dodge;
         private bool _actionDone;
 
         private void Awake()
@@ -39,6 +40,7 @@ namespace Main.Scripts.Captain
             _meleeThree = Animator.StringToHash("Melee_3");
             _meleeFour = Animator.StringToHash("Melee_4");
             _meleeFive = Animator.StringToHash("Melee_5");
+            _dodge = Animator.StringToHash("Dodge");
         }
 
         private void Update()
@@ -50,6 +52,7 @@ namespace Main.Scripts.Captain
         {
             _controls.Profiler.Jump.started += Jump;
             _controls.Profiler.Attack.started += MeleeAttack;
+            _controls.Profiler.Dodge.started += Dodge;
             _controls.Profiler.Enable();
         }
 
@@ -57,13 +60,16 @@ namespace Main.Scripts.Captain
         {
             _controls.Profiler.Jump.started -= Jump;
             _controls.Profiler.Attack.started -= MeleeAttack;
+            _controls.Profiler.Dodge.started -= Dodge;
             _controls.Profiler.Disable();
         }
-
+        
         private void Jump(InputAction.CallbackContext obj)
         {
-            if (CaptainProfiler.grounded)
-                _animator.SetTrigger(_jump);
+            if (!CaptainProfiler.grounded || _actionDone) return;
+            _animator.SetTrigger(_jump);   
+            _actionDone = true;
+            Invoke(nameof(ResetAction), delayAction);
         }
 
         private void MeleeAttack(InputAction.CallbackContext obj)
@@ -91,11 +97,20 @@ namespace Main.Scripts.Captain
                 }
 
                 _actionDone = true;
-                Invoke(nameof(ResetAttack), delayAttack);
+                Invoke(nameof(ResetAction), delayAction);
             }
         }
+        
+        private void Dodge(InputAction.CallbackContext obj)
+        {
+            if (_actionDone) return;
+            _animator.SetTrigger(_dodge);
+            _rb.velocity = transform.TransformDirection(0, 0, dodge);
+            _actionDone = true;
+            Invoke(nameof(ResetAction), delayAction);
+        }
 
-        private void ResetAttack()
+        private void ResetAction()
         {
             _actionDone = false;
         }
