@@ -59,9 +59,17 @@ namespace Main.Scripts.Player
 
         private void MeleeAttack(InputAction.CallbackContext obj)
         {
-            var attackBool = Random.Range(0, 2);
-            print(attackBool);
-            _animator.SetTrigger(attackBool == 0 ? _melee0ne : _meleeTwo);
+            // var attackBool = Random.Range(0, 2);
+            // print(attackBool);
+            // switch (attackBool)
+            // {
+            //     case 0:
+            //         _animator.SetTrigger(_melee0ne);
+            //         break;
+            //     case 1:
+            //         _animator.SetTrigger(_meleeTwo);
+            //         break;
+            // }
         }
     }
 }

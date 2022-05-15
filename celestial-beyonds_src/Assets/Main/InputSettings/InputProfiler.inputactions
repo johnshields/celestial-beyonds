@@ -11,7 +11,8 @@
                     "id": "433e7d36-1d4a-4534-ac5f-90e04cb514fa",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -19,7 +20,8 @@
                     "id": "d43905fb-ae74-4e5f-a571-2ef8f9a60faa",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Attack",
@@ -27,7 +29,8 @@
                     "id": "100f2a91-9421-400a-a0f3-644c76d4072c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Look",
@@ -35,7 +38,8 @@
                     "id": "dd9e8aa9-7ea8-4488-97ff-862b16384ae1",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "MoveController",
@@ -43,7 +47,8 @@
                     "id": "e2ace138-0330-43c6-bba4-c2af5ffdc4c7",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -182,7 +187,7 @@
                 {
                     "name": "",
                     "id": "a84fe81c-ca6c-40f3-af79-7b1d5eec4a10",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
