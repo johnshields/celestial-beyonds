@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bfba45c7c16a1cc4a925ea1adfa4441e
+guid: 9667c4ed8ad2837feb1e8ece260af870
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -39,7 +39,7 @@ ModelImporter:
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 45
+      lastFrame: 71
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -59,22 +59,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.16838486
-        functionName: Footsteps
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.30004615
+      - time: 0.24742268
         functionName: Melee
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.91065294
-        functionName: Footsteps
+      - time: 0.41580757
+        functionName: Melee
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
