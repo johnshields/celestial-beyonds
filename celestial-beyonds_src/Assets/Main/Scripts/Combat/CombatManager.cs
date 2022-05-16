@@ -6,7 +6,7 @@ namespace Main.Scripts.Combat
     public class CombatManager  : MonoBehaviour
     {
         public static int playerHealth = 30;
-        public static int enemyHealth = 3;
+        public static int enemyHealth = 5;
         public int[] cheatHealth;
         public GameObject[] enemy;
 
@@ -28,7 +28,7 @@ namespace Main.Scripts.Combat
 
             if (enemyHealth  <= 0)
             {
-                enemyHealth = 3;
+                enemyHealth = 5;
                 print("Enemy Terminated!");
                 Destroy(enemy[0]);
             }

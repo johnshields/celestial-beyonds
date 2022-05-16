@@ -12,14 +12,14 @@ alt="GSA Logo" width="600" height="250"/>
 | :------------- |:-------------|
 | **Course**               | MSc Serious Games and Virtual Reality |
 | **Module**               | MSc Dissertation |
-| **University**           | [The Glasgow School of Art (SimVis)](https://www.gsa.ac.uk/research/research-units/school-of-simulation-and-visualisation/) |
+| **University**           | [The Glasgow School of Art (SimVis)](https://www.gsa.ac.uk/) |
 | **Students**             | John Shields |
 | **Supervisor**           | Dr. Sandy Louchart |
 
 ***
 
 <a href="https://i.ibb.co/YkK18yP/Screenshot-from-2022-05-15-17-12-16.png" >
-<p align="center"><img src="https://i.ibb.co/YkK18yP/Screenshot-from-2022-05-15-17-12-16.png"
+<p align="center"><img src="https://i.ibb.co/nrkCLvp/cb-cannon.png"
 alt="cb_logo" width="auto" height="auto"/>
 </p></a>
 

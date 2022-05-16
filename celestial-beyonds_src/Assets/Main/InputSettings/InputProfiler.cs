@@ -80,6 +80,24 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""4240291d-bf7a-44e2-a3ed-6933b4203f42"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Unarmed"",
+                    ""type"": ""Button"",
+                    ""id"": ""1c2afc73-6025-4260-97be-aea0c61445c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -218,7 +236,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a84fe81c-ca6c-40f3-af79-7b1d5eec4a10"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -229,7 +247,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9ce0c4f8-7522-4a04-986f-db6ec03e37f8"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -291,6 +309,50 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11d48ce2-9caf-4a60-ae97-bd430866b06f"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""903094cf-2fb4-4e34-b896-6f6543565a75"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f699abf-38ac-4de0-b11e-a6492f4118a5"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Unarmed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5dce2e31-613e-4491-9dd6-69fc0f19c0a5"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Unarmed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -305,6 +367,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_Look = m_Profiler.FindAction("Look", throwIfNotFound: true);
         m_Profiler_MoveController = m_Profiler.FindAction("MoveController", throwIfNotFound: true);
         m_Profiler_Dodge = m_Profiler.FindAction("Dodge", throwIfNotFound: true);
+        m_Profiler_Shoot = m_Profiler.FindAction("Shoot", throwIfNotFound: true);
+        m_Profiler_Unarmed = m_Profiler.FindAction("Unarmed", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -370,6 +434,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_Look;
     private readonly InputAction m_Profiler_MoveController;
     private readonly InputAction m_Profiler_Dodge;
+    private readonly InputAction m_Profiler_Shoot;
+    private readonly InputAction m_Profiler_Unarmed;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
@@ -380,6 +446,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Profiler_Look;
         public InputAction @MoveController => m_Wrapper.m_Profiler_MoveController;
         public InputAction @Dodge => m_Wrapper.m_Profiler_Dodge;
+        public InputAction @Shoot => m_Wrapper.m_Profiler_Shoot;
+        public InputAction @Unarmed => m_Wrapper.m_Profiler_Unarmed;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -407,6 +475,12 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Dodge.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDodge;
                 @Dodge.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDodge;
                 @Dodge.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDodge;
+                @Shoot.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnShoot;
+                @Unarmed.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUnarmed;
+                @Unarmed.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUnarmed;
+                @Unarmed.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUnarmed;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
@@ -429,6 +503,12 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+                @Unarmed.started += instance.OnUnarmed;
+                @Unarmed.performed += instance.OnUnarmed;
+                @Unarmed.canceled += instance.OnUnarmed;
             }
         }
     }
@@ -441,5 +521,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnMoveController(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
+        void OnUnarmed(InputAction.CallbackContext context);
     }
 }
