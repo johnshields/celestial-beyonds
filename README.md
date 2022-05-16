@@ -1,6 +1,6 @@
 <h1 align="center">MSc Dissertation</h1>
 
-<a href="https://www.gsa.ac.uk/research/research-units/school-of-simulation-and-visualisation/" >
+<a href="https://www.gsa.ac.uk/" >
 <p align="center"><img src="https://d4ya733yr7s0y.cloudfront.net/images/made/images/uploads/general/Uni-logo-GSA_730_290_80.jpg"
 alt="GSA Logo" width="600" height="250"/>
 </p></a>
@@ -18,7 +18,7 @@ alt="GSA Logo" width="600" height="250"/>
 
 ***
 
-<a href="https://i.ibb.co/YkK18yP/Screenshot-from-2022-05-15-17-12-16.png" >
+<a href="https://ibb.co/album/1fv0qv" >
 <p align="center"><img src="https://i.ibb.co/nrkCLvp/cb-cannon.png"
 alt="cb_logo" width="auto" height="auto"/>
 </p></a>
