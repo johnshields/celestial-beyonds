@@ -28,11 +28,12 @@ namespace Main.Scripts.Combat
 
             if (enemyHealth  <= 0)
             {
+                enemyHealth = 3;
                 print("Enemy Terminated!");
                 Destroy(enemy[0]);
             }
             else if (playerHealth <= 0)
-                print("Player Defeated! :(");
+                print("Player Defeated!");
         }
     }
 }

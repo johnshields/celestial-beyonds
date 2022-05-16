@@ -21,10 +21,20 @@ namespace Main.Scripts.Enemies
         private bool _walkPointSet, _actionDone;
         public float delayAction = 1f;
 
+        private Animator _animator;
+        private int _idle, _walk, _attack;
+        public AudioClip[] toadSFX;
+        private AudioSource _audio;
+
         private void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
             agent = GetComponent<NavMeshAgent>();
+            _audio = GetComponent<AudioSource>();
+            _animator = GetComponent<Animator>();
+            _idle = Animator.StringToHash("IdleActive");
+            _walk = Animator.StringToHash("WalkActive");
+            _attack = Animator.StringToHash("AttackActive");
         }
 
         private void Update()
@@ -38,6 +48,13 @@ namespace Main.Scripts.Enemies
             if (playerInAttackRange && playerInSightRange) AttackMode();
         }
 
+        private void AnimationState(bool idle, bool walk, bool attack)
+        {
+            _animator.SetBool(_idle, idle);
+            _animator.SetBool(_walk, walk);
+            _animator.SetBool(_attack, attack);
+        }
+
         private void Patrol()
         {
             sightRange = 20f;
@@ -45,7 +62,10 @@ namespace Main.Scripts.Enemies
             if (!_walkPointSet) SearchWalkPoint();
 
             if (_walkPointSet)
+            {
                 agent.SetDestination(walkPoint);
+                AnimationState(true, false, false);
+            }
 
             var distanceToWalkPoint = transform.position - walkPoint;
 
@@ -70,6 +90,7 @@ namespace Main.Scripts.Enemies
 
         private void ChasePlayer()
         {
+            AnimationState(false, true, false);
             agent.SetDestination(player.position);
             sightRange = 30f;
         }
@@ -77,15 +98,20 @@ namespace Main.Scripts.Enemies
         private void AttackMode()
         {
             // Enemy does not move and looks at player.
+            AnimationState(true, false, false);
             agent.SetDestination(transform.position);
             transform.LookAt(player);
 
             if (!_actionDone && CombatManager.playerHealth >= 0)
             {
-                print("Enemy attacked!");
+                AnimationState(false, false, true);
+                _audio.PlayOneShot(toadSFX[0]);
                 _actionDone = true;
                 Invoke(nameof(ResetAction), delayAction);
             }
+
+            if (CombatManager.enemyHealth <= 0)
+                _audio.PlayOneShot(toadSFX[1]);
         }
 
         private void ResetAction()
