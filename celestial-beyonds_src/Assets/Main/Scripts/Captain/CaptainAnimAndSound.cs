@@ -14,18 +14,18 @@ namespace Main.Scripts.Captain
         private Rigidbody _rb;
         private InputProfiler _controls;
         private GameObject _player, _footsteps, _scraper, _cannon;
-        private int _profile, _jump, _dodge;
+        private int _profile, _jump, _dodge, _armedActive, _shoot;
         private int _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
         private AudioSource _audio;
         public AudioClip[] meleeSFX;
         public float delayAction = 1f, dodge;
-        private bool _actionDone, _unarmed, _armed, _melee;
+        private bool _actionDone, _unarmed, _armed;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
             _controls = new InputProfiler();
-            PlayerState(true, false, false);
+            PlayerState(true, false);
         }
 
         private void Start()
@@ -38,7 +38,7 @@ namespace Main.Scripts.Captain
             _cannon = GameObject.FindGameObjectWithTag("Cannon");
             _footsteps = GameObject.FindGameObjectWithTag("Footsteps");
             WeaponSelect(false, false);
-
+            
             _profile = Animator.StringToHash("Profile");
             _jump = Animator.StringToHash("JumpActive");
             _melee0ne = Animator.StringToHash("Melee_1");
@@ -47,11 +47,22 @@ namespace Main.Scripts.Captain
             _meleeFour = Animator.StringToHash("Melee_4");
             _meleeFive = Animator.StringToHash("Melee_5");
             _dodge = Animator.StringToHash("Dodge");
+            _armedActive = Animator.StringToHash("Armed");
+            _shoot = Animator.StringToHash("Shoot");
         }
 
         private void Update()
         {
             _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
+            
+            if(_unarmed)
+            {
+                _animator.SetBool(_armedActive, false);
+            }
+            else if (_armed)
+            {
+                _animator.SetBool(_armedActive, true);
+            }
         }
 
         private void OnEnable()
@@ -74,27 +85,10 @@ namespace Main.Scripts.Captain
             _controls.Profiler.Disable();
         }
 
-        private void PlayerState(bool unarmed, bool melee, bool armed)
+        private void PlayerState(bool unarmed, bool armed)
         {
             _unarmed = unarmed;
-            _melee = melee;
             _armed = armed;
-        }
-
-        private void SetLayerWeight(int index, float uw, float mw, float aw)
-        {
-            switch (index)
-            {
-                case 1:
-                    _animator.SetLayerWeight(_animator.GetLayerIndex("Unarmed"), uw);
-                    break;
-                case 2:
-                    _animator.SetLayerWeight(_animator.GetLayerIndex("Melee"), mw);
-                    break;
-                case 3:
-                    _animator.SetLayerWeight(_animator.GetLayerIndex("Armed"), aw);
-                    break;
-            }
         }
 
         private void WeaponSelect(bool s, bool c)
@@ -103,15 +97,6 @@ namespace Main.Scripts.Captain
             _cannon.SetActive(c);
         }
 
-
-        private void Unarmed(InputAction.CallbackContext obj)
-        {
-            WeaponSelect(false, false);
-            PlayerState(true, false, false);
-            SetLayerWeight(1, 1f, 0, 0);
-        }
-
-
         private void Jump(InputAction.CallbackContext obj)
         {
             if (!CaptainProfiler.grounded || _actionDone) return;
@@ -119,15 +104,24 @@ namespace Main.Scripts.Captain
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);
         }
+        
+        private void Unarmed(InputAction.CallbackContext obj)
+        {
+            PlayerState(true, false);
+            if (_unarmed)
+            {
+                WeaponSelect(false, false);
+            }
+        }
+
 
         private void MeleeAttack(InputAction.CallbackContext obj)
         {
             WeaponSelect(true, false);
-            PlayerState(false, true, false);
-            SetLayerWeight(2, 0, 1f, 0);
+            PlayerState(true , false);
             var attackBool = Random.Range(0, 5);
 
-            if (!_actionDone && _melee)
+            if (!_actionDone)
             {
                 switch (attackBool)
                 {
@@ -156,13 +150,14 @@ namespace Main.Scripts.Captain
         private void Shoot(InputAction.CallbackContext obj)
         {
             WeaponSelect(false, true);
-            PlayerState(false, false, true);
-            SetLayerWeight(3, 0, 0, 1f);
+            PlayerState(false , true);
 
             if (!_actionDone && _armed)
             {
                 print("Shooting...");
+                _animator.SetTrigger(_shoot);
                 _actionDone = true;
+                Invoke(nameof(ResetAction), delayAction);
             }
         }
 
@@ -178,7 +173,6 @@ namespace Main.Scripts.Captain
         private void ResetAction()
         {
             _actionDone = false;
-            PlayerState(false, false, false);
         }
 
         private void Footsteps()
