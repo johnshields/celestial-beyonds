@@ -156,15 +156,7 @@ namespace Main.Scripts.Captain
 
             if (!_actionDone && _armed)
             {
-                print("Shooting...");
-                // >= Greater than or equals to
-                // <= Less than or equals to
-                if (_rb.velocity.magnitude >= 1f)
-                    _animator.SetTrigger(_rShoot);
-                else
-                    _animator.SetTrigger(_shoot);
-
-
+                _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
                 _actionDone = true;
                 Invoke(nameof(ResetAction), delayAction);
             }
