@@ -14,7 +14,7 @@ namespace Main.Scripts.Captain
         private Rigidbody _rb;
         private InputProfiler _controls;
         private GameObject _player, _footsteps, _scraper, _cannon;
-        private int _profile, _jump, _dodge, _armedActive, _shoot;
+        private int _profile, _jump, _dodge, _armedActive, _shoot, _wShoot, _rShoot;
         private int _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
         private AudioSource _audio;
         public AudioClip[] meleeSFX;
@@ -38,7 +38,7 @@ namespace Main.Scripts.Captain
             _cannon = GameObject.FindGameObjectWithTag("Cannon");
             _footsteps = GameObject.FindGameObjectWithTag("Footsteps");
             WeaponSelect(false, false);
-            
+
             _profile = Animator.StringToHash("Profile");
             _jump = Animator.StringToHash("JumpActive");
             _melee0ne = Animator.StringToHash("Melee_1");
@@ -49,13 +49,15 @@ namespace Main.Scripts.Captain
             _dodge = Animator.StringToHash("Dodge");
             _armedActive = Animator.StringToHash("Armed");
             _shoot = Animator.StringToHash("Shoot");
+            _wShoot = Animator.StringToHash("W_Shoot");
+            _rShoot = Animator.StringToHash("R_Shoot");
         }
 
         private void Update()
         {
             _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
             
-            if(_unarmed)
+            if (_unarmed)
             {
                 _animator.SetBool(_armedActive, false);
             }
@@ -104,7 +106,7 @@ namespace Main.Scripts.Captain
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);
         }
-        
+
         private void Unarmed(InputAction.CallbackContext obj)
         {
             PlayerState(true, false);
@@ -118,7 +120,7 @@ namespace Main.Scripts.Captain
         private void MeleeAttack(InputAction.CallbackContext obj)
         {
             WeaponSelect(true, false);
-            PlayerState(true , false);
+            PlayerState(true, false);
             var attackBool = Random.Range(0, 5);
 
             if (!_actionDone)
@@ -150,12 +152,19 @@ namespace Main.Scripts.Captain
         private void Shoot(InputAction.CallbackContext obj)
         {
             WeaponSelect(false, true);
-            PlayerState(false , true);
+            PlayerState(false, true);
 
             if (!_actionDone && _armed)
             {
                 print("Shooting...");
-                _animator.SetTrigger(_shoot);
+                // >= Greater than or equals to
+                // <= Less than or equals to
+                if (_rb.velocity.magnitude >= 1f)
+                    _animator.SetTrigger(_rShoot);
+                else
+                    _animator.SetTrigger(_shoot);
+
+
                 _actionDone = true;
                 Invoke(nameof(ResetAction), delayAction);
             }
