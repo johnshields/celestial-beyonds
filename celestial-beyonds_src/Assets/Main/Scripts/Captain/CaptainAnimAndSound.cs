@@ -56,7 +56,7 @@ namespace Main.Scripts.Captain
         private void Update()
         {
             _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
-            
+
             if (_unarmed)
             {
                 _animator.SetBool(_armedActive, false);
