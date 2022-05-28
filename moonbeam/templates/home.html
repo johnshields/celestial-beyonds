@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- linking css style script and icon-->
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Moonbeam</title>
+</head>
+<body>
+<img src="https://i.ibb.co/vQ6xC98/hi.png" alt="hi" class="image">
+<h1>Chat with Moonbeam!</h1>
+<div>
+    <div align="center">
+        <!-- user input -->
+        <label for="user_input"></label>
+        <textarea class="user-input" id="user_input" type="text" placeholder="Enter a message..."></textarea>
+    </div>
+    <br>
+    <div align="center">
+        <!-- button to send user request -->
+        <button class="button" type="button" id="talk">Enter</button>
+    </div>
+    <!-- bot is responded here -->
+    <br>
+    <div align="center">
+        <label for="bot_response"></label>
+        <textarea class="bot" id="bot_response" placeholder="Hi, I am Moonbeam!" readonly></textarea>
+    </div>
+</div>
+</body>
+<footer>
+    <!-- jQuery Script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- JS Script -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/middle_man.js') }}"></script>
+</footer>
+</html>
