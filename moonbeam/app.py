@@ -1,17 +1,22 @@
 from flask import Flask, render_template, request
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
+import os
+from dotenv import load_dotenv
 
 # Moonbeam Chat bot.
 # https://chatterbot.readthedocs.io/en/stable/
 
+load_dotenv()
+mongo_uri = os.getenv('URI')
+
 # Set up Moonbeam as a chat bot.
-mb_bot = ChatBot("Moonbeam", storage_adapter="chatterbot.storage.SQLStorageAdapter") # local
+mb_bot = ChatBot("Moonbeam", storage_adapter="chatterbot.storage.SQLStorageAdapter")  # local
 # mb_bot = ChatBot(
 #     'Moonbeam',
 #     storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
 #     database='moonbeam-db',
-#     database_uri='mongodb+srv://hume:okaycool@moonbeam-db.ef6jbwo.mongodb.net/moonbeam-db')  # mongodb
+#     database_uri=mongo_uri)  # mongodb
 
 # Train the bot.
 print('[INFO] Training bot...')
@@ -22,8 +27,6 @@ print('[INFO] Training complete!')
 # create a new web app
 app = Flask(__name__, static_folder="static", template_folder="templates")
 app.config["DEBUG"] = True
-
-print("Chat with Moonbeam! - " + "@ http://127.0.0.1:5000/")
 
 
 # add root route
@@ -49,4 +52,5 @@ def chat():
 
 # have the app run a localhost on the port 5000
 if __name__ == "__main__":
+    print("Chat with Moonbeam! - " + "@ http://127.0.0.1:5000/")
     app.run(host='0.0.0.0', port=5000)
