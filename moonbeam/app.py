@@ -2,32 +2,28 @@ from flask import Flask, render_template, request
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
+# Moonbeam Chat bot.
+# https://chatterbot.readthedocs.io/en/stable/
+
 # Set up Moonbeam as a chat bot.
-moonbeam_bot = ChatBot('Moonbeam', storage_adapter='chatterbot.storage.SQLStorageAdapter',
-                       logic_adapters=[
-                           'chatterbot.logic.BestMatch',
-                           'chatterbot.logic.MathematicalEvaluation',
-                           'chatterbot.logic.TimeLogicAdapter'
-                       ],
-                       database_uri='sqlite:///database.db')
+mb_bot = ChatBot("Moonbeam", storage_adapter="chatterbot.storage.SQLStorageAdapter") # local
+# mb_bot = ChatBot(
+#     'Moonbeam',
+#     storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
+#     database='moonbeam-db',
+#     database_uri='mongodb+srv://hume:okaycool@moonbeam-db.ef6jbwo.mongodb.net/moonbeam-db')  # mongodb
 
 # Train the bot.
 print('[INFO] Training bot...')
-trainer = ChatterBotCorpusTrainer(moonbeam_bot)
-# Train based on the english corpus
+trainer = ChatterBotCorpusTrainer(mb_bot)
 trainer.train("chatterbot.corpus.english")
-# Train based on english greetings corpus
-trainer.train("chatterbot.corpus.english.greetings")
-# Train based on the english conversations corpus
-trainer.train("chatterbot.corpus.english.conversations")
 print('[INFO] Training complete!')
 
 # create a new web app
-app = Flask(__name__)
 app = Flask(__name__, static_folder="static", template_folder="templates")
 app.config["DEBUG"] = True
 
-print("Chat with Moonbeam!")
+print("Chat with Moonbeam! - " + "@ http://127.0.0.1:5000/")
 
 
 # add root route
@@ -45,7 +41,7 @@ def home():
 @app.route('/api/chat', methods=['POST'])
 def chat():
     user_input = request.form['value']
-    response = moonbeam_bot.get_response(user_input)
+    response = mb_bot.get_response(user_input)
     print("Captain: " f'{str(user_input)}')
     print("Moonbeam: " f'{str(response)}')
     return str(response)
