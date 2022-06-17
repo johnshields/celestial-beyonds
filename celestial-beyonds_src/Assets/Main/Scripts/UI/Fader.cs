@@ -1,13 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Video;
 
 public class Fader : MonoBehaviour
 {
-    public GameObject musicAudio, video;
-    public float syncTime;
     private Animator _animator;
     private int _fadeIn, _fadeOut;
     private InputProfiler _controls;
@@ -18,10 +16,12 @@ public class Fader : MonoBehaviour
         _animator = GetComponent<Animator>();
         _fadeIn = Animator.StringToHash("FadeIn");
         _fadeOut = Animator.StringToHash("FadeOut");
+    }
 
+    private void Start()
+    {
         _animator.SetBool(_fadeIn, true);
         _animator.SetBool(_fadeOut, false);
-        StartCoroutine(SyncAudioAndVideo());
     }
 
     private void OnEnable()
@@ -34,13 +34,6 @@ public class Fader : MonoBehaviour
     {
         _controls.Profiler.Skip.started -= SkipScene;
         _controls.Profiler.Disable();
-    }
-
-    private IEnumerator SyncAudioAndVideo()
-    {
-        video.GetComponent<VideoPlayer>().Play();
-        yield return new WaitForSeconds(syncTime);
-        musicAudio.GetComponent<AudioSource>().Play();
     }
 
     private void SkipScene(InputAction.CallbackContext obj)

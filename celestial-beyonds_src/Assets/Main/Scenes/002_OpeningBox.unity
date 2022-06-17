@@ -421,7 +421,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 350, y: 200}
+  m_AnchoredPosition: {x: 350, y: 203}
   m_SizeDelta: {x: 80, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &452578068
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.120817, g: 0.123722956, b: 0.14150941, a: 1}
+  m_Color: {r: 0.10586507, g: 0.10922036, b: 0.122641504, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1070,9 +1070,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a955fe5347c25e43b693103be32d056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicAudio: {fileID: 266054555}
-  video: {fileID: 1670650121}
-  syncTime: 0.4
 --- !u!224 &1603995324
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1362,6 +1359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2022324448}
+  - component: {fileID: 2022324449}
   - component: {fileID: 2022324447}
   - component: {fileID: 2022324446}
   - component: {fileID: 2022324445}
@@ -1454,6 +1452,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2022324449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022324444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70197423f5291914d80b26e5293b6efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicAudio: {fileID: 266054555}
+  video: {fileID: 1670650121}
+  syncTime: 0.4
+  _fader: {fileID: 1603995322}
 --- !u!1 &2080077514
 GameObject:
   m_ObjectHideFlags: 0
