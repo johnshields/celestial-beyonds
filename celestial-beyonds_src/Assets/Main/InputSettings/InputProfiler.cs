@@ -98,6 +98,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""9053d697-3bcf-4b26-850c-a5636dc692d3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -353,6 +362,28 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""Unarmed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5261529-de21-4e99-aa67-3d6ad458ffa1"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed173062-3a2a-4a48-b974-4ecb2ba42099"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -369,6 +400,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_Dodge = m_Profiler.FindAction("Dodge", throwIfNotFound: true);
         m_Profiler_Shoot = m_Profiler.FindAction("Shoot", throwIfNotFound: true);
         m_Profiler_Unarmed = m_Profiler.FindAction("Unarmed", throwIfNotFound: true);
+        m_Profiler_Skip = m_Profiler.FindAction("Skip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -436,6 +468,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_Dodge;
     private readonly InputAction m_Profiler_Shoot;
     private readonly InputAction m_Profiler_Unarmed;
+    private readonly InputAction m_Profiler_Skip;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
@@ -448,6 +481,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Dodge => m_Wrapper.m_Profiler_Dodge;
         public InputAction @Shoot => m_Wrapper.m_Profiler_Shoot;
         public InputAction @Unarmed => m_Wrapper.m_Profiler_Unarmed;
+        public InputAction @Skip => m_Wrapper.m_Profiler_Skip;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -481,6 +515,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Unarmed.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUnarmed;
                 @Unarmed.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUnarmed;
                 @Unarmed.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUnarmed;
+                @Skip.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
+                @Skip.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
+                @Skip.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
@@ -509,6 +546,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Unarmed.started += instance.OnUnarmed;
                 @Unarmed.performed += instance.OnUnarmed;
                 @Unarmed.canceled += instance.OnUnarmed;
+                @Skip.started += instance.OnSkip;
+                @Skip.performed += instance.OnSkip;
+                @Skip.canceled += instance.OnSkip;
             }
         }
     }
@@ -523,5 +563,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnUnarmed(InputAction.CallbackContext context);
+        void OnSkip(InputAction.CallbackContext context);
     }
 }
