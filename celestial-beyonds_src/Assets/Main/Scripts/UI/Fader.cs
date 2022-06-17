@@ -38,9 +38,9 @@ public class Fader : MonoBehaviour
 
     private IEnumerator SyncAudioAndVideo()
     {
-        musicAudio.GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(syncTime);
         video.GetComponent<VideoPlayer>().Play();
+        yield return new WaitForSeconds(syncTime);
+        musicAudio.GetComponent<AudioSource>().Play();
     }
 
     private void SkipScene(InputAction.CallbackContext obj)
@@ -62,7 +62,7 @@ public class Fader : MonoBehaviour
                 break;
         }
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
