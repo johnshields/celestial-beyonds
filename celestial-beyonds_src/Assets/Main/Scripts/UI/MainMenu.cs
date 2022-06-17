@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     private UIActionsProfiler _controls;
     public GameObject _fader;
-    
+
     private void Awake()
     {
         _controls = new UIActionsProfiler();
@@ -31,17 +30,17 @@ public class MainMenu : MonoBehaviour
         _controls.UIActions.StartGame.started -= StartGame;
         _controls.UIActions.StartGame.Disable();
     }
-    
+
     private void StartGame(InputAction.CallbackContext obj)
     {
         StartCoroutine(LaunchGame());
     }
-    
+
     private IEnumerator LaunchGame()
     {
         _fader.GetComponent<Animator>().SetBool("FadeIn", false);
         _fader.GetComponent<Animator>().SetBool("FadeOut", true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -16,6 +16,8 @@ public class OpeningBox : MonoBehaviour
 
     private void Start()
     {
+        video.GetComponent<VideoPlayer>().Play();
+        musicAudio.GetComponent<AudioSource>().Play();
         StartCoroutine(OpeningOver());
     }
 
@@ -28,7 +30,7 @@ public class OpeningBox : MonoBehaviour
 
     private IEnumerator OpeningOver()
     {
-        yield return new WaitForSeconds(138f); // length of opening
+        yield return new WaitForSeconds(135f); // length of opening
         _fader.GetComponent<Animator>().SetBool("FadeIn", false);
         _fader.GetComponent<Animator>().SetBool("FadeOut", true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
