@@ -8,7 +8,7 @@ public class VideoSetup : MonoBehaviour
 
     private void Awake()
     {
-        videoPlayer.GetComponent<VideoPlayer>().url =
-            System.IO.Path.Combine(Application.streamingAssetsPath, videoURL);
+        // videoPlayer.GetComponent<VideoPlayer>().url =
+        //     System.IO.Path.Combine(Application.streamingAssetsPath, videoURL);
     }
 }
