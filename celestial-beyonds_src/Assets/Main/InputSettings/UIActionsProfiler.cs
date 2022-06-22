@@ -35,6 +35,15 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayCinematic"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecd5128b-136f-4ad2-8a57-0df31fe99eb9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -59,6 +68,28 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""StartGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e83e7531-5374-4e49-af7f-85b7aa99790f"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayCinematic"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""255d850b-962e-4860-a6df-f070e0ed22a9"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayCinematic"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -68,6 +99,7 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
         // UIActions
         m_UIActions = asset.FindActionMap("UIActions", throwIfNotFound: true);
         m_UIActions_StartGame = m_UIActions.FindAction("StartGame", throwIfNotFound: true);
+        m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -128,11 +160,13 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UIActions;
     private IUIActionsActions m_UIActionsActionsCallbackInterface;
     private readonly InputAction m_UIActions_StartGame;
+    private readonly InputAction m_UIActions_PlayCinematic;
     public struct UIActionsActions
     {
         private @UIActionsProfiler m_Wrapper;
         public UIActionsActions(@UIActionsProfiler wrapper) { m_Wrapper = wrapper; }
         public InputAction @StartGame => m_Wrapper.m_UIActions_StartGame;
+        public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -145,6 +179,9 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                 @StartGame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnStartGame;
                 @StartGame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnStartGame;
                 @StartGame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnStartGame;
+                @PlayCinematic.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
+                @PlayCinematic.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
+                @PlayCinematic.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -152,6 +189,9 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                 @StartGame.started += instance.OnStartGame;
                 @StartGame.performed += instance.OnStartGame;
                 @StartGame.canceled += instance.OnStartGame;
+                @PlayCinematic.started += instance.OnPlayCinematic;
+                @PlayCinematic.performed += instance.OnPlayCinematic;
+                @PlayCinematic.canceled += instance.OnPlayCinematic;
             }
         }
     }
@@ -159,5 +199,6 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
     public interface IUIActionsActions
     {
         void OnStartGame(InputAction.CallbackContext context);
+        void OnPlayCinematic(InputAction.CallbackContext context);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
@@ -7,26 +8,46 @@ public class OpeningBox : MonoBehaviour
 {
     public GameObject musicAudio, video;
     public float syncTime = 0.4f;
-    public GameObject _fader;
+    public GameObject _fader, cinControls;
+    private UIActionsProfiler _controls;
 
     private void Awake()
     {
-        StartCoroutine(SyncAudioAndVideo());
+        Time.timeScale = 0;
+        _controls = new UIActionsProfiler();
     }
 
     private void Start()
     {
-        video.GetComponent<VideoPlayer>().Play();
-        musicAudio.GetComponent<AudioSource>().Play();
         StartCoroutine(OpeningOver());
     }
+    
+    private void OnEnable()
+    {
+        _controls.UIActions.PlayCinematic.started += PlayCinematic;
+        _controls.UIActions.PlayCinematic.Enable();
+    }
 
-    private IEnumerator SyncAudioAndVideo()
+    private void OnDisable()
+    {
+        _controls.UIActions.PlayCinematic.started -= PlayCinematic;
+        _controls.UIActions.PlayCinematic.Disable();
+    }
+
+    private void PlayCinematic(InputAction.CallbackContext obj)
+    {
+        Time.timeScale = 1;
+        cinControls.SetActive(false);
+        StartCoroutine(SyncCin());
+    }
+
+    private IEnumerator SyncCin()
     {
         video.GetComponent<VideoPlayer>().Play();
         yield return new WaitForSeconds(syncTime);
         musicAudio.GetComponent<AudioSource>().Play();
     }
+    
 
     private IEnumerator OpeningOver()
     {
