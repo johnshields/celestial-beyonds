@@ -18,8 +18,8 @@ alt="GSA Logo" width="600" height="250"/>
 
 ***
 
-<a href="https://ibb.co/album/1fv0qv" >
-<p align="center"><img src="https://user-images.githubusercontent.com/26766163/170734491-ed977c0d-3d27-4083-a2b5-9f42987b24db.png"
+<a href="https://github.com/johnshields/celestial-beyonds" >
+<p align="center"><img src="https://i.ibb.co/NLRz2JT/a-ch-mb-LOGO.png"
 alt="cb_logo" width="auto" height="auto"/>
 </p></a>
 
