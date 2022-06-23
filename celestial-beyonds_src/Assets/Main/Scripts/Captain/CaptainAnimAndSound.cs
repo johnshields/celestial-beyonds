@@ -18,8 +18,9 @@ namespace Main.Scripts.Captain
         private int _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
         private AudioSource _audio;
         public AudioClip[] meleeSFX;
+        public AudioClip cannonSFX;
         public float delayAction = 1f, dodge;
-        private bool _actionDone, _unarmed, _armed;
+        private bool _actionDone, _unarmed, _armed, _cannonFire;
 
         private void Awake()
         {
@@ -153,10 +154,13 @@ namespace Main.Scripts.Captain
         {
             WeaponSelect(false, true);
             PlayerState(false, true);
+            _cannonFire = true;
 
-            if (!_actionDone && _armed)
+            if (!_actionDone && _armed && _cannonFire)
             {
                 _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
+                // call CannonBlaster
+                _cannon.GetComponent<CannonBlaster>().FireCannon();
                 _actionDone = true;
                 Invoke(nameof(ResetAction), delayAction);
             }
@@ -174,6 +178,11 @@ namespace Main.Scripts.Captain
         private void ResetAction()
         {
             _actionDone = false;
+            if (_cannonFire)
+            {
+                _cannon.GetComponent<CannonBlaster>().HaltCannon();
+                _cannonFire = false;
+            }
         }
 
         private void Footsteps()
@@ -184,6 +193,11 @@ namespace Main.Scripts.Captain
         private void Melee()
         {
             _audio.PlayOneShot(meleeSFX[Random.Range(0, meleeSFX.Length)], 0.1f);
+        }
+
+        private void CannonFireSFX()
+        {
+            _audio.PlayOneShot(cannonSFX, 0.1f);
         }
     }
 }
