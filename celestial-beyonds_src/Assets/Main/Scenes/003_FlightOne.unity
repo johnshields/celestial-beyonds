@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.085637175, g: 0.13160872, b: 0.3135288, a: 1}
+  m_IndirectSpecularColor: {r: 0.07842114, g: 0.09750528, b: 0.2017082, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -164,7 +164,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: adbb2f285d0c95042b09efb364ce14a4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5aa59e1b62e5b3c4887b0e6b1210128d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
@@ -1307,7 +1307,7 @@ VideoPlayer:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 0
-  m_Url: https://shieldsgamedev.github.io/cins/opening.mp4
+  m_Url: https://shieldsgamedev.github.io/cins/flight_one.mp4
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
@@ -1581,7 +1581,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2022324444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70197423f5291914d80b26e5293b6efb, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f3d7949ab7e42a4e807cc84bae4a308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   musicAudio: {fileID: 266054555}
