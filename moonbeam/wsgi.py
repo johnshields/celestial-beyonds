@@ -1,28 +1,29 @@
 from flask import Flask, render_template, request
 from chatterbot import ChatBot
-from chatterbot.trainers import ChatterBotCorpusTrainer
+from chatterbot.trainers import ListTrainer
 import os
-from dotenv import load_dotenv
 
-# Moonbeam Chat bot.
+# Moonbeam Chatbot. python version -- 3.7.13
 # https://chatterbot.readthedocs.io/en/stable/
 
-load_dotenv()
-mongo_uri = os.getenv('URI')
 
-# Set up Moonbeam as a chat bot.
-mb_bot = ChatBot("Moonbeam", storage_adapter="chatterbot.storage.SQLStorageAdapter")  # local
+# Set up Moonbeam as a Chatbot.
+mb_bot = ChatBot("Moonbeam")  # local
 # mb_bot = ChatBot(
 #     'Moonbeam',
 #     storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
-#     database='moonbeam-db',
-#     database_uri=mongo_uri)  # mongodb
+#     database_uri='mongodb+srv://hume:okaycool@moonbeam-db.ef6jbwo.mongodb.net/moonbeam-db')  # mongodb
 
 # Train the bot.
-print('[INFO] Training bot...')
-trainer = ChatterBotCorpusTrainer(mb_bot)
-trainer.train("chatterbot.corpus.english")
-print('[INFO] Training complete!')
+trainer = ListTrainer(mb_bot)
+# Responses for an introduction...
+trainer.train(
+    [
+        "what is your name",  # question
+        "My name is Moonbeam"  # response
+    ]
+)
+print('[INFO] Training complete.')
 
 # create a new web app
 app = Flask(__name__, static_folder="static", template_folder="templates")
@@ -50,7 +51,7 @@ def chat():
     return str(response)
 
 
-# have the app run a localhost on the port 5000
+# have the app run a localhost on the port 8000
+port = int(os.environ.get("PORT", 8000))
 if __name__ == "__main__":
-    print("Chat with Moonbeam! - " + "@ http://127.0.0.1:5000/")
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=port, debug=True)

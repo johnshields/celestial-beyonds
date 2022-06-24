@@ -11,6 +11,12 @@ header {
     color: black;
 }
 
+.name{
+    margin-left: 400px;
+    text-align: left;
+     text-decoration: underline;
+}
+
 .user-input {
     font-family: "Lucida Console", "Courier New", monospace;
     border-style: none;
@@ -43,6 +49,6 @@ header {
     outline: none;
     font-family: "Lucida Console", "Courier New", monospace;
     font-size: 18px;
-    height: 400px;
+    height: 200px;
     width: 1000px;
 }
