@@ -4,10 +4,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
-public class FlightOne : MonoBehaviour
+public class FlightCinematics : MonoBehaviour
 {
     public GameObject musicAudio, video;
-    public float syncTime = 0.4f;
+    public float syncTime = 0.4f, vidLenght;
     public GameObject _fader, cinControls;
     private UIActionsProfiler _controls;
 
@@ -51,7 +51,7 @@ public class FlightOne : MonoBehaviour
 
     private IEnumerator CinematicOver()
     {
-        yield return new WaitForSeconds(62f); // length of cinematic
+        yield return new WaitForSeconds(vidLenght); // length of cinematic
         _fader.GetComponent<Animator>().SetBool("FadeIn", false);
         _fader.GetComponent<Animator>().SetBool("FadeOut", true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

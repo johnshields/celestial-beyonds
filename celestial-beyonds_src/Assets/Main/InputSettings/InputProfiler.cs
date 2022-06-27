@@ -107,6 +107,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JetPack"",
+                    ""type"": ""Button"",
+                    ""id"": ""dc6a6fa0-90a0-4213-b617-3c464c14f180"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -300,7 +309,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6ad8b6db-b7a0-4e0e-8043-32059875d4aa"",
-                    ""path"": ""<Keyboard>/shift"",
+                    ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -384,6 +393,28 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""Skip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ffcee18-7828-4cf8-8362-7b9fb10ec970"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JetPack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5fcd5292-d7ec-4a81-90f5-2890da45f076"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JetPack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -401,6 +432,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_Shoot = m_Profiler.FindAction("Shoot", throwIfNotFound: true);
         m_Profiler_Unarmed = m_Profiler.FindAction("Unarmed", throwIfNotFound: true);
         m_Profiler_Skip = m_Profiler.FindAction("Skip", throwIfNotFound: true);
+        m_Profiler_JetPack = m_Profiler.FindAction("JetPack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -469,6 +501,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_Shoot;
     private readonly InputAction m_Profiler_Unarmed;
     private readonly InputAction m_Profiler_Skip;
+    private readonly InputAction m_Profiler_JetPack;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
@@ -482,6 +515,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Profiler_Shoot;
         public InputAction @Unarmed => m_Wrapper.m_Profiler_Unarmed;
         public InputAction @Skip => m_Wrapper.m_Profiler_Skip;
+        public InputAction @JetPack => m_Wrapper.m_Profiler_JetPack;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -518,6 +552,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Skip.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
                 @Skip.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
                 @Skip.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
+                @JetPack.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJetPack;
+                @JetPack.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJetPack;
+                @JetPack.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJetPack;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
@@ -549,6 +586,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Skip.started += instance.OnSkip;
                 @Skip.performed += instance.OnSkip;
                 @Skip.canceled += instance.OnSkip;
+                @JetPack.started += instance.OnJetPack;
+                @JetPack.performed += instance.OnJetPack;
+                @JetPack.canceled += instance.OnJetPack;
             }
         }
     }
@@ -564,5 +604,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnUnarmed(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
+        void OnJetPack(InputAction.CallbackContext context);
     }
 }

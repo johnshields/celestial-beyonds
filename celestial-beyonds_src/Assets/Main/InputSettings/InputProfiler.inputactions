@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "JetPack",
+                    "type": "Button",
+                    "id": "dc6a6fa0-90a0-4213-b617-3c464c14f180",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -278,7 +287,7 @@
                 {
                     "name": "",
                     "id": "6ad8b6db-b7a0-4e0e-8043-32059875d4aa",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -360,6 +369,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2ffcee18-7828-4cf8-8362-7b9fb10ec970",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JetPack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5fcd5292-d7ec-4a81-90f5-2890da45f076",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JetPack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

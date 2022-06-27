@@ -56,7 +56,8 @@ namespace Main.Scripts.Captain
 
         private void Update()
         {
-            _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
+            if (!Jetpack._jetpackActive)
+                _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
 
             if (_unarmed)
             {
@@ -102,7 +103,7 @@ namespace Main.Scripts.Captain
 
         private void Jump(InputAction.CallbackContext obj)
         {
-            if (!CaptainProfiler.grounded || _actionDone) return;
+            if (!CaptainProfiler.grounded || _actionDone && !Jetpack._jetpackActive) return;
             _animator.SetTrigger(_jump);
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);
