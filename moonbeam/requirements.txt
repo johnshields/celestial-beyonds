@@ -1,11 +1,15 @@
 # Used by pip to install required python packages
 # Usage: pip install -r requirements.txt
 
-Flask>=1.0.0
-chatterbot>=1.0.0
-chatterbot-corpus>=1.2.0
-SQLAlchemy>=1.2
-pandas~=1.4.2
-numpy~=1.22.3
+Flask>=2.1.2
+blis==0.2.4
+certifi==2020.4.5.1
+chardet==3.0.4
+ChatterBot==1.0.5
 python-dotenv~=0.20.0
-pandas~=1.4.2
+gunicorn==20.0.4
+nltk==3.6.6
+numpy>=1.22
+python-dateutil==2.7.5
+pytz==2019.3
+requests==2.23.0
