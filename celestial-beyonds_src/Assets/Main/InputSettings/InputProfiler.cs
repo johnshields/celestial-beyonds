@@ -116,6 +116,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TalkArgyle"",
+                    ""type"": ""Button"",
+                    ""id"": ""18e9d62c-414e-4b7a-9df0-b17a30c91170"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -415,6 +424,28 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""JetPack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78fd17da-4c0a-4acd-85cd-1cc6329bad8f"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TalkArgyle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""166b3d92-d287-4545-a235-e41a189588ea"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TalkArgyle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -433,6 +464,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_Unarmed = m_Profiler.FindAction("Unarmed", throwIfNotFound: true);
         m_Profiler_Skip = m_Profiler.FindAction("Skip", throwIfNotFound: true);
         m_Profiler_JetPack = m_Profiler.FindAction("JetPack", throwIfNotFound: true);
+        m_Profiler_TalkArgyle = m_Profiler.FindAction("TalkArgyle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -502,6 +534,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_Unarmed;
     private readonly InputAction m_Profiler_Skip;
     private readonly InputAction m_Profiler_JetPack;
+    private readonly InputAction m_Profiler_TalkArgyle;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
@@ -516,6 +549,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Unarmed => m_Wrapper.m_Profiler_Unarmed;
         public InputAction @Skip => m_Wrapper.m_Profiler_Skip;
         public InputAction @JetPack => m_Wrapper.m_Profiler_JetPack;
+        public InputAction @TalkArgyle => m_Wrapper.m_Profiler_TalkArgyle;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -555,6 +589,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @JetPack.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJetPack;
                 @JetPack.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJetPack;
                 @JetPack.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJetPack;
+                @TalkArgyle.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTalkArgyle;
+                @TalkArgyle.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTalkArgyle;
+                @TalkArgyle.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTalkArgyle;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
@@ -589,6 +626,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @JetPack.started += instance.OnJetPack;
                 @JetPack.performed += instance.OnJetPack;
                 @JetPack.canceled += instance.OnJetPack;
+                @TalkArgyle.started += instance.OnTalkArgyle;
+                @TalkArgyle.performed += instance.OnTalkArgyle;
+                @TalkArgyle.canceled += instance.OnTalkArgyle;
             }
         }
     }
@@ -605,5 +645,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnUnarmed(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
         void OnJetPack(InputAction.CallbackContext context);
+        void OnTalkArgyle(InputAction.CallbackContext context);
     }
 }
