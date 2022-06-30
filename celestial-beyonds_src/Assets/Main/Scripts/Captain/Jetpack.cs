@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 
 public class Jetpack : MonoBehaviour
@@ -7,10 +8,11 @@ public class Jetpack : MonoBehaviour
     public float maxFuel = 4f, thrustForce = 0.1f;
     public Rigidbody _rb;
     public Transform groundedObj;
-    public GameObject flames;
+    public GameObject flames, fuelBar;
     private float _currentFuel;
     private InputProfiler _controls;
     public static bool _jetpackActive;
+    private Slider _fuelBarSlider;
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class Jetpack : MonoBehaviour
     {
         _currentFuel = maxFuel;
         _rb = GetComponent<Rigidbody>();
+        _fuelBarSlider = fuelBar.GetComponent<Slider>();
     }
     
     private void OnEnable()
@@ -42,8 +45,7 @@ public class Jetpack : MonoBehaviour
 
     private void Update()
     {
-        print("jetpack active: " + _jetpackActive + "\n fuel: " + _currentFuel);
-        
+        _fuelBarSlider.value = _currentFuel;
         if (_jetpackActive && _currentFuel > 0f)
         {
             _jetpackActive = true;
