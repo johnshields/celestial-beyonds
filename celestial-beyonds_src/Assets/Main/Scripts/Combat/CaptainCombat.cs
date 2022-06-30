@@ -12,7 +12,7 @@ namespace Main.Scripts.Combat
         {
             if (other.gameObject.CompareTag("Enemy") && CombatManager.enemyHealth >= 0)
                 CombatManager.enemyHealth--;
-            
+
             print("Enemy Health: " + CombatManager.enemyHealth);
         }
     }

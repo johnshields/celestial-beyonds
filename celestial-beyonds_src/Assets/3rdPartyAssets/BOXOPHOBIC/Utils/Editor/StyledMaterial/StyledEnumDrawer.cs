@@ -1,24 +1,23 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
-using System;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
     public class StyledEnumDrawer : MaterialPropertyDrawer
     {
+        public float down;
         public string options = "";
 
-        public float top = 0;
-        public float down = 0;
+        public float top;
 
         public StyledEnumDrawer(string options)
         {
             this.options = options;
 
-            this.top = 0;
-            this.down = 0;
+            top = 0;
+            down = 0;
         }
 
         public StyledEnumDrawer(string options, float top, float down)
@@ -29,20 +28,20 @@ namespace Boxophobic.StyledGUI
             this.down = down;
         }
 
-        public override void OnGUI(Rect position, MaterialProperty prop, String label, MaterialEditor materialEditor)
+        public override void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor materialEditor)
         {
-            GUIStyle styleLabel = new GUIStyle(EditorStyles.label)
+            var styleLabel = new GUIStyle(EditorStyles.label)
             {
                 richText = true,
                 alignment = TextAnchor.MiddleCenter,
                 wordWrap = true
             };
 
-            string[] enums = options.Split(char.Parse("_"));
+            var enums = options.Split(char.Parse("_"));
 
             GUILayout.Space(top);
 
-            int index = (int)prop.floatValue;
+            var index = (int)prop.floatValue;
 
             index = EditorGUILayout.Popup(prop.displayName, index, enums);
 

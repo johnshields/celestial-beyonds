@@ -1,17 +1,17 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
     [CustomPropertyDrawer(typeof(StyledMessage))]
     public class StyledMessageAttributeDrawer : PropertyDrawer
     {
-        StyledMessage a;
+        private StyledMessage a;
+        private MessageType messageType;
 
-        bool show;
-        MessageType messageType;
+        private bool show;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -22,21 +22,12 @@ namespace Boxophobic.StyledGUI
                 a = (StyledMessage)attribute;
 
                 if (a.Type == "None")
-                {
                     messageType = MessageType.None;
-                }
                 else if (a.Type == "Info")
-                {
                     messageType = MessageType.Info;
-                }
                 else if (a.Type == "Warning")
-                {
                     messageType = MessageType.Warning;
-                }
-                else if (a.Type == "Error")
-                {
-                    messageType = MessageType.Error;
-                }
+                else if (a.Type == "Error") messageType = MessageType.Error;
 
                 GUILayout.Space(a.Top);
                 EditorGUILayout.HelpBox(a.Message, messageType);

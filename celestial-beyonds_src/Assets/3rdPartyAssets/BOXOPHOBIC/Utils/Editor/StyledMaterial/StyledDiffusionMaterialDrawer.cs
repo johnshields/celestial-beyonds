@@ -1,8 +1,7 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
-using System;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
@@ -16,34 +15,39 @@ namespace Boxophobic.StyledGUI
             this.propName = propName;
         }
 
-        public override void OnGUI(Rect position, MaterialProperty prop, String label, MaterialEditor materialEditor)
+        public override void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor materialEditor)
         {
             //SetGUIStyles();
 
-            Material material = materialEditor.target as Material;
+            var material = materialEditor.target as Material;
 
-            UnityEngine.Object materialAsset = null;
+            Object materialAsset = null;
 
-            GUILayout.Space(5);            
+            GUILayout.Space(5);
 
             if (material.GetInt(propName) == 0)
-            {
-                EditorGUILayout.HelpBox("Diffusion profile values not set! Due to the current HDRP architecture the diffusion profiles are not directly supported. You will need to create an HDRP Lit material and assign a Diffusion Profile to it, drag this HDRP material to the " + label + " slot to allow the profile values to be copied to the material. The HDRP material will not be saved to the property field! Please refer to the documentation for more information.", MessageType.Warning);
-            }
+                EditorGUILayout.HelpBox(
+                    "Diffusion profile values not set! Due to the current HDRP architecture the diffusion profiles are not directly supported. You will need to create an HDRP Lit material and assign a Diffusion Profile to it, drag this HDRP material to the " +
+                    label +
+                    " slot to allow the profile values to be copied to the material. The HDRP material will not be saved to the property field! Please refer to the documentation for more information.",
+                    MessageType.Warning);
             else
-            {
-                EditorGUILayout.HelpBox("Diffusion profile values set! Due to the current HDRP architecture the diffusion profiles are not directly supported. You will need to create an HDRP Lit material and assign a Diffusion Profile to it, drag this HDRP material to the " + label + " slot to allow the profile values to be copied to the material. The HDRP material will not be saved to the property field! Please refer to the documentation for more information.", MessageType.Info);
-            }
+                EditorGUILayout.HelpBox(
+                    "Diffusion profile values set! Due to the current HDRP architecture the diffusion profiles are not directly supported. You will need to create an HDRP Lit material and assign a Diffusion Profile to it, drag this HDRP material to the " +
+                    label +
+                    " slot to allow the profile values to be copied to the material. The HDRP material will not be saved to the property field! Please refer to the documentation for more information.",
+                    MessageType.Info);
 
             GUILayout.Space(10);
 
             materialAsset = (Material)EditorGUILayout.ObjectField(label, materialAsset, typeof(Material), false);
 
-            Material materialObject = AssetDatabase.LoadAssetAtPath<Material>(AssetDatabase.GetAssetPath(materialAsset));
+            var materialObject = AssetDatabase.LoadAssetAtPath<Material>(AssetDatabase.GetAssetPath(materialAsset));
 
             if (materialAsset != null)
             {
-                if (materialObject.HasProperty("_DiffusionProfileAsset") && materialObject.HasProperty("_DiffusionProfileHash"))
+                if (materialObject.HasProperty("_DiffusionProfileAsset") &&
+                    materialObject.HasProperty("_DiffusionProfileHash"))
                 {
                     var diffusionProfileAsset = materialObject.GetVector("_DiffusionProfileAsset");
                     var diffusionProfileHash = materialObject.GetFloat("_DiffusionProfileHash");
@@ -62,7 +66,8 @@ namespace Boxophobic.StyledGUI
                         material.SetVector(propName + "_asset", Vector4.zero);
                         material.SetFloat(propName, 0.0f);
 
-                        Debug.Log("Diffusion Profile settings set to None because " + materialObject.name + " has no Diffusion Profile asset!");
+                        Debug.Log("Diffusion Profile settings set to None because " + materialObject.name +
+                                  " has no Diffusion Profile asset!");
 
                         materialAsset = null;
                     }

@@ -1,8 +1,7 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
-using Boxophobic.Constants;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,17 +11,17 @@ namespace Main.Scripts.Captain
     public class CaptainAnimAndSound : MonoBehaviour
     {
         public float maxSpeed = 5f;
-        private Animator _animator;
-        private Rigidbody _rb;
-        private InputProfiler _controls;
-        private GameObject _player, _footsteps, _scraper, _cannon;
-        private int _profile, _jump, _dodge, _armedActive, _shoot, _wShoot, _rShoot;
-        private int _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
-        private AudioSource _audio;
         public AudioClip[] meleeSFX;
         public AudioClip cannonSFX;
         public float delayAction = 1f, dodge;
         private bool _actionDone, _unarmed, _armed, _cannonFire;
+        private Animator _animator;
+        private AudioSource _audio;
+        private InputProfiler _controls;
+        private int _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
+        private GameObject _player, _footsteps, _scraper, _cannon, _pollinator;
+        private int _profile, _jump, _dodge, _armedActive, _shoot, _wShoot, _rShoot;
+        private Rigidbody _rb;
 
         private void Awake()
         {
@@ -37,8 +38,9 @@ namespace Main.Scripts.Captain
             _player = GameObject.FindGameObjectWithTag("Player");
             _scraper = GameObject.FindGameObjectWithTag("Scraper");
             _cannon = GameObject.FindGameObjectWithTag("Cannon");
+            _pollinator = GameObject.FindGameObjectWithTag("Pollinator");
             _footsteps = GameObject.FindGameObjectWithTag("Footsteps");
-            WeaponSelect(false, false);
+            WeaponSelect(false, false, false);
 
             _profile = Animator.StringToHash("Profile");
             _jump = Animator.StringToHash("JumpActive");
@@ -60,13 +62,8 @@ namespace Main.Scripts.Captain
                 _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
 
             if (_unarmed)
-            {
                 _animator.SetBool(_armedActive, false);
-            }
-            else if (_armed)
-            {
-                _animator.SetBool(_armedActive, true);
-            }
+            else if (_armed) _animator.SetBool(_armedActive, true);
         }
 
         private void OnEnable()
@@ -76,6 +73,7 @@ namespace Main.Scripts.Captain
             _controls.Profiler.Dodge.started += Dodge;
             _controls.Profiler.Shoot.started += Shoot;
             _controls.Profiler.Unarmed.started += Unarmed;
+            _controls.Profiler.Pollinate.started += Pollinate;
             _controls.Profiler.Enable();
         }
 
@@ -86,6 +84,7 @@ namespace Main.Scripts.Captain
             _controls.Profiler.Dodge.started -= Dodge;
             _controls.Profiler.Shoot.started -= Shoot;
             _controls.Profiler.Unarmed.started -= Unarmed;
+            _controls.Profiler.Pollinate.started -= Pollinate;
             _controls.Profiler.Disable();
         }
 
@@ -95,10 +94,11 @@ namespace Main.Scripts.Captain
             _armed = armed;
         }
 
-        private void WeaponSelect(bool s, bool c)
+        private void WeaponSelect(bool s, bool c, bool p)
         {
             _scraper.SetActive(s);
             _cannon.SetActive(c);
+            _pollinator.SetActive(p);
         }
 
         private void Jump(InputAction.CallbackContext obj)
@@ -112,16 +112,13 @@ namespace Main.Scripts.Captain
         private void Unarmed(InputAction.CallbackContext obj)
         {
             PlayerState(true, false);
-            if (_unarmed)
-            {
-                WeaponSelect(false, false);
-            }
+            if (_unarmed) WeaponSelect(false, false, false);
         }
 
 
         private void MeleeAttack(InputAction.CallbackContext obj)
         {
-            WeaponSelect(true, false);
+            WeaponSelect(true, false, false);
             PlayerState(true, false);
             var attackBool = Random.Range(0, 5);
 
@@ -153,7 +150,7 @@ namespace Main.Scripts.Captain
 
         private void Shoot(InputAction.CallbackContext obj)
         {
-            WeaponSelect(false, true);
+            WeaponSelect(false, true, false);
             PlayerState(false, true);
             _cannonFire = true;
 
@@ -166,12 +163,24 @@ namespace Main.Scripts.Captain
                 Invoke(nameof(ResetAction), delayAction);
             }
         }
+        
+        private void Pollinate(InputAction.CallbackContext obj)
+        {
+            WeaponSelect(false, false, true);
+            PlayerState(false, true);
+
+            if (!_actionDone && _armed)
+            {
+                _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
+                //stopPollinator
+            }
+        }
 
         private void Dodge(InputAction.CallbackContext obj)
         {
             if (_actionDone) return;
             _animator.SetTrigger(_dodge);
-            _rb.velocity = transform.TransformDirection(0, 0, dodge);
+            StartCoroutine(WaitToDodge());
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);
         }
@@ -184,6 +193,12 @@ namespace Main.Scripts.Captain
                 _cannon.GetComponent<CannonBlaster>().HaltCannon();
                 _cannonFire = false;
             }
+        }
+
+        private IEnumerator WaitToDodge()
+        {
+            yield return new WaitForSeconds(.5f);
+            _rb.velocity = transform.TransformDirection(0, 0, dodge);
         }
 
         private void Footsteps()

@@ -1,19 +1,18 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
-using System;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
     public class StyledInteractiveDrawer : MaterialPropertyDrawer
     {
         public string keyword;
+
+        protected int type;
         public float value1 = -1f;
         public float value2 = -1f;
         public float value3 = -1f;
-
-        protected int type;
 
         public StyledInteractiveDrawer(string k)
         {
@@ -45,42 +44,31 @@ namespace Boxophobic.StyledGUI
             value3 = v3;
         }
 
-        public override void OnGUI(Rect position, MaterialProperty prop, String label, MaterialEditor materialEditor)
+        public override void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor materialEditor)
         {
-            Material material = materialEditor.target as Material;
+            var material = materialEditor.target as Material;
 
             if (type == 1)
             {
                 if (material.HasProperty(keyword))
                 {
-                    if (value1 == material.GetFloat(keyword) || value2 == material.GetFloat(keyword) || value3 == material.GetFloat(keyword))
-                    {
+                    if (value1 == material.GetFloat(keyword) || value2 == material.GetFloat(keyword) ||
+                        value3 == material.GetFloat(keyword))
                         GUI.enabled = true;
-                    }
                     else
-                    {
                         GUI.enabled = false;
-                    }
                 }
             }
             else if (type == 0)
             {
                 if (keyword == "ON")
-                {
                     GUI.enabled = true;
-                }
                 else if (keyword == "OFF")
-                {
                     GUI.enabled = false;
-                }
                 else if (material.IsKeywordEnabled(keyword))
-                {
                     GUI.enabled = true;
-                }
                 else
-                {
                     GUI.enabled = false;
-                }
             }
         }
 

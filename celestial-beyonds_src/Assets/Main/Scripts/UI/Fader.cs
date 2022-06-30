@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class Fader : MonoBehaviour
 {
     private Animator _animator;
-    private int _fadeIn, _fadeOut;
     private InputProfiler _controls;
+    private int _fadeIn, _fadeOut;
 
     private void Awake()
     {

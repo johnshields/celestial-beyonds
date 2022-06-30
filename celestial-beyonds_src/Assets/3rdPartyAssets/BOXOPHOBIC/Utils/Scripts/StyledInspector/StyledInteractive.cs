@@ -6,9 +6,9 @@ namespace Boxophobic.StyledGUI
 {
     public class StyledInteractive : PropertyAttribute
     {
-        public int value;
         public string keyword;
         public int type;
+        public int value;
 
         public StyledInteractive(int v)
         {
@@ -22,6 +22,4 @@ namespace Boxophobic.StyledGUI
             keyword = k;
         }
     }
-
 }
-

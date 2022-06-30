@@ -8,7 +8,7 @@ namespace Boxophobic.StyledGUI
 
         public StyledTexturePreview()
         {
-            this.displayName = "";
+            displayName = "";
         }
 
         public StyledTexturePreview(string displayName)
@@ -17,4 +17,3 @@ namespace Boxophobic.StyledGUI
         }
     }
 }
-

@@ -1,20 +1,20 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
     [CustomPropertyDrawer(typeof(StyledText))]
     public class StyledTextAttributeDrawer : PropertyDrawer
     {
-        StyledText a;
+        private StyledText a;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             a = (StyledText)attribute;
 
-            GUIStyle styleLabel = new GUIStyle(EditorStyles.label)
+            var styleLabel = new GUIStyle(EditorStyles.label)
             {
                 richText = true,
                 wordWrap = true
@@ -24,10 +24,7 @@ namespace Boxophobic.StyledGUI
 
             GUILayout.Space(a.top);
 
-            if (a.disabled == true)
-            {
-                GUI.enabled = false;
-            }
+            if (a.disabled) GUI.enabled = false;
 
             GUILayout.Label(property.stringValue, styleLabel);
 
@@ -42,4 +39,3 @@ namespace Boxophobic.StyledGUI
         }
     }
 }
-

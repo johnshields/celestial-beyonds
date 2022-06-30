@@ -1,7 +1,7 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
@@ -14,19 +14,13 @@ namespace Boxophobic.StyledGUI
         {
             index = property.intValue;
 
-            string[] allLayers = new string[32];
+            var allLayers = new string[32];
 
-            for (int i = 0; i < 32; i++)
-            {
+            for (var i = 0; i < 32; i++)
                 if (LayerMask.LayerToName(i).Length < 1)
-                {
                     allLayers[i] = "Missing";
-                }
-                else 
-                {
+                else
                     allLayers[i] = LayerMask.LayerToName(i);
-                }
-            }
 
             index = EditorGUILayout.Popup(property.displayName, index, allLayers);
             property.intValue = index;

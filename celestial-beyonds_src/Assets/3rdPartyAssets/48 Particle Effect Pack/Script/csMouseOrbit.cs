@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class csMouseOrbit : MonoBehaviour
 {
-
     public Transform Target;
     public float distance;
 
@@ -12,25 +10,25 @@ public class csMouseOrbit : MonoBehaviour
 
     public float yMinLimit = -20.0f;
     public float yMaxLimit = 80.0f;
-
-    private float x = 0.0f;
-    private float y = 0.0f;
     public float CameraDist = 10;
 
+    private float x;
+    private float y;
+
     // Use this for initialization
-    void Start()
+    private void Start()
     {
-        Vector3 angles = transform.eulerAngles;
+        var angles = transform.eulerAngles;
         x = angles.x;
         y = angles.y;
         distance = 30;
 
-        if (this.GetComponent<Rigidbody>() == true)
+        if (GetComponent<Rigidbody>() == true)
             GetComponent<Rigidbody>().freezeRotation = true;
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    private void LateUpdate()
     {
         if (Target)
         {
@@ -39,8 +37,8 @@ public class csMouseOrbit : MonoBehaviour
 
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
-            Quaternion rotation = Quaternion.Euler(y, x, 0);
-            Vector3 position = rotation * new Vector3(0, 0, -distance) + Target.position;
+            var rotation = Quaternion.Euler(y, x, 0);
+            var position = rotation * new Vector3(0, 0, -distance) + Target.position;
 
             transform.rotation = rotation;
             transform.position = position;
@@ -48,7 +46,7 @@ public class csMouseOrbit : MonoBehaviour
         }
     }
 
-    float ClampAngle(float ag, float min, float max)
+    private float ClampAngle(float ag, float min, float max)
     {
         if (ag < -360)
             ag += 360;

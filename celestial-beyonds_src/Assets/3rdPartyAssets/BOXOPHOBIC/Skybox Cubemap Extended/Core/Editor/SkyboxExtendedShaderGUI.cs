@@ -1,8 +1,8 @@
 ﻿//Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 public class SkyboxExtendedShaderGUI : ShaderGUI
 {
@@ -15,11 +15,11 @@ public class SkyboxExtendedShaderGUI : ShaderGUI
         DrawDynamicInspector(material0, materialEditor, props);
     }
 
-    void DrawDynamicInspector(Material material, MaterialEditor materialEditor, MaterialProperty[] props)
+    private void DrawDynamicInspector(Material material, MaterialEditor materialEditor, MaterialProperty[] props)
     {
         var customPropsList = new List<MaterialProperty>();
 
-        for (int i = 0; i < props.Length; i++)
+        for (var i = 0; i < props.Length; i++)
         {
             var prop = props[i];
 
@@ -30,7 +30,7 @@ public class SkyboxExtendedShaderGUI : ShaderGUI
         }
 
         //Draw Custom GUI
-        for (int i = 0; i < customPropsList.Count; i++)
+        for (var i = 0; i < customPropsList.Count; i++)
         {
             var prop = customPropsList[i];
 

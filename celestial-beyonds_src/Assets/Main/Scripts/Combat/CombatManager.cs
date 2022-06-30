@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Main.Scripts.Combat
 {
-    public class CombatManager  : MonoBehaviour
+    public class CombatManager : MonoBehaviour
     {
         public static int playerHealth = 30;
         public static int enemyHealth = 5;
@@ -29,17 +28,19 @@ namespace Main.Scripts.Combat
                 playerHealth = 0;
             else if (cheatHealth[1] == 0)
                 enemyHealth = 0;
-            
+
             _pHealthBarSlider.value = playerHealth;
 
-            if (enemyHealth  <= 0)
+            if (enemyHealth <= 0)
             {
                 enemyHealth = 5;
                 print("Enemy Terminated!");
                 Destroy(enemy[0]);
             }
             else if (playerHealth <= 0)
+            {
                 print("Player Defeated!");
+            }
         }
     }
 }

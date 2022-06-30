@@ -6,15 +6,15 @@ namespace Boxophobic.StyledGUI
 {
     public class StyledButton : PropertyAttribute
     {
+        public float Down;
         public string Text = "";
-        public float Top = 0;
-        public float Down = 0;
+        public float Top;
 
         public StyledButton(string Text)
         {
             this.Text = Text;
-            this.Top = 0;
-            this.Down = 0;
+            Top = 0;
+            Down = 0;
         }
 
         public StyledButton(string Text, float Top, float Down)
@@ -25,4 +25,3 @@ namespace Boxophobic.StyledGUI
         }
     }
 }
-

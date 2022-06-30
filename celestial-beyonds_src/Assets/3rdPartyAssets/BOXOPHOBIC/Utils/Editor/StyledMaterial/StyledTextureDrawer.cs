@@ -1,28 +1,29 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Boxophobic.StyledGUI
 {
     public class StyledTextureDrawer : MaterialPropertyDrawer
     {
+        public float down;
         public float size;
         public float top;
-        public float down;
 
         public StyledTextureDrawer()
         {
-            this.size = 50;
-            this.top = 0;
-            this.down = 0;
+            size = 50;
+            top = 0;
+            down = 0;
         }
 
         public StyledTextureDrawer(float size)
         {
             this.size = size;
-            this.top = 0;
-            this.down = 0;
+            top = 0;
+            down = 0;
         }
 
         public StyledTextureDrawer(float size, float top, float down)
@@ -42,22 +43,17 @@ namespace Boxophobic.StyledGUI
 
             Texture tex = null;
 
-            if (prop.textureDimension == UnityEngine.Rendering.TextureDimension.Tex2D)
-            {
-                tex = (Texture2D)EditorGUILayout.ObjectField(prop.displayName, prop.textureValue, typeof(Texture2D), false, GUILayout.Height(50));
-            }
+            if (prop.textureDimension == TextureDimension.Tex2D)
+                tex = (Texture2D)EditorGUILayout.ObjectField(prop.displayName, prop.textureValue, typeof(Texture2D),
+                    false, GUILayout.Height(50));
 
-            if (prop.textureDimension == UnityEngine.Rendering.TextureDimension.Cube)
-            {
-                tex = (Cubemap)EditorGUILayout.ObjectField(prop.displayName, prop.textureValue, typeof(Cubemap), false, GUILayout.Height(50));
-            }
+            if (prop.textureDimension == TextureDimension.Cube)
+                tex = (Cubemap)EditorGUILayout.ObjectField(prop.displayName, prop.textureValue, typeof(Cubemap), false,
+                    GUILayout.Height(50));
 
             EditorGUI.showMixedValue = false;
 
-            if (EditorGUI.EndChangeCheck())
-            {
-                prop.textureValue = tex;
-            }
+            if (EditorGUI.EndChangeCheck()) prop.textureValue = tex;
 
             GUILayout.Space(down);
         }

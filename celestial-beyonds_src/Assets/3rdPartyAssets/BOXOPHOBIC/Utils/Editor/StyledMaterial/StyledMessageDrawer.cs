@@ -1,21 +1,20 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
-using System;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
     public class StyledMessageDrawer : MaterialPropertyDrawer
     {
-        public string type;
-        public string message;
-        public string keyword;
-        public float value;
-        public float top;
         public float down;
+        public string keyword;
+        public string message;
 
-        MessageType mType;
+        private MessageType mType;
+        public float top;
+        public string type;
+        public float value;
 
         public StyledMessageDrawer(string t, string m)
         {
@@ -23,8 +22,8 @@ namespace Boxophobic.StyledGUI
             message = m;
             keyword = null;
 
-            this.top = 0;
-            this.down = 0;
+            top = 0;
+            down = 0;
         }
 
         public StyledMessageDrawer(string t, string m, float top, float down)
@@ -48,31 +47,21 @@ namespace Boxophobic.StyledGUI
             this.down = down;
         }
 
-        public override void OnGUI(Rect position, MaterialProperty prop, String label, MaterialEditor materialEditor)
+        public override void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor materialEditor)
         {
-            Material material = materialEditor.target as Material;
+            var material = materialEditor.target as Material;
 
             if (type == "None")
-            {
                 mType = MessageType.None;
-            }
             else if (type == "Info")
-            {
                 mType = MessageType.Info;
-            }
             else if (type == "Warning")
-            {
                 mType = MessageType.Warning;
-            }
-            else if (type == "Error")
-            {
-                mType = MessageType.Error;
-            }
+            else if (type == "Error") mType = MessageType.Error;
 
             if (keyword != null)
             {
                 if (material.HasProperty(keyword))
-                {
                     if (material.GetFloat(keyword) == value)
                     {
                         GUILayout.Space(top);
@@ -80,9 +69,7 @@ namespace Boxophobic.StyledGUI
                         EditorGUILayout.HelpBox(message, mType);
                         //EditorGUI.HelpBox(new Rect(position.x, position.y + top, position.width, position.height), message, mType);
                         GUILayout.Space(down);
-
                     }
-                }
             }
             else
             {

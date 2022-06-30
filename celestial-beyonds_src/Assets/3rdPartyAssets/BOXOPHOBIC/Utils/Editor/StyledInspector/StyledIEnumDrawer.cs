@@ -1,31 +1,31 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
     [CustomPropertyDrawer(typeof(StyledEnum))]
     public class StyledEnumAttributeDrawer : PropertyDrawer
     {
-        StyledEnum a;
+        private StyledEnum a;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             a = (StyledEnum)attribute;
 
-            GUIStyle styleLabel = new GUIStyle(EditorStyles.label)
+            var styleLabel = new GUIStyle(EditorStyles.label)
             {
                 richText = true,
                 alignment = TextAnchor.MiddleCenter,
                 wordWrap = true
             };
 
-            string[] enums = a.options.Split(char.Parse("_"));
+            var enums = a.options.Split(char.Parse("_"));
 
             GUILayout.Space(a.top);
 
-            int index = (int)property.intValue;
+            var index = property.intValue;
 
             index = EditorGUILayout.Popup(property.displayName, index, enums);
 

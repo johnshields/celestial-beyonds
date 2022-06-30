@@ -6,11 +6,11 @@ namespace Boxophobic.StyledGUI
 {
     public class StyledText : PropertyAttribute
     {
-        public string text = "";
         public TextAnchor alignment = TextAnchor.MiddleCenter;
-        public bool disabled = false;
-        public float top = 0;
-        public float down = 0;
+        public bool disabled;
+        public float down;
+        public string text = "";
+        public float top;
 
         public StyledText()
         {
@@ -31,4 +31,3 @@ namespace Boxophobic.StyledGUI
         }
     }
 }
-

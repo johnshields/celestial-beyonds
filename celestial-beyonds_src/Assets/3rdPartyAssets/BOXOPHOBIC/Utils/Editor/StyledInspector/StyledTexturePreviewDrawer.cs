@@ -1,7 +1,8 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
+using UnityEngine.Profiling;
 using UnityEngine.Rendering;
 
 namespace Boxophobic.StyledGUI
@@ -9,10 +10,9 @@ namespace Boxophobic.StyledGUI
     [CustomPropertyDrawer(typeof(StyledTexturePreview))]
     public class StyledTexturePreviewAttributeDrawer : PropertyDrawer
     {
-        int channel = 0;
-        ColorWriteMask channelMask = ColorWriteMask.All;
-
-        StyledTexturePreview a;
+        private StyledTexturePreview a;
+        private int channel;
+        private ColorWriteMask channelMask = ColorWriteMask.All;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -33,22 +33,19 @@ namespace Boxophobic.StyledGUI
                 property.objectReferenceValue = tex;
             }
 
-            if (tex == null)
-            {
-                return;
-            }
+            if (tex == null) return;
 
             var styledText = new GUIStyle(EditorStyles.toolbarButton)
             {
                 alignment = TextAnchor.MiddleCenter,
                 fontStyle = FontStyle.Normal,
-                fontSize = 10,
+                fontSize = 10
             };
 
             var styledPopup = new GUIStyle(EditorStyles.toolbarPopup)
             {
                 alignment = TextAnchor.MiddleCenter,
-                fontSize = 10,
+                fontSize = 10
             };
 
             var rect = GUILayoutUtility.GetRect(0, 0, Screen.width, 0);
@@ -61,37 +58,28 @@ namespace Boxophobic.StyledGUI
 
             GUILayout.BeginHorizontal();
 
-            GUILayout.Label((UnityEngine.Profiling.Profiler.GetRuntimeMemorySizeLong(tex) / 1024f / 1024f).ToString("F2") + " mb", styledText);
+            GUILayout.Label((Profiler.GetRuntimeMemorySizeLong(tex) / 1024f / 1024f).ToString("F2") + " mb",
+                styledText);
             GUILayout.Space(-1);
             GUILayout.Label(tex.width.ToString(), styledText);
             GUILayout.Space(-1);
             GUILayout.Label(tex.graphicsFormat.ToString(), styledText);
             GUILayout.Space(-1);
 
-            channel = EditorGUILayout.Popup(channel, new string[] { "RGB", "R", "G", "B", "A" }, styledPopup, GUILayout.MaxWidth(60)); 
+            channel = EditorGUILayout.Popup(channel, new[] { "RGB", "R", "G", "B", "A" }, styledPopup,
+                GUILayout.MaxWidth(60));
 
             GUILayout.EndHorizontal();
 
             if (channel == 0)
-            {
                 channelMask = ColorWriteMask.All;
-            }
             else if (channel == 1)
-            {
                 channelMask = ColorWriteMask.Red;
-            }
             else if (channel == 2)
-            {
                 channelMask = ColorWriteMask.Green;
-            }
             else if (channel == 3)
-            {
                 channelMask = ColorWriteMask.Blue;
-            }
-            else if (channel == 4)
-            {
-                channelMask = ColorWriteMask.Alpha;
-            }
+            else if (channel == 4) channelMask = ColorWriteMask.Alpha;
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

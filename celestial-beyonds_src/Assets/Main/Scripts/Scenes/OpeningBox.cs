@@ -21,7 +21,7 @@ public class OpeningBox : MonoBehaviour
     {
         StartCoroutine(OpeningOver());
     }
-    
+
     private void OnEnable()
     {
         _controls.UIActions.PlayCinematic.started += PlayCinematic;
@@ -47,7 +47,7 @@ public class OpeningBox : MonoBehaviour
         yield return new WaitForSeconds(syncTime);
         musicAudio.GetComponent<AudioSource>().Play();
     }
-    
+
 
     private IEnumerator OpeningOver()
     {

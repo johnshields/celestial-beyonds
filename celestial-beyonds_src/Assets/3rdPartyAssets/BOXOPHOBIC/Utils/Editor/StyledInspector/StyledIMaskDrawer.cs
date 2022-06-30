@@ -1,38 +1,35 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
     [CustomPropertyDrawer(typeof(StyledMask))]
     public class StyledMaskAttributeDrawer : PropertyDrawer
     {
-        StyledMask a;
+        private StyledMask a;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             a = (StyledMask)attribute;
 
-            GUIStyle styleLabel = new GUIStyle(EditorStyles.label)
+            var styleLabel = new GUIStyle(EditorStyles.label)
             {
                 richText = true,
                 alignment = TextAnchor.MiddleCenter,
                 wordWrap = true
             };
 
-            string[] enums = a.options.Split(char.Parse("_"));
+            var enums = a.options.Split(char.Parse("_"));
 
             GUILayout.Space(a.top);
 
-            int mask = (int)property.intValue;
+            var mask = property.intValue;
 
             mask = EditorGUILayout.MaskField(property.displayName, mask, enums);
 
-            if (Mathf.Abs(mask) > 32000)
-            {
-                mask = -1;
-            }
+            if (Mathf.Abs(mask) > 32000) mask = -1;
 
             // Debug Value
             //EditorGUILayout.LabelField(mask.ToString());

@@ -7,17 +7,17 @@ public class csShowAllEffect : MonoBehaviour
     public string[] Effect2Names;
     public Transform[] Effect;
     public Text Text1;
-    int i = 0;
-    int a = 0;
+    private int a;
+    private int i;
 
 
-    void Start()
+    private void Start()
     {
         Instantiate(Effect[i], new Vector3(0, 5, 0), Quaternion.identity);
     }
 
 
-    void Update()
+    private void Update()
     {
         Text1.text = i + 1 + ":" + EffectNames[i];
 
@@ -30,13 +30,11 @@ public class csShowAllEffect : MonoBehaviour
                 i--;
 
             for (a = 0; a < Effect2Names.Length; a++)
-            {
                 if (EffectNames[i] == Effect2Names[a])
                 {
                     Instantiate(Effect[i], new Vector3(0, 0.01f, 0), Quaternion.identity);
                     break;
                 }
-            }
 
             if (a++ == Effect2Names.Length)
                 Instantiate(Effect[i], new Vector3(0, 5, 0), Quaternion.identity);
@@ -51,13 +49,11 @@ public class csShowAllEffect : MonoBehaviour
                 i = 0;
 
             for (a = 0; a < Effect2Names.Length; a++)
-            {
                 if (EffectNames[i] == Effect2Names[a])
                 {
                     Instantiate(Effect[i], new Vector3(0, 0.01f, 0), Quaternion.identity);
                     break;
                 }
-            }
 
             if (a++ == Effect2Names.Length)
                 Instantiate(Effect[i], new Vector3(0, 5, 0), Quaternion.identity);
@@ -66,13 +62,11 @@ public class csShowAllEffect : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             for (a = 0; a < Effect2Names.Length; a++)
-            {
                 if (EffectNames[i] == Effect2Names[a])
                 {
                     Instantiate(Effect[i], new Vector3(0, 0.01f, 0), Quaternion.identity);
                     break;
                 }
-            }
 
             if (a++ == Effect2Names.Length)
                 Instantiate(Effect[i], new Vector3(0, 5, 0), Quaternion.identity);

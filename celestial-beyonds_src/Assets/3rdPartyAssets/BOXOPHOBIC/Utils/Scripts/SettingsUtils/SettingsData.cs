@@ -7,7 +7,6 @@ namespace Boxophobic.Utils
     [CreateAssetMenu(fileName = "Data", menuName = "BOXOPHOBIC/Settings Data")]
     public class SettingsData : ScriptableObject
     {
-        [Space]
-        public string data = "";
+        [Space] public string data = "";
     }
 }

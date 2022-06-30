@@ -1,22 +1,21 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
-using System;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
     public class StyledCategoryDrawer : MaterialPropertyDrawer
     {
         public string category;
-        public float top;
         public float down;
+        public float top;
 
         public StyledCategoryDrawer(string category)
         {
             this.category = category;
-            this.top = 10;
-            this.down = 10;
+            top = 10;
+            down = 10;
         }
 
         public StyledCategoryDrawer(string category, float top, float down)
@@ -26,7 +25,7 @@ namespace Boxophobic.StyledGUI
             this.down = down;
         }
 
-        public override void OnGUI(Rect position, MaterialProperty prop, String label, MaterialEditor materiaEditor)
+        public override void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor materiaEditor)
         {
             if (prop.floatValue < 0)
             {

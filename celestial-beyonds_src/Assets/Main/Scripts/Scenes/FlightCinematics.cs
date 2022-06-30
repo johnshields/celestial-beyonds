@@ -21,7 +21,7 @@ public class FlightCinematics : MonoBehaviour
     {
         StartCoroutine(CinematicOver());
     }
-    
+
     private void OnEnable()
     {
         _controls.UIActions.PlayCinematic.started += PlayCinematic;
@@ -47,7 +47,7 @@ public class FlightCinematics : MonoBehaviour
         yield return new WaitForSeconds(syncTime);
         musicAudio.GetComponent<AudioSource>().Play();
     }
-    
+
 
     private IEnumerator CinematicOver()
     {

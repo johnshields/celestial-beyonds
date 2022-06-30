@@ -1,14 +1,14 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
     [CustomPropertyDrawer(typeof(StyledBanner))]
     public class StyledBannerAttributeDrawer : PropertyDrawer
     {
-        StyledBanner a;
+        private StyledBanner a;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {

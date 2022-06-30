@@ -4,17 +4,17 @@ namespace Boxophobic.StyledGUI
 {
     public class StyledMask : PropertyAttribute
     {
+        public int down;
         public string options = "";
 
-        public int top = 0;
-        public int down = 0;
+        public int top;
 
         public StyledMask(string options)
         {
             this.options = options;
 
-            this.top = 0;
-            this.down = 0;
+            top = 0;
+            down = 0;
         }
 
         public StyledMask(string options, int top, int down)
@@ -26,4 +26,3 @@ namespace Boxophobic.StyledGUI
         }
     }
 }
-

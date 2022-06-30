@@ -1,29 +1,27 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
-using UnityEditor;
 using Boxophobic.Constants;
+using UnityEditor;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
-    public partial class StyledGUI 
+    public partial class StyledGUI
     {
         public static void DrawInspectorCategory(string bannerText)
         {
             var categoryFullRect = GUILayoutUtility.GetRect(0, 0, 18, 0);
             var categoryBeginRect = new Rect(categoryFullRect.position.x, categoryFullRect.position.y, 10, 18);
-            var categoryMiddleRect = new Rect(categoryFullRect.position.x + 10, categoryFullRect.position.y, categoryFullRect.xMax - 32, 18);
+            var categoryMiddleRect = new Rect(categoryFullRect.position.x + 10, categoryFullRect.position.y,
+                categoryFullRect.xMax - 32, 18);
             var categoryEndRect = new Rect(categoryFullRect.xMax - 10, categoryFullRect.position.y, 10, 18);
-            var titleRect = new Rect(categoryFullRect.position.x, categoryFullRect.position.y, categoryFullRect.width, 18);
+            var titleRect = new Rect(categoryFullRect.position.x, categoryFullRect.position.y, categoryFullRect.width,
+                18);
 
             if (EditorGUIUtility.isProSkin)
-            {
                 GUI.color = CONSTANT.ColorDarkGray;
-            }
             else
-            {
                 GUI.color = CONSTANT.ColorLightGray;
-            }
 
             //Workaround for flickering images in CustomInspector with Attribute
             //GUIStyle styleB = new GUIStyle();
@@ -47,4 +45,3 @@ namespace Boxophobic.StyledGUI
         }
     }
 }
-

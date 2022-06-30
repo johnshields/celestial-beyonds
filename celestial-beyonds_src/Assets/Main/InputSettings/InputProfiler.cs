@@ -125,6 +125,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pollinate"",
+                    ""type"": ""Button"",
+                    ""id"": ""472b9a33-106c-4dff-9128-c6c5d861eebc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -446,6 +455,28 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""TalkArgyle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c18d60f-a3b1-45e6-8776-1d2ae131c4b2"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pollinate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cce6541b-739a-418a-a619-9a64e16ee9a0"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pollinate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -465,6 +496,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_Skip = m_Profiler.FindAction("Skip", throwIfNotFound: true);
         m_Profiler_JetPack = m_Profiler.FindAction("JetPack", throwIfNotFound: true);
         m_Profiler_TalkArgyle = m_Profiler.FindAction("TalkArgyle", throwIfNotFound: true);
+        m_Profiler_Pollinate = m_Profiler.FindAction("Pollinate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -535,6 +567,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_Skip;
     private readonly InputAction m_Profiler_JetPack;
     private readonly InputAction m_Profiler_TalkArgyle;
+    private readonly InputAction m_Profiler_Pollinate;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
@@ -550,6 +583,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Skip => m_Wrapper.m_Profiler_Skip;
         public InputAction @JetPack => m_Wrapper.m_Profiler_JetPack;
         public InputAction @TalkArgyle => m_Wrapper.m_Profiler_TalkArgyle;
+        public InputAction @Pollinate => m_Wrapper.m_Profiler_Pollinate;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -592,6 +626,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @TalkArgyle.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTalkArgyle;
                 @TalkArgyle.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTalkArgyle;
                 @TalkArgyle.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTalkArgyle;
+                @Pollinate.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnPollinate;
+                @Pollinate.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnPollinate;
+                @Pollinate.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnPollinate;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
@@ -629,6 +666,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @TalkArgyle.started += instance.OnTalkArgyle;
                 @TalkArgyle.performed += instance.OnTalkArgyle;
                 @TalkArgyle.canceled += instance.OnTalkArgyle;
+                @Pollinate.started += instance.OnPollinate;
+                @Pollinate.performed += instance.OnPollinate;
+                @Pollinate.canceled += instance.OnPollinate;
             }
         }
     }
@@ -646,5 +686,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnSkip(InputAction.CallbackContext context);
         void OnJetPack(InputAction.CallbackContext context);
         void OnTalkArgyle(InputAction.CallbackContext context);
+        void OnPollinate(InputAction.CallbackContext context);
     }
 }

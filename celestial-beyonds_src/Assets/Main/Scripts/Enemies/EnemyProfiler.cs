@@ -1,4 +1,3 @@
-using System.Collections;
 using Main.Scripts.Combat;
 using UnityEngine;
 using UnityEngine.AI;
@@ -18,13 +17,13 @@ namespace Main.Scripts.Enemies
         // states
         public float sightRange, attackRange;
         public bool playerInSightRange, playerInAttackRange;
-        private bool _walkPointSet, _actionDone;
         public float delayAction = 1f;
+        public AudioClip[] toadSFX;
 
         private Animator _animator;
-        private int _idle, _walk, _attack;
-        public AudioClip[] toadSFX;
         private AudioSource _audio;
+        private int _idle, _walk, _attack;
+        private bool _walkPointSet, _actionDone;
 
         private void Awake()
         {

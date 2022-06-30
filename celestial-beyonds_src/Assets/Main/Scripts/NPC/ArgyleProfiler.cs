@@ -1,17 +1,15 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Random = UnityEngine.Random;
 
 public class ArgyleProfiler : MonoBehaviour
 {
-    private Animator _animator;
-    private int _idle, _talk1, _talk2, _talk3, _talk4, _talk5, _talk6;
-    private InputProfiler _controls;
-    private bool _triggered;
     public GameObject btn;
     public float delayAction = 1f;
     private bool _actionDone;
+    private Animator _animator;
+    private InputProfiler _controls;
+    private int _idle, _talk1, _talk2, _talk3, _talk4, _talk5, _talk6;
+    private bool _triggered;
 
     private void Awake()
     {
@@ -62,30 +60,15 @@ public class ArgyleProfiler : MonoBehaviour
                 case 6:
                     _animator.SetTrigger(_talk6);
                     break;
-                
             }
+
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);
         }
         else
+        {
             _animator.SetTrigger(_idle);
-    }
-    
-    private void ResetAction()
-    {
-        _actionDone = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(_triggered)
-            btn.SetActive(true);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(!_triggered)
-            btn.SetActive(true);
+        }
     }
 
     private void OnEnable()
@@ -98,6 +81,23 @@ public class ArgyleProfiler : MonoBehaviour
     {
         _controls.Profiler.TalkArgyle.started -= TalkArgyle;
         _controls.Profiler.Disable();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_triggered)
+            btn.SetActive(true);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!_triggered)
+            btn.SetActive(true);
+    }
+
+    private void ResetAction()
+    {
+        _actionDone = false;
     }
 
     private void TalkArgyle(InputAction.CallbackContext obj)

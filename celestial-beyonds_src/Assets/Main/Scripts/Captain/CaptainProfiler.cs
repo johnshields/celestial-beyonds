@@ -6,22 +6,36 @@ namespace Main.Scripts.Captain
 {
     public class CaptainProfiler : MonoBehaviour
     {
+        public static bool grounded;
+        public float movementForce = 1f, jumpForce = 5f, maxSpeed = 5f;
+
+        public Camera playerCam;
+
         // input
         private InputProfiler _controls;
         private InputAction _moveKeys, _moveController;
-    
+
         // movement
         private Rigidbody _rb;
-        public float movementForce = 1f, jumpForce = 5f, maxSpeed = 5f;
         private Vector3 forceDir = Vector3.zero;
-        public static bool grounded;
-    
-        public Camera playerCam;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
             _controls = new InputProfiler();
+        }
+
+        private void FixedUpdate()
+        {
+            forceDir += _moveKeys.ReadValue<Vector2>().x * GetCameraRight(playerCam) * movementForce;
+            forceDir += _moveKeys.ReadValue<Vector2>().y * GetCameraForward(playerCam) * movementForce;
+            forceDir += _moveController.ReadValue<Vector2>().x * GetCameraRight(playerCam) * movementForce;
+            forceDir += _moveController.ReadValue<Vector2>().y * GetCameraForward(playerCam) * movementForce;
+
+            _rb.AddForce(forceDir, ForceMode.Impulse);
+            forceDir = Vector3.zero;
+
+            LookAt();
         }
 
         private void OnEnable()
@@ -31,24 +45,16 @@ namespace Main.Scripts.Captain
             _moveController = _controls.Profiler.MoveController;
             _controls.Profiler.Enable();
         }
-    
+
         private void OnDisable()
         {
             _controls.Profiler.Jump.started -= JumpActive;
             _controls.Profiler.Disable();
         }
 
-        private void FixedUpdate()
+        private void OnCollisionEnter()
         {
-            forceDir += _moveKeys.ReadValue<Vector2>().x * GetCameraRight(playerCam) * movementForce;
-            forceDir += _moveKeys.ReadValue<Vector2>().y * GetCameraForward(playerCam) * movementForce;
-            forceDir += _moveController.ReadValue<Vector2>().x * GetCameraRight(playerCam) * movementForce;
-            forceDir += _moveController.ReadValue<Vector2>().y * GetCameraForward(playerCam) * movementForce;
-        
-            _rb.AddForce(forceDir, ForceMode.Impulse);
-            forceDir = Vector3.zero;
-
-            LookAt();
+            grounded = true;
         }
 
         private void LookAt()
@@ -58,19 +64,19 @@ namespace Main.Scripts.Captain
 
             if (_moveKeys.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
                 _rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
-            else if(_moveController.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
+            else if (_moveController.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
                 _rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
             else
                 _rb.angularVelocity = Vector3.zero;
         }
-    
+
         private Vector3 GetCameraForward(Component cam)
         {
             var forward = cam.transform.forward;
             forward.y = 0;
             return forward.normalized;
         }
-    
+
         private Vector3 GetCameraRight(Component cam)
         {
             var right = cam.transform.right;
@@ -78,11 +84,6 @@ namespace Main.Scripts.Captain
             return right.normalized;
         }
 
-        private void OnCollisionEnter()
-        {
-            grounded = true;
-        }
-    
         private void JumpActive(InputAction.CallbackContext obj)
         {
             if (!grounded) return;

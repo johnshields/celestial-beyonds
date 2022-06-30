@@ -1,25 +1,24 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
-using System;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
     public class StyledButtonDrawer : MaterialPropertyDrawer
     {
-        public string text;
-        public string target = "";
-        public float value = 1;
-        public float top;
         public float down;
+        public string target = "";
+        public string text;
+        public float top;
+        public float value = 1;
 
         public StyledButtonDrawer(string text)
         {
             this.text = text;
-            this.value = 1;
-            this.top = 0;
-            this.down = 0;
+            value = 1;
+            top = 0;
+            down = 0;
         }
 
         public StyledButtonDrawer(string text, float value, float top, float down)
@@ -39,9 +38,9 @@ namespace Boxophobic.StyledGUI
             this.down = down;
         }
 
-        public override void OnGUI(Rect position, MaterialProperty prop, String label, MaterialEditor materialEditor)
+        public override void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor materialEditor)
         {
-            Material material = materialEditor.target as Material;
+            var material = materialEditor.target as Material;
 
             GUILayout.Space(top);
 
@@ -53,10 +52,7 @@ namespace Boxophobic.StyledGUI
                 }
                 else
                 {
-                    if (material.HasProperty(target))
-                    {
-                        material.SetFloat(target, value);
-                    }
+                    if (material.HasProperty(target)) material.SetFloat(target, value);
                 }
             }
 

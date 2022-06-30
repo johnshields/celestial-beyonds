@@ -1,17 +1,13 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 namespace Main.Scripts.Moonbeam
 {
     public class MoonbeamProfiler : MonoBehaviour
     {
         public NavMeshAgent agent;
-        private Transform _target;
         public LayerMask groundMask, playerMask;
-        
+
         // wandering
         public Vector3 walkPoint;
         public float walkPointRange;
@@ -20,6 +16,7 @@ namespace Main.Scripts.Moonbeam
         public float sightRange, followRange;
         public bool playerInSightRange;
         public bool playerInFollowRange;
+        private Transform _target;
 
         // follow
         private bool _walkPointSet;
@@ -39,7 +36,7 @@ namespace Main.Scripts.Moonbeam
             if (!playerInSightRange && !playerInFollowRange) Wander();
             if (playerInSightRange && !playerInFollowRange) Follow();
             if (playerInFollowRange && playerInSightRange) SideBySide();
-            
+
             transform.LookAt(_target);
         }
 
@@ -47,10 +44,7 @@ namespace Main.Scripts.Moonbeam
         {
             if (!_walkPointSet) SearchWalkPoint();
 
-            if (_walkPointSet)
-            {
-                agent.SetDestination(walkPoint);
-            }
+            if (_walkPointSet) agent.SetDestination(walkPoint);
 
             var distanceToWalkPoint = transform.position - walkPoint;
 

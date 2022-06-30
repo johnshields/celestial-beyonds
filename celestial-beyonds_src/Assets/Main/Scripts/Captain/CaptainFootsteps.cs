@@ -13,7 +13,7 @@ namespace Main.Scripts.Captain
             _player = GameObject.FindGameObjectWithTag("Player");
             _audio = GetComponent<AudioSource>();
         }
-        
+
         public void FootstepSounds()
         {
             var rb = _player.GetComponent<Rigidbody>();

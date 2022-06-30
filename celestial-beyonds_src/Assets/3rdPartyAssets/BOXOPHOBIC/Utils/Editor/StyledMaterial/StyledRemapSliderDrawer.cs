@@ -1,19 +1,18 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
-using System;
+using UnityEngine;
 
 public class StyledRemapSliderDrawer : MaterialPropertyDrawer
 {
-    public string nameMin = "";
+    public float down;
+    public float max;
+    public float min;
     public string nameMax = "";
-    public float min = 0;
-    public float max = 0;
-    public float top = 0;
-    public float down = 0;
+    public string nameMin = "";
 
-    bool showAdvancedOptions = false;
+    private bool showAdvancedOptions;
+    public float top;
 
     public StyledRemapSliderDrawer(string nameMin, string nameMax, float min, float max)
     {
@@ -21,8 +20,8 @@ public class StyledRemapSliderDrawer : MaterialPropertyDrawer
         this.nameMax = nameMax;
         this.min = min;
         this.max = max;
-        this.top = 0;
-        this.down = 0;
+        top = 0;
+        down = 0;
     }
 
     public StyledRemapSliderDrawer(string nameMin, string nameMax, float min, float max, float top, float down)
@@ -35,7 +34,7 @@ public class StyledRemapSliderDrawer : MaterialPropertyDrawer
         this.down = down;
     }
 
-    public override void OnGUI(Rect position, MaterialProperty prop, String label, MaterialEditor editor)
+    public override void OnGUI(Rect position, MaterialProperty prop, string label, MaterialEditor editor)
     {
         var internalPropMin = MaterialEditor.GetMaterialProperty(editor.targets, nameMin);
         var internalPropMax = MaterialEditor.GetMaterialProperty(editor.targets, nameMax);
@@ -44,24 +43,20 @@ public class StyledRemapSliderDrawer : MaterialPropertyDrawer
         {
             var internalValueMin = internalPropMin.floatValue;
             var internalValueMax = internalPropMax.floatValue;
-            Vector4 propVector = prop.vectorValue;
+            var propVector = prop.vectorValue;
 
 
             var stylePopup = new GUIStyle(EditorStyles.popup)
             {
-                fontSize = 9,
+                fontSize = 9
             };
 
             EditorGUI.BeginChangeCheck();
 
             if (internalValueMin <= internalValueMax)
-            {
                 propVector.w = 0;
-            }
             else
-            {
                 propVector.w = 1;
-            }
 
             if (propVector.w == 0)
             {
@@ -86,19 +81,15 @@ public class StyledRemapSliderDrawer : MaterialPropertyDrawer
 
             GUILayout.Space(2);
 
-            propVector.w = (float)EditorGUILayout.Popup((int)propVector.w, new string[] { "Remap", "Invert", "Show Advanced Settings", "Hide Advanced Settings" }, stylePopup, GUILayout.Width(50));
+            propVector.w = EditorGUILayout.Popup((int)propVector.w,
+                new[] { "Remap", "Invert", "Show Advanced Settings", "Hide Advanced Settings" }, stylePopup,
+                GUILayout.Width(50));
 
             GUILayout.EndHorizontal();
 
-            if (propVector.w == 2f)
-            {
-                showAdvancedOptions = true;
-            }
+            if (propVector.w == 2f) showAdvancedOptions = true;
 
-            if (propVector.w == 3f)
-            {
-                showAdvancedOptions = false;
-            }
+            if (propVector.w == 3f) showAdvancedOptions = false;
 
             if (showAdvancedOptions)
             {

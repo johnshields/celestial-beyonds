@@ -6,9 +6,9 @@ namespace Boxophobic.StyledGUI
 {
     public class StyledRangeOptions : PropertyAttribute
     {
-        public float min;
-        public float max;
         public string displayLabel;
+        public float max;
+        public float min;
         public string[] options;
 
         public StyledRangeOptions(float min, float max, string displayLabel, string[] options)
@@ -21,4 +21,3 @@ namespace Boxophobic.StyledGUI
         }
     }
 }
-

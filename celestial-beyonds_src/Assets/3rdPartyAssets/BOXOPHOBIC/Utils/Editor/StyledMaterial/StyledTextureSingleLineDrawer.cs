@@ -1,19 +1,19 @@
 ﻿// Cristian Pop - https://boxophobic.com/
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace Boxophobic.StyledGUI
 {
     public class StyledTextureSingleLineDrawer : MaterialPropertyDrawer
     {
-        public float top;
         public float down;
+        public float top;
 
         public StyledTextureSingleLineDrawer()
         {
-            this.top = 0;
-            this.down = 0;
+            top = 0;
+            down = 0;
         }
 
         public StyledTextureSingleLineDrawer(float top, float down)

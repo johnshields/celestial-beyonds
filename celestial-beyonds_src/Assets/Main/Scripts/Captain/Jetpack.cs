@@ -1,17 +1,20 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using Vector3 = UnityEngine.Vector3;
 
 public class Jetpack : MonoBehaviour
 {
-    public float maxFuel = 4f, thrustForce = 0.1f;
+    public static bool _jetpackActive;
+    public float maxFuel = 4f, thrustForce = 0.3f;
     public Rigidbody _rb;
     public Transform groundedObj;
     public GameObject flames, fuelBar;
-    private float _currentFuel;
+    public float _currentFuel;
+    public AudioClip jetpackSFX;
+    public AudioSource _jpAudio;
+    private bool _alreadyPlayed;
     private InputProfiler _controls;
-    public static bool _jetpackActive;
     private Slider _fuelBarSlider;
 
     private void Awake()
@@ -25,7 +28,36 @@ public class Jetpack : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _fuelBarSlider = fuelBar.GetComponent<Slider>();
     }
-    
+
+    private void Update()
+    {
+        _fuelBarSlider.value = _currentFuel;
+        if (_jetpackActive && _currentFuel > 0f)
+        {
+            _jetpackActive = true;
+            _currentFuel -= Time.deltaTime;
+            _rb.AddForce(_rb.transform.up * thrustForce, ForceMode.Impulse);
+        }
+        else if (Physics.Raycast(groundedObj.position, Vector3.down, 0.01f,
+                     LayerMask.GetMask("GroundedObject")) && _currentFuel < maxFuel)
+        {
+            _jetpackActive = false;
+            if (_currentFuel < maxFuel)
+                _currentFuel += Time.deltaTime;
+        }
+        else
+        {
+            _jetpackActive = false;
+            if (_currentFuel < maxFuel)
+                _currentFuel += Time.deltaTime;
+        }
+
+        flames.SetActive(_jetpackActive);
+
+        if (!_jetpackActive)
+            _jpAudio.Stop();
+    }
+
     private void OnEnable()
     {
         _controls.Profiler.JetPack.started += JetpackActive;
@@ -41,30 +73,17 @@ public class Jetpack : MonoBehaviour
     private void JetpackActive(InputAction.CallbackContext obj)
     {
         _jetpackActive = true;
+        if (!_alreadyPlayed)
+        {
+            _jpAudio.PlayOneShot(jetpackSFX, 0.1f);
+            _alreadyPlayed = true;
+            StartCoroutine(ResetAudio());
+        }
     }
 
-    private void Update()
+    private IEnumerator ResetAudio()
     {
-        _fuelBarSlider.value = _currentFuel;
-        if (_jetpackActive && _currentFuel > 0f)
-        {
-            _jetpackActive = true;
-            _currentFuel -= Time.deltaTime;
-            _rb.AddForce(_rb.transform.up * thrustForce, ForceMode.Impulse);
-        }
-        else if (Physics.Raycast(groundedObj.position, Vector3.down, 0.01f, 
-                     LayerMask.GetMask("GroundedObject")) && _currentFuel < maxFuel)
-        {
-            _jetpackActive = false;
-            if (_currentFuel < maxFuel)
-                _currentFuel += Time.deltaTime;
-        }
-        else
-        {
-            _jetpackActive = false;
-            if (_currentFuel < maxFuel)
-                _currentFuel += Time.deltaTime;
-        }
-        flames.SetActive(_jetpackActive);
+        yield return new WaitForSeconds(4f);
+        _alreadyPlayed = false;
     }
 }
