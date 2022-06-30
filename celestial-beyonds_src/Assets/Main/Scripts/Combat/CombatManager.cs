@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Main.Scripts.Combat
 {
@@ -9,6 +10,8 @@ namespace Main.Scripts.Combat
         public static int enemyHealth = 5;
         public int[] cheatHealth;
         public GameObject[] enemy;
+        public GameObject pHealthBar;
+        private Slider _pHealthBarSlider;
 
         private void Awake()
         {
@@ -16,6 +19,7 @@ namespace Main.Scripts.Combat
             cheatHealth[1] = 5;
             playerHealth = 30;
             enemyHealth = 3;
+            _pHealthBarSlider = pHealthBar.GetComponent<Slider>();
         }
 
         private void Update()
@@ -25,6 +29,8 @@ namespace Main.Scripts.Combat
                 playerHealth = 0;
             else if (cheatHealth[1] == 0)
                 enemyHealth = 0;
+            
+            _pHealthBarSlider.value = playerHealth;
 
             if (enemyHealth  <= 0)
             {
