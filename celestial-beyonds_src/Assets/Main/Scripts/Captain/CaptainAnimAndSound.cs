@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 /*
  * PlayerAnimAndSound
@@ -12,9 +15,9 @@ namespace Main.Scripts.Captain
     {
         public float maxSpeed = 5f;
         public AudioClip[] meleeSFX;
-        public AudioClip cannonSFX;
+        public AudioClip cannonSFX, pollenSFX;
         public float delayAction = 1f, dodge;
-        private bool _actionDone, _unarmed, _armed, _cannonFire;
+        private bool _actionDone, _unarmed, _armed, _cannonFire, _pollenFire;
         private Animator _animator;
         private AudioSource _audio;
         private InputProfiler _controls;
@@ -22,6 +25,7 @@ namespace Main.Scripts.Captain
         private GameObject _player, _footsteps, _scraper, _cannon, _pollinator;
         private int _profile, _jump, _dodge, _armedActive, _shoot, _wShoot, _rShoot;
         private Rigidbody _rb;
+        public GameObject flowerImage;
 
         private void Awake()
         {
@@ -168,12 +172,29 @@ namespace Main.Scripts.Captain
         {
             WeaponSelect(false, false, true);
             PlayerState(false, true);
-
-            if (!_actionDone && _armed)
+            if (Pollinator.pollenAmmo != 0)
             {
-                _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
-                //stopPollinator
+                _pollenFire = true;
+                if (!_actionDone && _armed)
+                {
+                    _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
+                    _pollinator.GetComponent<Pollinator>().FirePollinator();
+                    _actionDone = true;
+                    Invoke(nameof(ResetAction), delayAction);
+                }   
             }
+            else
+            {
+                print("out of pollen ammo");
+                flowerImage.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                StartCoroutine(ResetFlower());
+            }
+        }
+
+        private IEnumerator ResetFlower()
+        {
+            yield return new WaitForSeconds(1);
+            flowerImage.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
         }
 
         private void Dodge(InputAction.CallbackContext obj)
@@ -192,6 +213,11 @@ namespace Main.Scripts.Captain
             {
                 _cannon.GetComponent<CannonBlaster>().HaltCannon();
                 _cannonFire = false;
+            }
+            else if (_pollenFire)
+            {
+                _pollinator.GetComponent<Pollinator>().HaltPollinator();
+                _pollenFire = false;
             }
         }
 
@@ -213,7 +239,11 @@ namespace Main.Scripts.Captain
 
         private void CannonFireSFX()
         {
-            _audio.PlayOneShot(cannonSFX, 0.1f);
+            if(_cannonFire)
+                _audio.PlayOneShot(cannonSFX, 0.1f);
+            else if (_pollenFire)
+                _audio.PlayOneShot(pollenSFX, 0.1f);
         }
+        
     }
 }
