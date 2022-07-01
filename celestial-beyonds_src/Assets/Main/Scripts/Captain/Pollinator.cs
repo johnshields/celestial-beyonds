@@ -8,8 +8,8 @@ public class Pollinator : MonoBehaviour
 {
     public GameObject particles, pollenBar;
     private int status;
-    public int maxAmmo = 5;
-    public static int pollenAmmo;
+    public int maxAmmo = 500;
+    public int pollenAmmo;
     private Slider _pollenBarSlider;
 
     private void Start()
@@ -21,6 +21,11 @@ public class Pollinator : MonoBehaviour
     private void Update()
     {
         _pollenBarSlider.value = pollenAmmo;
+    }
+
+    public void FillUpPollen(int amount)
+    {
+        pollenAmmo += amount;
     }
 
     public void FirePollinator()

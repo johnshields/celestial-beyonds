@@ -172,7 +172,7 @@ namespace Main.Scripts.Captain
         {
             WeaponSelect(false, false, true);
             PlayerState(false, true);
-            if (Pollinator.pollenAmmo != 0)
+            if (_pollinator.GetComponent<Pollinator>().pollenAmmo != 0)
             {
                 _pollenFire = true;
                 if (!_actionDone && _armed)
