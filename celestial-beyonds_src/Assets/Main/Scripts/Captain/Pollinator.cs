@@ -26,8 +26,7 @@ public class Pollinator : MonoBehaviour
     public void FirePollinator()
     {
         status = 0;
-        var ammo = 50;
-        pollenAmmo -= ammo;
+        pollenAmmo -= 50;
         StartCoroutine(PollinatorWait());
     }
 

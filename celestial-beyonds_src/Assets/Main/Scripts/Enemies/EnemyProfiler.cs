@@ -101,7 +101,7 @@ namespace Main.Scripts.Enemies
             agent.SetDestination(transform.position);
             transform.LookAt(player);
 
-            if (!_actionDone && CombatManager.playerHealth >= 0)
+            if (!_actionDone)
             {
                 AnimationState(false, false, true);
                 _audio.PlayOneShot(toadSFX[0]);
