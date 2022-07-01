@@ -18,7 +18,7 @@ namespace Main.Scripts.Combat
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Player"))
-                _player.GetComponent<CaptainHealth>().PlayerTakeDamage(1);
+                _player.GetComponent<CaptainHealth>().PlayerTakeDamage(5);
         }
     }
 }
