@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class CaptainHealth : MonoBehaviour
 {
-    public int maxHealth = 30, currentHealth;
+    public int maxHealth = 100, currentHealth;
     public GameObject pHealthBar;
     private Slider _pHealthBarSlider;
     

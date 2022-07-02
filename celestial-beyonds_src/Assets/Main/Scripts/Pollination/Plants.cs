@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Plants : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Animator _animator;
+    private int _grow;
+
+    private void Start()
     {
-        
+        _animator = GetComponent<Animator>();
+        _grow = Animator.StringToHash("Grow");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GrowPlant()
     {
-        
+        print("plant growing");
+        _animator.SetTrigger(_grow);
     }
 }

@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class ArgyleProfiler : MonoBehaviour
 {
-    public GameObject stationUI, peridotCounterUI, flowerImage;
+    public GameObject stationUI, peridotCounterUI, flowerImage, pollinator;
     public float delayAction = 1f;
     private bool _actionDone;
     private Animator _animator;
     private InputProfiler _controls;
     private int _idle, _talk1, _talk2, _talk3, _talk4, _talk5, _talk6;
-    private GameObject _player, _pollinator;
+    private GameObject _player;
     private Component _peridotCounter;
 
     private void Awake()
@@ -22,7 +22,6 @@ public class ArgyleProfiler : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _pollinator = GameObject.FindGameObjectWithTag("Pollinator");
         _peridotCounter = _player.GetComponent<PeridotCounter>();
         _animator = GetComponent<Animator>();
         _idle = Animator.StringToHash("Idle");
@@ -50,13 +49,13 @@ public class ArgyleProfiler : MonoBehaviour
 
     private void TalkArgyle(InputAction.CallbackContext obj)
     {
-        if (_pollinator.GetComponent<Pollinator>().pollenAmmo != 0 &&
-            _pollinator.GetComponent<Pollinator>().pollenAmmo !=
-            _pollinator.GetComponent<Pollinator>().maxAmmo &&
+        if (pollinator.GetComponent<Pollinator>().pollenAmmo != 0 &&
+            pollinator.GetComponent<Pollinator>().pollenAmmo !=
+            pollinator.GetComponent<Pollinator>().maxAmmo &&
             _peridotCounter.GetComponent<PeridotCounter>().peridots != 0)
         {
             print("Pollen sold");
-            _pollinator.GetComponent<Pollinator>().FillUpPollen(50);
+            pollinator.GetComponent<Pollinator>().FillUpPollen(50);
             _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(5);
             SwitchAnim();
         }
@@ -67,14 +66,14 @@ public class ArgyleProfiler : MonoBehaviour
             StartCoroutine(ResetCounterColor(0));
         }
         else if (_peridotCounter.GetComponent<PeridotCounter>().peridots <= 0 &&
-                 _pollinator.GetComponent<Pollinator>().pollenAmmo == 0)
+                 pollinator.GetComponent<Pollinator>().pollenAmmo == 0)
         {
             print("Not enough peridots and out of pollen ammo");
             peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
             StartCoroutine(ResetCounterColor(0));
         }
-        else if (_pollinator.GetComponent<Pollinator>().pollenAmmo ==
-                 _pollinator.GetComponent<Pollinator>().maxAmmo)
+        else if (pollinator.GetComponent<Pollinator>().pollenAmmo ==
+                 pollinator.GetComponent<Pollinator>().maxAmmo)
         {
             print("pollen full");
             flowerImage.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
