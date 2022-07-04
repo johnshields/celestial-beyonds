@@ -459,7 +459,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1c18d60f-a3b1-45e6-8776-1d2ae131c4b2"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

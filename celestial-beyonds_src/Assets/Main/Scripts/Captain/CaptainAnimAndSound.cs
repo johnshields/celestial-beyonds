@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Main.Scripts.Combat;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -23,7 +24,7 @@ namespace Main.Scripts.Captain
         private InputProfiler _controls;
         private int _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
         private GameObject _player, _footsteps, _scraper, _cannon, _pollinator;
-        private int _profile, _jump, _dodge, _armedActive, _shoot, _wShoot, _rShoot;
+        private int _profile, _jump, _dodge, _armedActive, _shoot, _wShoot, _rShoot, _dead;
         private Rigidbody _rb;
         public GameObject flowerImage;
 
@@ -58,6 +59,7 @@ namespace Main.Scripts.Captain
             _shoot = Animator.StringToHash("Shoot");
             _wShoot = Animator.StringToHash("W_Shoot");
             _rShoot = Animator.StringToHash("R_Shoot");
+            _dead = Animator.StringToHash("Dead");
         }
 
         private void Update()
@@ -204,6 +206,13 @@ namespace Main.Scripts.Captain
             StartCoroutine(WaitToDodge());
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);
+        }
+
+        public void CapDeath()
+        {
+            _animator.SetTrigger(_dead);
+            _player.GetComponent<CaptainProfiler>().enabled = false;
+            _player.GetComponent<Jetpack>().enabled = false;
         }
 
         private void ResetAction()

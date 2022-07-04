@@ -16579,7 +16579,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0044122064, y: 0.9842715, z: 0.024837023, w: -0.1748522}
+  m_LocalRotation: {x: 0.0044122073, y: 0.9842715, z: 0.024837023, w: -0.1748522}
   m_LocalPosition: {x: 1.7221164, y: 1, z: 4.6940727}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -17688,7 +17688,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0.039817333, y: 0.5, z: 0.14856458}
 --- !u!114 &1082243707
 MonoBehaviour:
@@ -32616,7 +32616,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959691609}
-  m_LocalRotation: {x: 0.000000007741619, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.000000005820766, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -32936,7 +32936,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2009608717}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40039,7 +40039,7 @@ GameObject:
   - component: {fileID: 8659853756692488215}
   - component: {fileID: 3622275982332405928}
   - component: {fileID: 8014245029856143914}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Ovule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41714,7 +41714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxFuel: 4
-  thrustForce: 0.4
+  thrustForce: 0.3
   _rb: {fileID: 3066007434264232761}
   groundedObj: {fileID: 1017065725}
   flames: {fileID: 698098795}
@@ -42672,13 +42672,27 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3561568376621522265}
-  m_Layer: 9
+  - component: {fileID: 4190295150833567716}
+  m_Layer: 0
   m_Name: sunflower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &4190295150833567716
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190295150833567715}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.55506516, y: 0.99906623, z: 0.56198835}
+  m_Center: {x: -0.0024032593, y: 0.6515165, z: 0.1707809}
 --- !u!1 &4246096808418443805
 GameObject:
   m_ObjectHideFlags: 0
@@ -42690,7 +42704,7 @@ GameObject:
   - component: {fileID: 4627719868458635036}
   - component: {fileID: 5613427970346190510}
   - component: {fileID: 1899261758419045332}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Petals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44021,7 +44035,7 @@ GameObject:
   - component: {fileID: 8396776573371044544}
   - component: {fileID: 5303207635871724823}
   - component: {fileID: 3216268415367171727}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Stem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44318,7 +44332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stationUI: {fileID: 1260079902}
   peridotCounterUI: {fileID: 561922091}
-  flowerImage: {fileID: 362714086}
+  pollenMeter: {fileID: 362714086}
   pollinator: {fileID: 1054871863}
   delayAction: 1
 --- !u!65 &6197870402735726108

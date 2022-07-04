@@ -16,14 +16,18 @@ public class HoneyJars : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == _player && _player.GetComponent<CaptainHealth>().currentHealth != 30)
+        // only heal player if they do not have maxHealth.
+        if (other.gameObject == _player && _player.GetComponent<CaptainHealth>().currentHealth !=
+            _player.GetComponent<CaptainHealth>().maxHealth)
         {
             _player.GetComponent<CaptainHealth>().PlayerGainHealth(5);
             var position = transform.position;
             AudioSource.PlayClipAtPoint(pickupSound, position, 0.1f);
             Destroy(gameObject);
         }
-        else if (other.gameObject ==_player && _player.GetComponent<CaptainHealth>().currentHealth == 30)
+        // if they do flash the healthBar Ui
+        else if (other.gameObject == _player && _player.GetComponent<CaptainHealth>().currentHealth ==
+                 _player.GetComponent<CaptainHealth>().maxHealth)
         {
             healthBar.GetComponent<Image>().color = new Color32(60, 20, 150, 225);
             StartCoroutine(ResetHealthColor());

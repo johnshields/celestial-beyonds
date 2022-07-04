@@ -44,7 +44,7 @@ namespace Main.Scripts.Enemies
 
             if (!playerInSightRange && !playerInAttackRange) Patrol();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-            if (playerInAttackRange && playerInSightRange) AttackMode();
+            if (playerInAttackRange && playerInSightRange && !CaptainHealth.capDead) AttackMode();
         }
 
         private void AnimationState(bool idle, bool walk, bool attack)

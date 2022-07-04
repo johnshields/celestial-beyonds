@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ArgyleProfiler : MonoBehaviour
 {
-    public GameObject stationUI, peridotCounterUI, flowerImage, pollinator;
+    public GameObject stationUI, peridotCounterUI, pollenMeter, pollinator;
     public float delayAction = 1f;
     private bool _actionDone;
     private Animator _animator;
@@ -49,9 +49,8 @@ public class ArgyleProfiler : MonoBehaviour
 
     private void TalkArgyle(InputAction.CallbackContext obj)
     {
-        if (pollinator.GetComponent<Pollinator>().pollenAmmo != 0 &&
-            pollinator.GetComponent<Pollinator>().pollenAmmo !=
-            pollinator.GetComponent<Pollinator>().maxAmmo &&
+        // only sell player pollen if they do not have maxAmmo or no peridots.
+        if (pollinator.GetComponent<Pollinator>().pollenAmmo != pollinator.GetComponent<Pollinator>().maxAmmo &&
             _peridotCounter.GetComponent<PeridotCounter>().peridots != 0)
         {
             print("Pollen sold");
@@ -59,24 +58,18 @@ public class ArgyleProfiler : MonoBehaviour
             _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(5);
             SwitchAnim();
         }
-        else if (_peridotCounter.GetComponent<PeridotCounter>().peridots <= 0)
+        // decline the sale if the player has less than 5 peridots + flash peridotCounter.
+        else if (_peridotCounter.GetComponent<PeridotCounter>().peridots <= 4)
         {
             print("Not enough peridots");
             peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
             StartCoroutine(ResetCounterColor(0));
         }
-        else if (_peridotCounter.GetComponent<PeridotCounter>().peridots <= 0 &&
-                 pollinator.GetComponent<Pollinator>().pollenAmmo == 0)
-        {
-            print("Not enough peridots and out of pollen ammo");
-            peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-            StartCoroutine(ResetCounterColor(0));
-        }
-        else if (pollinator.GetComponent<Pollinator>().pollenAmmo ==
-                 pollinator.GetComponent<Pollinator>().maxAmmo)
+        // decline sale if pollen is full + flash pollenMeter.
+        else if (pollinator.GetComponent<Pollinator>().pollenAmmo == pollinator.GetComponent<Pollinator>().maxAmmo)
         {
             print("pollen full");
-            flowerImage.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
+            pollenMeter.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
             StartCoroutine(ResetCounterColor(1));
         }
 
@@ -91,7 +84,7 @@ public class ArgyleProfiler : MonoBehaviour
         if (whichCounter == 0)
             peridotCounterUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
         else if (whichCounter == 1)
-            flowerImage.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
+            pollenMeter.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
     }
 
     private void OnTriggerEnter(Collider other)
