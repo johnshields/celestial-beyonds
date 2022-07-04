@@ -6,16 +6,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- linking css style script and icon-->
-     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <title>Moonbeam</title>
 </head>
 <body>
 <img src="https://i.ibb.co/vQ6xC98/hi.png" alt="hi" class="image">
-<h1>Chat with Moonbeam!</h1>
+<h1 class="tag_line">Chat with Moonbeam!</h1>
+<hr>
 <div>
     <div>
-        <h1 class="name">Captain:</h1>
+        <h1 class="name">User:</h1>
         <!-- user input -->
         <label for="user_input"></label>
         <textarea class="user-input" id="user_input" type="text" placeholder="Enter a message..."></textarea>
@@ -35,6 +36,9 @@
 </div>
 </body>
 <footer>
+    <hr>
+    <p>Moonbeam is a character from the game titled <a href="https://github.com/johnshields/celestial-beyonds">The
+        Celestial Beyonds.</a></p>
     <!-- jQuery Script -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
