@@ -1,10 +1,18 @@
+using System;
 using System.Collections;
+using Main.Scripts.Captain;
 using UnityEngine;
 
 public class CannonBlaster : MonoBehaviour
 {
     public GameObject particles;
     private int status;
+    private GameObject _player;
+
+    private void Start()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     public void FireCannon()
     {
@@ -15,8 +23,15 @@ public class CannonBlaster : MonoBehaviour
     public void HaltCannon()
     {
         status = 1;
-        StartCoroutine(CannonWait());
+        if(!_player.GetComponent<CaptainAnimAndSound>().meleeActive)
+            StartCoroutine(CannonWait());
     }
+    
+    public void StopCannonParticles()
+    {
+        particles.GetComponent<ParticleSystem>().Stop();
+    }
+
 
     private IEnumerator CannonWait()
     {

@@ -26,7 +26,8 @@ namespace Main.Scripts.Captain
         private GameObject _player, _footsteps, _scraper, _cannon, _pollinator;
         private int _profile, _jump, _dodge, _armedActive, _shoot, _wShoot, _rShoot, _dead;
         private Rigidbody _rb;
-        public GameObject flowerImage;
+        public GameObject pollenMeter;
+        public bool meleeActive;
 
         private void Awake()
         {
@@ -70,6 +71,11 @@ namespace Main.Scripts.Captain
             if (_unarmed)
                 _animator.SetBool(_armedActive, false);
             else if (_armed) _animator.SetBool(_armedActive, true);
+
+            if (_cannonFire)
+                _pollinator.GetComponent<Pollinator>().StopPollenParticles();
+            else if (_pollenFire)
+                _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
         }
 
         private void OnEnable()
@@ -77,7 +83,7 @@ namespace Main.Scripts.Captain
             _controls.Profiler.Jump.started += Jump;
             _controls.Profiler.Attack.started += MeleeAttack;
             _controls.Profiler.Dodge.started += Dodge;
-            _controls.Profiler.Shoot.started += Shoot;
+            _controls.Profiler.Shoot.started += ShootCannon;
             _controls.Profiler.Unarmed.started += Unarmed;
             _controls.Profiler.Pollinate.started += Pollinate;
             _controls.Profiler.Enable();
@@ -88,7 +94,7 @@ namespace Main.Scripts.Captain
             _controls.Profiler.Jump.started -= Jump;
             _controls.Profiler.Attack.started -= MeleeAttack;
             _controls.Profiler.Dodge.started -= Dodge;
-            _controls.Profiler.Shoot.started -= Shoot;
+            _controls.Profiler.Shoot.started -= ShootCannon;
             _controls.Profiler.Unarmed.started -= Unarmed;
             _controls.Profiler.Pollinate.started -= Pollinate;
             _controls.Profiler.Disable();
@@ -124,6 +130,9 @@ namespace Main.Scripts.Captain
 
         private void MeleeAttack(InputAction.CallbackContext obj)
         {
+            meleeActive = true;
+            _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
+            _pollinator.GetComponent<Pollinator>().StopPollenParticles();
             WeaponSelect(true, false, false);
             PlayerState(true, false);
             var attackBool = Random.Range(0, 5);
@@ -150,11 +159,12 @@ namespace Main.Scripts.Captain
                 }
 
                 _actionDone = true;
+                meleeActive = false;
                 Invoke(nameof(ResetAction), delayAction);
             }
         }
 
-        private void Shoot(InputAction.CallbackContext obj)
+        private void ShootCannon(InputAction.CallbackContext obj)
         {
             WeaponSelect(false, true, false);
             PlayerState(false, true);
@@ -169,7 +179,7 @@ namespace Main.Scripts.Captain
                 Invoke(nameof(ResetAction), delayAction);
             }
         }
-        
+
         private void Pollinate(InputAction.CallbackContext obj)
         {
             WeaponSelect(false, false, true);
@@ -183,20 +193,20 @@ namespace Main.Scripts.Captain
                     _pollinator.GetComponent<Pollinator>().FirePollinator();
                     _actionDone = true;
                     Invoke(nameof(ResetAction), delayAction);
-                }   
+                }
             }
             else
             {
                 print("out of pollen ammo");
-                flowerImage.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-                StartCoroutine(ResetFlower());
+                pollenMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                StartCoroutine(ResetPollenMeter());
             }
         }
 
-        private IEnumerator ResetFlower()
+        private IEnumerator ResetPollenMeter()
         {
             yield return new WaitForSeconds(1);
-            flowerImage.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
+            pollenMeter.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
         }
 
         private void Dodge(InputAction.CallbackContext obj)
@@ -248,11 +258,10 @@ namespace Main.Scripts.Captain
 
         private void CannonFireSFX()
         {
-            if(_cannonFire)
+            if (_cannonFire)
                 _audio.PlayOneShot(cannonSFX, 0.1f);
             else if (_pollenFire)
                 _audio.PlayOneShot(pollenSFX, 0.1f);
         }
-        
     }
 }

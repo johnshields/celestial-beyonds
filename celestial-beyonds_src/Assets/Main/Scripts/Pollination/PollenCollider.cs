@@ -2,18 +2,27 @@ using UnityEngine;
 
 public class PollenCollider : MonoBehaviour
 {
-    private GameObject _plant, _pollinationLevel;
+    private GameObject _plant;
+    private bool _plantGrown;
 
     private void Start()
     {
         _plant = GameObject.FindGameObjectWithTag("Sunflower");
-        _pollinationLevel = GameObject.FindGameObjectWithTag("PollinationLevel");
     }
 
     private void OnParticleCollision(GameObject other)
     {
         print("Pollen hit a plant");
-        _plant.GetComponent<Plants>().GrowPlant();
-        _pollinationLevel.GetComponent<PollinationLevel>().pollinationPercent += 1;
+        if (!_plantGrown)
+        {
+            _plantGrown = true;
+            _plant.GetComponent<Plants>().GrowPlant();
+            Invoke(nameof(ResetPlant), 4);
+        }
+    }
+
+    private void ResetPlant()
+    {
+        _plantGrown = false;
     }
 }

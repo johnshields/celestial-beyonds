@@ -110,7 +110,7 @@ namespace Main.Scripts.Enemies
             }
 
             if (CombatManager.enemyHealth <= 0)
-                _audio.PlayOneShot(toadSFX[1]);
+                AudioSource.PlayClipAtPoint(toadSFX[1], transform.position, 0.1f);
         }
 
         private void ResetAction()

@@ -2300,7 +2300,7 @@ GameObject:
   - component: {fileID: 362714089}
   - component: {fileID: 362714088}
   m_Layer: 5
-  m_Name: Handle
+  m_Name: PollenHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16579,7 +16579,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0044122073, y: 0.9842715, z: 0.024837023, w: -0.1748522}
+  m_LocalRotation: {x: 0.0044122064, y: 0.9842715, z: 0.024837023, w: -0.1748522}
   m_LocalPosition: {x: 1.7221164, y: 1, z: 4.6940727}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -32616,7 +32616,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959691609}
-  m_LocalRotation: {x: 0.000000005820766, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.000000007741619, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -41588,7 +41588,8 @@ MonoBehaviour:
   pollenSFX: {fileID: 8300000, guid: eab865981ab09e54c8caac3f521aba49, type: 3}
   delayAction: 1
   dodge: -1
-  flowerImage: {fileID: 362714086}
+  pollenMeter: {fileID: 362714086}
+  meleeActive: 0
 --- !u!114 &3066007434264232764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41714,7 +41715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxFuel: 4
-  thrustForce: 0.3
+  thrustForce: 0.4
   _rb: {fileID: 3066007434264232761}
   groundedObj: {fileID: 1017065725}
   flames: {fileID: 698098795}

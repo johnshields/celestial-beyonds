@@ -1,6 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
+using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,12 +9,14 @@ public class Pollinator : MonoBehaviour
     private int status;
     public int maxAmmo = 500;
     public int pollenAmmo;
+    private GameObject _player;
     private Slider _pollenBarSlider;
 
     private void Start()
     {
         pollenAmmo = maxAmmo;
         _pollenBarSlider = pollenBar.GetComponent<Slider>();
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
@@ -38,7 +39,13 @@ public class Pollinator : MonoBehaviour
     public void HaltPollinator()
     {
         status = 1;
-        StartCoroutine(PollinatorWait());
+        if(!_player.GetComponent<CaptainAnimAndSound>().meleeActive)
+            StartCoroutine(PollinatorWait());
+    }
+
+    public void StopPollenParticles()
+    {
+        particles.GetComponent<ParticleSystem>().Stop();
     }
 
     private IEnumerator PollinatorWait()

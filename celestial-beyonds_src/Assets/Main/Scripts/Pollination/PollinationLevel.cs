@@ -17,6 +17,11 @@ public class PollinationLevel : MonoBehaviour
     {
         PlayerPrefs.SetInt("PollinationLevel", pollinationPercent);
     }
+
+    public void IncreasePollination()
+    {
+        pollinationPercent += 25;
+    }
     
     private void OnGUI()
     {
