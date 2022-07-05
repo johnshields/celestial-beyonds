@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class MoonbeamAPI : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class MoonbeamAPI : MonoBehaviour
     {
         print("User says: " + dialogueOptionOne.GetComponent<TextMeshProUGUI>().text);
         _whichDialogue = 1;
+        ChangeTextColor(_whichDialogue);
         StartCoroutine(PostRequest(_uri));
     }
 
@@ -50,6 +52,7 @@ public class MoonbeamAPI : MonoBehaviour
     {
         print("User says: " + dialogueOptionTwo.GetComponent<TextMeshProUGUI>().text);
         _whichDialogue = 2;
+        ChangeTextColor(_whichDialogue);
         StartCoroutine(PostRequest(_uri));
     }
 
@@ -57,7 +60,30 @@ public class MoonbeamAPI : MonoBehaviour
     {
         print("User says: " + dialogueOptionThree.GetComponent<TextMeshProUGUI>().text);
         _whichDialogue = 3;
+        ChangeTextColor(_whichDialogue);
         StartCoroutine(PostRequest(_uri));
+    }
+
+    private void ChangeTextColor(int whichOne)
+    {
+        if (whichOne == 1)
+        {
+            dialogueOptionOne.GetComponent<TextMeshProUGUI>().color = new Color32(20, 255, 0, 225);
+            dialogueOptionTwo.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
+            dialogueOptionThree.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
+        }
+        else if (whichOne == 2)
+        {
+            dialogueOptionOne.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
+            dialogueOptionTwo.GetComponent<TextMeshProUGUI>().color = new Color32(20, 255, 0, 225);
+            dialogueOptionThree.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
+        }
+        else if (whichOne == 3)
+        {
+            dialogueOptionOne.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
+            dialogueOptionTwo.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
+            dialogueOptionThree.GetComponent<TextMeshProUGUI>().color = new Color32(20, 255, 0, 225);
+        }
     }
 
     private IEnumerator GetRequest(string uri)
