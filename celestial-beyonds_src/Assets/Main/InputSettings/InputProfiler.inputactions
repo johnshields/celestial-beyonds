@@ -112,6 +112,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "DialogueOptionOne",
+                    "type": "Button",
+                    "id": "d4eb482d-3c77-466c-a30a-884dd7e02770",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DialogueOptionTwo",
+                    "type": "Button",
+                    "id": "e1b888a9-49e9-4227-9191-9bbd435f9b49",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DialogueOptionThree",
+                    "type": "Button",
+                    "id": "d6522fd3-519b-48a0-8e24-73dca8cb989a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -453,6 +480,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pollinate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8f0df80-6ee5-4c70-be0a-a56c1efacfab",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DialogueOptionOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a9381d58-dd4c-4f2c-8994-58e76a97de80",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DialogueOptionTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c1c8952-36a1-4770-9774-49dab52568d7",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DialogueOptionThree",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

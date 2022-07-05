@@ -134,6 +134,33 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DialogueOptionOne"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4eb482d-3c77-466c-a30a-884dd7e02770"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DialogueOptionTwo"",
+                    ""type"": ""Button"",
+                    ""id"": ""e1b888a9-49e9-4227-9191-9bbd435f9b49"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DialogueOptionThree"",
+                    ""type"": ""Button"",
+                    ""id"": ""d6522fd3-519b-48a0-8e24-73dca8cb989a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -477,6 +504,39 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""Pollinate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8f0df80-6ee5-4c70-be0a-a56c1efacfab"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DialogueOptionOne"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9381d58-dd4c-4f2c-8994-58e76a97de80"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DialogueOptionTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c1c8952-36a1-4770-9774-49dab52568d7"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DialogueOptionThree"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -497,6 +557,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_JetPack = m_Profiler.FindAction("JetPack", throwIfNotFound: true);
         m_Profiler_TalkArgyle = m_Profiler.FindAction("TalkArgyle", throwIfNotFound: true);
         m_Profiler_Pollinate = m_Profiler.FindAction("Pollinate", throwIfNotFound: true);
+        m_Profiler_DialogueOptionOne = m_Profiler.FindAction("DialogueOptionOne", throwIfNotFound: true);
+        m_Profiler_DialogueOptionTwo = m_Profiler.FindAction("DialogueOptionTwo", throwIfNotFound: true);
+        m_Profiler_DialogueOptionThree = m_Profiler.FindAction("DialogueOptionThree", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -568,6 +631,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_JetPack;
     private readonly InputAction m_Profiler_TalkArgyle;
     private readonly InputAction m_Profiler_Pollinate;
+    private readonly InputAction m_Profiler_DialogueOptionOne;
+    private readonly InputAction m_Profiler_DialogueOptionTwo;
+    private readonly InputAction m_Profiler_DialogueOptionThree;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
@@ -584,6 +650,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @JetPack => m_Wrapper.m_Profiler_JetPack;
         public InputAction @TalkArgyle => m_Wrapper.m_Profiler_TalkArgyle;
         public InputAction @Pollinate => m_Wrapper.m_Profiler_Pollinate;
+        public InputAction @DialogueOptionOne => m_Wrapper.m_Profiler_DialogueOptionOne;
+        public InputAction @DialogueOptionTwo => m_Wrapper.m_Profiler_DialogueOptionTwo;
+        public InputAction @DialogueOptionThree => m_Wrapper.m_Profiler_DialogueOptionThree;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -629,6 +698,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Pollinate.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnPollinate;
                 @Pollinate.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnPollinate;
                 @Pollinate.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnPollinate;
+                @DialogueOptionOne.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionOne;
+                @DialogueOptionOne.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionOne;
+                @DialogueOptionOne.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionOne;
+                @DialogueOptionTwo.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionTwo;
+                @DialogueOptionTwo.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionTwo;
+                @DialogueOptionTwo.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionTwo;
+                @DialogueOptionThree.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionThree;
+                @DialogueOptionThree.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionThree;
+                @DialogueOptionThree.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionThree;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
@@ -669,6 +747,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Pollinate.started += instance.OnPollinate;
                 @Pollinate.performed += instance.OnPollinate;
                 @Pollinate.canceled += instance.OnPollinate;
+                @DialogueOptionOne.started += instance.OnDialogueOptionOne;
+                @DialogueOptionOne.performed += instance.OnDialogueOptionOne;
+                @DialogueOptionOne.canceled += instance.OnDialogueOptionOne;
+                @DialogueOptionTwo.started += instance.OnDialogueOptionTwo;
+                @DialogueOptionTwo.performed += instance.OnDialogueOptionTwo;
+                @DialogueOptionTwo.canceled += instance.OnDialogueOptionTwo;
+                @DialogueOptionThree.started += instance.OnDialogueOptionThree;
+                @DialogueOptionThree.performed += instance.OnDialogueOptionThree;
+                @DialogueOptionThree.canceled += instance.OnDialogueOptionThree;
             }
         }
     }
@@ -687,5 +774,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnJetPack(InputAction.CallbackContext context);
         void OnTalkArgyle(InputAction.CallbackContext context);
         void OnPollinate(InputAction.CallbackContext context);
+        void OnDialogueOptionOne(InputAction.CallbackContext context);
+        void OnDialogueOptionTwo(InputAction.CallbackContext context);
+        void OnDialogueOptionThree(InputAction.CallbackContext context);
     }
 }
