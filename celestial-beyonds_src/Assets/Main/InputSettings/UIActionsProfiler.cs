@@ -46,7 +46,7 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LoadTestBox1"",
+                    ""name"": ""LoadTestBoxOne"",
                     ""type"": ""Button"",
                     ""id"": ""1decbd27-890e-48f1-9a72-e728a75a571d"",
                     ""expectedControlType"": ""Button"",
@@ -55,7 +55,7 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LoadTestBox2"",
+                    ""name"": ""LoadTestBoxTwo"",
                     ""type"": ""Button"",
                     ""id"": ""5393ef0f-a4fc-47d6-9079-1862cab49aac"",
                     ""expectedControlType"": ""Button"",
@@ -64,7 +64,7 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LoadTestBox3"",
+                    ""name"": ""LoadTestBoxThree"",
                     ""type"": ""Button"",
                     ""id"": ""59bb3442-80dc-4e72-a5f5-ee421ab38c23"",
                     ""expectedControlType"": ""Button"",
@@ -121,33 +121,33 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""93660823-34bc-4f72-bfd3-9ce39aecc93b"",
-                    ""path"": ""<Keyboard>/1"",
+                    ""path"": ""<Keyboard>/numpad1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LoadTestBox1"",
+                    ""action"": ""LoadTestBoxOne"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""49b312f2-c22c-4f84-9845-cbfdd4cc78fc"",
-                    ""path"": ""<Keyboard>/2"",
+                    ""path"": ""<Keyboard>/numpad2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LoadTestBox2"",
+                    ""action"": ""LoadTestBoxTwo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""6bc92cc8-0a7c-48ce-88aa-5bf1652a69a0"",
-                    ""path"": ""<Keyboard>/3"",
+                    ""path"": ""<Keyboard>/numpad3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LoadTestBox3"",
+                    ""action"": ""LoadTestBoxThree"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -160,9 +160,9 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
         m_UIActions = asset.FindActionMap("UIActions", throwIfNotFound: true);
         m_UIActions_StartGame = m_UIActions.FindAction("StartGame", throwIfNotFound: true);
         m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
-        m_UIActions_LoadTestBox1 = m_UIActions.FindAction("LoadTestBox1", throwIfNotFound: true);
-        m_UIActions_LoadTestBox2 = m_UIActions.FindAction("LoadTestBox2", throwIfNotFound: true);
-        m_UIActions_LoadTestBox3 = m_UIActions.FindAction("LoadTestBox3", throwIfNotFound: true);
+        m_UIActions_LoadTestBoxOne = m_UIActions.FindAction("LoadTestBoxOne", throwIfNotFound: true);
+        m_UIActions_LoadTestBoxTwo = m_UIActions.FindAction("LoadTestBoxTwo", throwIfNotFound: true);
+        m_UIActions_LoadTestBoxThree = m_UIActions.FindAction("LoadTestBoxThree", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -224,18 +224,18 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
     private IUIActionsActions m_UIActionsActionsCallbackInterface;
     private readonly InputAction m_UIActions_StartGame;
     private readonly InputAction m_UIActions_PlayCinematic;
-    private readonly InputAction m_UIActions_LoadTestBox1;
-    private readonly InputAction m_UIActions_LoadTestBox2;
-    private readonly InputAction m_UIActions_LoadTestBox3;
+    private readonly InputAction m_UIActions_LoadTestBoxOne;
+    private readonly InputAction m_UIActions_LoadTestBoxTwo;
+    private readonly InputAction m_UIActions_LoadTestBoxThree;
     public struct UIActionsActions
     {
         private @UIActionsProfiler m_Wrapper;
         public UIActionsActions(@UIActionsProfiler wrapper) { m_Wrapper = wrapper; }
         public InputAction @StartGame => m_Wrapper.m_UIActions_StartGame;
         public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
-        public InputAction @LoadTestBox1 => m_Wrapper.m_UIActions_LoadTestBox1;
-        public InputAction @LoadTestBox2 => m_Wrapper.m_UIActions_LoadTestBox2;
-        public InputAction @LoadTestBox3 => m_Wrapper.m_UIActions_LoadTestBox3;
+        public InputAction @LoadTestBoxOne => m_Wrapper.m_UIActions_LoadTestBoxOne;
+        public InputAction @LoadTestBoxTwo => m_Wrapper.m_UIActions_LoadTestBoxTwo;
+        public InputAction @LoadTestBoxThree => m_Wrapper.m_UIActions_LoadTestBoxThree;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -251,15 +251,15 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                 @PlayCinematic.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
-                @LoadTestBox1.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox1;
-                @LoadTestBox1.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox1;
-                @LoadTestBox1.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox1;
-                @LoadTestBox2.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox2;
-                @LoadTestBox2.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox2;
-                @LoadTestBox2.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox2;
-                @LoadTestBox3.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox3;
-                @LoadTestBox3.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox3;
-                @LoadTestBox3.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox3;
+                @LoadTestBoxOne.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxOne;
+                @LoadTestBoxOne.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxOne;
+                @LoadTestBoxOne.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxOne;
+                @LoadTestBoxTwo.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxTwo;
+                @LoadTestBoxTwo.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxTwo;
+                @LoadTestBoxTwo.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxTwo;
+                @LoadTestBoxThree.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxThree;
+                @LoadTestBoxThree.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxThree;
+                @LoadTestBoxThree.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxThree;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -270,15 +270,15 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                 @PlayCinematic.started += instance.OnPlayCinematic;
                 @PlayCinematic.performed += instance.OnPlayCinematic;
                 @PlayCinematic.canceled += instance.OnPlayCinematic;
-                @LoadTestBox1.started += instance.OnLoadTestBox1;
-                @LoadTestBox1.performed += instance.OnLoadTestBox1;
-                @LoadTestBox1.canceled += instance.OnLoadTestBox1;
-                @LoadTestBox2.started += instance.OnLoadTestBox2;
-                @LoadTestBox2.performed += instance.OnLoadTestBox2;
-                @LoadTestBox2.canceled += instance.OnLoadTestBox2;
-                @LoadTestBox3.started += instance.OnLoadTestBox3;
-                @LoadTestBox3.performed += instance.OnLoadTestBox3;
-                @LoadTestBox3.canceled += instance.OnLoadTestBox3;
+                @LoadTestBoxOne.started += instance.OnLoadTestBoxOne;
+                @LoadTestBoxOne.performed += instance.OnLoadTestBoxOne;
+                @LoadTestBoxOne.canceled += instance.OnLoadTestBoxOne;
+                @LoadTestBoxTwo.started += instance.OnLoadTestBoxTwo;
+                @LoadTestBoxTwo.performed += instance.OnLoadTestBoxTwo;
+                @LoadTestBoxTwo.canceled += instance.OnLoadTestBoxTwo;
+                @LoadTestBoxThree.started += instance.OnLoadTestBoxThree;
+                @LoadTestBoxThree.performed += instance.OnLoadTestBoxThree;
+                @LoadTestBoxThree.canceled += instance.OnLoadTestBoxThree;
             }
         }
     }
@@ -287,8 +287,8 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
     {
         void OnStartGame(InputAction.CallbackContext context);
         void OnPlayCinematic(InputAction.CallbackContext context);
-        void OnLoadTestBox1(InputAction.CallbackContext context);
-        void OnLoadTestBox2(InputAction.CallbackContext context);
-        void OnLoadTestBox3(InputAction.CallbackContext context);
+        void OnLoadTestBoxOne(InputAction.CallbackContext context);
+        void OnLoadTestBoxTwo(InputAction.CallbackContext context);
+        void OnLoadTestBoxThree(InputAction.CallbackContext context);
     }
 }

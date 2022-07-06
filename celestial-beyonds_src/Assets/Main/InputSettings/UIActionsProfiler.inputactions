@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LoadTestBox1",
+                    "name": "LoadTestBoxOne",
                     "type": "Button",
                     "id": "1decbd27-890e-48f1-9a72-e728a75a571d",
                     "expectedControlType": "Button",
@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LoadTestBox2",
+                    "name": "LoadTestBoxTwo",
                     "type": "Button",
                     "id": "5393ef0f-a4fc-47d6-9079-1862cab49aac",
                     "expectedControlType": "Button",
@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LoadTestBox3",
+                    "name": "LoadTestBoxThree",
                     "type": "Button",
                     "id": "59bb3442-80dc-4e72-a5f5-ee421ab38c23",
                     "expectedControlType": "Button",
@@ -99,33 +99,33 @@
                 {
                     "name": "",
                     "id": "93660823-34bc-4f72-bfd3-9ce39aecc93b",
-                    "path": "<Keyboard>/1",
+                    "path": "<Keyboard>/numpad1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LoadTestBox1",
+                    "action": "LoadTestBoxOne",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "49b312f2-c22c-4f84-9845-cbfdd4cc78fc",
-                    "path": "<Keyboard>/2",
+                    "path": "<Keyboard>/numpad2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LoadTestBox2",
+                    "action": "LoadTestBoxTwo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "6bc92cc8-0a7c-48ce-88aa-5bf1652a69a0",
-                    "path": "<Keyboard>/3",
+                    "path": "<Keyboard>/numpad3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LoadTestBox3",
+                    "action": "LoadTestBoxThree",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

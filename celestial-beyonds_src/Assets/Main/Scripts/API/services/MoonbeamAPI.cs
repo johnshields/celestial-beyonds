@@ -88,11 +88,12 @@ public class MoonbeamAPI : MonoBehaviour
     private IEnumerator GetRequest(string uri)
     {
         yield return new WaitForSeconds(1);
+        // Send GET request.
         using var webRequest = UnityWebRequest.Get(uri);
         yield return webRequest.SendWebRequest();
         if (webRequest.result == UnityWebRequest.Result.ConnectionError)
         {
-            Debug.LogError("Connection to API - Error: " + webRequest.error);
+            Debug.Log("Connection to API - Error: " + webRequest.error);
             print("Error with connection.");
             _response = "Sorry, I seem to have a screw lose.";
         }
@@ -105,7 +106,6 @@ public class MoonbeamAPI : MonoBehaviour
     private IEnumerator PostRequest(string uri)
     {
         var form = new WWWForm();
-        using var webRequest = UnityWebRequest.Post(uri, form);
 
         switch (_whichDialogue)
         {
@@ -120,10 +120,13 @@ public class MoonbeamAPI : MonoBehaviour
                 break;
         }
 
+        // Send POST request.
+        using var webRequest = UnityWebRequest.Post(uri, form);
         yield return webRequest.SendWebRequest();
-        if (webRequest.result == UnityWebRequest.Result.ConnectionError)
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
+            webRequest.result == UnityWebRequest.Result.ProtocolError)
         {
-            Debug.LogError("Error getting response: " + webRequest.error);
+            Debug.Log("Error getting response: " + webRequest.error);
             _response = "Sorry, there seems to be a screw lose.";
             _audio.Stop();
             _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
