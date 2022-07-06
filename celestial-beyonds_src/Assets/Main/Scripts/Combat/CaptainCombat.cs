@@ -1,3 +1,4 @@
+using Main.Scripts.Enemies;
 using UnityEngine;
 
 /*
@@ -10,10 +11,8 @@ namespace Main.Scripts.Combat
     {
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Enemy") && CombatManager.enemyHealth >= 0)
-                CombatManager.enemyHealth--;
-
-            print("Enemy Health: " + CombatManager.enemyHealth);
+            if (other.gameObject.CompareTag("Enemy"))
+                other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(1, other.gameObject);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Main.Scripts.Enemies
         public NavMeshAgent agent;
         public Transform player;
         public LayerMask groundMask, playerMask;
+        public int enemyMaxHealth = 3, enemyHealth;
 
         // patrolling
         public Vector3 walkPoint;
@@ -27,6 +28,7 @@ namespace Main.Scripts.Enemies
 
         private void Awake()
         {
+            enemyHealth = enemyMaxHealth;
             player = GameObject.FindGameObjectWithTag("Player").transform;
             agent = GetComponent<NavMeshAgent>();
             _audio = GetComponent<AudioSource>();
@@ -108,14 +110,23 @@ namespace Main.Scripts.Enemies
                 _actionDone = true;
                 Invoke(nameof(ResetAction), delayAction);
             }
-
-            if (CombatManager.enemyHealth <= 0)
-                AudioSource.PlayClipAtPoint(toadSFX[1], transform.position, 0.1f);
         }
 
         private void ResetAction()
         {
             _actionDone = false;
+        }
+
+        public void TakeDamage(int amount, GameObject enemy)
+        {
+            enemyHealth -= amount;
+            print(enemy.name + " Health: " + enemyHealth);
+
+            if (enemyHealth <= 0)
+            {
+                print(enemy.name + " Terminated!");
+                Destroy(enemy);
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Main.Scripts.Combat
 
         private void Start()
         {
-            _player  = GameObject.FindGameObjectWithTag("Player");
+            _player = GameObject.FindGameObjectWithTag("Player");
         }
 
         private void OnTriggerEnter(Collider other)
