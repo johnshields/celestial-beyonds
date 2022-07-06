@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 public class MoonbeamAPI : MonoBehaviour
 {
@@ -106,6 +105,8 @@ public class MoonbeamAPI : MonoBehaviour
     private IEnumerator PostRequest(string uri)
     {
         var form = new WWWForm();
+        using var webRequest = UnityWebRequest.Post(uri, form);
+
         switch (_whichDialogue)
         {
             case 1:
@@ -118,13 +119,11 @@ public class MoonbeamAPI : MonoBehaviour
                 form.AddField("value", dialogueOptionThree.GetComponent<TextMeshProUGUI>().text);
                 break;
         }
-        
-        using var webRequest = UnityWebRequest.Post(uri, form);
+
         yield return webRequest.SendWebRequest();
         if (webRequest.result == UnityWebRequest.Result.ConnectionError)
         {
-            Debug.LogError("Request to API - Error: " + webRequest.error);
-            print("Error getting response.");
+            Debug.LogError("Error getting response: " + webRequest.error);
             _response = "Sorry, there seems to be a screw lose.";
             _audio.Stop();
             _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);

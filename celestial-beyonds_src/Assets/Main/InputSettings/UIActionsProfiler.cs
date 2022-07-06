@@ -44,6 +44,33 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadTestBox1"",
+                    ""type"": ""Button"",
+                    ""id"": ""1decbd27-890e-48f1-9a72-e728a75a571d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadTestBox2"",
+                    ""type"": ""Button"",
+                    ""id"": ""5393ef0f-a4fc-47d6-9079-1862cab49aac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadTestBox3"",
+                    ""type"": ""Button"",
+                    ""id"": ""59bb3442-80dc-4e72-a5f5-ee421ab38c23"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -90,6 +117,39 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""PlayCinematic"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93660823-34bc-4f72-bfd3-9ce39aecc93b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadTestBox1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49b312f2-c22c-4f84-9845-cbfdd4cc78fc"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadTestBox2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6bc92cc8-0a7c-48ce-88aa-5bf1652a69a0"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadTestBox3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -100,6 +160,9 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
         m_UIActions = asset.FindActionMap("UIActions", throwIfNotFound: true);
         m_UIActions_StartGame = m_UIActions.FindAction("StartGame", throwIfNotFound: true);
         m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
+        m_UIActions_LoadTestBox1 = m_UIActions.FindAction("LoadTestBox1", throwIfNotFound: true);
+        m_UIActions_LoadTestBox2 = m_UIActions.FindAction("LoadTestBox2", throwIfNotFound: true);
+        m_UIActions_LoadTestBox3 = m_UIActions.FindAction("LoadTestBox3", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -161,12 +224,18 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
     private IUIActionsActions m_UIActionsActionsCallbackInterface;
     private readonly InputAction m_UIActions_StartGame;
     private readonly InputAction m_UIActions_PlayCinematic;
+    private readonly InputAction m_UIActions_LoadTestBox1;
+    private readonly InputAction m_UIActions_LoadTestBox2;
+    private readonly InputAction m_UIActions_LoadTestBox3;
     public struct UIActionsActions
     {
         private @UIActionsProfiler m_Wrapper;
         public UIActionsActions(@UIActionsProfiler wrapper) { m_Wrapper = wrapper; }
         public InputAction @StartGame => m_Wrapper.m_UIActions_StartGame;
         public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
+        public InputAction @LoadTestBox1 => m_Wrapper.m_UIActions_LoadTestBox1;
+        public InputAction @LoadTestBox2 => m_Wrapper.m_UIActions_LoadTestBox2;
+        public InputAction @LoadTestBox3 => m_Wrapper.m_UIActions_LoadTestBox3;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -182,6 +251,15 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                 @PlayCinematic.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
+                @LoadTestBox1.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox1;
+                @LoadTestBox1.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox1;
+                @LoadTestBox1.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox1;
+                @LoadTestBox2.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox2;
+                @LoadTestBox2.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox2;
+                @LoadTestBox2.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox2;
+                @LoadTestBox3.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox3;
+                @LoadTestBox3.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox3;
+                @LoadTestBox3.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBox3;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -192,6 +270,15 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                 @PlayCinematic.started += instance.OnPlayCinematic;
                 @PlayCinematic.performed += instance.OnPlayCinematic;
                 @PlayCinematic.canceled += instance.OnPlayCinematic;
+                @LoadTestBox1.started += instance.OnLoadTestBox1;
+                @LoadTestBox1.performed += instance.OnLoadTestBox1;
+                @LoadTestBox1.canceled += instance.OnLoadTestBox1;
+                @LoadTestBox2.started += instance.OnLoadTestBox2;
+                @LoadTestBox2.performed += instance.OnLoadTestBox2;
+                @LoadTestBox2.canceled += instance.OnLoadTestBox2;
+                @LoadTestBox3.started += instance.OnLoadTestBox3;
+                @LoadTestBox3.performed += instance.OnLoadTestBox3;
+                @LoadTestBox3.canceled += instance.OnLoadTestBox3;
             }
         }
     }
@@ -200,5 +287,8 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
     {
         void OnStartGame(InputAction.CallbackContext context);
         void OnPlayCinematic(InputAction.CallbackContext context);
+        void OnLoadTestBox1(InputAction.CallbackContext context);
+        void OnLoadTestBox2(InputAction.CallbackContext context);
+        void OnLoadTestBox3(InputAction.CallbackContext context);
     }
 }
