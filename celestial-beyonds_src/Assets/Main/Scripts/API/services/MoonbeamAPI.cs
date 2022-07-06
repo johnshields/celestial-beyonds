@@ -126,12 +126,14 @@ public class MoonbeamAPI : MonoBehaviour
             Debug.LogError("Request to API - Error: " + webRequest.error);
             print("Error getting response.");
             _response = "Sorry, there seems to be a screw lose.";
+            _audio.Stop();
             _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
         }
         else
         {
             Debug.Log("Moonbeam says: " + webRequest.downloadHandler.text);
             _response = webRequest.downloadHandler.text;
+            _audio.Stop();
             _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
         }
     }
