@@ -14,6 +14,7 @@ public class ArgyleProfiler : MonoBehaviour
     private GameObject _player;
     private Component _peridotCounter;
     public AudioClip[] argyleHellos, argyleByes, argyleFeelings, argyleSales, argyleNoSales;
+    public AudioClip sale, noSale;
     private AudioSource _audio;
 
     private void Awake()
@@ -59,7 +60,7 @@ public class ArgyleProfiler : MonoBehaviour
             SwitchAnim();
             if (_actionDone) return;
             _audio.Stop();
-            _audio.PlayOneShot(argyleHellos[Random.Range(0, argyleHellos.Length)], 0.2f);
+            _audio.PlayOneShot(argyleHellos[Random.Range(0, argyleHellos.Length)], 0.3f);
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);
         }
@@ -74,7 +75,8 @@ public class ArgyleProfiler : MonoBehaviour
         if (other.gameObject == _player)
         {
             stationUI.SetActive(false);
-            _audio.PlayOneShot(argyleByes[Random.Range(0, argyleByes.Length)], 0.2f);
+            _audio.Stop();
+            _audio.PlayOneShot(argyleByes[Random.Range(0, argyleByes.Length)], 0.3f);
         }
     }
 
@@ -86,7 +88,8 @@ public class ArgyleProfiler : MonoBehaviour
         {
             print("Pollen sold");
             _audio.Stop();
-            _audio.PlayOneShot(argyleSales[Random.Range(0, argyleSales.Length)], 0.2f);
+            _audio.PlayOneShot(argyleSales[Random.Range(0, argyleSales.Length)], 0.3f);
+            _audio.PlayOneShot(sale, 0.1f);
             pollinator.GetComponent<Pollinator>().FillUpPollen(50);
             _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(5);
             SwitchAnim();
@@ -97,6 +100,7 @@ public class ArgyleProfiler : MonoBehaviour
             print("Not enough peridots");
             _audio.Stop();
             _audio.PlayOneShot(argyleNoSales[Random.Range(0, argyleNoSales.Length)], 0.2f);
+            _audio.PlayOneShot(noSale, 0.1f);
             peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
             StartCoroutine(ResetCounterColor(0));
         }
