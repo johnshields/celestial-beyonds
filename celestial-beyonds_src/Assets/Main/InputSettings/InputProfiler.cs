@@ -161,6 +161,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActivateDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ce4b6f2-3777-4a3c-98b2-c3cccf51e619"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -548,6 +557,17 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""DialogueOptionThree"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c602c61-633d-4931-90a0-5ea9905f6fa7"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -831,6 +851,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_DialogueOptionOne = m_Profiler.FindAction("DialogueOptionOne", throwIfNotFound: true);
         m_Profiler_DialogueOptionTwo = m_Profiler.FindAction("DialogueOptionTwo", throwIfNotFound: true);
         m_Profiler_DialogueOptionThree = m_Profiler.FindAction("DialogueOptionThree", throwIfNotFound: true);
+        m_Profiler_ActivateDialogue = m_Profiler.FindAction("ActivateDialogue", throwIfNotFound: true);
         // InGameUI
         m_InGameUI = asset.FindActionMap("InGameUI", throwIfNotFound: true);
         m_InGameUI_OpenLevelCompleteUI = m_InGameUI.FindAction("OpenLevelCompleteUI", throwIfNotFound: true);
@@ -919,6 +940,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_DialogueOptionOne;
     private readonly InputAction m_Profiler_DialogueOptionTwo;
     private readonly InputAction m_Profiler_DialogueOptionThree;
+    private readonly InputAction m_Profiler_ActivateDialogue;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
@@ -938,6 +960,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @DialogueOptionOne => m_Wrapper.m_Profiler_DialogueOptionOne;
         public InputAction @DialogueOptionTwo => m_Wrapper.m_Profiler_DialogueOptionTwo;
         public InputAction @DialogueOptionThree => m_Wrapper.m_Profiler_DialogueOptionThree;
+        public InputAction @ActivateDialogue => m_Wrapper.m_Profiler_ActivateDialogue;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -992,6 +1015,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @DialogueOptionThree.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionThree;
                 @DialogueOptionThree.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionThree;
                 @DialogueOptionThree.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionThree;
+                @ActivateDialogue.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnActivateDialogue;
+                @ActivateDialogue.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnActivateDialogue;
+                @ActivateDialogue.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnActivateDialogue;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1041,6 +1067,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @DialogueOptionThree.started += instance.OnDialogueOptionThree;
                 @DialogueOptionThree.performed += instance.OnDialogueOptionThree;
                 @DialogueOptionThree.canceled += instance.OnDialogueOptionThree;
+                @ActivateDialogue.started += instance.OnActivateDialogue;
+                @ActivateDialogue.performed += instance.OnActivateDialogue;
+                @ActivateDialogue.canceled += instance.OnActivateDialogue;
             }
         }
     }
@@ -1192,6 +1221,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnDialogueOptionOne(InputAction.CallbackContext context);
         void OnDialogueOptionTwo(InputAction.CallbackContext context);
         void OnDialogueOptionThree(InputAction.CallbackContext context);
+        void OnActivateDialogue(InputAction.CallbackContext context);
     }
     public interface IInGameUIActions
     {

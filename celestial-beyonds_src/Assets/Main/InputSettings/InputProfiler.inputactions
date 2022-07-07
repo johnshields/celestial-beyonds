@@ -139,6 +139,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ActivateDialogue",
+                    "type": "Button",
+                    "id": "7ce4b6f2-3777-4a3c-98b2-c3cccf51e619",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -524,6 +533,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DialogueOptionThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c602c61-633d-4931-90a0-5ea9905f6fa7",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateDialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

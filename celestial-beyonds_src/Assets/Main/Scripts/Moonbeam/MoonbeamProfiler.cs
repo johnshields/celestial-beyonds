@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace Main.Scripts.Moonbeam
 {
@@ -19,11 +20,18 @@ namespace Main.Scripts.Moonbeam
         private Transform _target;
 
         // follow
-        private bool _walkPointSet;
+        private bool _walkPointSet, _triggered;
+
+        // dialogue
+        private GameObject _player, _moonbeamAPI;
+        public GameObject mDialogueBtn;
+        public bool dialogueActive;
 
         private void Awake()
         {
             _target = GameObject.FindGameObjectWithTag("Target").transform;
+            _player = GameObject.FindGameObjectWithTag("Player");
+            _moonbeamAPI = GameObject.FindGameObjectWithTag("MoonbeamAPI");
             agent = GetComponent<NavMeshAgent>();
         }
 
@@ -75,6 +83,26 @@ namespace Main.Scripts.Moonbeam
         private void SideBySide()
         {
             agent.SetDestination(transform.position);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player") && !_triggered)
+            {
+                mDialogueBtn.SetActive(true);
+                dialogueActive = true;
+                _triggered = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                mDialogueBtn.SetActive(false);
+                dialogueActive = false;
+                _triggered = false;
+            }
         }
     }
 }
