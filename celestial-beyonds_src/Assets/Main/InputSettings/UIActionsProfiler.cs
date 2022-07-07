@@ -44,33 +44,6 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LoadTestBoxOne"",
-                    ""type"": ""Button"",
-                    ""id"": ""1decbd27-890e-48f1-9a72-e728a75a571d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LoadTestBoxTwo"",
-                    ""type"": ""Button"",
-                    ""id"": ""5393ef0f-a4fc-47d6-9079-1862cab49aac"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LoadTestBoxThree"",
-                    ""type"": ""Button"",
-                    ""id"": ""59bb3442-80dc-4e72-a5f5-ee421ab38c23"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -117,37 +90,162 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""PlayCinematic"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PauseMenuActions"",
+            ""id"": ""473caffa-c57a-45ed-9170-6cc87e51d468"",
+            ""actions"": [
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""917eeb4f-dccb-429c-87f9-28ce94defe68"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Resume"",
+                    ""type"": ""Button"",
+                    ""id"": ""bc1a6d3c-ed19-40dd-af1a-f2eae46c2dbe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadMainMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c8ecd4a-fe86-4397-8b83-c8629d924d17"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
                     ""name"": """",
-                    ""id"": ""93660823-34bc-4f72-bfd3-9ce39aecc93b"",
-                    ""path"": ""<Keyboard>/numpad1"",
+                    ""id"": ""3a82d2c9-a5bd-468d-a6bc-bf53e3f1c622"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LoadTestBoxOne"",
+                    ""action"": ""PauseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""49b312f2-c22c-4f84-9845-cbfdd4cc78fc"",
-                    ""path"": ""<Keyboard>/numpad2"",
+                    ""id"": ""81427f32-66b2-422c-8792-462ddd2af009"",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LoadTestBoxTwo"",
+                    ""action"": ""PauseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6bc92cc8-0a7c-48ce-88aa-5bf1652a69a0"",
-                    ""path"": ""<Keyboard>/numpad3"",
+                    ""id"": ""3fb92d08-74b1-4028-9feb-75375951fdd3"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LoadTestBoxThree"",
+                    ""action"": ""Resume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96896918-81a4-4a55-a13a-f06873b3cc8d"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Resume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2298837f-6b16-47f9-a6a1-5c94538ce0bd"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadMainMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""InGameUI"",
+            ""id"": ""6a420c19-d537-4419-a87a-f62efed0cfc2"",
+            ""actions"": [
+                {
+                    ""name"": ""OpenLevelCompleteUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""aa28ecf6-bc77-4221-a3e2-1fdd8c4cb818"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseLevelCompleteUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""41ab50f1-b2fc-4497-a5d5-ce0ead98e1c9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadNextPlanet"",
+                    ""type"": ""Button"",
+                    ""id"": ""65f10340-04f9-46fa-9852-f1a02f5742ed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d25b6ef4-1200-46e5-a26a-26562f7cdc7d"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenLevelCompleteUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a11186ba-2b59-4145-9859-40dbe7baf554"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseLevelCompleteUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b8f1944-7476-43e8-836a-c6e86490e946"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadNextPlanet"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -160,9 +258,16 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
         m_UIActions = asset.FindActionMap("UIActions", throwIfNotFound: true);
         m_UIActions_StartGame = m_UIActions.FindAction("StartGame", throwIfNotFound: true);
         m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
-        m_UIActions_LoadTestBoxOne = m_UIActions.FindAction("LoadTestBoxOne", throwIfNotFound: true);
-        m_UIActions_LoadTestBoxTwo = m_UIActions.FindAction("LoadTestBoxTwo", throwIfNotFound: true);
-        m_UIActions_LoadTestBoxThree = m_UIActions.FindAction("LoadTestBoxThree", throwIfNotFound: true);
+        // PauseMenuActions
+        m_PauseMenuActions = asset.FindActionMap("PauseMenuActions", throwIfNotFound: true);
+        m_PauseMenuActions_PauseGame = m_PauseMenuActions.FindAction("PauseGame", throwIfNotFound: true);
+        m_PauseMenuActions_Resume = m_PauseMenuActions.FindAction("Resume", throwIfNotFound: true);
+        m_PauseMenuActions_LoadMainMenu = m_PauseMenuActions.FindAction("LoadMainMenu", throwIfNotFound: true);
+        // InGameUI
+        m_InGameUI = asset.FindActionMap("InGameUI", throwIfNotFound: true);
+        m_InGameUI_OpenLevelCompleteUI = m_InGameUI.FindAction("OpenLevelCompleteUI", throwIfNotFound: true);
+        m_InGameUI_CloseLevelCompleteUI = m_InGameUI.FindAction("CloseLevelCompleteUI", throwIfNotFound: true);
+        m_InGameUI_LoadNextPlanet = m_InGameUI.FindAction("LoadNextPlanet", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -224,18 +329,12 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
     private IUIActionsActions m_UIActionsActionsCallbackInterface;
     private readonly InputAction m_UIActions_StartGame;
     private readonly InputAction m_UIActions_PlayCinematic;
-    private readonly InputAction m_UIActions_LoadTestBoxOne;
-    private readonly InputAction m_UIActions_LoadTestBoxTwo;
-    private readonly InputAction m_UIActions_LoadTestBoxThree;
     public struct UIActionsActions
     {
         private @UIActionsProfiler m_Wrapper;
         public UIActionsActions(@UIActionsProfiler wrapper) { m_Wrapper = wrapper; }
         public InputAction @StartGame => m_Wrapper.m_UIActions_StartGame;
         public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
-        public InputAction @LoadTestBoxOne => m_Wrapper.m_UIActions_LoadTestBoxOne;
-        public InputAction @LoadTestBoxTwo => m_Wrapper.m_UIActions_LoadTestBoxTwo;
-        public InputAction @LoadTestBoxThree => m_Wrapper.m_UIActions_LoadTestBoxThree;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -251,15 +350,6 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                 @PlayCinematic.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
-                @LoadTestBoxOne.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxOne;
-                @LoadTestBoxOne.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxOne;
-                @LoadTestBoxOne.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxOne;
-                @LoadTestBoxTwo.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxTwo;
-                @LoadTestBoxTwo.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxTwo;
-                @LoadTestBoxTwo.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxTwo;
-                @LoadTestBoxThree.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxThree;
-                @LoadTestBoxThree.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxThree;
-                @LoadTestBoxThree.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTestBoxThree;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -270,25 +360,123 @@ public partial class @UIActionsProfiler : IInputActionCollection2, IDisposable
                 @PlayCinematic.started += instance.OnPlayCinematic;
                 @PlayCinematic.performed += instance.OnPlayCinematic;
                 @PlayCinematic.canceled += instance.OnPlayCinematic;
-                @LoadTestBoxOne.started += instance.OnLoadTestBoxOne;
-                @LoadTestBoxOne.performed += instance.OnLoadTestBoxOne;
-                @LoadTestBoxOne.canceled += instance.OnLoadTestBoxOne;
-                @LoadTestBoxTwo.started += instance.OnLoadTestBoxTwo;
-                @LoadTestBoxTwo.performed += instance.OnLoadTestBoxTwo;
-                @LoadTestBoxTwo.canceled += instance.OnLoadTestBoxTwo;
-                @LoadTestBoxThree.started += instance.OnLoadTestBoxThree;
-                @LoadTestBoxThree.performed += instance.OnLoadTestBoxThree;
-                @LoadTestBoxThree.canceled += instance.OnLoadTestBoxThree;
             }
         }
     }
     public UIActionsActions @UIActions => new UIActionsActions(this);
+
+    // PauseMenuActions
+    private readonly InputActionMap m_PauseMenuActions;
+    private IPauseMenuActionsActions m_PauseMenuActionsActionsCallbackInterface;
+    private readonly InputAction m_PauseMenuActions_PauseGame;
+    private readonly InputAction m_PauseMenuActions_Resume;
+    private readonly InputAction m_PauseMenuActions_LoadMainMenu;
+    public struct PauseMenuActionsActions
+    {
+        private @UIActionsProfiler m_Wrapper;
+        public PauseMenuActionsActions(@UIActionsProfiler wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PauseGame => m_Wrapper.m_PauseMenuActions_PauseGame;
+        public InputAction @Resume => m_Wrapper.m_PauseMenuActions_Resume;
+        public InputAction @LoadMainMenu => m_Wrapper.m_PauseMenuActions_LoadMainMenu;
+        public InputActionMap Get() { return m_Wrapper.m_PauseMenuActions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PauseMenuActionsActions set) { return set.Get(); }
+        public void SetCallbacks(IPauseMenuActionsActions instance)
+        {
+            if (m_Wrapper.m_PauseMenuActionsActionsCallbackInterface != null)
+            {
+                @PauseGame.started -= m_Wrapper.m_PauseMenuActionsActionsCallbackInterface.OnPauseGame;
+                @PauseGame.performed -= m_Wrapper.m_PauseMenuActionsActionsCallbackInterface.OnPauseGame;
+                @PauseGame.canceled -= m_Wrapper.m_PauseMenuActionsActionsCallbackInterface.OnPauseGame;
+                @Resume.started -= m_Wrapper.m_PauseMenuActionsActionsCallbackInterface.OnResume;
+                @Resume.performed -= m_Wrapper.m_PauseMenuActionsActionsCallbackInterface.OnResume;
+                @Resume.canceled -= m_Wrapper.m_PauseMenuActionsActionsCallbackInterface.OnResume;
+                @LoadMainMenu.started -= m_Wrapper.m_PauseMenuActionsActionsCallbackInterface.OnLoadMainMenu;
+                @LoadMainMenu.performed -= m_Wrapper.m_PauseMenuActionsActionsCallbackInterface.OnLoadMainMenu;
+                @LoadMainMenu.canceled -= m_Wrapper.m_PauseMenuActionsActionsCallbackInterface.OnLoadMainMenu;
+            }
+            m_Wrapper.m_PauseMenuActionsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @PauseGame.started += instance.OnPauseGame;
+                @PauseGame.performed += instance.OnPauseGame;
+                @PauseGame.canceled += instance.OnPauseGame;
+                @Resume.started += instance.OnResume;
+                @Resume.performed += instance.OnResume;
+                @Resume.canceled += instance.OnResume;
+                @LoadMainMenu.started += instance.OnLoadMainMenu;
+                @LoadMainMenu.performed += instance.OnLoadMainMenu;
+                @LoadMainMenu.canceled += instance.OnLoadMainMenu;
+            }
+        }
+    }
+    public PauseMenuActionsActions @PauseMenuActions => new PauseMenuActionsActions(this);
+
+    // InGameUI
+    private readonly InputActionMap m_InGameUI;
+    private IInGameUIActions m_InGameUIActionsCallbackInterface;
+    private readonly InputAction m_InGameUI_OpenLevelCompleteUI;
+    private readonly InputAction m_InGameUI_CloseLevelCompleteUI;
+    private readonly InputAction m_InGameUI_LoadNextPlanet;
+    public struct InGameUIActions
+    {
+        private @UIActionsProfiler m_Wrapper;
+        public InGameUIActions(@UIActionsProfiler wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OpenLevelCompleteUI => m_Wrapper.m_InGameUI_OpenLevelCompleteUI;
+        public InputAction @CloseLevelCompleteUI => m_Wrapper.m_InGameUI_CloseLevelCompleteUI;
+        public InputAction @LoadNextPlanet => m_Wrapper.m_InGameUI_LoadNextPlanet;
+        public InputActionMap Get() { return m_Wrapper.m_InGameUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InGameUIActions set) { return set.Get(); }
+        public void SetCallbacks(IInGameUIActions instance)
+        {
+            if (m_Wrapper.m_InGameUIActionsCallbackInterface != null)
+            {
+                @OpenLevelCompleteUI.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnOpenLevelCompleteUI;
+                @OpenLevelCompleteUI.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnOpenLevelCompleteUI;
+                @OpenLevelCompleteUI.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnOpenLevelCompleteUI;
+                @CloseLevelCompleteUI.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnCloseLevelCompleteUI;
+                @CloseLevelCompleteUI.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnCloseLevelCompleteUI;
+                @CloseLevelCompleteUI.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnCloseLevelCompleteUI;
+                @LoadNextPlanet.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadNextPlanet;
+                @LoadNextPlanet.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadNextPlanet;
+                @LoadNextPlanet.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadNextPlanet;
+            }
+            m_Wrapper.m_InGameUIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @OpenLevelCompleteUI.started += instance.OnOpenLevelCompleteUI;
+                @OpenLevelCompleteUI.performed += instance.OnOpenLevelCompleteUI;
+                @OpenLevelCompleteUI.canceled += instance.OnOpenLevelCompleteUI;
+                @CloseLevelCompleteUI.started += instance.OnCloseLevelCompleteUI;
+                @CloseLevelCompleteUI.performed += instance.OnCloseLevelCompleteUI;
+                @CloseLevelCompleteUI.canceled += instance.OnCloseLevelCompleteUI;
+                @LoadNextPlanet.started += instance.OnLoadNextPlanet;
+                @LoadNextPlanet.performed += instance.OnLoadNextPlanet;
+                @LoadNextPlanet.canceled += instance.OnLoadNextPlanet;
+            }
+        }
+    }
+    public InGameUIActions @InGameUI => new InGameUIActions(this);
     public interface IUIActionsActions
     {
         void OnStartGame(InputAction.CallbackContext context);
         void OnPlayCinematic(InputAction.CallbackContext context);
-        void OnLoadTestBoxOne(InputAction.CallbackContext context);
-        void OnLoadTestBoxTwo(InputAction.CallbackContext context);
-        void OnLoadTestBoxThree(InputAction.CallbackContext context);
+    }
+    public interface IPauseMenuActionsActions
+    {
+        void OnPauseGame(InputAction.CallbackContext context);
+        void OnResume(InputAction.CallbackContext context);
+        void OnLoadMainMenu(InputAction.CallbackContext context);
+    }
+    public interface IInGameUIActions
+    {
+        void OnOpenLevelCompleteUI(InputAction.CallbackContext context);
+        void OnCloseLevelCompleteUI(InputAction.CallbackContext context);
+        void OnLoadNextPlanet(InputAction.CallbackContext context);
     }
 }

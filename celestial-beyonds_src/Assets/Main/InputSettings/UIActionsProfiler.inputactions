@@ -22,33 +22,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "LoadTestBoxOne",
-                    "type": "Button",
-                    "id": "1decbd27-890e-48f1-9a72-e728a75a571d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "LoadTestBoxTwo",
-                    "type": "Button",
-                    "id": "5393ef0f-a4fc-47d6-9079-1862cab49aac",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "LoadTestBoxThree",
-                    "type": "Button",
-                    "id": "59bb3442-80dc-4e72-a5f5-ee421ab38c23",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -95,37 +68,162 @@
                     "action": "PlayCinematic",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PauseMenuActions",
+            "id": "473caffa-c57a-45ed-9170-6cc87e51d468",
+            "actions": [
+                {
+                    "name": "PauseGame",
+                    "type": "Button",
+                    "id": "917eeb4f-dccb-429c-87f9-28ce94defe68",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
+                    "name": "Resume",
+                    "type": "Button",
+                    "id": "bc1a6d3c-ed19-40dd-af1a-f2eae46c2dbe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LoadMainMenu",
+                    "type": "Button",
+                    "id": "8c8ecd4a-fe86-4397-8b83-c8629d924d17",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
                     "name": "",
-                    "id": "93660823-34bc-4f72-bfd3-9ce39aecc93b",
-                    "path": "<Keyboard>/numpad1",
+                    "id": "3a82d2c9-a5bd-468d-a6bc-bf53e3f1c622",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LoadTestBoxOne",
+                    "action": "PauseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "49b312f2-c22c-4f84-9845-cbfdd4cc78fc",
-                    "path": "<Keyboard>/numpad2",
+                    "id": "81427f32-66b2-422c-8792-462ddd2af009",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LoadTestBoxTwo",
+                    "action": "PauseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "6bc92cc8-0a7c-48ce-88aa-5bf1652a69a0",
-                    "path": "<Keyboard>/numpad3",
+                    "id": "3fb92d08-74b1-4028-9feb-75375951fdd3",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LoadTestBoxThree",
+                    "action": "Resume",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96896918-81a4-4a55-a13a-f06873b3cc8d",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Resume",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2298837f-6b16-47f9-a6a1-5c94538ce0bd",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadMainMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "InGameUI",
+            "id": "6a420c19-d537-4419-a87a-f62efed0cfc2",
+            "actions": [
+                {
+                    "name": "OpenLevelCompleteUI",
+                    "type": "Button",
+                    "id": "aa28ecf6-bc77-4221-a3e2-1fdd8c4cb818",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CloseLevelCompleteUI",
+                    "type": "Button",
+                    "id": "41ab50f1-b2fc-4497-a5d5-ce0ead98e1c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LoadNextPlanet",
+                    "type": "Button",
+                    "id": "65f10340-04f9-46fa-9852-f1a02f5742ed",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d25b6ef4-1200-46e5-a26a-26562f7cdc7d",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenLevelCompleteUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a11186ba-2b59-4145-9859-40dbe7baf554",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseLevelCompleteUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b8f1944-7476-43e8-836a-c6e86490e946",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadNextPlanet",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

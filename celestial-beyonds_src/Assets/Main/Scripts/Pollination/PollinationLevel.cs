@@ -1,5 +1,9 @@
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PollinationLevel : MonoBehaviour
 {
@@ -7,11 +11,17 @@ public class PollinationLevel : MonoBehaviour
     public TextMeshProUGUI _pollinationLevel;
     public GameObject levelCompleteUI;
     public bool levelCompleted;
+    private UIActionsProfiler _controls;
+
+    private void Awake()
+    {
+        _controls = new UIActionsProfiler();
+    }
 
     private void Start()
     {
         pollinationPercent = PlayerPrefs.GetInt("PollinationLevel");
-        if (!levelCompleted)
+        if(!levelCompleted)
             pollinationPercent = 0;
         levelCompleteUI.SetActive(false);
     }
@@ -19,6 +29,22 @@ public class PollinationLevel : MonoBehaviour
     private void Update()
     {
         PlayerPrefs.SetInt("PollinationLevel", pollinationPercent);
+    }
+
+    private void OnEnable()
+    {
+         _controls.InGameUI.LoadNextPlanet.started += LoadNextPlanet;
+         _controls.InGameUI.OpenLevelCompleteUI.started += OpenLevelCompUI;
+         _controls.InGameUI.CloseLevelCompleteUI.started += CloseLevelCompUI;
+        _controls.InGameUI.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _controls.InGameUI.LoadNextPlanet.started += LoadNextPlanet;
+        _controls.InGameUI.OpenLevelCompleteUI.started += OpenLevelCompUI;
+        _controls.InGameUI.CloseLevelCompleteUI.started += CloseLevelCompUI;
+        _controls.InGameUI.Disable();
     }
 
     private void OnGUI()
@@ -38,5 +64,32 @@ public class PollinationLevel : MonoBehaviour
             print("Level complete! " + levelCompleted);
             levelCompleteUI.SetActive(true);
         }
+    }
+
+    private void OpenLevelCompUI(InputAction.CallbackContext obj)
+    {
+        if (levelCompleted)
+            levelCompleteUI.SetActive(true);
+    }
+
+    private void CloseLevelCompUI(InputAction.CallbackContext obj)
+    {
+        if (levelCompleted)
+            levelCompleteUI.SetActive(false);
+    }
+
+    private void LoadNextPlanet(InputAction.CallbackContext obj)
+    {
+        if (levelCompleted && levelCompleteUI.activeInHierarchy)
+        {
+            print("Loading: " + SceneManager.GetActiveScene().buildIndex + 1);
+            StartCoroutine(LoadNextScene());
+        }
+    }
+
+    private IEnumerator LoadNextScene()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
