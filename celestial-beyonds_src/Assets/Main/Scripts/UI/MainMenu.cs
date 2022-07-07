@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject _fader;
+    public GameObject fader;
     private InputProfiler _controls;
 
     private void Awake()
@@ -15,15 +15,14 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        _fader.GetComponent<Animator>().SetBool("FadeIn", true);
-        _fader.GetComponent<Animator>().SetBool("FadeOut", false);
+        fader.GetComponent<Animator>().SetBool("FadeIn", true);
+        fader.GetComponent<Animator>().SetBool("FadeOut", false);
     }
 
     private void OnEnable()
     {
         _controls.UIActions.StartGame.started += StartGame;
         _controls.UIActions.LoadTBOne.started += LoadTBOne;
-        _controls.UIActions.LoadTBTwo.started += LoadTBTwo;
         _controls.UIActions.Enable();
     }
 
@@ -31,7 +30,6 @@ public class MainMenu : MonoBehaviour
     {
         _controls.UIActions.StartGame.started -= StartGame;
         _controls.UIActions.LoadTBOne.started -= LoadTBOne;
-        _controls.UIActions.LoadTBTwo.started -= LoadTBTwo;
         _controls.UIActions.Disable();
     }
 
@@ -39,12 +37,6 @@ public class MainMenu : MonoBehaviour
     {
         print("Loading into: TestBox001");
         StartCoroutine(LaunchGame(4));
-    }
-
-    private void LoadTBTwo(InputAction.CallbackContext obj)
-    {
-        print("Loading into: MoonBeamBox");
-        StartCoroutine(LaunchGame(6));
     }
 
     private void StartGame(InputAction.CallbackContext obj)
@@ -57,8 +49,8 @@ public class MainMenu : MonoBehaviour
     private IEnumerator LaunchGame(int level)
     {
         print("Loading into: " + level);
-        _fader.GetComponent<Animator>().SetBool("FadeIn", false);
-        _fader.GetComponent<Animator>().SetBool("FadeOut", true);
+        fader.GetComponent<Animator>().SetBool("FadeIn", false);
+        fader.GetComponent<Animator>().SetBool("FadeOut", true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(level);
     }

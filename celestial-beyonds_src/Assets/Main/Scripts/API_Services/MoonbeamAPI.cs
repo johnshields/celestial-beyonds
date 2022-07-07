@@ -58,7 +58,7 @@ public class MoonbeamAPI : MonoBehaviour
             _moonbeam.GetComponent<MoonbeamProfiler>().mDialogueBtn.SetActive(false);
             chatting = true;
         }
-        else if (chatting && _moonbeam.GetComponent<MoonbeamProfiler>().dialogueActive)
+        else if (chatting)
         {
             print("Dialogue not Active");
             _response = "";

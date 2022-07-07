@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     private InputProfiler _controls;
-    public GameObject pauseMenu;
+    public GameObject pauseMenu, fader;
     private bool _paused;
 
     private void Awake()
@@ -66,6 +66,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         print("Loading into: " + level);
+        fader.GetComponent<Animator>().SetBool("FadeIn", true);
+        fader.GetComponent<Animator>().SetBool("FadeOut", false);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(level);
     }

@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        fader.GetComponent<Animator>().SetBool("FadeIn", true);
+        fader.GetComponent<Animator>().SetBool("FadeOut", false);
         StartCoroutine(SetActiveObjects());
     }
 

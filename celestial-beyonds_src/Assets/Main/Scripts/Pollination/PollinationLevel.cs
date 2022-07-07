@@ -9,7 +9,7 @@ public class PollinationLevel : MonoBehaviour
 {
     public int pollinationPercent, maxPollination = 100;
     public TextMeshProUGUI _pollinationLevel;
-    public GameObject levelCompleteUI;
+    public GameObject levelCompleteUI, fader;
     public bool levelCompleted;
     private InputProfiler _controls;
 
@@ -89,6 +89,8 @@ public class PollinationLevel : MonoBehaviour
 
     private IEnumerator LoadNextScene()
     {
+        fader.GetComponent<Animator>().SetBool("FadeIn", true);
+        fader.GetComponent<Animator>().SetBool("FadeOut", false);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
