@@ -11,11 +11,11 @@ public class PollinationLevel : MonoBehaviour
     public TextMeshProUGUI _pollinationLevel;
     public GameObject levelCompleteUI;
     public bool levelCompleted;
-    private UIActionsProfiler _controls;
+    private InputProfiler _controls;
 
     private void Awake()
     {
-        _controls = new UIActionsProfiler();
+        _controls = new InputProfiler();
     }
 
     private void Start()

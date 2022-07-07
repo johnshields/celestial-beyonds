@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject _fader;
-    private UIActionsProfiler _controls;
+    private InputProfiler _controls;
 
     private void Awake()
     {
-        _controls = new UIActionsProfiler();
+        _controls = new InputProfiler();
     }
 
     private void Start()
@@ -22,13 +22,29 @@ public class MainMenu : MonoBehaviour
     private void OnEnable()
     {
         _controls.UIActions.StartGame.started += StartGame;
-        _controls.UIActions.StartGame.Enable();
+        _controls.UIActions.LoadTBOne.started += LoadTBOne;
+        _controls.UIActions.LoadTBTwo.started += LoadTBTwo;
+        _controls.UIActions.Enable();
     }
 
     private void OnDisable()
     {
         _controls.UIActions.StartGame.started -= StartGame;
-        _controls.UIActions.StartGame.Disable();
+        _controls.UIActions.LoadTBOne.started -= LoadTBOne;
+        _controls.UIActions.LoadTBTwo.started -= LoadTBTwo;
+        _controls.UIActions.Disable();
+    }
+
+    private void LoadTBOne(InputAction.CallbackContext obj)
+    {
+        print("Loading into: TestBox001");
+        StartCoroutine(LaunchGame(4));
+    }
+
+    private void LoadTBTwo(InputAction.CallbackContext obj)
+    {
+        print("Loading into: MoonBeamBox");
+        StartCoroutine(LaunchGame(6));
     }
 
     private void StartGame(InputAction.CallbackContext obj)

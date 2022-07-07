@@ -550,6 +550,266 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""InGameUI"",
+            ""id"": ""ff290134-0d16-4aba-8456-7dec6d9f930e"",
+            ""actions"": [
+                {
+                    ""name"": ""OpenLevelCompleteUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd986be9-5696-4e33-b2ea-3fbd683e7c96"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseLevelCompleteUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""8add998b-00d4-4a2e-8b38-fc938d37fe5e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadMainMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""59fcfca3-2793-4ebe-aec6-a0e264a2cd55"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Resume"",
+                    ""type"": ""Button"",
+                    ""id"": ""92769aa7-bd09-46b7-92ee-00dc0883f0dc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d7290e3-2e45-4890-a1cb-98fec5113871"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadNextPlanet"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6f44670-9ad6-400c-b590-d7383c01fff6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""83812f27-0ff5-4724-b06f-48594200a6cd"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenLevelCompleteUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9275bf79-c5ae-4f1c-b7f4-ab17205c2178"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadNextPlanet"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a41d8250-4df2-4cea-9379-f03f5924e98a"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c26237d-f2fa-4826-8be0-23997c45d202"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8125e93-ecd0-4736-8dd3-56714afae38e"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Resume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73288a36-fdd9-4969-a904-de10bf79b778"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Resume"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7710c767-b790-4a14-82a4-e6510480b742"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadMainMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""51c7b2fa-a4c5-4aca-833f-241f7656c2b2"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseLevelCompleteUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UIActions"",
+            ""id"": ""94475e1e-50bd-40fb-84bb-a6e03404f335"",
+            ""actions"": [
+                {
+                    ""name"": ""StartGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d97b2ca-8be9-4e22-be5f-40b61d6cfe37"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayCinematic"",
+                    ""type"": ""Button"",
+                    ""id"": ""447e6ff1-0c55-4154-845f-22acd7f8881a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadTBOne"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c1c5721-1b91-4923-80d7-17470d728e91"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadTBTwo"",
+                    ""type"": ""Button"",
+                    ""id"": ""8e6a1eef-3d68-45d5-84c6-10c0bf113a42"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e926c17f-3e87-4620-baa1-c24056a8ecc4"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd14ca5b-f77b-4f45-ad21-7f7301860edf"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66f3690e-94ed-479c-8097-368cde6a5a93"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayCinematic"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7a619a7-85e8-4916-b330-8d437ade9649"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayCinematic"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da4ee060-149e-4630-b863-de2db358f7db"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadTBOne"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d549ccba-5ed0-4f88-9224-028b07a8b9e6"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadTBTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -571,6 +831,20 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_DialogueOptionOne = m_Profiler.FindAction("DialogueOptionOne", throwIfNotFound: true);
         m_Profiler_DialogueOptionTwo = m_Profiler.FindAction("DialogueOptionTwo", throwIfNotFound: true);
         m_Profiler_DialogueOptionThree = m_Profiler.FindAction("DialogueOptionThree", throwIfNotFound: true);
+        // InGameUI
+        m_InGameUI = asset.FindActionMap("InGameUI", throwIfNotFound: true);
+        m_InGameUI_OpenLevelCompleteUI = m_InGameUI.FindAction("OpenLevelCompleteUI", throwIfNotFound: true);
+        m_InGameUI_CloseLevelCompleteUI = m_InGameUI.FindAction("CloseLevelCompleteUI", throwIfNotFound: true);
+        m_InGameUI_LoadMainMenu = m_InGameUI.FindAction("LoadMainMenu", throwIfNotFound: true);
+        m_InGameUI_Resume = m_InGameUI.FindAction("Resume", throwIfNotFound: true);
+        m_InGameUI_PauseGame = m_InGameUI.FindAction("PauseGame", throwIfNotFound: true);
+        m_InGameUI_LoadNextPlanet = m_InGameUI.FindAction("LoadNextPlanet", throwIfNotFound: true);
+        // UIActions
+        m_UIActions = asset.FindActionMap("UIActions", throwIfNotFound: true);
+        m_UIActions_StartGame = m_UIActions.FindAction("StartGame", throwIfNotFound: true);
+        m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
+        m_UIActions_LoadTBOne = m_UIActions.FindAction("LoadTBOne", throwIfNotFound: true);
+        m_UIActions_LoadTBTwo = m_UIActions.FindAction("LoadTBTwo", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -771,6 +1045,136 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         }
     }
     public ProfilerActions @Profiler => new ProfilerActions(this);
+
+    // InGameUI
+    private readonly InputActionMap m_InGameUI;
+    private IInGameUIActions m_InGameUIActionsCallbackInterface;
+    private readonly InputAction m_InGameUI_OpenLevelCompleteUI;
+    private readonly InputAction m_InGameUI_CloseLevelCompleteUI;
+    private readonly InputAction m_InGameUI_LoadMainMenu;
+    private readonly InputAction m_InGameUI_Resume;
+    private readonly InputAction m_InGameUI_PauseGame;
+    private readonly InputAction m_InGameUI_LoadNextPlanet;
+    public struct InGameUIActions
+    {
+        private @InputProfiler m_Wrapper;
+        public InGameUIActions(@InputProfiler wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OpenLevelCompleteUI => m_Wrapper.m_InGameUI_OpenLevelCompleteUI;
+        public InputAction @CloseLevelCompleteUI => m_Wrapper.m_InGameUI_CloseLevelCompleteUI;
+        public InputAction @LoadMainMenu => m_Wrapper.m_InGameUI_LoadMainMenu;
+        public InputAction @Resume => m_Wrapper.m_InGameUI_Resume;
+        public InputAction @PauseGame => m_Wrapper.m_InGameUI_PauseGame;
+        public InputAction @LoadNextPlanet => m_Wrapper.m_InGameUI_LoadNextPlanet;
+        public InputActionMap Get() { return m_Wrapper.m_InGameUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InGameUIActions set) { return set.Get(); }
+        public void SetCallbacks(IInGameUIActions instance)
+        {
+            if (m_Wrapper.m_InGameUIActionsCallbackInterface != null)
+            {
+                @OpenLevelCompleteUI.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnOpenLevelCompleteUI;
+                @OpenLevelCompleteUI.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnOpenLevelCompleteUI;
+                @OpenLevelCompleteUI.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnOpenLevelCompleteUI;
+                @CloseLevelCompleteUI.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnCloseLevelCompleteUI;
+                @CloseLevelCompleteUI.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnCloseLevelCompleteUI;
+                @CloseLevelCompleteUI.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnCloseLevelCompleteUI;
+                @LoadMainMenu.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadMainMenu;
+                @LoadMainMenu.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadMainMenu;
+                @LoadMainMenu.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadMainMenu;
+                @Resume.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnResume;
+                @Resume.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnResume;
+                @Resume.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnResume;
+                @PauseGame.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnPauseGame;
+                @PauseGame.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnPauseGame;
+                @PauseGame.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnPauseGame;
+                @LoadNextPlanet.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadNextPlanet;
+                @LoadNextPlanet.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadNextPlanet;
+                @LoadNextPlanet.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadNextPlanet;
+            }
+            m_Wrapper.m_InGameUIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @OpenLevelCompleteUI.started += instance.OnOpenLevelCompleteUI;
+                @OpenLevelCompleteUI.performed += instance.OnOpenLevelCompleteUI;
+                @OpenLevelCompleteUI.canceled += instance.OnOpenLevelCompleteUI;
+                @CloseLevelCompleteUI.started += instance.OnCloseLevelCompleteUI;
+                @CloseLevelCompleteUI.performed += instance.OnCloseLevelCompleteUI;
+                @CloseLevelCompleteUI.canceled += instance.OnCloseLevelCompleteUI;
+                @LoadMainMenu.started += instance.OnLoadMainMenu;
+                @LoadMainMenu.performed += instance.OnLoadMainMenu;
+                @LoadMainMenu.canceled += instance.OnLoadMainMenu;
+                @Resume.started += instance.OnResume;
+                @Resume.performed += instance.OnResume;
+                @Resume.canceled += instance.OnResume;
+                @PauseGame.started += instance.OnPauseGame;
+                @PauseGame.performed += instance.OnPauseGame;
+                @PauseGame.canceled += instance.OnPauseGame;
+                @LoadNextPlanet.started += instance.OnLoadNextPlanet;
+                @LoadNextPlanet.performed += instance.OnLoadNextPlanet;
+                @LoadNextPlanet.canceled += instance.OnLoadNextPlanet;
+            }
+        }
+    }
+    public InGameUIActions @InGameUI => new InGameUIActions(this);
+
+    // UIActions
+    private readonly InputActionMap m_UIActions;
+    private IUIActionsActions m_UIActionsActionsCallbackInterface;
+    private readonly InputAction m_UIActions_StartGame;
+    private readonly InputAction m_UIActions_PlayCinematic;
+    private readonly InputAction m_UIActions_LoadTBOne;
+    private readonly InputAction m_UIActions_LoadTBTwo;
+    public struct UIActionsActions
+    {
+        private @InputProfiler m_Wrapper;
+        public UIActionsActions(@InputProfiler wrapper) { m_Wrapper = wrapper; }
+        public InputAction @StartGame => m_Wrapper.m_UIActions_StartGame;
+        public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
+        public InputAction @LoadTBOne => m_Wrapper.m_UIActions_LoadTBOne;
+        public InputAction @LoadTBTwo => m_Wrapper.m_UIActions_LoadTBTwo;
+        public InputActionMap Get() { return m_Wrapper.m_UIActions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActionsActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActionsActions instance)
+        {
+            if (m_Wrapper.m_UIActionsActionsCallbackInterface != null)
+            {
+                @StartGame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnStartGame;
+                @StartGame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnStartGame;
+                @StartGame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnStartGame;
+                @PlayCinematic.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
+                @PlayCinematic.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
+                @PlayCinematic.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
+                @LoadTBOne.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBOne;
+                @LoadTBOne.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBOne;
+                @LoadTBOne.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBOne;
+                @LoadTBTwo.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBTwo;
+                @LoadTBTwo.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBTwo;
+                @LoadTBTwo.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBTwo;
+            }
+            m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @StartGame.started += instance.OnStartGame;
+                @StartGame.performed += instance.OnStartGame;
+                @StartGame.canceled += instance.OnStartGame;
+                @PlayCinematic.started += instance.OnPlayCinematic;
+                @PlayCinematic.performed += instance.OnPlayCinematic;
+                @PlayCinematic.canceled += instance.OnPlayCinematic;
+                @LoadTBOne.started += instance.OnLoadTBOne;
+                @LoadTBOne.performed += instance.OnLoadTBOne;
+                @LoadTBOne.canceled += instance.OnLoadTBOne;
+                @LoadTBTwo.started += instance.OnLoadTBTwo;
+                @LoadTBTwo.performed += instance.OnLoadTBTwo;
+                @LoadTBTwo.canceled += instance.OnLoadTBTwo;
+            }
+        }
+    }
+    public UIActionsActions @UIActions => new UIActionsActions(this);
     public interface IProfilerActions
     {
         void OnMoveKeys(InputAction.CallbackContext context);
@@ -788,5 +1192,21 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnDialogueOptionOne(InputAction.CallbackContext context);
         void OnDialogueOptionTwo(InputAction.CallbackContext context);
         void OnDialogueOptionThree(InputAction.CallbackContext context);
+    }
+    public interface IInGameUIActions
+    {
+        void OnOpenLevelCompleteUI(InputAction.CallbackContext context);
+        void OnCloseLevelCompleteUI(InputAction.CallbackContext context);
+        void OnLoadMainMenu(InputAction.CallbackContext context);
+        void OnResume(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
+        void OnLoadNextPlanet(InputAction.CallbackContext context);
+    }
+    public interface IUIActionsActions
+    {
+        void OnStartGame(InputAction.CallbackContext context);
+        void OnPlayCinematic(InputAction.CallbackContext context);
+        void OnLoadTBOne(InputAction.CallbackContext context);
+        void OnLoadTBTwo(InputAction.CallbackContext context);
     }
 }

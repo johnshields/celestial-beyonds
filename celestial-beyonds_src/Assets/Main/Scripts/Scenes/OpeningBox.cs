@@ -9,12 +9,12 @@ public class OpeningBox : MonoBehaviour
     public GameObject musicAudio, video;
     public float syncTime = 0.4f;
     public GameObject _fader, cinControls;
-    private UIActionsProfiler _controls;
+    private InputProfiler _controls;
 
     private void Awake()
     {
         Time.timeScale = 0;
-        _controls = new UIActionsProfiler();
+        _controls = new InputProfiler();
     }
 
     private void Start()
