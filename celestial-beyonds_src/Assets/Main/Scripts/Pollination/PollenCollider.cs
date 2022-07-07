@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class PollenCollider : MonoBehaviour
@@ -7,16 +8,18 @@ public class PollenCollider : MonoBehaviour
 
     private void Start()
     {
-        _plant = GameObject.FindGameObjectWithTag("Sunflower");
+        _plant = GameObject.FindGameObjectWithTag("Plants");
     }
 
     private void OnParticleCollision(GameObject other)
     {
-        print("Pollen hit a plant");
-        if (!_plantGrown)
+        var numberOnly = Regex.Replace(other.gameObject.name, "[^0-9]", "");
+        var plantNum = int.Parse(numberOnly);
+        print("Pollen hit plant: " + plantNum);
+        if (!_plantGrown && _plant.gameObject.GetComponent<Plants>()._plantsOG[plantNum])
         {
             _plantGrown = true;
-            _plant.GetComponent<Plants>().GrowPlant();
+            _plant.GetComponent<Plants>().Blossom(plantNum);
             Invoke(nameof(ResetPlant), 4);
         }
     }

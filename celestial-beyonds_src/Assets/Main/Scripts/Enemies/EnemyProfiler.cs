@@ -1,4 +1,3 @@
-using Main.Scripts.Combat;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -125,6 +124,8 @@ namespace Main.Scripts.Enemies
             if (enemyHealth <= 0)
             {
                 print(enemy.name + " Terminated!");
+                var position = transform.position;
+                AudioSource.PlayClipAtPoint(toadSFX[1], position, 0.1f);
                 Destroy(enemy);
             }
         }

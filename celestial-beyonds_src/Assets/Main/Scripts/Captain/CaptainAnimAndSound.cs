@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
-using Main.Scripts.Combat;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 /*
  * PlayerAnimAndSound
@@ -18,6 +15,8 @@ namespace Main.Scripts.Captain
         public AudioClip[] meleeSFX;
         public AudioClip cannonSFX, pollenSFX;
         public float delayAction = 1f, dodge;
+        public GameObject pollenMeter;
+        public bool meleeActive;
         private bool _actionDone, _unarmed, _armed, _cannonFire, _pollenFire;
         private Animator _animator;
         private AudioSource _audio;
@@ -26,8 +25,6 @@ namespace Main.Scripts.Captain
         private GameObject _player, _footsteps, _scraper, _cannon, _pollinator;
         private int _profile, _jump, _dodge, _armedActive, _shoot, _wShoot, _rShoot, _dead;
         private Rigidbody _rb;
-        public GameObject pollenMeter;
-        public bool meleeActive;
 
         private void Awake()
         {
@@ -115,7 +112,7 @@ namespace Main.Scripts.Captain
 
         private void Jump(InputAction.CallbackContext obj)
         {
-            if (!CaptainProfiler.grounded || _actionDone && !Jetpack._jetpackActive) return;
+            if (!CaptainProfiler.grounded || (_actionDone && !Jetpack._jetpackActive)) return;
             _animator.SetTrigger(_jump);
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);

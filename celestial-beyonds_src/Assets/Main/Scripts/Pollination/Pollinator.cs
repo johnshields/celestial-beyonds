@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class Pollinator : MonoBehaviour
 {
     public GameObject particles, pollenBar;
-    private int status;
     public int maxAmmo = 500;
     public int pollenAmmo;
     private GameObject _player;
     private Slider _pollenBarSlider;
+    private int status;
 
     private void Start()
     {
@@ -39,7 +39,7 @@ public class Pollinator : MonoBehaviour
     public void HaltPollinator()
     {
         status = 1;
-        if(!_player.GetComponent<CaptainAnimAndSound>().meleeActive)
+        if (!_player.GetComponent<CaptainAnimAndSound>().meleeActive)
             StartCoroutine(PollinatorWait());
     }
 

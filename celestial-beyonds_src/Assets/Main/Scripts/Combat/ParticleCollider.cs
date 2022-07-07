@@ -3,10 +3,21 @@ using UnityEngine;
 
 public class ParticleCollider : MonoBehaviour
 {
+    private bool _shot;
+
     private void OnParticleCollision(GameObject other)
     {
         print("Cannon hit: " + other.gameObject.name);
-        if (other.gameObject.CompareTag("Enemy"))
-            other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(1, other.gameObject);
+        if (!_shot && other.gameObject.CompareTag("Enemy"))
+        {
+            _shot = true;
+            other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(3, other.gameObject);
+            Invoke(nameof(RechargeShot), 2);
+        }
+    }
+
+    private void RechargeShot()
+    {
+        _shot = false;
     }
 }

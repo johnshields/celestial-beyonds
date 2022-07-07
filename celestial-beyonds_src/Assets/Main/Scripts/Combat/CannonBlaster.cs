@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Main.Scripts.Captain;
 using UnityEngine;
@@ -6,8 +5,8 @@ using UnityEngine;
 public class CannonBlaster : MonoBehaviour
 {
     public GameObject particles;
-    private int status;
     private GameObject _player;
+    private int status;
 
     private void Start()
     {
@@ -23,10 +22,10 @@ public class CannonBlaster : MonoBehaviour
     public void HaltCannon()
     {
         status = 1;
-        if(!_player.GetComponent<CaptainAnimAndSound>().meleeActive)
+        if (!_player.GetComponent<CaptainAnimAndSound>().meleeActive)
             StartCoroutine(CannonWait());
     }
-    
+
     public void StopCannonParticles()
     {
         particles.GetComponent<ParticleSystem>().Stop();

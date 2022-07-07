@@ -7,15 +7,15 @@ public class ArgyleProfiler : MonoBehaviour
 {
     public GameObject stationUI, peridotCounterUI, pollenMeter, pollinator;
     public float delayAction = 1f;
-    private bool _actionDone;
-    private Animator _animator;
-    private InputProfiler _controls;
-    private int _idle, _talk1, _talk2, _talk3, _talk4, _talk5, _talk6;
-    private GameObject _player;
-    private Component _peridotCounter;
     public AudioClip[] argyleHellos, argyleByes, argyleFeelings, argyleSales, argyleNoSales;
     public AudioClip sale, noSale;
+    private bool _actionDone;
+    private Animator _animator;
     private AudioSource _audio;
+    private InputProfiler _controls;
+    private int _idle, _talk1, _talk2, _talk3, _talk4, _talk5, _talk6;
+    private Component _peridotCounter;
+    private GameObject _player;
 
     private void Awake()
     {
@@ -60,7 +60,7 @@ public class ArgyleProfiler : MonoBehaviour
             SwitchAnim();
             if (_actionDone) return;
             _audio.Stop();
-            _audio.PlayOneShot(argyleHellos[Random.Range(0, argyleHellos.Length)], 0.3f);
+            _audio.PlayOneShot(argyleHellos[Random.Range(0, argyleHellos.Length)]);
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);
         }
@@ -76,7 +76,7 @@ public class ArgyleProfiler : MonoBehaviour
         {
             stationUI.SetActive(false);
             _audio.Stop();
-            _audio.PlayOneShot(argyleByes[Random.Range(0, argyleByes.Length)], 0.3f);
+            _audio.PlayOneShot(argyleByes[Random.Range(0, argyleByes.Length)]);
         }
     }
 
@@ -88,7 +88,7 @@ public class ArgyleProfiler : MonoBehaviour
         {
             print("Pollen sold");
             _audio.Stop();
-            _audio.PlayOneShot(argyleSales[Random.Range(0, argyleSales.Length)], 0.3f);
+            _audio.PlayOneShot(argyleSales[Random.Range(0, argyleSales.Length)]);
             _audio.PlayOneShot(sale, 0.1f);
             pollinator.GetComponent<Pollinator>().FillUpPollen(10);
             _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(1);
@@ -99,7 +99,7 @@ public class ArgyleProfiler : MonoBehaviour
         {
             print("Not enough peridots");
             _audio.Stop();
-            _audio.PlayOneShot(argyleNoSales[Random.Range(0, argyleNoSales.Length)], 0.2f);
+            _audio.PlayOneShot(argyleNoSales[Random.Range(0, argyleNoSales.Length)]);
             _audio.PlayOneShot(noSale, 0.1f);
             peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
             StartCoroutine(ResetCounterColor(0));
@@ -109,7 +109,7 @@ public class ArgyleProfiler : MonoBehaviour
         {
             print("pollen full");
             _audio.Stop();
-            _audio.PlayOneShot(argyleFeelings[Random.Range(0, argyleFeelings.Length)], 0.2f);
+            _audio.PlayOneShot(argyleFeelings[Random.Range(0, argyleFeelings.Length)]);
             pollenMeter.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
             StartCoroutine(ResetCounterColor(1));
         }

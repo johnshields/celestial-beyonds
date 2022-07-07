@@ -42,19 +42,19 @@ public class MainMenu : MonoBehaviour
         print("Loading into: 002_Opening");
         StartCoroutine(LaunchGame("002_Opening"));
     }
-    
+
     private void LoadTestBox1(InputAction.CallbackContext obj)
     {
         print("Loading into: TestBox");
         SceneManager.LoadScene("TestBox");
     }
-    
+
     private void LoadTestBox2(InputAction.CallbackContext obj)
     {
         print("Loading into: MoonbeamTestBox");
         SceneManager.LoadScene("MoonbeamTestBox");
     }
-    
+
     private void LoadTestBox3(InputAction.CallbackContext obj)
     {
         print("Loading into: ...");

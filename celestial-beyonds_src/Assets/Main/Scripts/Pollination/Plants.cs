@@ -2,21 +2,18 @@ using UnityEngine;
 
 public class Plants : MonoBehaviour
 {
-    private Animator _animator;
-    private int _grow;
+    public GameObject[] _plantsOG, _plantClones;
     private GameObject pl;
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
-        _grow = Animator.StringToHash("Grow");
-        pl =  GameObject.FindGameObjectWithTag("PollinationLevel");
+        pl = GameObject.FindGameObjectWithTag("PollinationLevel");
     }
 
-    public void GrowPlant()
+    public void Blossom(int num)
     {
-        print("plant growing");
-        _animator.SetTrigger(_grow);
+        _plantClones[num].SetActive(true);
+        Destroy(_plantsOG[num]);
         pl.GetComponent<PollinationLevel>().IncreasePollination();
     }
 }

@@ -224,7 +224,7 @@ namespace TMPro.Examples
                 var linkIndex = TMP_TextUtilities.FindIntersectingLink(m_TextMeshPro, Input.mousePosition, m_Camera);
 
                 // Clear previous link selection if one existed.
-                if (linkIndex == -1 && m_selectedLink != -1 || linkIndex != m_selectedLink)
+                if ((linkIndex == -1 && m_selectedLink != -1) || linkIndex != m_selectedLink)
                 {
                     m_TextPopup_RectTransform.gameObject.SetActive(false);
                     m_selectedLink = -1;

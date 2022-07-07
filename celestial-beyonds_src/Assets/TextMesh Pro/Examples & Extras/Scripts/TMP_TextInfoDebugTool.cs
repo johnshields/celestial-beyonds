@@ -318,8 +318,8 @@ namespace TMPro.Examples
 
                     var isCharacterVisible = characterIndex > m_TextComponent.maxVisibleCharacters ||
                                              currentCharInfo.lineNumber > m_TextComponent.maxVisibleLines ||
-                                             m_TextComponent.overflowMode == TextOverflowModes.Page &&
-                                             currentCharInfo.pageNumber + 1 != m_TextComponent.pageToDisplay
+                                             (m_TextComponent.overflowMode == TextOverflowModes.Page &&
+                                              currentCharInfo.pageNumber + 1 != m_TextComponent.pageToDisplay)
                         ? false
                         : true;
 
@@ -428,8 +428,8 @@ namespace TMPro.Examples
 
                     var isCharacterVisible = characterIndex > m_TextComponent.maxVisibleCharacters ||
                                              currentCharInfo.lineNumber > m_TextComponent.maxVisibleLines ||
-                                             m_TextComponent.overflowMode == TextOverflowModes.Page &&
-                                             currentCharInfo.pageNumber + 1 != m_TextComponent.pageToDisplay
+                                             (m_TextComponent.overflowMode == TextOverflowModes.Page &&
+                                              currentCharInfo.pageNumber + 1 != m_TextComponent.pageToDisplay)
                         ? false
                         : true;
 
@@ -520,13 +520,13 @@ namespace TMPro.Examples
                 var firstCharacterInfo = m_TextInfo.characterInfo[lineInfo.firstCharacterIndex];
                 var lastCharacterInfo = m_TextInfo.characterInfo[lineInfo.lastCharacterIndex];
 
-                var isLineVisible = lineInfo.characterCount == 1 && (firstCharacterInfo.character == 10 ||
-                                                                     firstCharacterInfo.character == 11 ||
-                                                                     firstCharacterInfo.character == 0x2028 ||
-                                                                     firstCharacterInfo.character == 0x2029) ||
+                var isLineVisible = (lineInfo.characterCount == 1 && (firstCharacterInfo.character == 10 ||
+                                                                      firstCharacterInfo.character == 11 ||
+                                                                      firstCharacterInfo.character == 0x2028 ||
+                                                                      firstCharacterInfo.character == 0x2029)) ||
                                     i > m_TextComponent.maxVisibleLines ||
-                                    m_TextComponent.overflowMode == TextOverflowModes.Page &&
-                                    firstCharacterInfo.pageNumber + 1 != m_TextComponent.pageToDisplay
+                                    (m_TextComponent.overflowMode == TextOverflowModes.Page &&
+                                     firstCharacterInfo.pageNumber + 1 != m_TextComponent.pageToDisplay)
                     ? false
                     : true;
 

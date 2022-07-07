@@ -7,13 +7,13 @@ using UnityEngine.Networking;
 public class MoonbeamAPI : MonoBehaviour
 {
     private const string _uri = "http://moonbeambot.live/api/chat";
-    private GameObject _responseText;
-    private string _response;
-    private InputProfiler _controls;
-    private int _whichDialogue;
     public GameObject dialogueOptionOne, dialogueOptionTwo, dialogueOptionThree;
     public AudioClip[] moonbeamVoice;
     private AudioSource _audio;
+    private InputProfiler _controls;
+    private string _response;
+    private GameObject _responseText;
+    private int _whichDialogue;
 
     private void Awake()
     {
@@ -37,6 +37,11 @@ public class MoonbeamAPI : MonoBehaviour
         _controls.Profiler.DialogueOptionTwo.started -= DialogueOptionTwo;
         _controls.Profiler.DialogueOptionThree.started -= DialogueOptionThree;
         _controls.Profiler.Disable();
+    }
+
+    private void OnGUI()
+    {
+        _responseText.GetComponent<TextMeshProUGUI>().text = _response;
     }
 
     private void DialogueOptionOne(InputAction.CallbackContext obj)
@@ -138,10 +143,5 @@ public class MoonbeamAPI : MonoBehaviour
             _audio.Stop();
             _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
         }
-    }
-
-    private void OnGUI()
-    {
-        _responseText.GetComponent<TextMeshProUGUI>().text = _response;
     }
 }
