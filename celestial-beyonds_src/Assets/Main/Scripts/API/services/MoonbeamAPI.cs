@@ -93,13 +93,13 @@ public class MoonbeamAPI : MonoBehaviour
         yield return webRequest.SendWebRequest();
         if (webRequest.result == UnityWebRequest.Result.ConnectionError)
         {
-            Debug.Log("Connection to API - Error: " + webRequest.error);
+            print("Connection to API - Error: " + webRequest.error);
             print("Error with connection.");
             _response = "Sorry, I seem to have a screw lose.";
         }
         else
         {
-            Debug.Log("Connection to API: " + webRequest.result);
+            print("Connection to API: " + webRequest.result);
         }
     }
 
@@ -126,14 +126,14 @@ public class MoonbeamAPI : MonoBehaviour
         if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
             webRequest.result == UnityWebRequest.Result.ProtocolError)
         {
-            Debug.Log("Error getting response: " + webRequest.error);
+            print("Error getting response: " + webRequest.error);
             _response = "Sorry, there seems to be a screw lose.";
             _audio.Stop();
             _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
         }
         else
         {
-            Debug.Log("Moonbeam says: " + webRequest.downloadHandler.text);
+            print("Moonbeam says: " + webRequest.downloadHandler.text);
             _response = webRequest.downloadHandler.text;
             _audio.Stop();
             _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);

@@ -90,12 +90,12 @@ public class ArgyleProfiler : MonoBehaviour
             _audio.Stop();
             _audio.PlayOneShot(argyleSales[Random.Range(0, argyleSales.Length)], 0.3f);
             _audio.PlayOneShot(sale, 0.1f);
-            pollinator.GetComponent<Pollinator>().FillUpPollen(50);
-            _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(5);
+            pollinator.GetComponent<Pollinator>().FillUpPollen(10);
+            _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(1);
             SwitchAnim();
         }
-        // decline the sale if the player has less than 5 peridots + flash peridotCounter.
-        else if (_peridotCounter.GetComponent<PeridotCounter>().peridots <= 4)
+        // decline the sale if the player has less than 0 peridots + flash peridotCounter.
+        else if (_peridotCounter.GetComponent<PeridotCounter>().peridots <= 0)
         {
             print("Not enough peridots");
             _audio.Stop();
@@ -108,6 +108,8 @@ public class ArgyleProfiler : MonoBehaviour
         else if (pollinator.GetComponent<Pollinator>().pollenAmmo == pollinator.GetComponent<Pollinator>().maxAmmo)
         {
             print("pollen full");
+            _audio.Stop();
+            _audio.PlayOneShot(argyleFeelings[Random.Range(0, argyleFeelings.Length)], 0.2f);
             pollenMeter.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
             StartCoroutine(ResetCounterColor(1));
         }
