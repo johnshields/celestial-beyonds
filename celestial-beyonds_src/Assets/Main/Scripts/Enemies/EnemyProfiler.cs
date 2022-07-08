@@ -55,8 +55,6 @@ namespace Main.Scripts.Enemies
 
         private void Patrol()
         {
-            sightRange = 20f;
-
             if (!_walkPointSet) SearchWalkPoint();
 
             if (_walkPointSet)
@@ -92,15 +90,16 @@ namespace Main.Scripts.Enemies
         {
             print("Chase");
             AnimationState(false, true, false);
-            agent.SetDestination(player.position);
-            sightRange = 30f;
+            if (agent.isActiveAndEnabled)
+                agent.SetDestination(player.position);
         }
 
         private void AttackMode()
         {
             // Enemy does not move and looks at player.
             AnimationState(true, false, false);
-            agent.SetDestination(transform.position);
+            if (agent.isActiveAndEnabled)
+                agent.SetDestination(player.position);
             transform.LookAt(player);
 
             if (!_actionDone)

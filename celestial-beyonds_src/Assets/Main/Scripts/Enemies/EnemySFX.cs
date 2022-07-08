@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-public class BearSFX : MonoBehaviour
+public class EnemySFX : MonoBehaviour
 {
     public AudioClip[] enemySFX;
     private AudioSource _audio;
@@ -11,12 +10,12 @@ public class BearSFX : MonoBehaviour
         _audio = GetComponent<AudioSource>();
     }
 
-    private void BreathSound()
+    private void PatrolSFX()
     {
         _audio.PlayOneShot(enemySFX[0]);
     }
     
-    private void AttackSound()
+    private void AttackSFX()
     {
         _audio.PlayOneShot(enemySFX[1]);
     }
