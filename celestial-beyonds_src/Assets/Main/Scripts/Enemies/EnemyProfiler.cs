@@ -18,7 +18,6 @@ namespace Main.Scripts.Enemies
         public float sightRange, attackRange;
         public bool playerInSightRange, playerInAttackRange;
         public float delayAction = 1f;
-        public AudioClip[] enemySFX;
 
         private Animator _animator;
         private AudioSource _audio;
@@ -63,6 +62,7 @@ namespace Main.Scripts.Enemies
 
             if (_walkPointSet)
             {
+                print("Patrol");
                 agent.SetDestination(walkPoint);
                 AnimationState(true, false, false);
             }
@@ -76,6 +76,7 @@ namespace Main.Scripts.Enemies
 
         private void SearchWalkPoint()
         {
+            print("Search");
             // calculate random point in range
             var randomZ = Random.Range(-walkPointRange, walkPointRange);
             var randomX = Random.Range(-walkPointRange, walkPointRange);
@@ -90,6 +91,7 @@ namespace Main.Scripts.Enemies
 
         private void ChasePlayer()
         {
+            print("Chase");
             AnimationState(false, true, false);
             agent.SetDestination(player.position);
             sightRange = 30f;
@@ -105,8 +107,8 @@ namespace Main.Scripts.Enemies
             if (!_actionDone)
             {
                 AnimationState(false, false, true);
-                _audio.PlayOneShot(enemySFX[0]);
                 _actionDone = true;
+                print("Attack");
                 Invoke(nameof(ResetAction), delayAction);
             }
         }
@@ -124,8 +126,6 @@ namespace Main.Scripts.Enemies
             if (enemyHealth <= 0)
             {
                 print(enemy.name + " Terminated!");
-                var position = transform.position;
-                AudioSource.PlayClipAtPoint(enemySFX[1], position, 0.1f);
                 Destroy(enemy);
             }
         }
