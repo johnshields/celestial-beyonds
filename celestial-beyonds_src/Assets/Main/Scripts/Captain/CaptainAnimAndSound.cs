@@ -156,7 +156,6 @@ namespace Main.Scripts.Captain
                 }
 
                 _actionDone = true;
-                meleeActive = false;
                 Invoke(nameof(ResetAction), delayAction);
             }
         }
@@ -224,6 +223,7 @@ namespace Main.Scripts.Captain
 
         private void ResetAction()
         {
+            meleeActive = false;
             _actionDone = false;
             if (cannonFire)
             {
