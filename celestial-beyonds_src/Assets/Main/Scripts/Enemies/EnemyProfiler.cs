@@ -18,7 +18,7 @@ namespace Main.Scripts.Enemies
         public float sightRange, attackRange;
         public bool playerInSightRange, playerInAttackRange;
         public float delayAction = 1f;
-        public AudioClip[] toadSFX;
+        public AudioClip[] enemySFX;
 
         private Animator _animator;
         private AudioSource _audio;
@@ -105,7 +105,7 @@ namespace Main.Scripts.Enemies
             if (!_actionDone)
             {
                 AnimationState(false, false, true);
-                _audio.PlayOneShot(toadSFX[0]);
+                _audio.PlayOneShot(enemySFX[0]);
                 _actionDone = true;
                 Invoke(nameof(ResetAction), delayAction);
             }
@@ -125,7 +125,7 @@ namespace Main.Scripts.Enemies
             {
                 print(enemy.name + " Terminated!");
                 var position = transform.position;
-                AudioSource.PlayClipAtPoint(toadSFX[1], position, 0.1f);
+                AudioSource.PlayClipAtPoint(enemySFX[1], position, 0.1f);
                 Destroy(enemy);
             }
         }
