@@ -1,3 +1,4 @@
+using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,10 +6,10 @@ namespace Main.Scripts.Enemies
 {
     public class EnemyProfiler : MonoBehaviour
     {
+        public int enemyMaxHealth = 3, enemyHealth, meleeDamage, cannonDamage;
         public NavMeshAgent agent;
         public Transform player;
         public LayerMask groundMask, playerMask;
-        public int enemyMaxHealth = 3, enemyHealth;
 
         // patrolling
         public Vector3 walkPoint;
@@ -20,7 +21,6 @@ namespace Main.Scripts.Enemies
         public float delayAction = 1f;
 
         private Animator _animator;
-        private AudioSource _audio;
         private int _idle, _walk, _attack;
         private bool _walkPointSet, _actionDone;
 
@@ -29,7 +29,6 @@ namespace Main.Scripts.Enemies
             enemyHealth = enemyMaxHealth;
             player = GameObject.FindGameObjectWithTag("Player").transform;
             agent = GetComponent<NavMeshAgent>();
-            _audio = GetComponent<AudioSource>();
             _animator = GetComponent<Animator>();
             _idle = Animator.StringToHash("IdleActive");
             _walk = Animator.StringToHash("WalkActive");
@@ -107,7 +106,6 @@ namespace Main.Scripts.Enemies
             if (!_actionDone)
             {
                 AnimationState(false, false, true);
-                _actionDone = true;
                 print("Attack");
                 Invoke(nameof(ResetAction), delayAction);
             }
@@ -115,12 +113,22 @@ namespace Main.Scripts.Enemies
 
         private void ResetAction()
         {
+            _actionDone = true;
+            Invoke(nameof(ActivateAction), delayAction);
+        }
+
+        private void ActivateAction()
+        {
             _actionDone = false;
         }
 
-        public void TakeDamage(int amount, GameObject enemy)
+        public void TakeDamage(GameObject enemy)
         {
-            enemyHealth -= amount;
+            if (player.GetComponent<CaptainAnimAndSound>().meleeActive)
+                enemyHealth -= meleeDamage;
+            else if (player.GetComponent<CaptainAnimAndSound>().cannonFire)
+                enemyHealth -= cannonDamage;
+
             print(enemy.name + " Health: " + enemyHealth);
 
             if (enemyHealth <= 0)

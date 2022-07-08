@@ -16,8 +16,8 @@ namespace Main.Scripts.Captain
         public AudioClip cannonSFX, pollenSFX;
         public float delayAction = 1f, dodge;
         public GameObject pollenMeter;
-        public bool meleeActive;
-        private bool _actionDone, _unarmed, _armed, _cannonFire, _pollenFire;
+        public bool meleeActive, cannonFire, pollenFire;
+        private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
         private AudioSource _audio;
         private InputProfiler _controls;
@@ -69,9 +69,9 @@ namespace Main.Scripts.Captain
                 _animator.SetBool(_armedActive, false);
             else if (_armed) _animator.SetBool(_armedActive, true);
 
-            if (_cannonFire)
+            if (cannonFire)
                 _pollinator.GetComponent<Pollinator>().StopPollenParticles();
-            else if (_pollenFire)
+            else if (pollenFire)
                 _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
         }
 
@@ -165,9 +165,9 @@ namespace Main.Scripts.Captain
         {
             WeaponSelect(false, true, false);
             PlayerState(false, true);
-            _cannonFire = true;
+            cannonFire = true;
 
-            if (!_actionDone && _armed && _cannonFire)
+            if (!_actionDone && _armed && cannonFire)
             {
                 _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
                 // call CannonBlaster
@@ -183,7 +183,7 @@ namespace Main.Scripts.Captain
             PlayerState(false, true);
             if (_pollinator.GetComponent<Pollinator>().pollenAmmo != 0)
             {
-                _pollenFire = true;
+                pollenFire = true;
                 if (!_actionDone && _armed)
                 {
                     _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
@@ -225,15 +225,15 @@ namespace Main.Scripts.Captain
         private void ResetAction()
         {
             _actionDone = false;
-            if (_cannonFire)
+            if (cannonFire)
             {
                 _cannon.GetComponent<CannonBlaster>().HaltCannon();
-                _cannonFire = false;
+                cannonFire = false;
             }
-            else if (_pollenFire)
+            else if (pollenFire)
             {
                 _pollinator.GetComponent<Pollinator>().HaltPollinator();
-                _pollenFire = false;
+                pollenFire = false;
             }
         }
 
@@ -255,9 +255,9 @@ namespace Main.Scripts.Captain
 
         private void CannonFireSFX()
         {
-            if (_cannonFire)
+            if (cannonFire)
                 _audio.PlayOneShot(cannonSFX, 0.1f);
-            else if (_pollenFire)
+            else if (pollenFire)
                 _audio.PlayOneShot(pollenSFX, 0.1f);
         }
     }

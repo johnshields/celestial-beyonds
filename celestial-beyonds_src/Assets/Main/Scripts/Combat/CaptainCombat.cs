@@ -12,7 +12,7 @@ namespace Main.Scripts.Combat
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Enemy"))
-                other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(1, other.gameObject);
+                other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(other.gameObject);
         }
     }
 }

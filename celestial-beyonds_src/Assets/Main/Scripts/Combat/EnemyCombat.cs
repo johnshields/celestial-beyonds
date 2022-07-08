@@ -9,6 +9,7 @@ namespace Main.Scripts.Combat
     public class EnemyCombat : MonoBehaviour
     {
         private GameObject _player;
+        public int damageAmount;
 
         private void Start()
         {
@@ -18,7 +19,7 @@ namespace Main.Scripts.Combat
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Player"))
-                _player.GetComponent<CaptainHealth>().PlayerTakeDamage(5);
+                _player.GetComponent<CaptainHealth>().PlayerTakeDamage(damageAmount);
         }
     }
 }

@@ -11,7 +11,7 @@ public class ParticleCollider : MonoBehaviour
         if (!_shot && other.gameObject.CompareTag("Enemy"))
         {
             _shot = true;
-            other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(3, other.gameObject);
+            other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(other.gameObject);
             Invoke(nameof(RechargeShot), 2);
         }
     }
