@@ -42,8 +42,9 @@ namespace Main.Scripts.Enemies
             playerInAttackRange = Physics.CheckSphere(tp, attackRange, playerMask);
 
             if (!playerInSightRange && !playerInAttackRange) Patrol();
-            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInSightRange && !playerInAttackRange && !CaptainHealth.capDead) ChasePlayer();
             if (playerInAttackRange && playerInSightRange && !CaptainHealth.capDead) AttackMode();
+            if (CaptainHealth.capDead) Patrol();
         }
 
         private void AnimationState(bool idle, bool walk, bool attack)
@@ -61,7 +62,7 @@ namespace Main.Scripts.Enemies
             {
                 print("Patrol");
                 agent.SetDestination(walkPoint);
-                AnimationState(true, false, false);
+                AnimationState(false, true, false);
             }
 
             var distanceToWalkPoint = transform.position - walkPoint;

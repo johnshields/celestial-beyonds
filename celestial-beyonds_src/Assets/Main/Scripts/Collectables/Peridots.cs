@@ -5,6 +5,7 @@ public class Peridots : MonoBehaviour
     public AudioClip pickupSound;
     private Component _peridotCounter;
     private GameObject _player;
+    public int peridotValue = 1;
 
     private void Start()
     {
@@ -21,6 +22,6 @@ public class Peridots : MonoBehaviour
         AudioSource.PlayClipAtPoint(pickupSound, position, 0.1f);
         // Destroy peridot and add to the _peridotCounter
         Destroy(gameObject);
-        _peridotCounter.GetComponent<PeridotCounter>().peridots += 1;
+        _peridotCounter.GetComponent<PeridotCounter>().peridots += peridotValue;
     }
 }

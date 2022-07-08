@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &9993042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,6 +923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &101261890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5307,6 +5309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &562955514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5493,6 +5496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &580883831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12305,6 +12309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &782260135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14061,6 +14066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &921454768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15261,6 +15267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &1056859648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16092,6 +16099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &1244368010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16438,7 +16446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1271663618
 Transform:
   m_ObjectHideFlags: 0
@@ -16515,6 +16523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &1272105436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16623,6 +16632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &1281511690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16806,6 +16816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &1295930446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21865,7 +21876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1327780076
 Transform:
   m_ObjectHideFlags: 0
@@ -28153,6 +28164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &1444306809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36913,6 +36925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &1935857813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37153,6 +37166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!1 &1976158428
 GameObject:
   m_ObjectHideFlags: 0
@@ -37511,6 +37525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 24b78bf0bb4e59d4a9a7126844a4610a, type: 3}
+  healthAmount: 5
 --- !u!114 &1983270452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48407,6 +48422,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 83e172f4ffc691aeab14ee05b195b323, type: 3}
   cannonSFX: {fileID: 8300000, guid: ab7f65d9e0ce4de42976480c35b1a98b, type: 3}
   pollenSFX: {fileID: 8300000, guid: eab865981ab09e54c8caac3f521aba49, type: 3}
+  capScreamSFX: {fileID: 8300000, guid: 6221ffa74866f6c49a3a2ab7215120b9, type: 3}
   delayAction: 1
   dodge: -1
   pollenMeter: {fileID: 0}

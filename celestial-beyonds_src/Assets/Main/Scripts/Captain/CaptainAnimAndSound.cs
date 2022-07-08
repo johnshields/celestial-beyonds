@@ -13,7 +13,7 @@ namespace Main.Scripts.Captain
     {
         public float maxSpeed = 5f;
         public AudioClip[] meleeSFX;
-        public AudioClip cannonSFX, pollenSFX;
+        public AudioClip cannonSFX, pollenSFX, capScreamSFX;
         public float delayAction = 1f, dodge;
         public GameObject pollenMeter;
         public bool meleeActive, cannonFire, pollenFire;
@@ -259,6 +259,11 @@ namespace Main.Scripts.Captain
                 _audio.PlayOneShot(cannonSFX, 0.1f);
             else if (pollenFire)
                 _audio.PlayOneShot(pollenSFX, 0.1f);
+        }
+
+        private void CapScreamSFX()
+        {
+            _audio.PlayOneShot(capScreamSFX, 0.5f);
         }
     }
 }

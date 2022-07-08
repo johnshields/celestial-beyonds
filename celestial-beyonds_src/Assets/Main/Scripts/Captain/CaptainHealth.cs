@@ -28,9 +28,9 @@ public class CaptainHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            capDead = true;
             print("player dead!");
             _player.GetComponent<CaptainAnimAndSound>().CapDeath();
-            capDead = true;
         }
     }
 

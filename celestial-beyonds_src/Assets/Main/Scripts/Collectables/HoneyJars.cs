@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class HoneyJars : MonoBehaviour
 {
     public AudioClip pickupSound;
+    public int healthAmount = 5;
     private GameObject _player;
     private GameObject healthBar;
 
@@ -20,7 +21,7 @@ public class HoneyJars : MonoBehaviour
         if (other.gameObject == _player && _player.GetComponent<CaptainHealth>().currentHealth !=
             _player.GetComponent<CaptainHealth>().maxHealth)
         {
-            _player.GetComponent<CaptainHealth>().PlayerGainHealth(5);
+            _player.GetComponent<CaptainHealth>().PlayerGainHealth(healthAmount);
             var position = transform.position;
             AudioSource.PlayClipAtPoint(pickupSound, position, 0.1f);
             Destroy(gameObject);

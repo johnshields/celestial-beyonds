@@ -1,3 +1,4 @@
+using System;
 using Main.Scripts.Enemies;
 using UnityEngine;
 
@@ -12,6 +13,12 @@ public class ParticleCollider : MonoBehaviour
         {
             _shot = true;
             other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(other.gameObject);
+            Invoke(nameof(RechargeShot), 2);
+        }
+        else if (!_shot && other.gameObject.CompareTag("CollectableBox"))
+        {
+            _shot = true;
+            other.gameObject.GetComponent<CollectableBox>().IfCannon();
             Invoke(nameof(RechargeShot), 2);
         }
     }
