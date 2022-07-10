@@ -1,4 +1,3 @@
-using System;
 using Main.Scripts.Captain;
 using UnityEngine;
 

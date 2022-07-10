@@ -60,7 +60,6 @@ namespace Main.Scripts.Enemies
 
             if (_walkPointSet)
             {
-                print("Patrol");
                 agent.SetDestination(walkPoint);
                 AnimationState(false, true, false);
             }
@@ -74,7 +73,6 @@ namespace Main.Scripts.Enemies
 
         private void SearchWalkPoint()
         {
-            print("Search");
             // calculate random point in range
             var randomZ = Random.Range(-walkPointRange, walkPointRange);
             var randomX = Random.Range(-walkPointRange, walkPointRange);
@@ -89,7 +87,6 @@ namespace Main.Scripts.Enemies
 
         private void ChasePlayer()
         {
-            print("Chase");
             AnimationState(false, true, false);
             if (agent.isActiveAndEnabled)
                 agent.SetDestination(player.position);
@@ -106,7 +103,6 @@ namespace Main.Scripts.Enemies
             if (!_actionDone)
             {
                 AnimationState(false, false, true);
-                print("Attack");
                 Invoke(nameof(ResetAction), delayAction);
             }
         }

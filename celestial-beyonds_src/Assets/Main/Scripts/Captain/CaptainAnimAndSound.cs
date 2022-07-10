@@ -216,6 +216,7 @@ namespace Main.Scripts.Captain
 
         public void CapDeath()
         {
+            _unarmed = true;
             _animator.SetTrigger(_dead);
             _player.GetComponent<CaptainProfiler>().enabled = false;
             _player.GetComponent<Jetpack>().enabled = false;
