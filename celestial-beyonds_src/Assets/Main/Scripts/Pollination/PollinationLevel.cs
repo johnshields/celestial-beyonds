@@ -62,7 +62,7 @@ public class PollinationLevel : MonoBehaviour
             // level complete
             levelCompleted = true;
             print("Level complete! " + levelCompleted);
-            levelCompleteUI.SetActive(true);
+            StartCoroutine(LevelCompleteUI());
         }
     }
 
@@ -85,6 +85,13 @@ public class PollinationLevel : MonoBehaviour
             print("Loading: " + SceneManager.GetActiveScene().buildIndex + 1);
             StartCoroutine(LoadNextScene());
         }
+    }
+
+    private IEnumerator LevelCompleteUI()
+    {
+        yield return new WaitForSeconds(3f);
+        levelCompleteUI.SetActive(true);
+        
     }
 
     private IEnumerator LoadNextScene()

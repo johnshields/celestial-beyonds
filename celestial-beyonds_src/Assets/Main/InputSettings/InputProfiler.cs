@@ -628,6 +628,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MiniMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""4cb82695-ff8b-4d06-9278-8c5e4eef1ed6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -656,7 +665,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a41d8250-4df2-4cea-9379-f03f5924e98a"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -716,6 +725,28 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CloseLevelCompleteUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88a808d2-1e74-4508-a443-3f0145adf5dc"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64fba450-c2ae-4826-bd86-c3bd2da1b813"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -860,6 +891,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_InGameUI_Resume = m_InGameUI.FindAction("Resume", throwIfNotFound: true);
         m_InGameUI_PauseGame = m_InGameUI.FindAction("PauseGame", throwIfNotFound: true);
         m_InGameUI_LoadNextPlanet = m_InGameUI.FindAction("LoadNextPlanet", throwIfNotFound: true);
+        m_InGameUI_MiniMenu = m_InGameUI.FindAction("MiniMenu", throwIfNotFound: true);
         // UIActions
         m_UIActions = asset.FindActionMap("UIActions", throwIfNotFound: true);
         m_UIActions_StartGame = m_UIActions.FindAction("StartGame", throwIfNotFound: true);
@@ -1084,6 +1116,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGameUI_Resume;
     private readonly InputAction m_InGameUI_PauseGame;
     private readonly InputAction m_InGameUI_LoadNextPlanet;
+    private readonly InputAction m_InGameUI_MiniMenu;
     public struct InGameUIActions
     {
         private @InputProfiler m_Wrapper;
@@ -1094,6 +1127,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Resume => m_Wrapper.m_InGameUI_Resume;
         public InputAction @PauseGame => m_Wrapper.m_InGameUI_PauseGame;
         public InputAction @LoadNextPlanet => m_Wrapper.m_InGameUI_LoadNextPlanet;
+        public InputAction @MiniMenu => m_Wrapper.m_InGameUI_MiniMenu;
         public InputActionMap Get() { return m_Wrapper.m_InGameUI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1121,6 +1155,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @LoadNextPlanet.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadNextPlanet;
                 @LoadNextPlanet.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadNextPlanet;
                 @LoadNextPlanet.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadNextPlanet;
+                @MiniMenu.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnMiniMenu;
+                @MiniMenu.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnMiniMenu;
+                @MiniMenu.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnMiniMenu;
             }
             m_Wrapper.m_InGameUIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1143,6 +1180,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @LoadNextPlanet.started += instance.OnLoadNextPlanet;
                 @LoadNextPlanet.performed += instance.OnLoadNextPlanet;
                 @LoadNextPlanet.canceled += instance.OnLoadNextPlanet;
+                @MiniMenu.started += instance.OnMiniMenu;
+                @MiniMenu.performed += instance.OnMiniMenu;
+                @MiniMenu.canceled += instance.OnMiniMenu;
             }
         }
     }
@@ -1231,6 +1271,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnResume(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnLoadNextPlanet(InputAction.CallbackContext context);
+        void OnMiniMenu(InputAction.CallbackContext context);
     }
     public interface IUIActionsActions
     {

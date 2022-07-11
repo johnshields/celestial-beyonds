@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     private InputProfiler _controls;
-    public GameObject pauseMenu, fader;
-    private bool _paused;
+    public GameObject pauseMenu, miniMenu, fader;
+    private bool _paused, _miniMenu;
 
     private void Awake()
     {
@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
         _controls.InGameUI.PauseGame.started += PauseGame;
         _controls.InGameUI.Resume.started += ResumeGame;
         _controls.InGameUI.LoadMainMenu.started += LoadMainMenu;
+        _controls.InGameUI.MiniMenu.started += MiniMenu;
         _controls.InGameUI.Enable();
     }
 
@@ -30,6 +31,7 @@ public class PauseMenu : MonoBehaviour
         _controls.InGameUI.PauseGame.started -= PauseGame;
         _controls.InGameUI.Resume.started -= ResumeGame;
         _controls.InGameUI.LoadMainMenu.started -= LoadMainMenu;
+        _controls.InGameUI.MiniMenu.started -= MiniMenu;
         _controls.InGameUI.Disable();
     }
 
@@ -58,6 +60,20 @@ public class PauseMenu : MonoBehaviour
         {
             _paused = false;
             StartCoroutine(GoMainMenu(0));
+        }
+    }
+
+    private void MiniMenu(InputAction.CallbackContext obj)
+    {
+        if (!_miniMenu)
+        {
+            miniMenu.SetActive(true);
+            _miniMenu = true;
+        }
+        else
+        {
+            miniMenu.SetActive(false);
+            _miniMenu = false;
         }
     }
 

@@ -606,6 +606,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "MiniMenu",
+                    "type": "Button",
+                    "id": "4cb82695-ff8b-4d06-9278-8c5e4eef1ed6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -634,7 +643,7 @@
                 {
                     "name": "",
                     "id": "a41d8250-4df2-4cea-9379-f03f5924e98a",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -694,6 +703,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "CloseLevelCompleteUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88a808d2-1e74-4508-a443-3f0145adf5dc",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MiniMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "64fba450-c2ae-4826-bd86-c3bd2da1b813",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MiniMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,4 +1,5 @@
 using Main.Scripts.Captain;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -23,6 +24,9 @@ namespace Main.Scripts.Enemies
         private Animator _animator;
         private int _idle, _walk, _attack;
         private bool _walkPointSet, _actionDone;
+        
+        // misc
+        public GameObject miniMenu;
 
         private void Awake()
         {
@@ -129,7 +133,8 @@ namespace Main.Scripts.Enemies
 
             if (enemyHealth <= 0)
             {
-                print(enemy.name + " Terminated!");
+                print(enemy.name + " Terminated!"); 
+                miniMenu.GetComponent<MiniMenu>().enemyNum += 1;
                 Destroy(enemy);
             }
         }

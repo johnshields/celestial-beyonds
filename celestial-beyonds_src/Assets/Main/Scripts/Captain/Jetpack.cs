@@ -36,7 +36,7 @@ public class Jetpack : MonoBehaviour
         {
             _jetpackActive = true;
             _currentFuel -= Time.deltaTime;
-            _rb.AddForce(_rb.transform.up * thrustForce, ForceMode.Impulse);
+            _rb.AddForce(_rb.transform.up * thrustForce);
         }
         else if (Physics.Raycast(groundedObj.position, Vector3.down, 0.01f,
                      LayerMask.GetMask("GroundedObject")) && _currentFuel < maxFuel)
