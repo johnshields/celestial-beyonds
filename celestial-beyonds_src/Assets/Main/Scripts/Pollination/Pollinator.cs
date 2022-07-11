@@ -32,7 +32,7 @@ public class Pollinator : MonoBehaviour
     public void FirePollinator()
     {
         status = 0;
-        pollenAmmo -= 50;
+        pollenAmmo -= 10;
         StartCoroutine(PollinatorWait());
     }
 

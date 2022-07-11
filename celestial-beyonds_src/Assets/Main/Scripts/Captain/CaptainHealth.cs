@@ -1,12 +1,13 @@
+using System.Collections;
 using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CaptainHealth : MonoBehaviour
 {
-    public static bool capDead;
+    public bool capDead, gameOver;
     public int maxHealth = 100, currentHealth;
-    public GameObject pHealthBar;
+    public GameObject pHealthBar, GameOverUI;
     private Slider _pHealthBarSlider;
     private GameObject _player;
 
@@ -29,8 +30,9 @@ public class CaptainHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             capDead = true;
-            print("player dead!");
+            print("Player Terminated!");
             _player.GetComponent<CaptainAnimAndSound>().CapDeath();
+            StartCoroutine(GameOverScreen());
         }
     }
 
@@ -38,5 +40,12 @@ public class CaptainHealth : MonoBehaviour
     {
         if (currentHealth != maxHealth)
             currentHealth += amount;
+    }
+
+    private IEnumerator GameOverScreen()
+    {
+        yield return new WaitForSeconds(3f);
+        gameOver = true;
+        GameOverUI.SetActive(true);
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     private InputProfiler _controls;
-    public GameObject pauseMenu, miniMenu, fader;
+    public GameObject pauseMenu, miniMenu, fader, player, BtnGO;
     private bool _paused, _miniMenu;
 
     private void Awake()
@@ -45,27 +45,31 @@ public class PauseMenu : MonoBehaviour
 
     private void ResumeGame(InputAction.CallbackContext obj)
     {
-        if (_paused)
+        if (_paused && !player.GetComponent<CaptainHealth>().capDead)
         {
             _paused = false;
             pauseMenu.SetActive(false);
             print("Game resumed...");
             Time.timeScale = 1f;
         }
+        else if (player.GetComponent<CaptainHealth>().gameOver)
+        {
+            StartCoroutine(GoLoadLevel(3));
+        }
     }
 
     private void LoadMainMenu(InputAction.CallbackContext obj)
     {
-        if (_paused)
+        if (_paused || player.GetComponent<CaptainHealth>().gameOver)
         {
             _paused = false;
-            StartCoroutine(GoMainMenu(0));
+            StartCoroutine(GoLoadLevel(0));
         }
     }
 
     private void MiniMenu(InputAction.CallbackContext obj)
     {
-        if (!_miniMenu)
+        if (!_miniMenu && !player.GetComponent<CaptainHealth>().capDead)
         {
             miniMenu.SetActive(true);
             _miniMenu = true;
@@ -77,8 +81,11 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    private IEnumerator GoMainMenu(int level)
+    private IEnumerator GoLoadLevel(int level)
     {
+        if(player.GetComponent<CaptainHealth>().gameOver)
+            BtnGO.SetActive(false);
+            
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         print("Loading into: " + level);

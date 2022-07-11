@@ -1,5 +1,4 @@
 using Main.Scripts.Captain;
-using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -46,9 +45,9 @@ namespace Main.Scripts.Enemies
             playerInAttackRange = Physics.CheckSphere(tp, attackRange, playerMask);
 
             if (!playerInSightRange && !playerInAttackRange) Patrol();
-            if (playerInSightRange && !playerInAttackRange && !CaptainHealth.capDead) ChasePlayer();
-            if (playerInAttackRange && playerInSightRange && !CaptainHealth.capDead) AttackMode();
-            if (CaptainHealth.capDead) Patrol();
+            if (playerInSightRange && !playerInAttackRange && !player.GetComponent<CaptainHealth>().capDead) ChasePlayer();
+            if (playerInAttackRange && playerInSightRange && !player.GetComponent<CaptainHealth>().capDead) AttackMode();
+            if (player.GetComponent<CaptainHealth>().capDead) Patrol();
         }
 
         private void AnimationState(bool idle, bool walk, bool attack)
