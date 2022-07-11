@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PollinationLevel : MonoBehaviour
 {
-    public int pollinationPercent, maxPollination = 100;
+    public int pollinationPercent, maxPollination = 100, pollenIncrease;
     public TextMeshProUGUI _pollinationLevel;
     public GameObject levelCompleteUI, fader;
     public bool levelCompleted;
@@ -55,7 +55,7 @@ public class PollinationLevel : MonoBehaviour
 
     public void IncreasePollination()
     {
-        pollinationPercent += 25;
+        pollinationPercent += pollenIncrease;
 
         if (pollinationPercent == maxPollination)
         {
