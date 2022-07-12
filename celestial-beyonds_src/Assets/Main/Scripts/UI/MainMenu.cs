@@ -48,6 +48,7 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator LaunchGame(int level)
     {
+        fader.SetActive(true);
         print("Loading into: " + level);
         fader.GetComponent<Animator>().SetBool("FadeIn", false);
         fader.GetComponent<Animator>().SetBool("FadeOut", true);
