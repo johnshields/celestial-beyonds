@@ -2,12 +2,15 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class Fader : MonoBehaviour
 {
     private Animator _animator;
     private InputProfiler _controls;
     private int _fadeIn, _fadeOut;
+    private bool _skip;
+    public GameObject[] video;
 
     private void Awake()
     {
@@ -37,7 +40,11 @@ public class Fader : MonoBehaviour
 
     private void SkipScene(InputAction.CallbackContext obj)
     {
-        StartCoroutine(Fade(1));
+        if (!_skip)
+        {
+            _skip = true;
+            StartCoroutine(Fade(1));
+        }
     }
 
     private IEnumerator Fade(int fade)
@@ -53,8 +60,9 @@ public class Fader : MonoBehaviour
                 _animator.SetBool(_fadeOut, true);
                 break;
         }
-
+        
         yield return new WaitForSeconds(5);
+        if (_skip) video[0].GetComponent<VideoPlayer>().Stop();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

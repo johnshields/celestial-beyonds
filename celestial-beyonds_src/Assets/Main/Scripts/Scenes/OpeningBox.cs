@@ -52,6 +52,7 @@ public class OpeningBox : MonoBehaviour
     private IEnumerator OpeningOver()
     {
         yield return new WaitForSeconds(136f); // length of opening
+        video.GetComponent<VideoPlayer>().Stop();
         _fader.GetComponent<Animator>().SetBool("FadeIn", false);
         _fader.GetComponent<Animator>().SetBool("FadeOut", true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

@@ -1204,6 +1204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a955fe5347c25e43b693103be32d056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  video:
+  - {fileID: 1670650121}
 --- !u!224 &1603995324
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1586,7 +1588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicAudio: {fileID: 266054555}
   video: {fileID: 1670650121}
-  syncTime: 0.4
+  syncTime: 0
   _fader: {fileID: 1603995322}
   cinControls: {fileID: 1489909942}
 --- !u!1 &2080077514

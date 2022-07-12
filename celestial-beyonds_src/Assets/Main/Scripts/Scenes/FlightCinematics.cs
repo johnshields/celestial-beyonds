@@ -52,6 +52,7 @@ public class FlightCinematics : MonoBehaviour
     private IEnumerator CinematicOver()
     {
         yield return new WaitForSeconds(vidLenght); // length of cinematic
+        video.GetComponent<VideoPlayer>().Stop();
         _fader.GetComponent<Animator>().SetBool("FadeIn", false);
         _fader.GetComponent<Animator>().SetBool("FadeOut", true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
