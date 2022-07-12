@@ -27,10 +27,10 @@ namespace Main.Scripts.Captain
 
         private void FixedUpdate()
         {
-            forceDir += _moveKeys.ReadValue<Vector2>().x * GetCameraRight(playerCam) * movementForce;
-            forceDir += _moveKeys.ReadValue<Vector2>().y * GetCameraForward(playerCam) * movementForce;
-            forceDir += _moveController.ReadValue<Vector2>().x * GetCameraRight(playerCam) * movementForce;
-            forceDir += _moveController.ReadValue<Vector2>().y * GetCameraForward(playerCam) * movementForce;
+            forceDir += GetCameraRight(playerCam) * (_moveKeys.ReadValue<Vector2>().x * movementForce);
+            forceDir += GetCameraForward(playerCam) * (_moveKeys.ReadValue<Vector2>().y * movementForce);
+            forceDir += GetCameraRight(playerCam) * (_moveController.ReadValue<Vector2>().x * movementForce);
+            forceDir += GetCameraForward(playerCam) * (_moveController.ReadValue<Vector2>().y * movementForce);
 
             _rb.AddForce(forceDir, ForceMode.Impulse);
             forceDir = Vector3.zero;

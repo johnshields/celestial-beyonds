@@ -64,6 +64,8 @@ namespace Main.Scripts.Captain
         {
             if (!Jetpack._jetpackActive)
                 _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
+            else
+                _rb.angularVelocity = Vector3.zero;
 
             if (_unarmed)
                 _animator.SetBool(_armedActive, false);

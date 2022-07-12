@@ -1,6 +1,7 @@
 using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace Main.Scripts.Enemies
 {
@@ -10,6 +11,8 @@ namespace Main.Scripts.Enemies
         public NavMeshAgent agent;
         public Transform player;
         public LayerMask groundMask, playerMask;
+        private NavMeshHit _hit;
+        private float _distanceToEdge = 5;
 
         // patrolling
         public Vector3 walkPoint;
@@ -18,12 +21,12 @@ namespace Main.Scripts.Enemies
         // states
         public float sightRange, attackRange;
         public bool playerInSightRange, playerInAttackRange;
-        public float delayAction = 1f;
+        public float delayAction = 2f;
 
         private Animator _animator;
         private int _idle, _walk, _attack;
         private bool _walkPointSet, _actionDone;
-        
+
         // misc
         public GameObject miniMenu;
 
@@ -45,9 +48,16 @@ namespace Main.Scripts.Enemies
             playerInAttackRange = Physics.CheckSphere(tp, attackRange, playerMask);
 
             if (!playerInSightRange && !playerInAttackRange) Patrol();
-            if (playerInSightRange && !playerInAttackRange && !player.GetComponent<CaptainHealth>().capDead) ChasePlayer();
-            if (playerInAttackRange && playerInSightRange && !player.GetComponent<CaptainHealth>().capDead) AttackMode();
+            if (playerInSightRange && !playerInAttackRange && !player.GetComponent<CaptainHealth>().capDead)
+                ChasePlayer();
+            if (playerInAttackRange && playerInSightRange && !player.GetComponent<CaptainHealth>().capDead)
+                AttackMode();
             if (player.GetComponent<CaptainHealth>().capDead) Patrol();
+
+            // ref: https://forum.unity.com/threads/ai-getting-stuck-into-corner-of-the-map.1213311/
+            if (NavMesh.FindClosestEdge(transform.position, out _hit, NavMesh.AllAreas))
+                _distanceToEdge = _hit.distance;
+            if (_distanceToEdge < 2f) SearchWalkPoint();
         }
 
         private void AnimationState(bool idle, bool walk, bool attack)
@@ -77,6 +87,7 @@ namespace Main.Scripts.Enemies
         private void SearchWalkPoint()
         {
             // calculate random point in range
+            AnimationState(true, false, false);
             var randomZ = Random.Range(-walkPointRange, walkPointRange);
             var randomX = Random.Range(-walkPointRange, walkPointRange);
 
@@ -132,7 +143,7 @@ namespace Main.Scripts.Enemies
 
             if (enemyHealth <= 0)
             {
-                print(enemy.name + " Terminated!"); 
+                print(enemy.name + " Terminated!");
                 miniMenu.GetComponent<MiniMenu>().enemyNum += 1;
                 Destroy(enemy);
             }
