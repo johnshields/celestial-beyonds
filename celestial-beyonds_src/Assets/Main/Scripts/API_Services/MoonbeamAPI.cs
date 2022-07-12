@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 
 public class MoonbeamAPI : MonoBehaviour
 {
-    private const string _uri = "http://moonbeambot.live/api/chat";
+    private const string _uri = "https://moonbeambot.live/api/chat";
     public GameObject dialogueOptionOne, dialogueOptionTwo, dialogueOptionThree, dialogueUI;
     public AudioClip[] moonbeamVoice;
     private AudioSource _audio;
