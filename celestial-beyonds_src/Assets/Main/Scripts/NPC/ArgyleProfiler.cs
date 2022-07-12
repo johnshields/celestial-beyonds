@@ -9,7 +9,7 @@ public class ArgyleProfiler : MonoBehaviour
     public float delayAction = 1f;
     public AudioClip[] argyleHellos, argyleByes, argyleFeelings, argyleSales, argyleNoSales;
     public AudioClip sale, noSale;
-    private bool _actionDone;
+    private bool _actionDone, _saleActive;
     private Animator _animator;
     private AudioSource _audio;
     private InputProfiler _controls;
@@ -54,8 +54,9 @@ public class ArgyleProfiler : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // say Hello
-        if (other.gameObject == _player)
+        if (other.gameObject == _player && !_saleActive)
         {
+            _saleActive = true;
             stationUI.SetActive(true);
             SwitchAnim();
             if (_actionDone) return;
@@ -66,6 +67,7 @@ public class ArgyleProfiler : MonoBehaviour
         }
         else
         {
+            _saleActive = false;
             _animator.SetTrigger(_idle);
         }
     }
@@ -74,6 +76,7 @@ public class ArgyleProfiler : MonoBehaviour
     {
         if (other.gameObject == _player)
         {
+            _saleActive = false;
             stationUI.SetActive(false);
             _audio.Stop();
             _audio.PlayOneShot(argyleByes[Random.Range(0, argyleByes.Length)]);
@@ -82,41 +85,44 @@ public class ArgyleProfiler : MonoBehaviour
 
     private void TalkArgyle(InputAction.CallbackContext obj)
     {
-        // only sell player pollen if they do not have maxAmmo or no peridots.
-        if (pollinator.GetComponent<Pollinator>().pollenAmmo != pollinator.GetComponent<Pollinator>().maxAmmo &&
-            _peridotCounter.GetComponent<PeridotCounter>().peridots != 0)
+        if (_saleActive)
         {
-            print("Pollen sold");
-            _audio.Stop();
-            _audio.PlayOneShot(argyleSales[Random.Range(0, argyleSales.Length)]);
-            _audio.PlayOneShot(sale, 0.1f);
-            pollinator.GetComponent<Pollinator>().FillUpPollen(10);
-            _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(1);
-            SwitchAnim();
-        }
-        // decline the sale if the player has less than 0 peridots + flash peridotCounter.
-        else if (_peridotCounter.GetComponent<PeridotCounter>().peridots <= 0)
-        {
-            print("Not enough peridots");
-            _audio.Stop();
-            _audio.PlayOneShot(argyleNoSales[Random.Range(0, argyleNoSales.Length)]);
-            _audio.PlayOneShot(noSale, 0.1f);
-            peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-            StartCoroutine(ResetCounterColor(0));
-        }
-        // decline sale if pollen is full + flash pollenMeter.
-        else if (pollinator.GetComponent<Pollinator>().pollenAmmo == pollinator.GetComponent<Pollinator>().maxAmmo)
-        {
-            print("pollen full");
-            _audio.Stop();
-            _audio.PlayOneShot(argyleFeelings[Random.Range(0, argyleFeelings.Length)]);
-            pollenMeter.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
-            StartCoroutine(ResetCounterColor(1));
-        }
+            // only sell player pollen if they do not have maxAmmo or no peridots.
+            if (pollinator.GetComponent<Pollinator>().pollenAmmo != pollinator.GetComponent<Pollinator>().maxAmmo &&
+                _peridotCounter.GetComponent<PeridotCounter>().peridots != 0)
+            {
+                print("Pollen sold");
+                _audio.Stop();
+                _audio.PlayOneShot(argyleSales[Random.Range(0, argyleSales.Length)]);
+                _audio.PlayOneShot(sale, 0.1f);
+                pollinator.GetComponent<Pollinator>().FillUpPollen(10);
+                _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(1);
+                SwitchAnim();
+            }
+            // decline the sale if the player has less than 0 peridots + flash peridotCounter.
+            else if (_peridotCounter.GetComponent<PeridotCounter>().peridots <= 0)
+            {
+                print("Not enough peridots");
+                _audio.Stop();
+                _audio.PlayOneShot(argyleNoSales[Random.Range(0, argyleNoSales.Length)]);
+                _audio.PlayOneShot(noSale, 0.1f);
+                peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                StartCoroutine(ResetCounterColor(0));
+            }
+            // decline sale if pollen is full + flash pollenMeter.
+            else if (pollinator.GetComponent<Pollinator>().pollenAmmo == pollinator.GetComponent<Pollinator>().maxAmmo)
+            {
+                print("pollen full");
+                _audio.Stop();
+                _audio.PlayOneShot(argyleFeelings[Random.Range(0, argyleFeelings.Length)]);
+                pollenMeter.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
+                StartCoroutine(ResetCounterColor(1));
+            }
 
-        if (_actionDone) return;
-        _actionDone = true;
-        Invoke(nameof(ResetAction), delayAction);
+            if (_actionDone) return;
+            _actionDone = true;
+            Invoke(nameof(ResetAction), delayAction);
+        }
     }
 
     private IEnumerator ResetCounterColor(int whichCounter)
