@@ -6,9 +6,10 @@ public class PeridotCounter : MonoBehaviour
     public int peridots;
     public TextMeshProUGUI _peridotCounter;
 
-    private void Start()
+    private void Awake()
     {
         peridots = PlayerPrefs.GetInt("peridots");
+        peridots = 0;
     }
 
     // Save peridots to player.

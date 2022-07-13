@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class InGameMenus : MonoBehaviour
 {
     private InputProfiler _controls;
-    public GameObject pauseMenu, miniMenu, fader, player, BtnGO;
+    public GameObject pauseMenu, miniMenu, miniMenuPanel, fader, player, BtnGO;
     public bool pausedActive, miniMenuActive;
 
     private void Awake()
@@ -80,12 +80,12 @@ public class InGameMenus : MonoBehaviour
     {
         if (!miniMenuActive && !pausedActive && !player.GetComponent<CaptainHealth>().capDead)
         {
-            miniMenu.SetActive(true);
+            miniMenuPanel.SetActive(true);
             miniMenuActive = true;
         }
         else
         {
-            miniMenu.SetActive(false);
+            miniMenuPanel.SetActive(false);
             miniMenuActive = false;
         }
     }

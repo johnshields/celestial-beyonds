@@ -3,9 +3,10 @@ using UnityEngine;
 public class Peridots : MonoBehaviour
 {
     public AudioClip pickupSound;
+    public GameObject miniMenu;
+    public int peridotValue = 1;
     private Component _peridotCounter;
     private GameObject _player;
-    public int peridotValue = 1;
 
     private void Start()
     {
@@ -23,5 +24,6 @@ public class Peridots : MonoBehaviour
         // Destroy peridot and add to the _peridotCounter
         Destroy(gameObject);
         _peridotCounter.GetComponent<PeridotCounter>().peridots += peridotValue;
+        miniMenu.GetComponent<MiniMenu>().peridotsNum += 1;
     }
 }

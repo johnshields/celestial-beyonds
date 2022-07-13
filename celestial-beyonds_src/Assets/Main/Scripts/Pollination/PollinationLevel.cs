@@ -51,14 +51,32 @@ public class PollinationLevel : MonoBehaviour
         if (pollinationPercent <= maxPollination)
             _pollinationLevel.text = "POLLINATION: " + pollinationPercent + "%";
         
+        // if all enemiesNum are dead
         if (miniMenu.GetComponent<MiniMenu>().enemiesNum == 10)
-            exploreTxt.text = "Feel free to explore more, Collect more Peridots or Find all the Artifacts!";
+            exploreTxt.text = "Feel free to explore peacefully, Collect all Peridots and Find all the Artifacts!";
+        // if all artifactsNum are found
         else if (miniMenu.GetComponent<MiniMenu>().artifactsNum == 10)
-            exploreTxt.text = "Feel free to explore more, Collect more Peridots or Terminate more Enemies!";
+            exploreTxt.text = "Feel free to explore more, Collect all Peridots and Terminate all Enemies!";
+        // if all peridotsNum are collect
+        else if (miniMenu.GetComponent<MiniMenu>().peridotsNum == 66)
+            exploreTxt.text = "Feel free to explore more, Terminate all Enemies and Find all the Artifacts!";
+        // if all enemiesNum are dead and all artifactsNum are found
         else if (miniMenu.GetComponent<MiniMenu>().enemiesNum == 10 && miniMenu.GetComponent<MiniMenu>().artifactsNum == 10)
-            exploreTxt.text = "Feel free to explore more and Collect more Peridots!";
-        else exploreTxt.text =
-                "Feel free to explore more, Collect more Peridots, Terminate more Enemies or Find all the Artifacts!";
+            exploreTxt.text = "Feel free to explore peacefully and Collect all Peridots!";
+        else if (miniMenu.GetComponent<MiniMenu>().peridotsNum == 66 && miniMenu.GetComponent<MiniMenu>().enemiesNum == 10)
+            exploreTxt.text = "Feel free to explore peacefully and Find all the Artifacts!";
+        // if all peridotsNum are collect and all artifactsNum are found
+        else if (miniMenu.GetComponent<MiniMenu>().peridotsNum == 66 && miniMenu.GetComponent<MiniMenu>().artifactsNum == 10)
+            exploreTxt.text = "Feel free to explore more, Terminate all Enemies and Find all the Artifacts!";
+        // if all everything is done
+        else if (miniMenu.GetComponent<MiniMenu>().enemiesNum == 10 && miniMenu.GetComponent<MiniMenu>().artifactsNum == 10 && 
+                 miniMenu.GetComponent<MiniMenu>().peridotsNum == 66)
+            exploreTxt.text = "Feel free to explore peacefully!";
+        // original
+        else if (miniMenu.GetComponent<MiniMenu>().enemiesNum != 10 && miniMenu.GetComponent<MiniMenu>().artifactsNum != 10 && 
+                 miniMenu.GetComponent<MiniMenu>().peridotsNum != 66)
+            exploreTxt.text =
+                "Feel free to explore more, Collect all Peridots, Terminate all Enemies and Find all the Artifacts!";
     }
 
     public void IncreasePollination()
