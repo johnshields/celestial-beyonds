@@ -22,7 +22,7 @@ with open('data/mb_data.json') as f:
 
 trainer.train(data)
 print('[INFO] Training complete!' + '\n Chat with Moonbeam!' +
-      '\n Local: http://0.0.0.0:5000/' + '\n Hosted: http://moonbeambot.live/' +
+      '\n Local: http://0.0.0.0:5000/' + '\n Hosted: https://api.moonbeambot.live/' +
       '\n Awaiting request...')
 
 # create a new web app

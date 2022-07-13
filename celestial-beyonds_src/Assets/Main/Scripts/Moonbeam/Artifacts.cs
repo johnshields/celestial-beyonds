@@ -36,7 +36,7 @@ public class Artifacts : MonoBehaviour
         if (other.gameObject == _player)
         {
             interaction = false;
-            moonbeamAPI.GetComponent<MoonbeamDialogue>().asking = false;
+            //moonbeamAPI.GetComponent<MoonbeamDialogue>().asking = false;
             moonbeamAskPrompt.SetActive(false);
             SwitchArtifact(_parentName);
             print("interaction w/ Artifact " + _parentName + ": " + interaction);

@@ -5,8 +5,8 @@ using UnityEngine.Networking;
 
 public class MoonbeamAPI : MonoBehaviour
 {
-    private const string _uri = "https://moonbeambot.live/api/chat";
-    public GameObject dialogueOptionOne, dialogueOptionTwo, dialogueOptionThree, moonbeam;
+    private const string _uri = "https://api.moonbeambot.live/api/chat";
+    private GameObject _mb;
     public AudioClip[] moonbeamVoice;
     private AudioSource _audio;
     private string _response;
@@ -14,7 +14,7 @@ public class MoonbeamAPI : MonoBehaviour
     private void Awake()
     {
         _audio = GetComponent<AudioSource>();
-        moonbeam = GameObject.FindGameObjectWithTag("Moonbeam");
+        _mb = GameObject.FindGameObjectWithTag("Moonbeam");
         StartCoroutine(GetRequest(_uri));
     }
 
@@ -38,20 +38,7 @@ public class MoonbeamAPI : MonoBehaviour
     public IEnumerator PostRequest(string uri)
     {
         var form = new WWWForm();
-        
-        switch (moonbeam.GetComponent<MoonbeamDialogue>().whichDialogue)
-        {
-            case 1:
-                form.AddField("value", dialogueOptionOne.GetComponent<TextMeshProUGUI>().text);
-                break;
-            case 2:
-                form.AddField("value", dialogueOptionTwo.GetComponent<TextMeshProUGUI>().text);
-                break;
-            case 3:
-                form.AddField("value", dialogueOptionThree.GetComponent<TextMeshProUGUI>().text);
-                break;
-        }
-
+        SetUpForm(form);
         // Send POST request.
         using var webRequest = UnityWebRequest.Post(uri, form);
         yield return webRequest.SendWebRequest();
@@ -60,7 +47,7 @@ public class MoonbeamAPI : MonoBehaviour
         {
             print("Error getting response: " + webRequest.error);
             _response = "Sorry, there seems to be a screw lose.";
-            moonbeam.GetComponent<MoonbeamDialogue>().response = _response;
+            _mb.GetComponent<MoonbeamDialogue>().response = _response;
             _audio.Stop();
             _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
         }
@@ -68,9 +55,43 @@ public class MoonbeamAPI : MonoBehaviour
         {
             print("Moonbeam says: " + webRequest.downloadHandler.text);
             _response = webRequest.downloadHandler.text;
-            moonbeam.GetComponent<MoonbeamDialogue>().response = _response;
+            _mb.GetComponent<MoonbeamDialogue>().response = _response;
             _audio.Stop();
             _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
+        }
+    }
+
+
+    private void SetUpForm(WWWForm form)
+    {
+        switch (_mb.GetComponent<MoonbeamDialogue>().whichDialogue)
+        {
+            // general
+            case 1:
+                form.AddField("value",
+                    _mb.GetComponent<MoonbeamDialogue>().dialogueOptions[0].GetComponent<TextMeshProUGUI>().text);
+                break;
+            case 2:
+                form.AddField("value",
+                    _mb.GetComponent<MoonbeamDialogue>().dialogueOptions[1].GetComponent<TextMeshProUGUI>().text);
+                break;
+            case 3:
+                form.AddField("value",
+                    _mb.GetComponent<MoonbeamDialogue>().dialogueOptions[2].GetComponent<TextMeshProUGUI>().text);
+                break;
+            // artifacts
+            case 4:
+                form.AddField("value",
+                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[0].GetComponent<TextMeshProUGUI>().text);
+                break;
+            case 5:
+                form.AddField("value",
+                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[1].GetComponent<TextMeshProUGUI>().text);
+                break;
+            case 6:
+                form.AddField("value",
+                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[2].GetComponent<TextMeshProUGUI>().text);
+                break;
         }
     }
 }
