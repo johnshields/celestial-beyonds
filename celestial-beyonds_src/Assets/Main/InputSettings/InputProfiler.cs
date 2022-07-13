@@ -179,6 +179,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b951d3c-7090-46db-a2e0-f3ba9de0f604"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -581,11 +590,22 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""eabb399e-c5b7-421e-a5b9-8e019bfeb2f7"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AskMoonbeam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de35c756-dbd2-4afb-bcdb-9c4a747b7427"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -915,6 +935,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_DialogueOptionThree = m_Profiler.FindAction("DialogueOptionThree", throwIfNotFound: true);
         m_Profiler_ActivateDialogue = m_Profiler.FindAction("ActivateDialogue", throwIfNotFound: true);
         m_Profiler_AskMoonbeam = m_Profiler.FindAction("AskMoonbeam", throwIfNotFound: true);
+        m_Profiler_CloseDialogue = m_Profiler.FindAction("CloseDialogue", throwIfNotFound: true);
         // InGameUI
         m_InGameUI = asset.FindActionMap("InGameUI", throwIfNotFound: true);
         m_InGameUI_OpenLevelCompleteUI = m_InGameUI.FindAction("OpenLevelCompleteUI", throwIfNotFound: true);
@@ -1006,6 +1027,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_DialogueOptionThree;
     private readonly InputAction m_Profiler_ActivateDialogue;
     private readonly InputAction m_Profiler_AskMoonbeam;
+    private readonly InputAction m_Profiler_CloseDialogue;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
@@ -1027,6 +1049,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @DialogueOptionThree => m_Wrapper.m_Profiler_DialogueOptionThree;
         public InputAction @ActivateDialogue => m_Wrapper.m_Profiler_ActivateDialogue;
         public InputAction @AskMoonbeam => m_Wrapper.m_Profiler_AskMoonbeam;
+        public InputAction @CloseDialogue => m_Wrapper.m_Profiler_CloseDialogue;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1087,6 +1110,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @AskMoonbeam.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnAskMoonbeam;
                 @AskMoonbeam.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnAskMoonbeam;
                 @AskMoonbeam.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnAskMoonbeam;
+                @CloseDialogue.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
+                @CloseDialogue.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
+                @CloseDialogue.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1142,6 +1168,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @AskMoonbeam.started += instance.OnAskMoonbeam;
                 @AskMoonbeam.performed += instance.OnAskMoonbeam;
                 @AskMoonbeam.canceled += instance.OnAskMoonbeam;
+                @CloseDialogue.started += instance.OnCloseDialogue;
+                @CloseDialogue.performed += instance.OnCloseDialogue;
+                @CloseDialogue.canceled += instance.OnCloseDialogue;
             }
         }
     }
@@ -1303,6 +1332,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnDialogueOptionThree(InputAction.CallbackContext context);
         void OnActivateDialogue(InputAction.CallbackContext context);
         void OnAskMoonbeam(InputAction.CallbackContext context);
+        void OnCloseDialogue(InputAction.CallbackContext context);
     }
     public interface IInGameUIActions
     {

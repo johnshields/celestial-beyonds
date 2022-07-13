@@ -13,6 +13,7 @@ public class MoonbeamAPI : MonoBehaviour
 
     private void Awake()
     {
+        _response = "";
         _audio = GetComponent<AudioSource>();
         _mb = GameObject.FindGameObjectWithTag("Moonbeam");
         StartCoroutine(GetRequest(_uri));
@@ -26,13 +27,10 @@ public class MoonbeamAPI : MonoBehaviour
         if (webRequest.result == UnityWebRequest.Result.ConnectionError)
         {
             print("Connection to API - Error: " + webRequest.error);
-            print("Error with connection.");
             _response = "Sorry, I seem to have a screw lose.";
         }
         else
-        {
             print("Connection to API: " + webRequest.result);
-        }
     }
 
     public IEnumerator PostRequest(string uri)
@@ -48,16 +46,20 @@ public class MoonbeamAPI : MonoBehaviour
             print("Error getting response: " + webRequest.error);
             _response = "Sorry, there seems to be a screw lose.";
             _mb.GetComponent<MoonbeamDialogue>().response = _response;
-            _audio.Stop();
-            _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
+            PlayVoice();
         }
         else
         {
             print("Moonbeam says: " + webRequest.downloadHandler.text);
             _response = webRequest.downloadHandler.text;
             _mb.GetComponent<MoonbeamDialogue>().response = _response;
-            _audio.Stop();
-            _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
+            PlayVoice();
         }
+    }
+
+    private void PlayVoice()
+    {
+        _audio.Stop();
+        _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
     }
 }

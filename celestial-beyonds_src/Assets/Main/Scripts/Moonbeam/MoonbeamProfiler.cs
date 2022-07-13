@@ -23,15 +23,12 @@ namespace Main.Scripts.Moonbeam
         private bool _walkPointSet, _triggered;
 
         // dialogue
-        private GameObject _player, _moonbeamAPI;
         public GameObject mDialogueBtn;
         public bool dialogueActive;
 
         private void Awake()
         {
             _target = GameObject.FindGameObjectWithTag("Target").transform;
-            _player = GameObject.FindGameObjectWithTag("Player");
-            _moonbeamAPI = GameObject.FindGameObjectWithTag("MoonbeamAPI");
             agent = GetComponent<NavMeshAgent>();
         }
 

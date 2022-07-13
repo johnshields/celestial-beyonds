@@ -157,6 +157,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CloseDialogue",
+                    "type": "Button",
+                    "id": "3b951d3c-7090-46db-a2e0-f3ba9de0f604",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -559,11 +568,22 @@
                 {
                     "name": "",
                     "id": "eabb399e-c5b7-421e-a5b9-8e019bfeb2f7",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "AskMoonbeam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de35c756-dbd2-4afb-bcdb-9c4a747b7427",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseDialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

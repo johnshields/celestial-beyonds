@@ -17,6 +17,7 @@ public class MoonbeamDialogue : MonoBehaviour
 
     private void Awake()
     {
+        response = "";
         _controls = new InputProfiler();
         _responseText = GameObject.FindGameObjectWithTag("ResponseText");
         _moonbeamAPI = GameObject.FindGameObjectWithTag("MoonbeamAPI");
@@ -28,6 +29,7 @@ public class MoonbeamDialogue : MonoBehaviour
         _controls.Profiler.DialogueOptionTwo.started += DialogueOptionTwo;
         _controls.Profiler.DialogueOptionThree.started += DialogueOptionThree;
         _controls.Profiler.ActivateDialogue.started += ActivateDialogue;
+        _controls.Profiler.CloseDialogue.started += CloseDialogue;
         _controls.Profiler.AskMoonbeam.started += AskMoonbeam;
         _controls.Profiler.Enable();
     }
@@ -38,42 +40,33 @@ public class MoonbeamDialogue : MonoBehaviour
         _controls.Profiler.DialogueOptionTwo.started -= DialogueOptionTwo;
         _controls.Profiler.DialogueOptionThree.started -= DialogueOptionThree;
         _controls.Profiler.ActivateDialogue.started -= ActivateDialogue;
+        _controls.Profiler.CloseDialogue.started -= CloseDialogue;
         _controls.Profiler.AskMoonbeam.started -= AskMoonbeam;
         _controls.Profiler.Disable();
     }
-
     private void OnGUI()
     {
         _responseText.GetComponent<TextMeshProUGUI>().text = response;
     }
 
+    // Key = T
     private void ActivateDialogue(InputAction.CallbackContext obj)
     {
+        // General Dialogue
         if (!chatting && GetComponent<MoonbeamProfiler>().dialogueActive)
         {
             dialogueBoxes.SetActive(true);
             chatting = true;
         }
-        else if (chatting)
-        {
-            response = "";
-            dialogueBoxes.SetActive(false);
-            chatting = false;
-        }
-
-        print("Dialogue Active: " + chatting);
     }
 
+    // Key = I
     private void AskMoonbeam(InputAction.CallbackContext obj)
     {
-        if (askPrompt.activeInHierarchy && !asking) // open
+        if (!asking && askPrompt.activeInHierarchy) // open
             AskMoonbeamHelper(true, true, false, true);
-        else if (asking) // quit
-        {
-            response = "";
-            AskMoonbeamHelper(false, false, true, false);
-        }
     }
+
 
     private void AskMoonbeamHelper(bool db, bool aUI, bool dOpts, bool a)
     {
@@ -84,6 +77,22 @@ public class MoonbeamDialogue : MonoBehaviour
         dOptions.SetActive(dOpts);
         asking = a;
         print("Artifact Dialogue Active: " + a);
+    }
+    
+    // Key = Q
+    private void CloseDialogue(InputAction.CallbackContext obj)
+    { 
+        if (chatting) // quit Chat
+        {
+            response = "";
+            dialogueBoxes.SetActive(false);
+            chatting = false;
+        }
+        else if (asking) // quit Ask
+        {
+            response = "";
+            AskMoonbeamHelper(false, false, true, false);
+        }
     }
 
     private void DialogueOptionOne(InputAction.CallbackContext obj)

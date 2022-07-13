@@ -34,14 +34,12 @@ public class MainMenu : MonoBehaviour
     // ControllerInput
     private void StartGame(InputAction.CallbackContext obj)
     {
-        print("Loading into: 002_Opening");
         StartCoroutine(LaunchGame(1));
     }
-    
-    // MouseInout
+
+    // MouseUI Input
     public void StartGameM()
     {
-        print("Loading into: 002_Opening");
         StartCoroutine(LaunchGame(1));
     }
 
