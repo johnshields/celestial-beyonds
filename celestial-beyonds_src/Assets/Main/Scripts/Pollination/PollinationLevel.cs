@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -8,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class PollinationLevel : MonoBehaviour
 {
     public int pollinationPercent, maxPollination = 100, pollenIncrease;
-    public TextMeshProUGUI _pollinationLevel;
-    public GameObject levelCompleteUI, fader, pauseMenu;
+    public TextMeshProUGUI _pollinationLevel, exploreTxt;
+    public GameObject levelCompleteUI, fader, pauseMenu, miniMenu;
     public bool levelCompleted;
     private InputProfiler _controls;
 
@@ -51,6 +50,15 @@ public class PollinationLevel : MonoBehaviour
     {
         if (pollinationPercent <= maxPollination)
             _pollinationLevel.text = "POLLINATION: " + pollinationPercent + "%";
+        
+        if (miniMenu.GetComponent<MiniMenu>().enemiesNum == 10)
+            exploreTxt.text = "Feel free to explore more, Collect more Peridots or Find all the Artifacts!";
+        else if (miniMenu.GetComponent<MiniMenu>().artifactsNum == 10)
+            exploreTxt.text = "Feel free to explore more, Collect more Peridots or Terminate more Enemies!";
+        else if (miniMenu.GetComponent<MiniMenu>().enemiesNum == 10 && miniMenu.GetComponent<MiniMenu>().artifactsNum == 10)
+            exploreTxt.text = "Feel free to explore more and Collect more Peridots!";
+        else exploreTxt.text =
+                "Feel free to explore more, Collect more Peridots, Terminate more Enemies or Find all the Artifacts!";
     }
 
     public void IncreasePollination()

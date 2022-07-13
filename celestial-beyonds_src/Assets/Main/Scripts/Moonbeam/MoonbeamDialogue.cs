@@ -8,7 +8,7 @@ public class MoonbeamDialogue : MonoBehaviour
     private const string _uri = "https://api.moonbeambot.live/api/chat";
     private GameObject _responseText, _moonbeamAPI;
     private InputProfiler _controls;
-    public GameObject dialogueBoxes, dOptions, askPrompt, pauseMenu;
+    public GameObject dialogueBoxes, dOptions, askPrompt, pauseMenu, dialogueColor;
     public GameObject[] aQsHolder, artifactQuestions, dialogueOptions;
     public string response;
     public int whichDialogue, artifactNum;
@@ -43,6 +43,7 @@ public class MoonbeamDialogue : MonoBehaviour
         _controls.Profiler.AskMoonbeam.started -= AskMoonbeam;
         _controls.Profiler.Disable();
     }
+
     private void OnGUI()
     {
         _responseText.GetComponent<TextMeshProUGUI>().text = response;
@@ -58,7 +59,7 @@ public class MoonbeamDialogue : MonoBehaviour
             {
                 dialogueBoxes.SetActive(true);
                 chatting = true;
-            }   
+            }
         }
     }
 
@@ -83,7 +84,7 @@ public class MoonbeamDialogue : MonoBehaviour
         asking = a;
         print("Artifact Dialogue Active: " + a);
     }
-    
+
     // Key = Q
     private void CloseDialogue(InputAction.CallbackContext obj)
     {
@@ -107,10 +108,16 @@ public class MoonbeamDialogue : MonoBehaviour
     {
         if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
-            if (chatting && !asking) 
+            if (chatting && !asking)
+            {
                 ChangeDialogue(dialogueOptions[0].GetComponent<TextMeshProUGUI>().text, 100);
+                dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(100);
+            }
             else if (!chatting && asking)
-                ArtifactQOnes();   
+            {
+                ArtifactQOnes();
+                dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(whichDialogue);
+            }
         }
     }
 
@@ -119,9 +126,15 @@ public class MoonbeamDialogue : MonoBehaviour
         if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
             if (chatting && !asking)
+            {
                 ChangeDialogue(dialogueOptions[1].GetComponent<TextMeshProUGUI>().text, 101);
+                dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(101);
+            }
             else if (!chatting && asking)
-                ArtifactQTwos();   
+            {
+                ArtifactQTwos();
+                dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(whichDialogue);
+            }
         }
     }
 
@@ -130,9 +143,15 @@ public class MoonbeamDialogue : MonoBehaviour
         if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
             if (chatting && !asking)
+            {
                 ChangeDialogue(dialogueOptions[2].GetComponent<TextMeshProUGUI>().text, 102);
+                dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(102);
+            }
             else if (!chatting && asking)
+            {
                 ArtifactQThrees();
+                dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(whichDialogue);
+            }
         }
     }
 
@@ -215,10 +234,8 @@ public class MoonbeamDialogue : MonoBehaviour
 
     private void ChangeDialogue(string userInput, int dNum)
     {
-        print("User says: " + userInput);
         whichDialogue = dNum;
-        print("dNum: " + dNum);
-
+        print("User says: " + userInput + "dNum: " + dNum);
         StartCoroutine(_moonbeamAPI.GetComponent<MoonbeamAPI>().PostRequest(_uri));
     }
 }
