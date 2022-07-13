@@ -15,7 +15,7 @@ namespace Main.Scripts.Captain
         public AudioClip[] meleeSFX;
         public AudioClip cannonSFX, pollenSFX, capScreamSFX;
         public float delayAction = 1f, dodge;
-        public GameObject pollenMeter;
+        public GameObject pollenMeter, pauseMenu;
         public bool meleeActive, cannonFire, pollenFire;
         private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
@@ -114,16 +114,22 @@ namespace Main.Scripts.Captain
 
         private void Jump(InputAction.CallbackContext obj)
         {
-            if (!CaptainProfiler.grounded || (_actionDone && !Jetpack._jetpackActive)) return;
-            _animator.SetTrigger(_jump);
-            _actionDone = true;
-            Invoke(nameof(ResetAction), delayAction);
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            {
+                if (!CaptainProfiler.grounded || (_actionDone && !Jetpack._jetpackActive)) return;
+                _animator.SetTrigger(_jump);
+                _actionDone = true;
+                Invoke(nameof(ResetAction), delayAction);
+            }
         }
 
         private void Unarmed(InputAction.CallbackContext obj)
         {
-            PlayerState(true, false);
-            if (_unarmed) WeaponSelect(false, false, false);
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            {
+                PlayerState(true, false);
+                if (_unarmed) WeaponSelect(false, false, false);
+            }
         }
 
 
@@ -134,27 +140,31 @@ namespace Main.Scripts.Captain
             _pollinator.GetComponent<Pollinator>().StopPollenParticles();
             WeaponSelect(true, false, false);
             PlayerState(true, false);
+            // random animation
             var attackBool = Random.Range(0, 5);
 
-            if (!_actionDone)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
             {
-                switch (attackBool)
+                if (!_actionDone)
                 {
-                    case 0:
-                        _animator.SetTrigger(_melee0ne);
-                        break;
-                    case 1:
-                        _animator.SetTrigger(_meleeTwo);
-                        break;
-                    case 2:
-                        _animator.SetTrigger(_meleeThree);
-                        break;
-                    case 3:
-                        _animator.SetTrigger(_meleeFour);
-                        break;
-                    case 4:
-                        _animator.SetTrigger(_meleeFive);
-                        break;
+                    switch (attackBool)
+                    {
+                        case 0:
+                            _animator.SetTrigger(_melee0ne);
+                            break;
+                        case 1:
+                            _animator.SetTrigger(_meleeTwo);
+                            break;
+                        case 2:
+                            _animator.SetTrigger(_meleeThree);
+                            break;
+                        case 3:
+                            _animator.SetTrigger(_meleeFour);
+                            break;
+                        case 4:
+                            _animator.SetTrigger(_meleeFive);
+                            break;
+                    }
                 }
 
                 _actionDone = true;
@@ -168,36 +178,42 @@ namespace Main.Scripts.Captain
             PlayerState(false, true);
             cannonFire = true;
 
-            if (!_actionDone && _armed && cannonFire)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
             {
-                _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
-                // call CannonBlaster
-                _cannon.GetComponent<CannonBlaster>().FireCannon();
-                _actionDone = true;
-                Invoke(nameof(ResetAction), delayAction);
+                if (!_actionDone && _armed && cannonFire)
+                {
+                    _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
+                    // call CannonBlaster
+                    _cannon.GetComponent<CannonBlaster>().FireCannon();
+                    _actionDone = true;
+                    Invoke(nameof(ResetAction), delayAction);
+                }
             }
         }
 
         private void Pollinate(InputAction.CallbackContext obj)
         {
-            WeaponSelect(false, false, true);
-            PlayerState(false, true);
-            if (_pollinator.GetComponent<Pollinator>().pollenAmmo >= 0)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
             {
-                pollenFire = true;
-                if (!_actionDone && _armed)
+                WeaponSelect(false, false, true);
+                PlayerState(false, true);
+                if (_pollinator.GetComponent<Pollinator>().pollenAmmo >= 0)
                 {
-                    _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
-                    _pollinator.GetComponent<Pollinator>().FirePollinator();
-                    _actionDone = true;
-                    Invoke(nameof(ResetAction), delayAction);
+                    pollenFire = true;
+                    if (!_actionDone && _armed)
+                    {
+                        _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
+                        _pollinator.GetComponent<Pollinator>().FirePollinator();
+                        _actionDone = true;
+                        Invoke(nameof(ResetAction), delayAction);
+                    }
                 }
-            }
-            else
-            {
-                print("out of pollen ammo");
-                pollenMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-                StartCoroutine(ResetPollenMeter());
+                else
+                {
+                    print("out of pollen ammo");
+                    pollenMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                    StartCoroutine(ResetPollenMeter());
+                }
             }
         }
 
@@ -209,11 +225,14 @@ namespace Main.Scripts.Captain
 
         private void Dodge(InputAction.CallbackContext obj)
         {
-            if (_actionDone) return;
-            _animator.SetTrigger(_dodge);
-            StartCoroutine(WaitToDodge());
-            _actionDone = true;
-            Invoke(nameof(ResetAction), delayAction);
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            {
+                if (_actionDone) return;
+                _animator.SetTrigger(_dodge);
+                StartCoroutine(WaitToDodge());
+                _actionDone = true;
+                Invoke(nameof(ResetAction), delayAction);
+            }
         }
 
         public void CapDeath()

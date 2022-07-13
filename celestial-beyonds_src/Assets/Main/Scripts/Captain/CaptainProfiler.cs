@@ -18,6 +18,9 @@ namespace Main.Scripts.Captain
         // movement
         private Rigidbody _rb;
         private Vector3 forceDir = Vector3.zero;
+        
+        // misc
+        public GameObject pauseMenu;
 
         private void Awake()
         {
@@ -27,15 +30,18 @@ namespace Main.Scripts.Captain
 
         private void FixedUpdate()
         {
-            forceDir += GetCameraRight(playerCam) * (_moveKeys.ReadValue<Vector2>().x * movementForce);
-            forceDir += GetCameraForward(playerCam) * (_moveKeys.ReadValue<Vector2>().y * movementForce);
-            forceDir += GetCameraRight(playerCam) * (_moveController.ReadValue<Vector2>().x * movementForce);
-            forceDir += GetCameraForward(playerCam) * (_moveController.ReadValue<Vector2>().y * movementForce);
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            {
+                forceDir += GetCameraRight(playerCam) * (_moveKeys.ReadValue<Vector2>().x * movementForce);
+                forceDir += GetCameraForward(playerCam) * (_moveKeys.ReadValue<Vector2>().y * movementForce);
+                forceDir += GetCameraRight(playerCam) * (_moveController.ReadValue<Vector2>().x * movementForce);
+                forceDir += GetCameraForward(playerCam) * (_moveController.ReadValue<Vector2>().y * movementForce);
 
-            _rb.AddForce(forceDir, ForceMode.Impulse);
-            forceDir = Vector3.zero;
+                _rb.AddForce(forceDir, ForceMode.Impulse);
+                forceDir = Vector3.zero;
 
-            LookAt();
+                LookAt();   
+            }
         }
 
         private void OnEnable()
@@ -59,15 +65,18 @@ namespace Main.Scripts.Captain
 
         private void LookAt()
         {
-            var direction = _rb.velocity;
-            direction.y = 0f;
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            {
+                var direction = _rb.velocity;
+                direction.y = 0f;
 
-            if (_moveKeys.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
-                _rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
-            else if (_moveController.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
-                _rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
-            else
-                _rb.angularVelocity = Vector3.zero;
+                if (_moveKeys.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
+                    _rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
+                else if (_moveController.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
+                    _rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
+                else
+                    _rb.angularVelocity = Vector3.zero;   
+            }
         }
 
         private Vector3 GetCameraForward(Component cam)
@@ -86,9 +95,12 @@ namespace Main.Scripts.Captain
 
         private void JumpActive(InputAction.CallbackContext obj)
         {
-            if (!grounded) return;
-            StartCoroutine(DoAction());
-            grounded = false;
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            {
+                if (!grounded) return;
+                StartCoroutine(DoAction());
+                grounded = false;   
+            }
         }
 
         private IEnumerator DoAction()

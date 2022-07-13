@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ArgyleProfiler : MonoBehaviour
 {
-    public GameObject stationUI, peridotCounterUI, pollenMeter, pollinator;
+    public GameObject stationUI, peridotCounterUI, pollenMeter, pollinator, pauseMenu;
     public float delayAction = 1f;
     public AudioClip[] argyleHellos, argyleByes, argyleFeelings, argyleSales, argyleNoSales;
     public AudioClip sale, noSale;
@@ -85,7 +85,7 @@ public class ArgyleProfiler : MonoBehaviour
 
     private void TalkArgyle(InputAction.CallbackContext obj)
     {
-        if (_saleActive)
+        if (_saleActive && !pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
             // only sell player pollen if they do not have maxAmmo or no peridots.
             if (pollinator.GetComponent<Pollinator>().pollenAmmo != pollinator.GetComponent<Pollinator>().maxAmmo &&

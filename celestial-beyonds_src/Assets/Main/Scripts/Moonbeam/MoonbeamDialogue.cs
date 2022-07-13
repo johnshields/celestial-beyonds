@@ -1,4 +1,3 @@
-using System;
 using Main.Scripts.Moonbeam;
 using TMPro;
 using UnityEngine;
@@ -9,7 +8,7 @@ public class MoonbeamDialogue : MonoBehaviour
     private const string _uri = "https://api.moonbeambot.live/api/chat";
     private GameObject _responseText, _moonbeamAPI;
     private InputProfiler _controls;
-    public GameObject dialogueBoxes, dOptions, askPrompt;
+    public GameObject dialogueBoxes, dOptions, askPrompt, pauseMenu;
     public GameObject[] aQsHolder, artifactQuestions, dialogueOptions;
     public string response;
     public int whichDialogue, artifactNum;
@@ -52,19 +51,25 @@ public class MoonbeamDialogue : MonoBehaviour
     // Key = T
     private void ActivateDialogue(InputAction.CallbackContext obj)
     {
-        // General Dialogue
-        if (!chatting && GetComponent<MoonbeamProfiler>().dialogueActive)
+        if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
-            dialogueBoxes.SetActive(true);
-            chatting = true;
+            // General Dialogue
+            if (!chatting && GetComponent<MoonbeamProfiler>().dialogueActive)
+            {
+                dialogueBoxes.SetActive(true);
+                chatting = true;
+            }   
         }
     }
 
     // Key = I
     private void AskMoonbeam(InputAction.CallbackContext obj)
     {
-        if (!asking && askPrompt.activeInHierarchy) // open
-            AskMoonbeamHelper(true, true, false, true);
+        if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+        {
+            if (!asking && askPrompt.activeInHierarchy) // open
+                AskMoonbeamHelper(true, true, false, true);
+        }
     }
 
 
@@ -81,41 +86,54 @@ public class MoonbeamDialogue : MonoBehaviour
     
     // Key = Q
     private void CloseDialogue(InputAction.CallbackContext obj)
-    { 
-        if (chatting) // quit Chat
+    {
+        if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
-            response = "";
-            dialogueBoxes.SetActive(false);
-            chatting = false;
-        }
-        else if (asking) // quit Ask
-        {
-            response = "";
-            AskMoonbeamHelper(false, false, true, false);
+            if (chatting) // quit Chat
+            {
+                response = "";
+                dialogueBoxes.SetActive(false);
+                chatting = false;
+            }
+            else if (asking) // quit Ask
+            {
+                response = "";
+                AskMoonbeamHelper(false, false, true, false);
+            }
         }
     }
 
     private void DialogueOptionOne(InputAction.CallbackContext obj)
     {
-        if (chatting && !asking) ChangeDialogue(dialogueOptions[0].GetComponent<TextMeshProUGUI>().text, 100);
-        else if (!chatting && asking)
-            ArtifactQOnes();
+        if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+        {
+            if (chatting && !asking) 
+                ChangeDialogue(dialogueOptions[0].GetComponent<TextMeshProUGUI>().text, 100);
+            else if (!chatting && asking)
+                ArtifactQOnes();   
+        }
     }
 
     private void DialogueOptionTwo(InputAction.CallbackContext obj)
     {
-        if (chatting && !asking)
-            ChangeDialogue(dialogueOptions[1].GetComponent<TextMeshProUGUI>().text, 101);
-        else if (!chatting && asking)
-            ArtifactQTwos();
+        if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+        {
+            if (chatting && !asking)
+                ChangeDialogue(dialogueOptions[1].GetComponent<TextMeshProUGUI>().text, 101);
+            else if (!chatting && asking)
+                ArtifactQTwos();   
+        }
     }
 
     private void DialogueOptionThree(InputAction.CallbackContext obj)
     {
-        if (chatting && !asking)
-            ChangeDialogue(dialogueOptions[2].GetComponent<TextMeshProUGUI>().text, 102);
-        else if (!chatting && asking)
-            ArtifactQThrees();
+        if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+        {
+            if (chatting && !asking)
+                ChangeDialogue(dialogueOptions[2].GetComponent<TextMeshProUGUI>().text, 102);
+            else if (!chatting && asking)
+                ArtifactQThrees();
+        }
     }
 
     private void ArtifactQOnes()

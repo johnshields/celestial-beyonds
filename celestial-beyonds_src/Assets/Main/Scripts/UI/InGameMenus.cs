@@ -1,18 +1,17 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+public class InGameMenus : MonoBehaviour
 {
     private InputProfiler _controls;
     public GameObject pauseMenu, miniMenu, fader, player, BtnGO;
-    private bool _paused, _miniMenu;
+    public bool pausedActive, miniMenuActive;
 
     private void Awake()
     {
-        _paused = false;
+        pausedActive = false;
         pauseMenu.SetActive(false);
         _controls = new InputProfiler();
     }
@@ -37,17 +36,27 @@ public class PauseMenu : MonoBehaviour
 
     private void PauseGame(InputAction.CallbackContext obj)
     {
-        _paused = true;
-        pauseMenu.SetActive(true);
-        print("Game paused...");
-        Time.timeScale = 0f;
+        if (!pausedActive)
+        {
+            pausedActive = true;
+            pauseMenu.SetActive(true);
+            print("Game paused...");
+            Time.timeScale = 0f;   
+        }
+        else if (pausedActive)
+        {
+            pausedActive = false;
+            pauseMenu.SetActive(false);
+            print("Game paused...");
+            Time.timeScale = 1f;
+        }
     }
 
     private void ResumeGame(InputAction.CallbackContext obj)
     {
-        if (_paused && !player.GetComponent<CaptainHealth>().capDead)
+        if (pausedActive && !player.GetComponent<CaptainHealth>().capDead)
         {
-            _paused = false;
+            pausedActive = false;
             pauseMenu.SetActive(false);
             print("Game resumed...");
             Time.timeScale = 1f;
@@ -60,24 +69,24 @@ public class PauseMenu : MonoBehaviour
 
     private void LoadMainMenu(InputAction.CallbackContext obj)
     {
-        if (_paused || player.GetComponent<CaptainHealth>().gameOver)
+        if (pausedActive || player.GetComponent<CaptainHealth>().gameOver)
         {
-            _paused = false;
+            pausedActive = false;
             StartCoroutine(GoLoadLevel(0));
         }
     }
 
     private void MiniMenu(InputAction.CallbackContext obj)
     {
-        if (!_miniMenu && !player.GetComponent<CaptainHealth>().capDead)
+        if (!miniMenuActive && !pausedActive && !player.GetComponent<CaptainHealth>().capDead)
         {
             miniMenu.SetActive(true);
-            _miniMenu = true;
+            miniMenuActive = true;
         }
         else
         {
             miniMenu.SetActive(false);
-            _miniMenu = false;
+            miniMenuActive = false;
         }
     }
 

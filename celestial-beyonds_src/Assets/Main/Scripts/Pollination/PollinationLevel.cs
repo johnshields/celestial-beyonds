@@ -9,7 +9,7 @@ public class PollinationLevel : MonoBehaviour
 {
     public int pollinationPercent, maxPollination = 100, pollenIncrease;
     public TextMeshProUGUI _pollinationLevel;
-    public GameObject levelCompleteUI, fader;
+    public GameObject levelCompleteUI, fader, pauseMenu;
     public bool levelCompleted;
     private InputProfiler _controls;
 
@@ -21,7 +21,7 @@ public class PollinationLevel : MonoBehaviour
     private void Start()
     {
         pollinationPercent = PlayerPrefs.GetInt("PollinationLevel");
-        if(!levelCompleted)
+        if (!levelCompleted)
             pollinationPercent = 0;
         levelCompleteUI.SetActive(false);
     }
@@ -33,9 +33,9 @@ public class PollinationLevel : MonoBehaviour
 
     private void OnEnable()
     {
-         _controls.InGameUI.LoadNextPlanet.started += LoadNextPlanet;
-         _controls.InGameUI.OpenLevelCompleteUI.started += OpenLevelCompUI;
-         _controls.InGameUI.CloseLevelCompleteUI.started += CloseLevelCompUI;
+        _controls.InGameUI.LoadNextPlanet.started += LoadNextPlanet;
+        _controls.InGameUI.OpenLevelCompleteUI.started += OpenLevelCompUI;
+        _controls.InGameUI.CloseLevelCompleteUI.started += CloseLevelCompUI;
         _controls.InGameUI.Enable();
     }
 
@@ -68,14 +68,20 @@ public class PollinationLevel : MonoBehaviour
 
     private void OpenLevelCompUI(InputAction.CallbackContext obj)
     {
-        if (levelCompleted)
-            levelCompleteUI.SetActive(true);
+        if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+        {
+            if (levelCompleted)
+                levelCompleteUI.SetActive(true);
+        }
     }
 
     private void CloseLevelCompUI(InputAction.CallbackContext obj)
     {
-        if (levelCompleted)
-            levelCompleteUI.SetActive(false);
+        if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+        {
+            if (levelCompleted)
+                levelCompleteUI.SetActive(false);
+        }
     }
 
     private void LoadNextPlanet(InputAction.CallbackContext obj)
@@ -91,7 +97,6 @@ public class PollinationLevel : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         levelCompleteUI.SetActive(true);
-        
     }
 
     private IEnumerator LoadNextScene()
