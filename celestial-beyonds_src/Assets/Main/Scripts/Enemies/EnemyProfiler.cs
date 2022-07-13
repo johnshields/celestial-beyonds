@@ -144,7 +144,7 @@ namespace Main.Scripts.Enemies
             if (enemyHealth <= 0)
             {
                 print(enemy.name + " Terminated!");
-                miniMenu.GetComponent<MiniMenu>().enemyNum += 1;
+                miniMenu.GetComponent<MiniMenu>().enemiesNum += 1;
                 Destroy(enemy);
             }
         }

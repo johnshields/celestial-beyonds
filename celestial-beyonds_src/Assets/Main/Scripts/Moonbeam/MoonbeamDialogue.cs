@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using Main.Scripts.Moonbeam;
 using TMPro;
 using UnityEngine;
@@ -8,19 +7,17 @@ using UnityEngine.InputSystem;
 public class MoonbeamDialogue : MonoBehaviour
 {
     private const string _uri = "https://api.moonbeambot.live/api/chat";
-    private GameObject _responseText, _moonbeamAPI, _artifacts;
+    private GameObject _responseText, _moonbeamAPI;
     private InputProfiler _controls;
-    public GameObject dialogueBoxes, dOptions, artifactUI, askPrompt;
-    // [0]-[2] (G1), [0]-[2] (A1)
-    public GameObject[] artifactQuestions, dialogueOptions;
+    public GameObject dialogueBoxes, dOptions, askPrompt;
+    public GameObject[] aQsHolder, artifactQuestions, dialogueOptions;
     public string response;
-    public int whichDialogue;
+    public int whichDialogue, artifactNum;
     public bool chatting, asking;
 
     private void Awake()
     {
         _controls = new InputProfiler();
-        _artifacts = GameObject.FindGameObjectWithTag("Artifacts");
         _responseText = GameObject.FindGameObjectWithTag("ResponseText");
         _moonbeamAPI = GameObject.FindGameObjectWithTag("MoonbeamAPI");
     }
@@ -54,130 +51,147 @@ public class MoonbeamDialogue : MonoBehaviour
     {
         if (!chatting && GetComponent<MoonbeamProfiler>().dialogueActive)
         {
-            print("Dialogue Active");
             dialogueBoxes.SetActive(true);
-            GetComponent<MoonbeamProfiler>().mDialogueBtn.SetActive(false);
             chatting = true;
         }
         else if (chatting)
         {
-            print("Dialogue not Active");
             response = "";
             dialogueBoxes.SetActive(false);
             chatting = false;
         }
+
+        print("Dialogue Active: " + chatting);
     }
 
     private void AskMoonbeam(InputAction.CallbackContext obj)
     {
-        print("ask");
-        if (askPrompt.activeInHierarchy && !asking)
-        {
-            print("Artifact Dialogue Active");
-            dialogueBoxes.SetActive(true);
-            artifactUI.SetActive(true);
-            dOptions.SetActive(false);
-            ChangeTextColor(whichDialogue);
-            asking = true;
-        }
-        else if (asking)
+        if (askPrompt.activeInHierarchy && !asking) // open
+            AskMoonbeamHelper(true, true, false, true);
+        else if (asking) // quit
         {
             response = "";
-            dialogueBoxes.SetActive(false);
-            artifactUI.SetActive(false);
-            dOptions.SetActive(true);
-            asking = false; 
+            AskMoonbeamHelper(false, false, true, false);
         }
+    }
+
+    private void AskMoonbeamHelper(bool db, bool aUI, bool dOpts, bool a)
+    {
+        print(artifactNum);
+        aQsHolder[artifactNum].SetActive(aUI);
+
+        dialogueBoxes.SetActive(db);
+        dOptions.SetActive(dOpts);
+        asking = a;
+        print("Artifact Dialogue Active: " + a);
     }
 
     private void DialogueOptionOne(InputAction.CallbackContext obj)
     {
-        if (chatting && !asking)
-        {
-            print("User says: " + dialogueOptions[0].GetComponent<TextMeshProUGUI>().text);
-            whichDialogue = 1;
-            ChangeTextColor(whichDialogue);
-            StartCoroutine(_moonbeamAPI.GetComponent<MoonbeamAPI>().PostRequest(_uri));
-        }
+        if (chatting && !asking) ChangeDialogue(dialogueOptions[0].GetComponent<TextMeshProUGUI>().text, 100);
         else if (!chatting && asking)
-        {
-            print("User says: " + artifactQuestions[0].GetComponent<TextMeshProUGUI>().text);
-            whichDialogue = 4;
-            ChangeTextColor(whichDialogue);
-            StartCoroutine(_moonbeamAPI.GetComponent<MoonbeamAPI>().PostRequest(_uri));
-        }
+            ArtifactQOnes();
     }
 
     private void DialogueOptionTwo(InputAction.CallbackContext obj)
     {
         if (chatting && !asking)
-        {
-            print("User says: " + dialogueOptions[1].GetComponent<TextMeshProUGUI>().text);
-            whichDialogue = 2;
-            ChangeTextColor(whichDialogue);
-            StartCoroutine(_moonbeamAPI.GetComponent<MoonbeamAPI>().PostRequest(_uri));
-        }
+            ChangeDialogue(dialogueOptions[1].GetComponent<TextMeshProUGUI>().text, 101);
         else if (!chatting && asking)
-        {
-            print("User says: " + artifactQuestions[1].GetComponent<TextMeshProUGUI>().text);
-            whichDialogue = 5;
-            ChangeTextColor(whichDialogue);
-            StartCoroutine(_moonbeamAPI.GetComponent<MoonbeamAPI>().PostRequest(_uri));
-        }
+            ArtifactQTwos();
     }
 
     private void DialogueOptionThree(InputAction.CallbackContext obj)
     {
         if (chatting && !asking)
-        {
-            print("User says: " + dialogueOptions[2].GetComponent<TextMeshProUGUI>().text);
-            whichDialogue = 3;
-            ChangeTextColor(whichDialogue);
-            StartCoroutine(_moonbeamAPI.GetComponent<MoonbeamAPI>().PostRequest(_uri));
-        }
+            ChangeDialogue(dialogueOptions[2].GetComponent<TextMeshProUGUI>().text, 102);
         else if (!chatting && asking)
-        {
-            print("User says: " + artifactQuestions[2].GetComponent<TextMeshProUGUI>().text);
-            whichDialogue = 6;
-            ChangeTextColor(whichDialogue);
-            StartCoroutine(_moonbeamAPI.GetComponent<MoonbeamAPI>().PostRequest(_uri));
-        }
+            ArtifactQThrees();
     }
 
-    private void ChangeTextColor(int whichOne)
+    private void ArtifactQOnes()
     {
-        switch (whichOne)
-        {
-            case 1:
-                dialogueOptions[0].GetComponent<TextMeshProUGUI>().color = new Color32(20, 255, 0, 225);
-                dialogueOptions[1].GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
-                dialogueOptions[2].GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
-                break;
-            case 2:
-                dialogueOptions[0].GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
-                dialogueOptions[1].GetComponent<TextMeshProUGUI>().color = new Color32(20, 255, 0, 225);
-                dialogueOptions[2].GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
-                break;
-            case 3:
-                dialogueOptions[0].GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
-                dialogueOptions[1].GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
-                dialogueOptions[2].GetComponent<TextMeshProUGUI>().color = new Color32(20, 255, 0, 225);
-                break;
-            case 4:
-                artifactQuestions[0].GetComponent<TextMeshProUGUI>().color = new Color32(20, 255, 0, 225);
-                artifactQuestions[1].GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
-                artifactQuestions[2].GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
-                break;
-            case 5:
-                artifactQuestions[0].GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
-                artifactQuestions[1].GetComponent<TextMeshProUGUI>().color = new Color32(20, 255, 0, 225);
-                artifactQuestions[2].GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
-                break;
-            case 6:
-                artifactQuestions[0].GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
-                artifactQuestions[1].GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 225);
-                artifactQuestions[2].GetComponent<TextMeshProUGUI>().color = new Color32(20, 255, 0, 225);
-                break;
-        }
+        // different questions for different Artifacts.
+        if (aQsHolder[0].activeInHierarchy) ArtifactQuestion(0);
+        else if (aQsHolder[1].activeInHierarchy) ArtifactQuestion(3);
+        else if (aQsHolder[2].activeInHierarchy) ArtifactQuestion(6);
+        else if (aQsHolder[3].activeInHierarchy) ArtifactQuestion(9);
+        else if (aQsHolder[4].activeInHierarchy) ArtifactQuestion(12);
+        else if (aQsHolder[5].activeInHierarchy) ArtifactQuestion(15);
+        else if (aQsHolder[6].activeInHierarchy) ArtifactQuestion(18);
+        else if (aQsHolder[7].activeInHierarchy) ArtifactQuestion(21);
+        else if (aQsHolder[8].activeInHierarchy) ArtifactQuestion(24);
+        else if (aQsHolder[9].activeInHierarchy) ArtifactQuestion(27);
+    }
+
+    private void ArtifactQTwos()
+    {
+        if (aQsHolder[0].activeInHierarchy) ArtifactQuestion(1);
+        else if (aQsHolder[1].activeInHierarchy) ArtifactQuestion(4);
+        else if (aQsHolder[2].activeInHierarchy) ArtifactQuestion(7);
+        else if (aQsHolder[3].activeInHierarchy) ArtifactQuestion(10);
+        else if (aQsHolder[4].activeInHierarchy) ArtifactQuestion(13);
+        else if (aQsHolder[5].activeInHierarchy) ArtifactQuestion(16);
+        else if (aQsHolder[6].activeInHierarchy) ArtifactQuestion(19);
+        else if (aQsHolder[7].activeInHierarchy) ArtifactQuestion(22);
+        else if (aQsHolder[8].activeInHierarchy) ArtifactQuestion(25);
+        else if (aQsHolder[9].activeInHierarchy) ArtifactQuestion(28);
+    }
+
+    private void ArtifactQThrees()
+    {
+        if (aQsHolder[0].activeInHierarchy) ArtifactQuestion(2);
+        else if (aQsHolder[1].activeInHierarchy) ArtifactQuestion(5);
+        else if (aQsHolder[2].activeInHierarchy) ArtifactQuestion(8);
+        else if (aQsHolder[3].activeInHierarchy) ArtifactQuestion(11);
+        else if (aQsHolder[4].activeInHierarchy) ArtifactQuestion(14);
+        else if (aQsHolder[5].activeInHierarchy) ArtifactQuestion(17);
+        else if (aQsHolder[6].activeInHierarchy) ArtifactQuestion(20);
+        else if (aQsHolder[7].activeInHierarchy) ArtifactQuestion(23);
+        else if (aQsHolder[8].activeInHierarchy) ArtifactQuestion(26);
+        else if (aQsHolder[9].activeInHierarchy) ArtifactQuestion(29);
+    }
+
+    private void ArtifactQuestion(int q)
+    {
+        if (q == 0) ChangeDialogue(artifactQuestions[0].GetComponent<TextMeshProUGUI>().text, 0);
+        else if (q == 1) ChangeDialogue(artifactQuestions[1].GetComponent<TextMeshProUGUI>().text, 1);
+        else if (q == 2) ChangeDialogue(artifactQuestions[2].GetComponent<TextMeshProUGUI>().text, 2);
+        else if (q == 3) ChangeDialogue(artifactQuestions[3].GetComponent<TextMeshProUGUI>().text, 3);
+        else if (q == 4) ChangeDialogue(artifactQuestions[4].GetComponent<TextMeshProUGUI>().text, 4);
+        else if (q == 5) ChangeDialogue(artifactQuestions[5].GetComponent<TextMeshProUGUI>().text, 5);
+        else if (q == 6) ChangeDialogue(artifactQuestions[6].GetComponent<TextMeshProUGUI>().text, 6);
+        else if (q == 7) ChangeDialogue(artifactQuestions[7].GetComponent<TextMeshProUGUI>().text, 7);
+        else if (q == 8) ChangeDialogue(artifactQuestions[8].GetComponent<TextMeshProUGUI>().text, 8);
+        else if (q == 9) ChangeDialogue(artifactQuestions[9].GetComponent<TextMeshProUGUI>().text, 9);
+        else if (q == 10) ChangeDialogue(artifactQuestions[10].GetComponent<TextMeshProUGUI>().text, 10);
+        else if (q == 11) ChangeDialogue(artifactQuestions[11].GetComponent<TextMeshProUGUI>().text, 11);
+        else if (q == 12) ChangeDialogue(artifactQuestions[12].GetComponent<TextMeshProUGUI>().text, 12);
+        else if (q == 13) ChangeDialogue(artifactQuestions[13].GetComponent<TextMeshProUGUI>().text, 13);
+        else if (q == 14) ChangeDialogue(artifactQuestions[14].GetComponent<TextMeshProUGUI>().text, 14);
+        else if (q == 15) ChangeDialogue(artifactQuestions[15].GetComponent<TextMeshProUGUI>().text, 15);
+        else if (q == 16) ChangeDialogue(artifactQuestions[16].GetComponent<TextMeshProUGUI>().text, 16);
+        else if (q == 17) ChangeDialogue(artifactQuestions[17].GetComponent<TextMeshProUGUI>().text, 17);
+        else if (q == 18) ChangeDialogue(artifactQuestions[18].GetComponent<TextMeshProUGUI>().text, 18);
+        else if (q == 19) ChangeDialogue(artifactQuestions[19].GetComponent<TextMeshProUGUI>().text, 19);
+        else if (q == 20) ChangeDialogue(artifactQuestions[20].GetComponent<TextMeshProUGUI>().text, 20);
+        else if (q == 21) ChangeDialogue(artifactQuestions[21].GetComponent<TextMeshProUGUI>().text, 21);
+        else if (q == 22) ChangeDialogue(artifactQuestions[22].GetComponent<TextMeshProUGUI>().text, 22);
+        else if (q == 23) ChangeDialogue(artifactQuestions[23].GetComponent<TextMeshProUGUI>().text, 23);
+        else if (q == 24) ChangeDialogue(artifactQuestions[24].GetComponent<TextMeshProUGUI>().text, 24);
+        else if (q == 25) ChangeDialogue(artifactQuestions[25].GetComponent<TextMeshProUGUI>().text, 25);
+        else if (q == 26) ChangeDialogue(artifactQuestions[26].GetComponent<TextMeshProUGUI>().text, 26);
+        else if (q == 27) ChangeDialogue(artifactQuestions[27].GetComponent<TextMeshProUGUI>().text, 27);
+        else if (q == 28) ChangeDialogue(artifactQuestions[28].GetComponent<TextMeshProUGUI>().text, 28);
+        else if (q == 29) ChangeDialogue(artifactQuestions[29].GetComponent<TextMeshProUGUI>().text, 29);
+    }
+
+    private void ChangeDialogue(string userInput, int dNum)
+    {
+        print("User says: " + userInput);
+        whichDialogue = dNum;
+        print("dNum: " + dNum);
+
+        StartCoroutine(_moonbeamAPI.GetComponent<MoonbeamAPI>().PostRequest(_uri));
     }
 }

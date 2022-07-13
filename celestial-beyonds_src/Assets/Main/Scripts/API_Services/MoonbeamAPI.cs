@@ -38,7 +38,7 @@ public class MoonbeamAPI : MonoBehaviour
     public IEnumerator PostRequest(string uri)
     {
         var form = new WWWForm();
-        SetUpForm(form);
+        GetComponent<DialogueForm>().SetUpForm(form);
         // Send POST request.
         using var webRequest = UnityWebRequest.Post(uri, form);
         yield return webRequest.SendWebRequest();
@@ -58,40 +58,6 @@ public class MoonbeamAPI : MonoBehaviour
             _mb.GetComponent<MoonbeamDialogue>().response = _response;
             _audio.Stop();
             _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
-        }
-    }
-
-
-    private void SetUpForm(WWWForm form)
-    {
-        switch (_mb.GetComponent<MoonbeamDialogue>().whichDialogue)
-        {
-            // general
-            case 1:
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().dialogueOptions[0].GetComponent<TextMeshProUGUI>().text);
-                break;
-            case 2:
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().dialogueOptions[1].GetComponent<TextMeshProUGUI>().text);
-                break;
-            case 3:
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().dialogueOptions[2].GetComponent<TextMeshProUGUI>().text);
-                break;
-            // artifacts
-            case 4:
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[0].GetComponent<TextMeshProUGUI>().text);
-                break;
-            case 5:
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[1].GetComponent<TextMeshProUGUI>().text);
-                break;
-            case 6:
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[2].GetComponent<TextMeshProUGUI>().text);
-                break;
         }
     }
 }

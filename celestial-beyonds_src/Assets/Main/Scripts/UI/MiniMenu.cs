@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class MiniMenu : MonoBehaviour
 {
-    public int enemyNum, plantNum, totalEnemies, totalPlants;
-    public TextMeshProUGUI plantNumTxt, enemyNumTxt;
+    public int enemiesNum, plantsNum, artifactsNum, totalEnemies, totalPlants, totalArtifacts;
+    public TextMeshProUGUI plantNumTxt, enemyNumTxt, artifactsNumTxt;
 
     private void OnGUI()
     {
-        if (plantNum != 0 || enemyNum != 0)
+        if (plantsNum != 0 || enemiesNum != 0 || artifactsNum != 0)
         {
-            plantNumTxt.text = plantNum + " / " + totalPlants;
-            enemyNumTxt.text = enemyNum + " / " + totalEnemies;   
+            plantNumTxt.text = plantsNum + " / " + totalPlants;
+            enemyNumTxt.text = enemiesNum + " / " + totalEnemies;
+            artifactsNumTxt.text = artifactsNum + " / " + totalArtifacts;
         }
     }
 }

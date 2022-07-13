@@ -13,7 +13,7 @@ public class Plants : MonoBehaviour
 
     public void Blossom(int num)
     {
-        miniMenu.GetComponent<MiniMenu>().plantNum += 1;
+        miniMenu.GetComponent<MiniMenu>().plantsNum += 1;
         plantClones[num].SetActive(true);
         Destroy(plantsOG[num]);
         _pl.GetComponent<PollinationLevel>().IncreasePollination();
