@@ -513,7 +513,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1c18d60f-a3b1-45e6-8776-1d2ae131c4b2"",
-                    ""path"": ""<Mouse>/middleButton"",
+                    ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -831,6 +831,33 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Options"",
+                    ""type"": ""Button"",
+                    ""id"": ""3715612c-dace-4bb2-aa78-24ef7c7bd661"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Credits"",
+                    ""type"": ""Button"",
+                    ""id"": ""61455fbf-0693-47c0-8cdf-384696e64811"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""4a3fb4d5-16af-4faa-a789-41761fde3771"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -849,17 +876,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""bd14ca5b-f77b-4f45-ad21-7f7301860edf"",
                     ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""StartGame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8edeca0b-1f76-4f50-b486-dacddff6df85"",
-                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -910,6 +926,39 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""LoadTBTwo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4e31bb2-ccfb-4c3e-a3c1-4c9e69155b32"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Options"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03152725-7416-4171-b186-5bdaf81ed51d"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Credits"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62b0d516-345d-4a6a-989c-6f3698497fc1"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -951,6 +1000,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
         m_UIActions_LoadTBOne = m_UIActions.FindAction("LoadTBOne", throwIfNotFound: true);
         m_UIActions_LoadTBTwo = m_UIActions.FindAction("LoadTBTwo", throwIfNotFound: true);
+        m_UIActions_Options = m_UIActions.FindAction("Options", throwIfNotFound: true);
+        m_UIActions_Credits = m_UIActions.FindAction("Credits", throwIfNotFound: true);
+        m_UIActions_Back = m_UIActions.FindAction("Back", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1264,6 +1316,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_UIActions_PlayCinematic;
     private readonly InputAction m_UIActions_LoadTBOne;
     private readonly InputAction m_UIActions_LoadTBTwo;
+    private readonly InputAction m_UIActions_Options;
+    private readonly InputAction m_UIActions_Credits;
+    private readonly InputAction m_UIActions_Back;
     public struct UIActionsActions
     {
         private @InputProfiler m_Wrapper;
@@ -1272,6 +1327,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
         public InputAction @LoadTBOne => m_Wrapper.m_UIActions_LoadTBOne;
         public InputAction @LoadTBTwo => m_Wrapper.m_UIActions_LoadTBTwo;
+        public InputAction @Options => m_Wrapper.m_UIActions_Options;
+        public InputAction @Credits => m_Wrapper.m_UIActions_Credits;
+        public InputAction @Back => m_Wrapper.m_UIActions_Back;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1293,6 +1351,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @LoadTBTwo.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBTwo;
                 @LoadTBTwo.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBTwo;
                 @LoadTBTwo.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBTwo;
+                @Options.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnOptions;
+                @Options.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnOptions;
+                @Options.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnOptions;
+                @Credits.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnCredits;
+                @Credits.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnCredits;
+                @Credits.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnCredits;
+                @Back.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnBack;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1309,6 +1376,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @LoadTBTwo.started += instance.OnLoadTBTwo;
                 @LoadTBTwo.performed += instance.OnLoadTBTwo;
                 @LoadTBTwo.canceled += instance.OnLoadTBTwo;
+                @Options.started += instance.OnOptions;
+                @Options.performed += instance.OnOptions;
+                @Options.canceled += instance.OnOptions;
+                @Credits.started += instance.OnCredits;
+                @Credits.performed += instance.OnCredits;
+                @Credits.canceled += instance.OnCredits;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
             }
         }
     }
@@ -1350,5 +1426,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnPlayCinematic(InputAction.CallbackContext context);
         void OnLoadTBOne(InputAction.CallbackContext context);
         void OnLoadTBTwo(InputAction.CallbackContext context);
+        void OnOptions(InputAction.CallbackContext context);
+        void OnCredits(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
     }
 }
