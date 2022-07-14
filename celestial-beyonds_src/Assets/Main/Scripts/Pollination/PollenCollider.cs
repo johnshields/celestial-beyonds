@@ -4,6 +4,7 @@ using UnityEngine;
 public class PollenCollider : MonoBehaviour
 {
     private GameObject _plant;
+    private bool _plantGrown;
 
     private void Start()
     {
@@ -15,6 +16,16 @@ public class PollenCollider : MonoBehaviour
         var numberOnly = Regex.Replace(other.gameObject.name, "[^0-9]", "");
         var plantNum = int.Parse(numberOnly);
         print("Pollen hit plant: " + plantNum);
-        _plant.GetComponent<Plants>().Blossom(plantNum);
+        if (!_plantGrown && _plant.gameObject.GetComponent<Plants>().plantsOG[plantNum])
+        {
+            _plantGrown = true;
+            _plant.GetComponent<Plants>().Blossom(plantNum);
+            Invoke(nameof(ResetPlant), 4);
+        }
+    }
+
+    private void ResetPlant()
+    {
+        _plantGrown = false;
     }
 }

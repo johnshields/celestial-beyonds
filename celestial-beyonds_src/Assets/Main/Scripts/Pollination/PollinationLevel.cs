@@ -10,11 +10,14 @@ public class PollinationLevel : MonoBehaviour
     public TextMeshProUGUI _pollinationLevel, exploreTxt;
     public GameObject levelCompleteUI, fader, pauseMenu, miniMenu;
     public bool levelCompleted;
+    public AudioClip completeSFX;
     private InputProfiler _controls;
+    private AudioSource _audio;
 
     private void Awake()
     {
         _controls = new InputProfiler();
+        _audio = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -114,8 +117,8 @@ public class PollinationLevel : MonoBehaviour
     {
         if (levelCompleted && levelCompleteUI.activeInHierarchy)
         {
-            print("Loading: " + SceneManager.GetActiveScene().buildIndex + 1);
-            StartCoroutine(LoadNextScene());
+            print("Loading: ");
+            //StartCoroutine(LoadNextScene());
         }
     }
 
@@ -123,6 +126,7 @@ public class PollinationLevel : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         levelCompleteUI.SetActive(true);
+        _audio.PlayOneShot(completeSFX);
     }
 
     private IEnumerator LoadNextScene()
