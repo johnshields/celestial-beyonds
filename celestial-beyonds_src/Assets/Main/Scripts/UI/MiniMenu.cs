@@ -32,19 +32,16 @@ public class MiniMenu : MonoBehaviour
     {
         if (enemiesNum == 10 && !_allEnemies)
         {
-            allEnemiesPanel.SetActive(true);
             _allEnemies = true;
             StartCoroutine(CloseActivePanel(0));
         }
         else if (artifactsNum == 10 && !allArtifacts)
         {
-            allArtifactsPanel.SetActive(true);
             allArtifacts = true;
             StartCoroutine(CloseActivePanel(1));
         }
         else if (peridotsNum == 66 && !allPeridots)
         {
-            allPeridotsPanel.SetActive(true);
             allPeridots = true;
             StartCoroutine(CloseActivePanel(2));
         }
@@ -56,12 +53,26 @@ public class MiniMenu : MonoBehaviour
         switch (whichPanel)
         {
             case 0:
+                allEnemiesPanel.SetActive(true);
+                break;
+            case 1:
+                allArtifactsPanel.SetActive(true);
+                break;
+            case 2:
+                allPeridotsPanel.SetActive(true);
+                break;
+        }
+
+        yield return new WaitForSeconds(3);
+        switch (whichPanel)
+        {
+            case 0:
                 allEnemiesPanel.SetActive(false);
                 break;
             case 1:
                 allArtifactsPanel.SetActive(false);
                 break;
-            case 3:
+            case 2:
                 allPeridotsPanel.SetActive(false);
                 break;
         }

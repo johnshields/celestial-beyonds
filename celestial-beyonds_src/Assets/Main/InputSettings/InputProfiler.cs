@@ -513,7 +513,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1c18d60f-a3b1-45e6-8776-1d2ae131c4b2"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -525,6 +525,17 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""cce6541b-739a-418a-a619-9a64e16ee9a0"",
                     ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pollinate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3002d1b-8024-4954-a40b-84154aa09080"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -858,6 +869,33 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyboardControls"",
+                    ""type"": ""Button"",
+                    ""id"": ""adff948e-1131-4950-b5db-2aee868b0425"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayStationControls"",
+                    ""type"": ""Button"",
+                    ""id"": ""d62e4890-4a87-4d53-8566-090299e5c68b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""XboxControls"",
+                    ""type"": ""Button"",
+                    ""id"": ""8852a90b-5ed3-48e6-951a-bad644adfab5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -959,6 +997,39 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be170826-6423-4b47-9540-0236fb6c574e"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e38be89-24d0-4396-97b4-a38efd18a8e4"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayStationControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b92d94f-6b2c-4854-96bb-39b77b841fc3"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XboxControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1003,6 +1074,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_UIActions_Options = m_UIActions.FindAction("Options", throwIfNotFound: true);
         m_UIActions_Credits = m_UIActions.FindAction("Credits", throwIfNotFound: true);
         m_UIActions_Back = m_UIActions.FindAction("Back", throwIfNotFound: true);
+        m_UIActions_KeyboardControls = m_UIActions.FindAction("KeyboardControls", throwIfNotFound: true);
+        m_UIActions_PlayStationControls = m_UIActions.FindAction("PlayStationControls", throwIfNotFound: true);
+        m_UIActions_XboxControls = m_UIActions.FindAction("XboxControls", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1319,6 +1393,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_UIActions_Options;
     private readonly InputAction m_UIActions_Credits;
     private readonly InputAction m_UIActions_Back;
+    private readonly InputAction m_UIActions_KeyboardControls;
+    private readonly InputAction m_UIActions_PlayStationControls;
+    private readonly InputAction m_UIActions_XboxControls;
     public struct UIActionsActions
     {
         private @InputProfiler m_Wrapper;
@@ -1330,6 +1407,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Options => m_Wrapper.m_UIActions_Options;
         public InputAction @Credits => m_Wrapper.m_UIActions_Credits;
         public InputAction @Back => m_Wrapper.m_UIActions_Back;
+        public InputAction @KeyboardControls => m_Wrapper.m_UIActions_KeyboardControls;
+        public InputAction @PlayStationControls => m_Wrapper.m_UIActions_PlayStationControls;
+        public InputAction @XboxControls => m_Wrapper.m_UIActions_XboxControls;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1360,6 +1440,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Back.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnBack;
                 @Back.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnBack;
                 @Back.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnBack;
+                @KeyboardControls.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnKeyboardControls;
+                @KeyboardControls.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnKeyboardControls;
+                @KeyboardControls.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnKeyboardControls;
+                @PlayStationControls.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayStationControls;
+                @PlayStationControls.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayStationControls;
+                @PlayStationControls.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayStationControls;
+                @XboxControls.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnXboxControls;
+                @XboxControls.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnXboxControls;
+                @XboxControls.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnXboxControls;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1385,6 +1474,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Back.started += instance.OnBack;
                 @Back.performed += instance.OnBack;
                 @Back.canceled += instance.OnBack;
+                @KeyboardControls.started += instance.OnKeyboardControls;
+                @KeyboardControls.performed += instance.OnKeyboardControls;
+                @KeyboardControls.canceled += instance.OnKeyboardControls;
+                @PlayStationControls.started += instance.OnPlayStationControls;
+                @PlayStationControls.performed += instance.OnPlayStationControls;
+                @PlayStationControls.canceled += instance.OnPlayStationControls;
+                @XboxControls.started += instance.OnXboxControls;
+                @XboxControls.performed += instance.OnXboxControls;
+                @XboxControls.canceled += instance.OnXboxControls;
             }
         }
     }
@@ -1429,5 +1527,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnOptions(InputAction.CallbackContext context);
         void OnCredits(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
+        void OnKeyboardControls(InputAction.CallbackContext context);
+        void OnPlayStationControls(InputAction.CallbackContext context);
+        void OnXboxControls(InputAction.CallbackContext context);
     }
 }

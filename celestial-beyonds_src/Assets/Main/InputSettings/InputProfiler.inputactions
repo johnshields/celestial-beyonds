@@ -491,7 +491,7 @@
                 {
                     "name": "",
                     "id": "1c18d60f-a3b1-45e6-8776-1d2ae131c4b2",
-                    "path": "<Keyboard>/p",
+                    "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -503,6 +503,17 @@
                     "name": "",
                     "id": "cce6541b-739a-418a-a619-9a64e16ee9a0",
                     "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pollinate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3002d1b-8024-4954-a40b-84154aa09080",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -836,6 +847,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "KeyboardControls",
+                    "type": "Button",
+                    "id": "adff948e-1131-4950-b5db-2aee868b0425",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlayStationControls",
+                    "type": "Button",
+                    "id": "d62e4890-4a87-4d53-8566-090299e5c68b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "XboxControls",
+                    "type": "Button",
+                    "id": "8852a90b-5ed3-48e6-951a-bad644adfab5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -935,6 +973,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be170826-6423-4b47-9540-0236fb6c574e",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyboardControls",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e38be89-24d0-4396-97b4-a38efd18a8e4",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayStationControls",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b92d94f-6b2c-4854-96bb-39b77b841fc3",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "XboxControls",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

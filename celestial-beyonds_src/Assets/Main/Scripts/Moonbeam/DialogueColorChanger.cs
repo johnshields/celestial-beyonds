@@ -138,5 +138,4 @@ public class DialogueColorChanger : MonoBehaviour
         opt[o1].GetComponent<TextMeshProUGUI>().color = c2;
         opt[o2].GetComponent<TextMeshProUGUI>().color = c3;
     }
-    
 }

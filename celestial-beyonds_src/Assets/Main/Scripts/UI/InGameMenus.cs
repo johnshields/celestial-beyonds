@@ -63,7 +63,7 @@ public class InGameMenus : MonoBehaviour
         }
         else if (player.GetComponent<CaptainHealth>().gameOver)
         {
-            StartCoroutine(GoLoadLevel(3));
+            StartCoroutine(GoLoadLevel(1));
         }
     }
 
