@@ -228,6 +228,7 @@ namespace Main.Scripts.Captain
             if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
             {
                 if (_actionDone) return;
+                AnimWeight();
                 _animator.SetTrigger(_dodge);
                 StartCoroutine(WaitToDodge());
                 _actionDone = true;
@@ -242,7 +243,7 @@ namespace Main.Scripts.Captain
             _player.GetComponent<CaptainProfiler>().enabled = false;
             _player.GetComponent<Jetpack>().enabled = false;
         }
-
+        
         private void ResetAction()
         {
             meleeActive = false;
@@ -263,6 +264,23 @@ namespace Main.Scripts.Captain
         {
             yield return new WaitForSeconds(.5f);
             _rb.velocity = transform.TransformDirection(0, 0, dodge);
+            Invoke(nameof(ResetAnimWeight), delayAction);
+        }
+
+        private void AnimWeight()
+        {
+            if (!_armed) return;
+            _animator.SetLayerWeight (1, 1f);
+            _animator.SetLayerWeight (3, 0f);
+            _animator.SetLayerWeight (4, 0f);
+        }
+
+        
+        private void ResetAnimWeight()
+        {
+            _animator.SetLayerWeight (1, 1f);
+            _animator.SetLayerWeight (3, 1f);
+            _animator.SetLayerWeight (4, 1f);  
         }
 
         private void Footsteps()

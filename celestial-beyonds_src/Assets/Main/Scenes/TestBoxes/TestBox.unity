@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!114 &3393709
 MonoBehaviour:
@@ -704,6 +705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!114 &101742373
 MonoBehaviour:
@@ -871,6 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!114 &114317763
 MonoBehaviour:
@@ -2119,6 +2122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!114 &301768846
 MonoBehaviour:
@@ -3674,7 +3678,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461844797}
-  m_LocalRotation: {x: 0.017966928, y: -0, z: -0.0000000013969839, w: 0.99983865}
+  m_LocalRotation: {x: 0.01796693, y: -0, z: -0.0000000023283064, w: 0.99983865}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3829,7 +3833,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472784307}
-  m_LocalRotation: {x: 0.06509749, y: 0.000000014901159, z: -0.0000000037252899, w: 0.9978789}
+  m_LocalRotation: {x: 0.06509749, y: -0.000000029802322, z: -0.0000000018626451, w: 0.99787897}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3898,6 +3902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!114 &490748682
 MonoBehaviour:
@@ -4502,6 +4507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!114 &519699889
 MonoBehaviour:
@@ -10257,10 +10263,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pollinationPercent: 0
   maxPollination: 100
+  pollenIncrease: 0
   _pollinationLevel: {fileID: 2104025698}
+  exploreTxt: {fileID: 0}
   levelCompleteUI: {fileID: 1753475737}
   fader: {fileID: 628879018903409389}
+  pauseMenu: {fileID: 0}
+  miniMenu: {fileID: 0}
   levelCompleted: 0
+  completeSFX: {fileID: 0}
 --- !u!1 &642996985
 GameObject:
   m_ObjectHideFlags: 0
@@ -16838,7 +16849,6 @@ GameObject:
   - component: {fileID: 829576250}
   - component: {fileID: 829576249}
   - component: {fileID: 829576248}
-  - component: {fileID: 829576252}
   m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
@@ -16923,18 +16933,6 @@ Transform:
   m_Father: {fileID: 720431170}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &829576252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 829576247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6467222cacd6b0f369ef1a269fc36078, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &842529559
 GameObject:
   m_ObjectHideFlags: 0
@@ -17003,6 +17001,7 @@ MonoBehaviour:
   playerInSightRange: 0
   playerInAttackRange: 0
   delayAction: 0.5
+  miniMenu: {fileID: 0}
 --- !u!195 &842529562
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -17229,6 +17228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 10
 --- !u!114 &845881194
 MonoBehaviour:
@@ -17303,6 +17303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!114 &853230713
 MonoBehaviour:
@@ -18619,8 +18620,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0044122064, y: 0.9842715, z: 0.024837023, w: -0.1748522}
-  m_LocalPosition: {x: 1.7221164, y: 1, z: 4.6940727}
+  m_LocalRotation: {x: -0.007834827, y: 0.9502425, z: 0.02397834, w: 0.31048805}
+  m_LocalPosition: {x: -2.9522684, y: 1, z: 4.0353584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 472784309}
@@ -21324,6 +21325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!114 &1294100176
 MonoBehaviour:
@@ -27089,6 +27091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!114 &1389349070
 MonoBehaviour:
@@ -27782,7 +27785,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1923972878}
+  miniMenuPanel: {fileID: 0}
   fader: {fileID: 628879018903409389}
+  player: {fileID: 0}
+  BtnGO: {fileID: 0}
+  controlsPanel: {fileID: 0}
+  muteBtn: {fileID: 0}
+  unMuteBtn: {fileID: 0}
+  pausedActive: 0
+  miniMenuActive: 0
+  controlsMenu: 0
 --- !u!1 &1496592598
 GameObject:
   m_ObjectHideFlags: 0
@@ -28410,6 +28422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!114 &1587110303
 MonoBehaviour:
@@ -35455,6 +35468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!1 &1841708324
 GameObject:
@@ -35593,6 +35607,8 @@ MonoBehaviour:
   - {fileID: 795157244}
   - {fileID: 668785339}
   - {fileID: 2057008627}
+  miniMenu: {fileID: 0}
+  blossomSFX: {fileID: 0}
 --- !u!1 &1863198425
 GameObject:
   m_ObjectHideFlags: 0
@@ -36147,6 +36163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!114 &1889219794
 MonoBehaviour:
@@ -36453,7 +36470,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959691609}
-  m_LocalRotation: {x: 0.000000007741619, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.0000000037252903, y: -0, z: -0.0000000013969839, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -38343,6 +38360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: be2f15edd5d9ced4da46328a54fc5bd2, type: 3}
+  miniMenu: {fileID: 0}
   peridotValue: 1
 --- !u!114 &2121544177
 MonoBehaviour:
@@ -48532,6 +48550,7 @@ MonoBehaviour:
   delayAction: 1
   dodge: -1
   pollenMeter: {fileID: 362714086}
+  pauseMenu: {fileID: 0}
   meleeActive: 0
   cannonFire: 0
   pollenFire: 0
@@ -48551,6 +48570,7 @@ MonoBehaviour:
   jumpForce: 5
   maxSpeed: 1
   playerCam: {fileID: 963194227}
+  pauseMenu: {fileID: 0}
 --- !u!82 &3066007434264232765
 AudioSource:
   m_ObjectHideFlags: 0
@@ -48694,9 +48714,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09c570d3d06a6248b8669b29bd9d2ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  capDead: 0
+  gameOver: 0
   maxHealth: 100
   currentHealth: 100
   pHealthBar: {fileID: 403351438}
+  GameOverUI: {fileID: 0}
+  gameOverSFX: {fileID: 0}
 --- !u!33 &3137353693598692108
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -50211,10 +50235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04f97418e5f7ff4cab82453067381d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueOptionOne: {fileID: 2379001235671974103}
-  dialogueOptionTwo: {fileID: 2379001235346482083}
-  dialogueOptionThree: {fileID: 2379001233768743491}
-  dialogueUI: {fileID: 2379001235279073468}
   moonbeamVoice:
   - {fileID: 8300000, guid: ba03c66fb5726504d9ee3633b1332e83, type: 3}
   - {fileID: 8300000, guid: 23c5bf7d6f97a89478a15920f6dce94e, type: 3}
@@ -50238,7 +50258,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fc38b66c265fb514298dec906b84d990, type: 3}
   - {fileID: 8300000, guid: 5178b3c052148c24fb1d32a3426035ba, type: 3}
   - {fileID: 8300000, guid: 11931e4368bca8d45b2857db750e92ee, type: 3}
-  chatting: 0
 --- !u!4 &4229142921068976766
 Transform:
   m_ObjectHideFlags: 0
@@ -52286,6 +52305,7 @@ MonoBehaviour:
   peridotCounterUI: {fileID: 561922091}
   pollenMeter: {fileID: 362714086}
   pollinator: {fileID: 1054871863}
+  pauseMenu: {fileID: 0}
   delayAction: 1
   argyleHellos:
   - {fileID: 8300000, guid: 6a007d78f79daf34d82611a1066c59cd, type: 3}

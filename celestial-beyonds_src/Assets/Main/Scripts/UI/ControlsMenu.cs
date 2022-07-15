@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class ControlsMenu : MonoBehaviour
 {
-    public GameObject keyboard, playstation, xbox;
+    public GameObject keyboard, playstation, xbox, ctrlsPanel;
     public TextMeshProUGUI[] keyboardTxt, playstationText, xboxTxt;
     private InputProfiler _controls;
 
@@ -50,13 +50,14 @@ public class ControlsMenu : MonoBehaviour
 
     private void WhichControls(bool k, bool p, bool x)
     {
+        if (!ctrlsPanel.activeInHierarchy) return;
         keyboard.SetActive(k);
         playstation.SetActive(p);
         xbox.SetActive(x);
-        
-        Booleans.keyboardSelected = k;
-        Booleans.playstationSelected = p;
-        Booleans.xboxSelected = x;
+
+        //Booleans.keyboardSelected = k;
+        //Booleans.playstationSelected = p;
+        //Booleans.xboxSelected = x;
     }
 
     private void OnGUI()

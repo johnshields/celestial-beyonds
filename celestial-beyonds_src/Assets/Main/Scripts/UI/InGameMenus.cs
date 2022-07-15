@@ -79,6 +79,7 @@ public class InGameMenus : MonoBehaviour
         {
             pausedActive = false;
             pauseMenu.SetActive(false);
+            controlsPanel.SetActive(false);
             print("Game resumed...");
             Time.timeScale = 1f;
         }

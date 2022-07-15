@@ -794,17 +794,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""73288a36-fdd9-4969-a904-de10bf79b778"",
-                    ""path"": ""<Keyboard>/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Resume"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""7710c767-b790-4a14-82a4-e6510480b742"",
                     ""path"": ""<Keyboard>/m"",
                     ""interactions"": """",
