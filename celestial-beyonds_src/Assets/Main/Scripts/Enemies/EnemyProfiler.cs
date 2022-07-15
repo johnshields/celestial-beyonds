@@ -25,10 +25,11 @@ namespace Main.Scripts.Enemies
 
         private Animator _animator;
         private int _idle, _walk, _attack;
-        private bool _walkPointSet, _actionDone;
+        private bool _walkPointSet, _actionDone, _played;
 
         // misc
         public GameObject miniMenu;
+        public AudioClip deathSFX;
 
         private void Awake()
         {
@@ -143,6 +144,11 @@ namespace Main.Scripts.Enemies
 
             if (enemyHealth <= 0)
             {
+                if (!_played)
+                {
+                    AudioSource.PlayClipAtPoint(deathSFX, transform.position, .3f);
+                    _played = true;
+                }
                 print(enemy.name + " Terminated!");
                 miniMenu.GetComponent<MiniMenu>().enemiesNum += 1;
                 Destroy(enemy);

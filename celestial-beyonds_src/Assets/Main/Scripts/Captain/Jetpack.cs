@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Jetpack : MonoBehaviour
 {
-    public static bool _jetpackActive;
+    public bool jetpackActive;
     public float maxFuel = 4f, thrustForce = 0.3f;
     public Rigidbody _rb;
     public Transform groundedObj;
@@ -33,29 +33,29 @@ public class Jetpack : MonoBehaviour
     private void Update()
     {
         _fuelBarSlider.value = _currentFuel;
-        if (_jetpackActive && _currentFuel > 0f)
+        if (jetpackActive && _currentFuel > 0f)
         {
-            _jetpackActive = true;
+            jetpackActive = true;
             _currentFuel -= Time.deltaTime;
             _rb.AddForce(_rb.transform.up * thrustForce, ForceMode.Impulse);
         }
         else if (Physics.Raycast(groundedObj.position, Vector3.down, 0.01f,
                      LayerMask.GetMask("GroundedObject")) && _currentFuel < maxFuel)
         {
-            _jetpackActive = false;
+            jetpackActive = false;
             if (_currentFuel < maxFuel)
                 _currentFuel += Time.deltaTime;
         }
         else
         {
-            _jetpackActive = false;
+            jetpackActive = false;
             if (_currentFuel < maxFuel)
                 _currentFuel += Time.deltaTime;
         }
 
-        flames.SetActive(_jetpackActive);
+        flames.SetActive(jetpackActive);
 
-        if (!_jetpackActive)
+        if (!jetpackActive)
             _jpAudio.Stop();
     }
 
@@ -73,7 +73,7 @@ public class Jetpack : MonoBehaviour
 
     private void JetpackActive(InputAction.CallbackContext obj)
     {
-        _jetpackActive = true;
+        jetpackActive = true;
         if (!_alreadyPlayed)
         {
             _jpAudio.PlayOneShot(jetpackSFX, 0.1f);

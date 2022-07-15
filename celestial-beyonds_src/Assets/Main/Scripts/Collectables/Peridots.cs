@@ -19,8 +19,7 @@ public class Peridots : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject != _player) return;
-        var position = transform.position;
-        AudioSource.PlayClipAtPoint(pickupSound, position, 0.1f);
+        AudioSource.PlayClipAtPoint(pickupSound,  transform.position, 0.1f);
         // Destroy peridot and add to the _peridotCounter
         Destroy(gameObject);
         _peridotCounter.GetComponent<PeridotCounter>().peridots += peridotValue;

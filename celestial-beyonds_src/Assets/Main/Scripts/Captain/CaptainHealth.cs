@@ -51,10 +51,10 @@ public class CaptainHealth : MonoBehaviour
         yield return new WaitForSeconds(3f);
         gameOver = true;
         GameOverUI.SetActive(true);
-        if (!_played)
-        {
-            _audio.PlayOneShot(gameOverSFX);
-            _played = true;
-        }
+        // if (!_played)
+        // {
+        //     _audio.PlayOneShot(gameOverSFX, .2f);
+        //     _played = true;
+        // }
     }
 }

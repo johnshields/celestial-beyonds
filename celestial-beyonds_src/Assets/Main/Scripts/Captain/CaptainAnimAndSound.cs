@@ -62,7 +62,7 @@ namespace Main.Scripts.Captain
 
         private void Update()
         {
-            if (!Jetpack._jetpackActive)
+            if (!GetComponent<Jetpack>().jetpackActive)
                 _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
             else
                 _rb.angularVelocity = Vector3.zero;
@@ -116,7 +116,7 @@ namespace Main.Scripts.Captain
         {
             if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
             {
-                if (!CaptainProfiler.grounded || (_actionDone && !Jetpack._jetpackActive)) return;
+                if (!CaptainProfiler.grounded || (_actionDone && !GetComponent<Jetpack>().jetpackActive)) return;
                 _animator.SetTrigger(_jump);
                 _actionDone = true;
                 Invoke(nameof(ResetAction), delayAction);
@@ -143,7 +143,7 @@ namespace Main.Scripts.Captain
             // random animation
             var attackBool = Random.Range(0, 5);
 
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !GetComponent<CaptainHealth>().capDead)
             {
                 if (!_actionDone)
                 {
@@ -174,45 +174,51 @@ namespace Main.Scripts.Captain
 
         private void ShootCannon(InputAction.CallbackContext obj)
         {
-            WeaponSelect(false, true, false);
-            PlayerState(false, true);
-            cannonFire = true;
-
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            if (!GetComponent<CaptainHealth>().capDead)
             {
-                if (!_actionDone && _armed && cannonFire)
+                WeaponSelect(false, true, false);
+                PlayerState(false, true);
+                cannonFire = true;
+
+                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
                 {
-                    _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
-                    // call CannonBlaster
-                    _cannon.GetComponent<CannonBlaster>().FireCannon();
-                    _actionDone = true;
-                    Invoke(nameof(ResetAction), delayAction);
+                    if (!_actionDone && _armed && cannonFire)
+                    {
+                        _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
+                        // call CannonBlaster
+                        _cannon.GetComponent<CannonBlaster>().FireCannon();
+                        _actionDone = true;
+                        Invoke(nameof(ResetAction), delayAction);
+                    }
                 }
             }
         }
 
         private void Pollinate(InputAction.CallbackContext obj)
         {
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            if (!GetComponent<CaptainHealth>().capDead)
             {
-                WeaponSelect(false, false, true);
-                PlayerState(false, true);
-                if (_pollinator.GetComponent<Pollinator>().pollenAmmo >= 0)
+                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
                 {
-                    pollenFire = true;
-                    if (!_actionDone && _armed)
+                    WeaponSelect(false, false, true);
+                    PlayerState(false, true);
+                    if (_pollinator.GetComponent<Pollinator>().pollenAmmo >= 0)
                     {
-                        _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
-                        _pollinator.GetComponent<Pollinator>().FirePollinator();
-                        _actionDone = true;
-                        Invoke(nameof(ResetAction), delayAction);
+                        pollenFire = true;
+                        if (!_actionDone && _armed)
+                        {
+                            _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
+                            _pollinator.GetComponent<Pollinator>().FirePollinator();
+                            _actionDone = true;
+                            Invoke(nameof(ResetAction), delayAction);
+                        }
                     }
-                }
-                else
-                {
-                    print("out of pollen ammo");
-                    pollenMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-                    StartCoroutine(ResetPollenMeter());
+                    else
+                    {
+                        print("out of pollen ammo");
+                        pollenMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                        StartCoroutine(ResetPollenMeter());
+                    }
                 }
             }
         }
@@ -225,7 +231,7 @@ namespace Main.Scripts.Captain
 
         private void Dodge(InputAction.CallbackContext obj)
         {
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !GetComponent<CaptainHealth>().capDead)
             {
                 if (_actionDone) return;
                 AnimWeight();
@@ -243,7 +249,7 @@ namespace Main.Scripts.Captain
             _player.GetComponent<CaptainProfiler>().enabled = false;
             _player.GetComponent<Jetpack>().enabled = false;
         }
-        
+
         private void ResetAction()
         {
             meleeActive = false;
@@ -262,7 +268,7 @@ namespace Main.Scripts.Captain
 
         private IEnumerator WaitToDodge()
         {
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.25f);
             _rb.velocity = transform.TransformDirection(0, 0, dodge);
             Invoke(nameof(ResetAnimWeight), delayAction);
         }
@@ -270,17 +276,17 @@ namespace Main.Scripts.Captain
         private void AnimWeight()
         {
             if (!_armed) return;
-            _animator.SetLayerWeight (1, 1f);
-            _animator.SetLayerWeight (3, 0f);
-            _animator.SetLayerWeight (4, 0f);
+            _animator.SetLayerWeight(1, 1f);
+            _animator.SetLayerWeight(3, 0f);
+            _animator.SetLayerWeight(4, 0f);
         }
 
-        
+
         private void ResetAnimWeight()
         {
-            _animator.SetLayerWeight (1, 1f);
-            _animator.SetLayerWeight (3, 1f);
-            _animator.SetLayerWeight (4, 1f);  
+            _animator.SetLayerWeight(1, 1f);
+            _animator.SetLayerWeight(3, 1f);
+            _animator.SetLayerWeight(4, 1f);
         }
 
         private void Footsteps()

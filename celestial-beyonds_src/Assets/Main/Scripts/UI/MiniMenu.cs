@@ -62,7 +62,7 @@ public class MiniMenu : MonoBehaviour
                 break;
             case 2:
                 allPeridotsPanel.SetActive(true);
-                _audio.PlayOneShot(achievementSFX[1]);
+                _audio.PlayOneShot(achievementSFX[2]);
                 break;
         }
 
