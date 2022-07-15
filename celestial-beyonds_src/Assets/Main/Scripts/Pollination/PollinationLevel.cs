@@ -13,6 +13,7 @@ public class PollinationLevel : MonoBehaviour
     public AudioClip completeSFX;
     private InputProfiler _controls;
     private AudioSource _audio;
+    private bool _open;
 
     private void Awake()
     {
@@ -37,7 +38,6 @@ public class PollinationLevel : MonoBehaviour
     {
         _controls.InGameUI.LoadNextPlanet.started += LoadNextPlanet;
         _controls.InGameUI.OpenLevelCompleteUI.started += OpenLevelCompUI;
-        _controls.InGameUI.CloseLevelCompleteUI.started += CloseLevelCompUI;
         _controls.InGameUI.Enable();
     }
 
@@ -45,7 +45,6 @@ public class PollinationLevel : MonoBehaviour
     {
         _controls.InGameUI.LoadNextPlanet.started += LoadNextPlanet;
         _controls.InGameUI.OpenLevelCompleteUI.started += OpenLevelCompUI;
-        _controls.InGameUI.CloseLevelCompleteUI.started += CloseLevelCompUI;
         _controls.InGameUI.Disable();
     }
 
@@ -99,17 +98,19 @@ public class PollinationLevel : MonoBehaviour
     {
         if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
-            if (levelCompleted)
+            if (levelCompleted && !_open)
+            {
+                _open = true;
                 levelCompleteUI.SetActive(true);
+            }
         }
-    }
-
-    private void CloseLevelCompUI(InputAction.CallbackContext obj)
-    {
-        if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+        else if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
-            if (levelCompleted)
+            if (levelCompleted && _open)
+            {
+                _open = false;
                 levelCompleteUI.SetActive(false);
+            }
         }
     }
 

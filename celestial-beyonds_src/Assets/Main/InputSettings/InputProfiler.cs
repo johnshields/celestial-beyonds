@@ -512,17 +512,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1c18d60f-a3b1-45e6-8776-1d2ae131c4b2"",
-                    ""path"": ""<Mouse>/middleButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pollinate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""cce6541b-739a-418a-a619-9a64e16ee9a0"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
@@ -578,8 +567,30 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""84a63928-5e4b-4417-afab-6d0e88e83f26"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DialogueOptionTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1c1c8952-36a1-4770-9774-49dab52568d7"",
                     ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DialogueOptionThree"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""481fa344-97b9-41ed-ab5d-5047484eff88"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -600,8 +611,30 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a2eb89b7-5da0-45b9-9775-fe49162b5fa8"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""eabb399e-c5b7-421e-a5b9-8e019bfeb2f7"",
                     ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AskMoonbeam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a13734e-9ad8-4924-915b-d5f5872ef1b2"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -619,6 +652,17 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""CloseDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e009e66-4aea-425a-91f1-e19aedb8b3e4"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -630,15 +674,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""name"": ""OpenLevelCompleteUI"",
                     ""type"": ""Button"",
                     ""id"": ""cd986be9-5696-4e33-b2ea-3fbd683e7c96"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CloseLevelCompleteUI"",
-                    ""type"": ""Button"",
-                    ""id"": ""8add998b-00d4-4a2e-8b38-fc938d37fe5e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -704,8 +739,19 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""be804bf1-79d0-447b-aa7e-9f5c099ca487"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenLevelCompleteUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""9275bf79-c5ae-4f1c-b7f4-ab17205c2178"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -770,17 +816,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""51c7b2fa-a4c5-4aca-833f-241f7656c2b2"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CloseLevelCompleteUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""88a808d2-1e74-4508-a443-3f0145adf5dc"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
@@ -826,25 +861,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LoadTBOne"",
-                    ""type"": ""Button"",
-                    ""id"": ""7c1c5721-1b91-4923-80d7-17470d728e91"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LoadTBTwo"",
-                    ""type"": ""Button"",
-                    ""id"": ""8e6a1eef-3d68-45d5-84c6-10c0bf113a42"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Options"",
+                    ""name"": ""Controls"",
                     ""type"": ""Button"",
                     ""id"": ""3715612c-dace-4bb2-aa78-24ef7c7bd661"",
                     ""expectedControlType"": ""Button"",
@@ -892,6 +909,33 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""name"": ""XboxControls"",
                     ""type"": ""Button"",
                     ""id"": ""8852a90b-5ed3-48e6-951a-bad644adfab5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mute"",
+                    ""type"": ""Button"",
+                    ""id"": ""98caf485-9edc-460e-839e-bf6da6aec2dd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UnMute"",
+                    ""type"": ""Button"",
+                    ""id"": ""34cda2b7-c41a-4ac7-9903-76d0485b58a2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuitGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""29608661-196f-4664-b429-d1cc0ed251d9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -945,40 +989,40 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""da4ee060-149e-4630-b863-de2db358f7db"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadTBOne"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d549ccba-5ed0-4f88-9224-028b07a8b9e6"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadTBTwo"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c4e31bb2-ccfb-4c3e-a3c1-4c9e69155b32"",
-                    ""path"": ""<Keyboard>/o"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Options"",
+                    ""action"": ""Controls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""843e348b-ef48-4f0e-aaf5-838ddea25bfa"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Controls"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""03152725-7416-4171-b186-5bdaf81ed51d"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Credits"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d5068b3b-6d87-415c-a524-0902a6abf280"",
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1011,6 +1055,17 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ed615cd9-3923-440f-a8a3-7500b16a0672"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyboardControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""8e38be89-24d0-4396-97b4-a38efd18a8e4"",
                     ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
@@ -1022,12 +1077,89 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""cc873f6c-480d-4fe6-a228-f4a59b042e1d"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayStationControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5b92d94f-6b2c-4854-96bb-39b77b841fc3"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XboxControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f05ae2e5-162a-4def-afde-26f802c51d74"",
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""XboxControls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ba58c8a-e134-4c1b-b7bc-447d6a823f7a"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mute"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cbfdef33-8426-44af-a5a6-b8c6d4924016"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mute"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""098b02b6-bcf8-46c7-984f-572a3bbe2c14"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnMute"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d90ded18-5796-4c1f-a019-ba4085359458"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnMute"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b7cb38e-d164-429e-b31f-bbfd0a1cf3d9"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuitGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1059,7 +1191,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         // InGameUI
         m_InGameUI = asset.FindActionMap("InGameUI", throwIfNotFound: true);
         m_InGameUI_OpenLevelCompleteUI = m_InGameUI.FindAction("OpenLevelCompleteUI", throwIfNotFound: true);
-        m_InGameUI_CloseLevelCompleteUI = m_InGameUI.FindAction("CloseLevelCompleteUI", throwIfNotFound: true);
         m_InGameUI_LoadMainMenu = m_InGameUI.FindAction("LoadMainMenu", throwIfNotFound: true);
         m_InGameUI_Resume = m_InGameUI.FindAction("Resume", throwIfNotFound: true);
         m_InGameUI_PauseGame = m_InGameUI.FindAction("PauseGame", throwIfNotFound: true);
@@ -1069,14 +1200,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_UIActions = asset.FindActionMap("UIActions", throwIfNotFound: true);
         m_UIActions_StartGame = m_UIActions.FindAction("StartGame", throwIfNotFound: true);
         m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
-        m_UIActions_LoadTBOne = m_UIActions.FindAction("LoadTBOne", throwIfNotFound: true);
-        m_UIActions_LoadTBTwo = m_UIActions.FindAction("LoadTBTwo", throwIfNotFound: true);
-        m_UIActions_Options = m_UIActions.FindAction("Options", throwIfNotFound: true);
+        m_UIActions_Controls = m_UIActions.FindAction("Controls", throwIfNotFound: true);
         m_UIActions_Credits = m_UIActions.FindAction("Credits", throwIfNotFound: true);
         m_UIActions_Back = m_UIActions.FindAction("Back", throwIfNotFound: true);
         m_UIActions_KeyboardControls = m_UIActions.FindAction("KeyboardControls", throwIfNotFound: true);
         m_UIActions_PlayStationControls = m_UIActions.FindAction("PlayStationControls", throwIfNotFound: true);
         m_UIActions_XboxControls = m_UIActions.FindAction("XboxControls", throwIfNotFound: true);
+        m_UIActions_Mute = m_UIActions.FindAction("Mute", throwIfNotFound: true);
+        m_UIActions_UnMute = m_UIActions.FindAction("UnMute", throwIfNotFound: true);
+        m_UIActions_QuitGame = m_UIActions.FindAction("QuitGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1306,7 +1438,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_InGameUI;
     private IInGameUIActions m_InGameUIActionsCallbackInterface;
     private readonly InputAction m_InGameUI_OpenLevelCompleteUI;
-    private readonly InputAction m_InGameUI_CloseLevelCompleteUI;
     private readonly InputAction m_InGameUI_LoadMainMenu;
     private readonly InputAction m_InGameUI_Resume;
     private readonly InputAction m_InGameUI_PauseGame;
@@ -1317,7 +1448,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         private @InputProfiler m_Wrapper;
         public InGameUIActions(@InputProfiler wrapper) { m_Wrapper = wrapper; }
         public InputAction @OpenLevelCompleteUI => m_Wrapper.m_InGameUI_OpenLevelCompleteUI;
-        public InputAction @CloseLevelCompleteUI => m_Wrapper.m_InGameUI_CloseLevelCompleteUI;
         public InputAction @LoadMainMenu => m_Wrapper.m_InGameUI_LoadMainMenu;
         public InputAction @Resume => m_Wrapper.m_InGameUI_Resume;
         public InputAction @PauseGame => m_Wrapper.m_InGameUI_PauseGame;
@@ -1335,9 +1465,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @OpenLevelCompleteUI.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnOpenLevelCompleteUI;
                 @OpenLevelCompleteUI.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnOpenLevelCompleteUI;
                 @OpenLevelCompleteUI.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnOpenLevelCompleteUI;
-                @CloseLevelCompleteUI.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnCloseLevelCompleteUI;
-                @CloseLevelCompleteUI.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnCloseLevelCompleteUI;
-                @CloseLevelCompleteUI.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnCloseLevelCompleteUI;
                 @LoadMainMenu.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadMainMenu;
                 @LoadMainMenu.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadMainMenu;
                 @LoadMainMenu.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnLoadMainMenu;
@@ -1360,9 +1487,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @OpenLevelCompleteUI.started += instance.OnOpenLevelCompleteUI;
                 @OpenLevelCompleteUI.performed += instance.OnOpenLevelCompleteUI;
                 @OpenLevelCompleteUI.canceled += instance.OnOpenLevelCompleteUI;
-                @CloseLevelCompleteUI.started += instance.OnCloseLevelCompleteUI;
-                @CloseLevelCompleteUI.performed += instance.OnCloseLevelCompleteUI;
-                @CloseLevelCompleteUI.canceled += instance.OnCloseLevelCompleteUI;
                 @LoadMainMenu.started += instance.OnLoadMainMenu;
                 @LoadMainMenu.performed += instance.OnLoadMainMenu;
                 @LoadMainMenu.canceled += instance.OnLoadMainMenu;
@@ -1388,28 +1512,30 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private IUIActionsActions m_UIActionsActionsCallbackInterface;
     private readonly InputAction m_UIActions_StartGame;
     private readonly InputAction m_UIActions_PlayCinematic;
-    private readonly InputAction m_UIActions_LoadTBOne;
-    private readonly InputAction m_UIActions_LoadTBTwo;
-    private readonly InputAction m_UIActions_Options;
+    private readonly InputAction m_UIActions_Controls;
     private readonly InputAction m_UIActions_Credits;
     private readonly InputAction m_UIActions_Back;
     private readonly InputAction m_UIActions_KeyboardControls;
     private readonly InputAction m_UIActions_PlayStationControls;
     private readonly InputAction m_UIActions_XboxControls;
+    private readonly InputAction m_UIActions_Mute;
+    private readonly InputAction m_UIActions_UnMute;
+    private readonly InputAction m_UIActions_QuitGame;
     public struct UIActionsActions
     {
         private @InputProfiler m_Wrapper;
         public UIActionsActions(@InputProfiler wrapper) { m_Wrapper = wrapper; }
         public InputAction @StartGame => m_Wrapper.m_UIActions_StartGame;
         public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
-        public InputAction @LoadTBOne => m_Wrapper.m_UIActions_LoadTBOne;
-        public InputAction @LoadTBTwo => m_Wrapper.m_UIActions_LoadTBTwo;
-        public InputAction @Options => m_Wrapper.m_UIActions_Options;
+        public InputAction @Controls => m_Wrapper.m_UIActions_Controls;
         public InputAction @Credits => m_Wrapper.m_UIActions_Credits;
         public InputAction @Back => m_Wrapper.m_UIActions_Back;
         public InputAction @KeyboardControls => m_Wrapper.m_UIActions_KeyboardControls;
         public InputAction @PlayStationControls => m_Wrapper.m_UIActions_PlayStationControls;
         public InputAction @XboxControls => m_Wrapper.m_UIActions_XboxControls;
+        public InputAction @Mute => m_Wrapper.m_UIActions_Mute;
+        public InputAction @UnMute => m_Wrapper.m_UIActions_UnMute;
+        public InputAction @QuitGame => m_Wrapper.m_UIActions_QuitGame;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1425,15 +1551,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @PlayCinematic.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
-                @LoadTBOne.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBOne;
-                @LoadTBOne.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBOne;
-                @LoadTBOne.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBOne;
-                @LoadTBTwo.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBTwo;
-                @LoadTBTwo.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBTwo;
-                @LoadTBTwo.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTBTwo;
-                @Options.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnOptions;
-                @Options.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnOptions;
-                @Options.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnOptions;
+                @Controls.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnControls;
+                @Controls.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnControls;
+                @Controls.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnControls;
                 @Credits.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnCredits;
                 @Credits.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnCredits;
                 @Credits.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnCredits;
@@ -1449,6 +1569,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @XboxControls.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnXboxControls;
                 @XboxControls.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnXboxControls;
                 @XboxControls.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnXboxControls;
+                @Mute.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnMute;
+                @Mute.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnMute;
+                @Mute.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnMute;
+                @UnMute.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnUnMute;
+                @UnMute.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnUnMute;
+                @UnMute.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnUnMute;
+                @QuitGame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
+                @QuitGame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
+                @QuitGame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1459,15 +1588,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @PlayCinematic.started += instance.OnPlayCinematic;
                 @PlayCinematic.performed += instance.OnPlayCinematic;
                 @PlayCinematic.canceled += instance.OnPlayCinematic;
-                @LoadTBOne.started += instance.OnLoadTBOne;
-                @LoadTBOne.performed += instance.OnLoadTBOne;
-                @LoadTBOne.canceled += instance.OnLoadTBOne;
-                @LoadTBTwo.started += instance.OnLoadTBTwo;
-                @LoadTBTwo.performed += instance.OnLoadTBTwo;
-                @LoadTBTwo.canceled += instance.OnLoadTBTwo;
-                @Options.started += instance.OnOptions;
-                @Options.performed += instance.OnOptions;
-                @Options.canceled += instance.OnOptions;
+                @Controls.started += instance.OnControls;
+                @Controls.performed += instance.OnControls;
+                @Controls.canceled += instance.OnControls;
                 @Credits.started += instance.OnCredits;
                 @Credits.performed += instance.OnCredits;
                 @Credits.canceled += instance.OnCredits;
@@ -1483,6 +1606,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @XboxControls.started += instance.OnXboxControls;
                 @XboxControls.performed += instance.OnXboxControls;
                 @XboxControls.canceled += instance.OnXboxControls;
+                @Mute.started += instance.OnMute;
+                @Mute.performed += instance.OnMute;
+                @Mute.canceled += instance.OnMute;
+                @UnMute.started += instance.OnUnMute;
+                @UnMute.performed += instance.OnUnMute;
+                @UnMute.canceled += instance.OnUnMute;
+                @QuitGame.started += instance.OnQuitGame;
+                @QuitGame.performed += instance.OnQuitGame;
+                @QuitGame.canceled += instance.OnQuitGame;
             }
         }
     }
@@ -1511,7 +1643,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     public interface IInGameUIActions
     {
         void OnOpenLevelCompleteUI(InputAction.CallbackContext context);
-        void OnCloseLevelCompleteUI(InputAction.CallbackContext context);
         void OnLoadMainMenu(InputAction.CallbackContext context);
         void OnResume(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
@@ -1522,13 +1653,14 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     {
         void OnStartGame(InputAction.CallbackContext context);
         void OnPlayCinematic(InputAction.CallbackContext context);
-        void OnLoadTBOne(InputAction.CallbackContext context);
-        void OnLoadTBTwo(InputAction.CallbackContext context);
-        void OnOptions(InputAction.CallbackContext context);
+        void OnControls(InputAction.CallbackContext context);
         void OnCredits(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
         void OnKeyboardControls(InputAction.CallbackContext context);
         void OnPlayStationControls(InputAction.CallbackContext context);
         void OnXboxControls(InputAction.CallbackContext context);
+        void OnMute(InputAction.CallbackContext context);
+        void OnUnMute(InputAction.CallbackContext context);
+        void OnQuitGame(InputAction.CallbackContext context);
     }
 }
