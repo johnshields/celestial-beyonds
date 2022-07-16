@@ -27,5 +27,6 @@ public class PollenCollider : MonoBehaviour
     private void ResetPlant()
     {
         _plantGrown = false;
+        print("Plant reset.");
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Plants : MonoBehaviour
@@ -7,20 +6,19 @@ public class Plants : MonoBehaviour
     public GameObject miniMenu;
     public AudioClip blossomSFX;
     private GameObject _pl;
-    private AudioSource _audio;
 
     private void Start()
     {
         _pl = GameObject.FindGameObjectWithTag("PollinationLevel");
-        _audio = GetComponent<AudioSource>();
     }
 
     public void Blossom(int num)
     {
-        _audio.PlayOneShot(blossomSFX);
+        AudioSource.PlayClipAtPoint(blossomSFX, plantsOG[num].transform.position, 0.5f);
         plantClones[num].SetActive(true);
         Destroy(plantsOG[num]);
         miniMenu.GetComponent<MiniMenu>().plantsNum += 1;
         _pl.GetComponent<PollinationLevel>().IncreasePollination();
+        print("Plant cloned and dummy destroyed: " + num);
     }
 }

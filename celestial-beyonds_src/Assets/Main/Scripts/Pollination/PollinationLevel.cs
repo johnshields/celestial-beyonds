@@ -60,6 +60,7 @@ public class PollinationLevel : MonoBehaviour
     public void IncreasePollination()
     {
         pollinationPercent += pollenIncrease;
+        print("PollinationLevel: " + pollinationPercent);
 
         if (pollinationPercent == maxPollination)
         {
