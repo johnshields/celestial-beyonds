@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PollinationLevel : MonoBehaviour
 {
     public int pollinationPercent, maxPollination = 100, pollenIncrease;
-    public TextMeshProUGUI _pollinationLevel;
+    public TextMeshProUGUI _pollinationLevel, _dOpt3;
     public GameObject levelCompleteUI, fader, pauseMenu, miniMenu;
     public bool levelCompleted;
     public AudioClip completeSFX;
@@ -52,6 +52,9 @@ public class PollinationLevel : MonoBehaviour
     {
         if (pollinationPercent <= maxPollination)
             _pollinationLevel.text = "POLLINATION: " + pollinationPercent + "%";
+
+        if (pollinationPercent == maxPollination)
+            _dOpt3.text = "The planet looks beautiful now!";
     }
 
     public void IncreasePollination()
