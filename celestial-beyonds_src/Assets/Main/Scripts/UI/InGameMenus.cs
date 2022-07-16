@@ -8,6 +8,8 @@ public class InGameMenus : MonoBehaviour
     private InputProfiler _controls;
     public GameObject pauseMenu, miniMenuPanel, fader, player, BtnGO, controlsPanel, muteBtn, unMuteBtn;
     public bool pausedActive, miniMenuActive, controlsMenu;
+    public AudioSource audioToPause;
+    public int audioPauseRequired;
 
     private void Awake()
     {
@@ -62,7 +64,9 @@ public class InGameMenus : MonoBehaviour
             pausedActive = true;
             pauseMenu.SetActive(true);
             print("Game paused...");
-            Time.timeScale = 0f;   
+            Time.timeScale = 0f;
+            if(audioPauseRequired != 0)
+                audioToPause.Pause();
         }
         else if (pausedActive)
         {
@@ -70,6 +74,8 @@ public class InGameMenus : MonoBehaviour
             pauseMenu.SetActive(false);
             print("Game paused...");
             Time.timeScale = 1f;
+            if(audioPauseRequired != 0)
+                audioToPause.UnPause();
         }
     }
 
@@ -82,6 +88,8 @@ public class InGameMenus : MonoBehaviour
             controlsPanel.SetActive(false);
             print("Game resumed...");
             Time.timeScale = 1f;
+            if(audioPauseRequired != 0)
+                audioToPause.UnPause();
         }
         else if (player.GetComponent<CaptainHealth>().gameOver)
         {
