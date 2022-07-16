@@ -762,7 +762,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a41d8250-4df2-4cea-9379-f03f5924e98a"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
