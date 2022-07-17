@@ -25,13 +25,13 @@ public class OpeningBox : MonoBehaviour
     private void OnEnable()
     {
         _controls.UIActions.PlayCinematic.started += PlayCinematic;
-        _controls.UIActions.PlayCinematic.Enable();
+        _controls.UIActions.Enable();
     }
 
     private void OnDisable()
     {
         _controls.UIActions.PlayCinematic.started -= PlayCinematic;
-        _controls.UIActions.PlayCinematic.Disable();
+        _controls.UIActions.Disable();
     }
 
     private void PlayCinematic(InputAction.CallbackContext obj)

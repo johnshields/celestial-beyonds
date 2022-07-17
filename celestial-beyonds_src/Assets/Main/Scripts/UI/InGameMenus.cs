@@ -72,6 +72,8 @@ public class InGameMenus : MonoBehaviour
         {
             pausedActive = false;
             pauseMenu.SetActive(false);
+            controlsMenu = false;
+            controlsPanel.SetActive(false);
             print("Game paused: " + pausedActive);
             Time.timeScale = 1f;
             if(audioPauseRequired != 0)
@@ -85,6 +87,7 @@ public class InGameMenus : MonoBehaviour
         {
             pausedActive = false;
             pauseMenu.SetActive(false);
+            controlsMenu = false;
             controlsPanel.SetActive(false);
             print("Game paused: " + pausedActive);
             Time.timeScale = 1f;

@@ -17,7 +17,7 @@ namespace Main.Scripts.Captain
         public void FootstepSounds()
         {
             var rb = _player.GetComponent<Rigidbody>();
-            if (rb.velocity.x != 0)
+            if (rb.velocity.x != 0 || rb.angularVelocity.y != 0 || !_player.GetComponent<Jetpack>().jetpackActive)
                 _audio.PlayOneShot(footsteps[Random.Range(0, footsteps.Length)], 0.1f);
         }
     }

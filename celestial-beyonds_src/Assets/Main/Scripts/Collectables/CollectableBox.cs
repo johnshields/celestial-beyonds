@@ -21,13 +21,14 @@ public class CollectableBox : MonoBehaviour
 
     public void IfCannon()
     {
-        StartCoroutine(DestroyBox());
+        AudioSource.PlayClipAtPoint(soundFX, transform.position, 0.15f);
+        Destroy(gameObject);
     }
     
     private IEnumerator DestroyBox()
     {
-        yield return new WaitForSeconds(.5f);
-        AudioSource.PlayClipAtPoint(soundFX, transform.position, 0.25f);
+        yield return new WaitForSeconds(.2f);
+        AudioSource.PlayClipAtPoint(soundFX, transform.position, 0.15f);
         Destroy(gameObject);
     }
 }

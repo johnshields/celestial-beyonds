@@ -23,7 +23,7 @@ namespace Main.Scripts.Captain
         private InputProfiler _controls;
         private int _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
         private GameObject _player, _footsteps, _scraper, _cannon, _pollinator;
-        private int _profile, _jump, _dodge, _armedActive, _shoot, _wShoot, _rShoot, _dead;
+        private int _profile, _jump, _dodge, _armedActive, _shoot, _rShoot, _dead;
         private Rigidbody _rb;
 
         private void Awake()
@@ -55,7 +55,6 @@ namespace Main.Scripts.Captain
             _dodge = Animator.StringToHash("Dodge");
             _armedActive = Animator.StringToHash("Armed");
             _shoot = Animator.StringToHash("Shoot");
-            _wShoot = Animator.StringToHash("W_Shoot");
             _rShoot = Animator.StringToHash("R_Shoot");
             _dead = Animator.StringToHash("Dead");
         }
@@ -276,7 +275,7 @@ namespace Main.Scripts.Captain
         private void AnimWeight()
         {
             if (!_armed) return;
-            _animator.SetLayerWeight(1, 1f);
+            _animator.SetLayerWeight(1, 1f); // Dodge
             _animator.SetLayerWeight(3, 0f);
             _animator.SetLayerWeight(4, 0f);
         }

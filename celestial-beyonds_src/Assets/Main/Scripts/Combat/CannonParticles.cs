@@ -19,12 +19,12 @@ public class CannonParticles : MonoBehaviour
         
         // To avoid conflict with calling SpiderWebs
         var spiderObjTxt = Regex.Replace(other.gameObject.name, "^[a-zA-Z]+$", "");
-        if (other.name == spiderObjTxt)
+        if (other.name == spiderObjTxt && other.gameObject.CompareTag("Enemy"))
         {
             var spiderBlood = "Enemies/Spiders/" + other.name + "/spider/BloodParticle";   
             GameObject.Find(spiderBlood).GetComponent<ParticleSystem>().Play();
         }
         else
-            print("Not a spider");
+            print("Not a spider.");
     }
 }

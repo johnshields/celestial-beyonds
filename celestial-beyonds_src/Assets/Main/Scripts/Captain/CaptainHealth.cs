@@ -25,6 +25,9 @@ public class CaptainHealth : MonoBehaviour
     private void Update()
     {
         _pHealthBarSlider.value = currentHealth;
+
+        if (currentHealth >= maxHealth)
+            currentHealth = 100;
     }
 
     public void PlayerTakeDamage(int amount)
@@ -51,10 +54,10 @@ public class CaptainHealth : MonoBehaviour
         yield return new WaitForSeconds(3f);
         gameOver = true;
         GameOverUI.SetActive(true);
-        // if (!_played)
-        // {
-        //     _audio.PlayOneShot(gameOverSFX, .2f);
-        //     _played = true;
-        // }
+        if (!_played)
+        {
+            //_audio.PlayOneShot(gameOverSFX, .2f); // terminated tagline
+            _played = true;
+        }
     }
 }

@@ -57,12 +57,16 @@ public class MainMenu : MonoBehaviour
     // ControllerInput
     private void StartGame(InputAction.CallbackContext obj)
     {
+        controlsMenu = false;
+        controlsPanel.SetActive(false);
         StartCoroutine(LaunchGame(1));
     }
     
     // MouseUI Input
     public void StartGameM()
     {
+        controlsMenu = false;
+        controlsPanel.SetActive(false);
         StartCoroutine(LaunchGame(1));
     }
 
