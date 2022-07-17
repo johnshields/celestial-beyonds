@@ -11,6 +11,7 @@ public class PollinationLevel : MonoBehaviour
     public GameObject levelCompleteUI, fader, pauseMenu, miniMenu;
     public bool levelCompleted;
     public AudioClip completeSFX;
+    public string planet;
     private InputProfiler _controls;
     private AudioSource _audio;
     private bool _open;
@@ -54,7 +55,7 @@ public class PollinationLevel : MonoBehaviour
             _pollinationLevel.text = "POLLINATION: " + pollinationPercent + "%";
 
         if (pollinationPercent == maxPollination)
-            _dOpt3.text = "The planet looks beautiful now!";
+            _dOpt3.text = planet + " looks beautiful now!";
     }
 
     public void IncreasePollination()

@@ -15,7 +15,7 @@ public class PollenCollider : MonoBehaviour
         var numberOnly = Regex.Replace(other.gameObject.name, "[^0-9]", "");
         var plantNum = int.Parse(numberOnly);
         print("Pollen hit plant: " + plantNum);
-        if (other.CompareTag("Plants"))
+        if (other.CompareTag("Plant"))
         {
             _plant.GetComponent<Plants>().Blossom(plantNum);
         }

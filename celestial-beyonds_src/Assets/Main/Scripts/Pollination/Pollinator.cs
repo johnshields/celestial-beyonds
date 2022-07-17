@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Pollinator : MonoBehaviour
 {
     public GameObject particles, pollenBar;
-    public int maxAmmo = 500;
+    public int maxAmmo = 150;
     public int pollenAmmo;
     private GameObject _player;
     private Slider _pollenBarSlider;
