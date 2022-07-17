@@ -73,12 +73,16 @@ public class Jetpack : MonoBehaviour
 
     private void JetpackActive(InputAction.CallbackContext obj)
     {
-        jetpackActive = true;
-        if (!_alreadyPlayed)
+        if (!jetpackActive && !_alreadyPlayed)
         {
+            jetpackActive = true;
             _jpAudio.PlayOneShot(jetpackSFX, 0.1f);
             _alreadyPlayed = true;
             StartCoroutine(ResetAudio());
+        }
+        else if (jetpackActive)
+        {
+            jetpackActive = false;
         }
     }
 
