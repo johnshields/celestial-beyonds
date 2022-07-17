@@ -23,7 +23,7 @@ namespace Main.Scripts.Captain
         private InputProfiler _controls;
         private int _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
         private GameObject _player, _footsteps, _scraper, _cannon, _pollinator;
-        private int _profile, _jump, _dodge, _armedActive, _shoot, _rShoot, _dead;
+        private int _profile, _jump, _armedJump, _dodge, _armedActive, _shoot, _rShoot, _dead;
         private Rigidbody _rb;
 
         private void Awake()
@@ -47,6 +47,7 @@ namespace Main.Scripts.Captain
 
             _profile = Animator.StringToHash("Profile");
             _jump = Animator.StringToHash("JumpActive");
+            _armedJump = Animator.StringToHash("ArmedJump");
             _melee0ne = Animator.StringToHash("Melee_1");
             _meleeTwo = Animator.StringToHash("Melee_2");
             _meleeThree = Animator.StringToHash("Melee_3");
@@ -113,12 +114,21 @@ namespace Main.Scripts.Captain
 
         private void Jump(InputAction.CallbackContext obj)
         {
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !GetComponent<Jetpack>().jetpackActive)
             {
-                if (!CaptainProfiler.grounded || (_actionDone && !GetComponent<Jetpack>().jetpackActive)) return;
-                _animator.SetTrigger(_jump);
-                _actionDone = true;
-                Invoke(nameof(ResetAction), delayAction);
+                if (CaptainProfiler.grounded && !_actionDone && !_armed)
+                {
+                    _animator.SetTrigger(_jump);
+                    _actionDone = true;
+                    Invoke(nameof(ResetAction), delayAction);   
+                }
+                else if (CaptainProfiler.grounded && !_actionDone && _armed)
+                {
+                    AnimWeight(1, .5f);
+                    _animator.SetTrigger(_armedJump);
+                    _actionDone = true;
+                    Invoke(nameof(ResetAction), 1.7f);   
+                }
             }
         }
 
@@ -233,7 +243,7 @@ namespace Main.Scripts.Captain
             if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !GetComponent<CaptainHealth>().capDead)
             {
                 if (_actionDone) return;
-                AnimWeight();
+                AnimWeight(1f, 0f);
                 _animator.SetTrigger(_dodge);
                 StartCoroutine(WaitToDodge());
                 _actionDone = true;
@@ -263,6 +273,7 @@ namespace Main.Scripts.Captain
                 _pollinator.GetComponent<Pollinator>().HaltPollinator();
                 pollenFire = false;
             }
+            ResetAnimWeight();
         }
 
         private IEnumerator WaitToDodge()
@@ -272,12 +283,12 @@ namespace Main.Scripts.Captain
             Invoke(nameof(ResetAnimWeight), delayAction);
         }
 
-        private void AnimWeight()
+        private void AnimWeight(float actions, float shoot)
         {
             if (!_armed) return;
-            _animator.SetLayerWeight(1, 1f); // Dodge
-            _animator.SetLayerWeight(3, 0f);
-            _animator.SetLayerWeight(4, 0f);
+            _animator.SetLayerWeight(1, actions); // Dodge
+            _animator.SetLayerWeight(3, shoot);
+            _animator.SetLayerWeight(4, shoot);
         }
 
 
