@@ -1,7 +1,7 @@
 using Main.Scripts.Enemies;
 using UnityEngine;
 
-public class ParticleCollider : MonoBehaviour
+public class CannonParticles : MonoBehaviour
 {
     private void OnParticleCollision(GameObject other)
     {
