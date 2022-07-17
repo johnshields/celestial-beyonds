@@ -7,11 +7,10 @@ using UnityEngine.UI;
 public class Jetpack : MonoBehaviour
 {
     public bool jetpackActive;
-    public float maxFuel = 4f, thrustForce = 0.3f;
+    public float maxFuel = 4f, thrustForce = 0.3f, currentFuel, resetTime = 4f;
     public Rigidbody _rb;
     public Transform groundedObj;
     public GameObject flames, fuelBar;
-    public float _currentFuel;
     public AudioClip jetpackSFX;
     public AudioSource _jpAudio;
     private bool _alreadyPlayed;
@@ -25,32 +24,32 @@ public class Jetpack : MonoBehaviour
 
     private void Start()
     {
-        _currentFuel = maxFuel;
+        currentFuel = maxFuel;
         _rb = GetComponent<Rigidbody>();
         _fuelBarSlider = fuelBar.GetComponent<Slider>();
     }
 
     private void Update()
     {
-        _fuelBarSlider.value = _currentFuel;
-        if (jetpackActive && _currentFuel > 0f)
+        _fuelBarSlider.value = currentFuel;
+        if (jetpackActive && currentFuel > 0f)
         {
             jetpackActive = true;
-            _currentFuel -= Time.deltaTime;
+            currentFuel -= Time.deltaTime;
             _rb.AddForce(_rb.transform.up * thrustForce, ForceMode.Impulse);
         }
         else if (Physics.Raycast(groundedObj.position, Vector3.down, 0.01f,
-                     LayerMask.GetMask("GroundedObject")) && _currentFuel < maxFuel)
+                     LayerMask.GetMask("GroundedObject")) && currentFuel < maxFuel)
         {
             jetpackActive = false;
-            if (_currentFuel < maxFuel)
-                _currentFuel += Time.deltaTime;
+            if (currentFuel < maxFuel)
+                currentFuel += Time.deltaTime;
         }
         else
         {
             jetpackActive = false;
-            if (_currentFuel < maxFuel)
-                _currentFuel += Time.deltaTime;
+            if (currentFuel < maxFuel)
+                currentFuel += Time.deltaTime;
         }
 
         flames.SetActive(jetpackActive);
@@ -83,12 +82,13 @@ public class Jetpack : MonoBehaviour
         else if (jetpackActive)
         {
             jetpackActive = false;
+            resetTime = 0f;
         }
     }
 
     private IEnumerator ResetAudio()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(resetTime);
         _alreadyPlayed = false;
     }
 }
