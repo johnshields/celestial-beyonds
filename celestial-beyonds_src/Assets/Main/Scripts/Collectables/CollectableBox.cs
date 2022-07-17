@@ -1,3 +1,4 @@
+using System.Collections;
 using Main.Scripts.Captain;
 using UnityEngine;
 
@@ -15,15 +16,18 @@ public class CollectableBox : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Scraper") && _player.GetComponent<CaptainAnimAndSound>().meleeActive)
-        {
-            AudioSource.PlayClipAtPoint(soundFX, transform.position, 0.25f);
-            Destroy(gameObject);
-        }
+            StartCoroutine(DestroyBox());
     }
 
     public void IfCannon()
     {
-        AudioSource.PlayClipAtPoint(soundFX, transform.position, 0.5f);
+        StartCoroutine(DestroyBox());
+    }
+    
+    private IEnumerator DestroyBox()
+    {
+        yield return new WaitForSeconds(.5f);
+        AudioSource.PlayClipAtPoint(soundFX, transform.position, 0.25f);
         Destroy(gameObject);
     }
 }
