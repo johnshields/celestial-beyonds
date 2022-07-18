@@ -1,4 +1,3 @@
-using System.Collections;
 using Main.Scripts.Moonbeam;
 using TMPro;
 using UnityEngine;
@@ -66,7 +65,6 @@ public class MoonbeamDialogue : MonoBehaviour
             if (!chatting && GetComponent<MoonbeamProfiler>().dialogueActive)
             {
                 OptsRandomizer();
-                _changed = false;
                 dialogueBoxes.SetActive(true);
                 chatting = true;
             }
@@ -170,15 +168,11 @@ public class MoonbeamDialogue : MonoBehaviour
         _responseText.GetComponent<TextMeshProUGUI>().text = response;
 
         if (_moonbeamAPI.GetComponent<MoonbeamAPI>().itIsAQuestion && !_changed)
-            StartCoroutine(ChangeOptOnGUI());
-    }
-
-    private IEnumerator ChangeOptOnGUI()
-    {
-        _changed = true;
-        yield return new WaitForSeconds(1.25f);
-        // Cap's feeling e.g. - "I'm good."
-        dialogueOptions[0].GetComponent<TextMeshProUGUI>().text = treeOpts[Random.Range(0, treeOpts.Length)];
+        {
+            // Cap's feeling e.g. - "I'm good."
+            dialogueOptions[0].GetComponent<TextMeshProUGUI>().text = treeOpts[Random.Range(0, treeOpts.Length)];
+            _changed = true;
+        }
     }
 
     private void ArtifactQOnes()
@@ -261,7 +255,7 @@ public class MoonbeamDialogue : MonoBehaviour
     private void ChangeDialogue(string userInput, int dNum)
     {
         whichDialogue = dNum;
-        print("User says: " + userInput + " dNum: " + dNum);
+        print("User says: " + userInput + "dNum: " + dNum);
         StartCoroutine(_moonbeamAPI.GetComponent<MoonbeamAPI>().PostRequest(_uri));
     }
 }

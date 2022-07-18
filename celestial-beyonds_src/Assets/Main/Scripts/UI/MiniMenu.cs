@@ -40,7 +40,7 @@ public class MiniMenu : MonoBehaviour
             allArtifacts = true;
             StartCoroutine(CloseActivePanel(1));
         }
-        else if (peridotsNum == 66 && !allPeridots)
+        else if (peridotsNum == 67 && !allPeridots)
         {
             allPeridots = true;
             StartCoroutine(CloseActivePanel(2));
