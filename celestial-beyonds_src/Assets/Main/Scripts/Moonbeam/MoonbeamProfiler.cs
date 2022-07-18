@@ -1,3 +1,6 @@
+using Main.Scripts.Captain;
+using Main.Scripts.Combat;
+using Main.Scripts.Enemies;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -15,20 +18,24 @@ namespace Main.Scripts.Moonbeam
 
         // states
         public float sightRange, followRange;
-        public bool playerInSightRange;
-        public bool playerInFollowRange;
+        public bool playerInSightRange, playerInFollowRange;
         private Transform _target;
 
         // follow
-        private bool _walkPointSet, _triggered;
+        private bool _walkPointSet, _triggered, _actionDone;
 
         // dialogue
         public GameObject mDialogueBtn;
         public bool dialogueActive;
+        
+        // AttackMode
+        private GameObject _player;
+        public float delayAction = 3f;
 
         private void Awake()
         {
             _target = GameObject.FindGameObjectWithTag("Target").transform;
+            _player = GameObject.FindGameObjectWithTag("Player");
             agent = GetComponent<NavMeshAgent>();
         }
 
@@ -41,8 +48,10 @@ namespace Main.Scripts.Moonbeam
             if (!playerInSightRange && !playerInFollowRange) Wander();
             if (playerInSightRange && !playerInFollowRange) Follow();
             if (playerInFollowRange && playerInSightRange) SideBySide();
-
+            
             transform.LookAt(_target);
+            
+            AttackMode();
         }
 
         private void Wander()
@@ -80,6 +89,25 @@ namespace Main.Scripts.Moonbeam
         private void SideBySide()
         {
             agent.SetDestination(transform.position);
+        }
+        
+        private void AttackMode()
+        {
+            if (_player.GetComponent<CaptainAnimAndSound>().meleeActive ||
+                _player.GetComponent<CaptainAnimAndSound>().cannonFire)
+            {
+                if (!_actionDone)
+                {
+                    print("Moonbeam in AttackMode!");
+                    GetComponentInChildren<Animator>().SetTrigger($"SpinAttack");
+                    Invoke(nameof(ResetAction), delayAction);
+                }   
+            }
+        }
+
+        private void ResetAction()
+        {
+            _actionDone = false;
         }
 
         private void OnTriggerEnter(Collider other)
