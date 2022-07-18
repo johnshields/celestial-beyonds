@@ -62,19 +62,30 @@ namespace Main.Scripts.Captain
 
         private void Update()
         {
+            // only animate if jetpack is not active (still passes through)
             if (!GetComponent<Jetpack>().jetpackActive)
                 _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
             else
                 _rb.angularVelocity = Vector3.zero;
 
+            // unarmed/armed status
             if (_unarmed)
                 _animator.SetBool(_armedActive, false);
             else if (_armed) _animator.SetBool(_armedActive, true);
 
+            // stop particles of the opposite gun.
             if (cannonFire)
                 _pollinator.GetComponent<Pollinator>().StopPollenParticles();
             else if (pollenFire)
                 _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
+            
+            // PauseMenu - false to melee, cannonFire and pollenFire
+            if (pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            {
+                meleeActive = false;
+                cannonFire = false;
+                pollenFire = false;
+            }
         }
 
         private void OnEnable()

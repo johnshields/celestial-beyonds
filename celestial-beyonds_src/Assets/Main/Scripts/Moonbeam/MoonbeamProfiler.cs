@@ -29,8 +29,8 @@ namespace Main.Scripts.Moonbeam
         public bool dialogueActive;
         
         // AttackMode
+        public float delayAction = 2f;
         private GameObject _player;
-        public float delayAction = 3f;
 
         private void Awake()
         {
@@ -96,8 +96,9 @@ namespace Main.Scripts.Moonbeam
             if (_player.GetComponent<CaptainAnimAndSound>().meleeActive ||
                 _player.GetComponent<CaptainAnimAndSound>().cannonFire)
             {
-                if (!_actionDone)
+                if (!_actionDone && !_player.GetComponent<CaptainHealth>().capDead)
                 {
+                    _actionDone = true;
                     print("Moonbeam in AttackMode!");
                     GetComponentInChildren<Animator>().SetTrigger($"SpinAttack");
                     Invoke(nameof(ResetAction), delayAction);
