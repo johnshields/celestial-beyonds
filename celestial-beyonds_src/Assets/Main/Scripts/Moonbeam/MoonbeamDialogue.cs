@@ -1,3 +1,4 @@
+using System.Collections;
 using Main.Scripts.Moonbeam;
 using TMPro;
 using UnityEngine;
@@ -10,9 +11,11 @@ public class MoonbeamDialogue : MonoBehaviour
     private InputProfiler _controls;
     public GameObject dialogueBoxes, dOptions, askPrompt, pauseMenu, dialogueColor;
     public GameObject[] aQsHolder, artifactQuestions, dialogueOptions;
+    public string[] gOptsOne, gOptsTwo, openingOpts, treeOpts;
     public string response;
     public int whichDialogue, artifactNum;
     public bool chatting, asking;
+    private bool _changed;
 
     private void Awake()
     {
@@ -44,9 +47,14 @@ public class MoonbeamDialogue : MonoBehaviour
         _controls.Profiler.Disable();
     }
 
-    private void OnGUI()
+    private void OptsRandomizer()
     {
-        _responseText.GetComponent<TextMeshProUGUI>().text = response;
+        // Cap asks Moonbeam e.g - "Hello", "How are you?"
+        dialogueOptions[0].GetComponent<TextMeshProUGUI>().text = openingOpts[Random.Range(0, openingOpts.Length)];
+
+        // General
+        dialogueOptions[1].GetComponent<TextMeshProUGUI>().text = gOptsOne[Random.Range(0, gOptsOne.Length)];
+        dialogueOptions[2].GetComponent<TextMeshProUGUI>().text = gOptsTwo[Random.Range(0, gOptsTwo.Length)];
     }
 
     // Key = T
@@ -57,6 +65,8 @@ public class MoonbeamDialogue : MonoBehaviour
             // General Dialogue
             if (!chatting && GetComponent<MoonbeamProfiler>().dialogueActive)
             {
+                OptsRandomizer();
+                _changed = false;
                 dialogueBoxes.SetActive(true);
                 chatting = true;
             }
@@ -155,6 +165,22 @@ public class MoonbeamDialogue : MonoBehaviour
         }
     }
 
+    private void OnGUI()
+    {
+        _responseText.GetComponent<TextMeshProUGUI>().text = response;
+
+        if (_moonbeamAPI.GetComponent<MoonbeamAPI>().itIsAQuestion && !_changed)
+            StartCoroutine(ChangeOptOnGUI());
+    }
+
+    private IEnumerator ChangeOptOnGUI()
+    {
+        _changed = true;
+        yield return new WaitForSeconds(1.25f);
+        // Cap's feeling e.g. - "I'm good."
+        dialogueOptions[0].GetComponent<TextMeshProUGUI>().text = treeOpts[Random.Range(0, treeOpts.Length)];
+    }
+
     private void ArtifactQOnes()
     {
         // different questions for different Artifacts.
@@ -235,7 +261,7 @@ public class MoonbeamDialogue : MonoBehaviour
     private void ChangeDialogue(string userInput, int dNum)
     {
         whichDialogue = dNum;
-        print("User says: " + userInput + "dNum: " + dNum);
+        print("User says: " + userInput + " dNum: " + dNum);
         StartCoroutine(_moonbeamAPI.GetComponent<MoonbeamAPI>().PostRequest(_uri));
     }
 }

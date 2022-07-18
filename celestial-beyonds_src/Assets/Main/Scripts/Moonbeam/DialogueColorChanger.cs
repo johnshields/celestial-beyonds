@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -15,14 +16,17 @@ public class DialogueColorChanger : MonoBehaviour
             case 100:
                 print("change" + whichOne);
                 DialogueUIHighlight(dialogueOpt, 0, 1, 2, _green, _white, _white);
+                StartCoroutine(ResetGeneralDColor());
                 break;
             case 101:
                 print("change" + whichOne);
                 DialogueUIHighlight(dialogueOpt, 0, 1, 2, _white, _green, _white);
+                StartCoroutine(ResetGeneralDColor());
                 break;
             case 102:
                 print("change" + whichOne);
                 DialogueUIHighlight(dialogueOpt, 0, 1, 2, _white, _white, _green);
+                StartCoroutine(ResetGeneralDColor());
                 break;
         }
 
@@ -137,5 +141,12 @@ public class DialogueColorChanger : MonoBehaviour
         opt[o0].GetComponent<TextMeshProUGUI>().color = c1;
         opt[o1].GetComponent<TextMeshProUGUI>().color = c2;
         opt[o2].GetComponent<TextMeshProUGUI>().color = c3;
+    }
+    
+
+    private IEnumerator ResetGeneralDColor()
+    {
+        yield return new WaitForSeconds(1f);
+        DialogueUIHighlight(dialogueOpt, 0, 1, 2, _white, _white, _white);
     }
 }

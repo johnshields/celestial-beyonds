@@ -5,11 +5,12 @@ using UnityEngine.Networking;
 
 public class MoonbeamAPI : MonoBehaviour
 {
+    private AudioSource _audio;
+    private string _response;
     private const string _uri = "https://api.moonbeambot.live/api/chat";
     private GameObject _mb;
     public AudioClip[] moonbeamVoice;
-    private AudioSource _audio;
-    private string _response;
+    public bool itIsAQuestion;
 
     private void Awake()
     {
@@ -53,6 +54,7 @@ public class MoonbeamAPI : MonoBehaviour
             print("Moonbeam says: " + webRequest.downloadHandler.text);
             _response = webRequest.downloadHandler.text;
             _mb.GetComponent<MoonbeamDialogue>().response = _response;
+            IsItAQuestion();
             PlayVoice();
         }
     }
@@ -61,5 +63,22 @@ public class MoonbeamAPI : MonoBehaviour
     {
         _audio.Stop();
         _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
+    }
+
+    private void IsItAQuestion()
+    {
+        // see if it's a "you?" question
+        var words = _response.Split(' ');
+        var lastWord = words[words.Length - 1];
+        if (lastWord == "you?" || lastWord == "You?")
+        {
+            itIsAQuestion = true;
+            print("itIsAQuestion: " + itIsAQuestion + "Moonbeam asked: " + lastWord);
+        }
+        else
+        {
+            itIsAQuestion = false;
+            print("itIsAQuestion: " + itIsAQuestion);
+        }
     }
 }
