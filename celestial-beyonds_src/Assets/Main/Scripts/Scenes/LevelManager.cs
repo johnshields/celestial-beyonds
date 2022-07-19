@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public GameObject enemies, fader, skipBtn;
+    public AudioSource cutSceneAudio;
     public int time, skipInit, enemiesInit, fadeInit;
-    public bool enableSkip, skip;
+    public bool enableSkip, skip, sceneAudioInit;
     private InputProfiler _controls;
 
     private void Awake()
@@ -88,6 +89,8 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            if(sceneAudioInit)
+                cutSceneAudio.Stop();
             fader.GetComponent<Animator>().SetBool($"FadeIn", false);
             fader.GetComponent<Animator>().SetBool($"FadeOut", true);
             yield return new WaitForSeconds(4);

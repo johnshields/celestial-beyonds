@@ -6,6 +6,9 @@ using UnityEngine.Playables;
 public class SyncCinematic : MonoBehaviour
 {
     public GameObject musicAudio, timeline, continueBtn, mainTitle;
+    public AudioSource cutSceneAudio;
+    public bool cinStarted;
+    public bool sceneAudioInit;
     private InputProfiler _controls;
     private bool _played;
 
@@ -35,10 +38,14 @@ public class SyncCinematic : MonoBehaviour
 
     private void SyncCinAndMusic()
     {
+        cinStarted = true;
         _played = true;
         continueBtn.SetActive(false);
         timeline.GetComponent<PlayableDirector>().Play();
         musicAudio.GetComponent<AudioSource>().Play();
+        if(sceneAudioInit)
+            cutSceneAudio.Play();
+        
         mainTitle.SetActive(true);
     }
 
