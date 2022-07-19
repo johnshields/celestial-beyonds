@@ -100,15 +100,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Skip"",
-                    ""type"": ""Button"",
-                    ""id"": ""9053d697-3bcf-4b26-850c-a5636dc692d3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""JetPack"",
                     ""type"": ""Button"",
                     ""id"": ""dc6a6fa0-90a0-4213-b617-3c464c14f180"",
@@ -184,6 +175,24 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""name"": ""CloseDialogue"",
                     ""type"": ""Button"",
                     ""id"": ""3b951d3c-7090-46db-a2e0-f3ba9de0f604"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnableSkip"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3a804c7-9da0-424b-b2eb-158a94d50e75"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""9053d697-3bcf-4b26-850c-a5636dc692d3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -446,28 +455,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c5261529-de21-4e99-aa67-3d6ad458ffa1"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ed173062-3a2a-4a48-b974-4ecb2ba42099"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""2ffcee18-7828-4cf8-8362-7b9fb10ec970"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
@@ -661,6 +648,39 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CloseDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5261529-de21-4e99-aa67-3d6ad458ffa1"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed173062-3a2a-4a48-b974-4ecb2ba42099"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""390a0887-178b-47df-a184-42d9ae14173e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnableSkip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1178,7 +1198,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_Dodge = m_Profiler.FindAction("Dodge", throwIfNotFound: true);
         m_Profiler_Shoot = m_Profiler.FindAction("Shoot", throwIfNotFound: true);
         m_Profiler_Unarmed = m_Profiler.FindAction("Unarmed", throwIfNotFound: true);
-        m_Profiler_Skip = m_Profiler.FindAction("Skip", throwIfNotFound: true);
         m_Profiler_JetPack = m_Profiler.FindAction("JetPack", throwIfNotFound: true);
         m_Profiler_TalkArgyle = m_Profiler.FindAction("TalkArgyle", throwIfNotFound: true);
         m_Profiler_Pollinate = m_Profiler.FindAction("Pollinate", throwIfNotFound: true);
@@ -1188,6 +1207,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_ActivateDialogue = m_Profiler.FindAction("ActivateDialogue", throwIfNotFound: true);
         m_Profiler_AskMoonbeam = m_Profiler.FindAction("AskMoonbeam", throwIfNotFound: true);
         m_Profiler_CloseDialogue = m_Profiler.FindAction("CloseDialogue", throwIfNotFound: true);
+        m_Profiler_EnableSkip = m_Profiler.FindAction("EnableSkip", throwIfNotFound: true);
+        m_Profiler_Skip = m_Profiler.FindAction("Skip", throwIfNotFound: true);
         // InGameUI
         m_InGameUI = asset.FindActionMap("InGameUI", throwIfNotFound: true);
         m_InGameUI_OpenLevelCompleteUI = m_InGameUI.FindAction("OpenLevelCompleteUI", throwIfNotFound: true);
@@ -1276,7 +1297,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_Dodge;
     private readonly InputAction m_Profiler_Shoot;
     private readonly InputAction m_Profiler_Unarmed;
-    private readonly InputAction m_Profiler_Skip;
     private readonly InputAction m_Profiler_JetPack;
     private readonly InputAction m_Profiler_TalkArgyle;
     private readonly InputAction m_Profiler_Pollinate;
@@ -1286,6 +1306,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_ActivateDialogue;
     private readonly InputAction m_Profiler_AskMoonbeam;
     private readonly InputAction m_Profiler_CloseDialogue;
+    private readonly InputAction m_Profiler_EnableSkip;
+    private readonly InputAction m_Profiler_Skip;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
@@ -1298,7 +1320,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Dodge => m_Wrapper.m_Profiler_Dodge;
         public InputAction @Shoot => m_Wrapper.m_Profiler_Shoot;
         public InputAction @Unarmed => m_Wrapper.m_Profiler_Unarmed;
-        public InputAction @Skip => m_Wrapper.m_Profiler_Skip;
         public InputAction @JetPack => m_Wrapper.m_Profiler_JetPack;
         public InputAction @TalkArgyle => m_Wrapper.m_Profiler_TalkArgyle;
         public InputAction @Pollinate => m_Wrapper.m_Profiler_Pollinate;
@@ -1308,6 +1329,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @ActivateDialogue => m_Wrapper.m_Profiler_ActivateDialogue;
         public InputAction @AskMoonbeam => m_Wrapper.m_Profiler_AskMoonbeam;
         public InputAction @CloseDialogue => m_Wrapper.m_Profiler_CloseDialogue;
+        public InputAction @EnableSkip => m_Wrapper.m_Profiler_EnableSkip;
+        public InputAction @Skip => m_Wrapper.m_Profiler_Skip;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1341,9 +1364,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Unarmed.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUnarmed;
                 @Unarmed.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUnarmed;
                 @Unarmed.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUnarmed;
-                @Skip.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
-                @Skip.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
-                @Skip.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
                 @JetPack.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJetPack;
                 @JetPack.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJetPack;
                 @JetPack.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJetPack;
@@ -1371,6 +1391,12 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @CloseDialogue.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
                 @CloseDialogue.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
                 @CloseDialogue.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
+                @EnableSkip.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnEnableSkip;
+                @EnableSkip.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnEnableSkip;
+                @EnableSkip.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnEnableSkip;
+                @Skip.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
+                @Skip.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
+                @Skip.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1399,9 +1425,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Unarmed.started += instance.OnUnarmed;
                 @Unarmed.performed += instance.OnUnarmed;
                 @Unarmed.canceled += instance.OnUnarmed;
-                @Skip.started += instance.OnSkip;
-                @Skip.performed += instance.OnSkip;
-                @Skip.canceled += instance.OnSkip;
                 @JetPack.started += instance.OnJetPack;
                 @JetPack.performed += instance.OnJetPack;
                 @JetPack.canceled += instance.OnJetPack;
@@ -1429,6 +1452,12 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @CloseDialogue.started += instance.OnCloseDialogue;
                 @CloseDialogue.performed += instance.OnCloseDialogue;
                 @CloseDialogue.canceled += instance.OnCloseDialogue;
+                @EnableSkip.started += instance.OnEnableSkip;
+                @EnableSkip.performed += instance.OnEnableSkip;
+                @EnableSkip.canceled += instance.OnEnableSkip;
+                @Skip.started += instance.OnSkip;
+                @Skip.performed += instance.OnSkip;
+                @Skip.canceled += instance.OnSkip;
             }
         }
     }
@@ -1629,7 +1658,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnUnarmed(InputAction.CallbackContext context);
-        void OnSkip(InputAction.CallbackContext context);
         void OnJetPack(InputAction.CallbackContext context);
         void OnTalkArgyle(InputAction.CallbackContext context);
         void OnPollinate(InputAction.CallbackContext context);
@@ -1639,6 +1667,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnActivateDialogue(InputAction.CallbackContext context);
         void OnAskMoonbeam(InputAction.CallbackContext context);
         void OnCloseDialogue(InputAction.CallbackContext context);
+        void OnEnableSkip(InputAction.CallbackContext context);
+        void OnSkip(InputAction.CallbackContext context);
     }
     public interface IInGameUIActions
     {

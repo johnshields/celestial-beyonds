@@ -78,15 +78,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Skip",
-                    "type": "Button",
-                    "id": "9053d697-3bcf-4b26-850c-a5636dc692d3",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "JetPack",
                     "type": "Button",
                     "id": "dc6a6fa0-90a0-4213-b617-3c464c14f180",
@@ -162,6 +153,24 @@
                     "name": "CloseDialogue",
                     "type": "Button",
                     "id": "3b951d3c-7090-46db-a2e0-f3ba9de0f604",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EnableSkip",
+                    "type": "Button",
+                    "id": "c3a804c7-9da0-424b-b2eb-158a94d50e75",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Skip",
+                    "type": "Button",
+                    "id": "9053d697-3bcf-4b26-850c-a5636dc692d3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -424,28 +433,6 @@
                 },
                 {
                     "name": "",
-                    "id": "c5261529-de21-4e99-aa67-3d6ad458ffa1",
-                    "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Skip",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ed173062-3a2a-4a48-b974-4ecb2ba42099",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Skip",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "2ffcee18-7828-4cf8-8362-7b9fb10ec970",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
@@ -639,6 +626,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "CloseDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5261529-de21-4e99-aa67-3d6ad458ffa1",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed173062-3a2a-4a48-b974-4ecb2ba42099",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "390a0887-178b-47df-a184-42d9ae14173e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EnableSkip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

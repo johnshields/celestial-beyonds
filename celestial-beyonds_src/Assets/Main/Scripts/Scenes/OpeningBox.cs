@@ -1,60 +1,19 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.Video;
 
 public class OpeningBox : MonoBehaviour
 {
-    public GameObject musicAudio, video;
+    public GameObject musicAudio;
     public float syncTime = 0.4f;
-    public GameObject _fader, cinControls;
-    private InputProfiler _controls;
 
     private void Awake()
     {
-        Time.timeScale = 0;
-        _controls = new InputProfiler();
+        StartCoroutine(SyncMusic());
     }
 
-    private void Start()
+    private IEnumerator SyncMusic()
     {
-        StartCoroutine(OpeningOver());
-    }
-
-    private void OnEnable()
-    {
-        _controls.UIActions.PlayCinematic.started += PlayCinematic;
-        _controls.UIActions.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _controls.UIActions.PlayCinematic.started -= PlayCinematic;
-        _controls.UIActions.Disable();
-    }
-
-    private void PlayCinematic(InputAction.CallbackContext obj)
-    {
-        Time.timeScale = 1;
-        cinControls.SetActive(false);
-        StartCoroutine(SyncCin());
-    }
-
-    private IEnumerator SyncCin()
-    {
-        video.GetComponent<VideoPlayer>().Play();
         yield return new WaitForSeconds(syncTime);
         musicAudio.GetComponent<AudioSource>().Play();
-    }
-
-
-    private IEnumerator OpeningOver()
-    {
-        yield return new WaitForSeconds(136f); // length of opening
-        video.GetComponent<VideoPlayer>().Stop();
-        _fader.GetComponent<Animator>().SetBool("FadeIn", false);
-        _fader.GetComponent<Animator>().SetBool("FadeOut", true);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,22 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject enemies, fader;
-    public int time, skipInit;
-    public bool skip;
+    public GameObject enemies, fader, skipBtn;
+    public int time, skipInit, enemiesInit, fadeInit;
+    public bool enableSkip, skip;
     private InputProfiler _controls;
 
     private void Awake()
     {
         _controls = new InputProfiler();
-        StartCoroutine(SetActiveObjects());
+        if(enemiesInit == 0)
+            StartCoroutine(SetActiveObjects());
     }
 
     private void Start()
     {
-        fader.GetComponent<Animator>().SetBool("FadeIn", true);
-        fader.GetComponent<Animator>().SetBool("FadeOut", false);
-        
+        if (fadeInit == 0)
+        {
+            fader.GetComponent<Animator>().SetBool("FadeIn", true);
+            fader.GetComponent<Animator>().SetBool("FadeOut", false);   
+        }
+
         if (time != 0)
             StartCoroutine(FadeSceneOut());
     }
@@ -29,22 +32,41 @@ public class LevelManager : MonoBehaviour
     private void OnEnable()
     {
         _controls.Profiler.Skip.started += SkipScene;
+        _controls.Profiler.EnableSkip.started += EnableSkip;
         _controls.Profiler.Enable();
     }
 
     private void OnDisable()
     {
         _controls.Profiler.Skip.started -= SkipScene;
+        _controls.Profiler.EnableSkip.started -= EnableSkip;
         _controls.Profiler.Disable();
+    }
+
+    private void EnableSkip(InputAction.CallbackContext obj)
+    {
+        if (skipInit != 0 && !enableSkip)
+        {
+            enableSkip = true;
+            skipBtn.SetActive(true);
+            StartCoroutine(DisableSkip());
+        }
     }
 
     private void SkipScene(InputAction.CallbackContext obj)
     {
-        if (!skip && skipInit != 0)
+        if (!skip && skipInit != 0 && enableSkip)
         {
             skip = true;
             StartCoroutine(FadeSceneOut());
         }
+    }
+
+    private IEnumerator DisableSkip()
+    {
+        yield return new WaitForSeconds(5f);
+        enableSkip = false;
+        skipBtn.SetActive(false);
     }
 
     private IEnumerator SetActiveObjects()
