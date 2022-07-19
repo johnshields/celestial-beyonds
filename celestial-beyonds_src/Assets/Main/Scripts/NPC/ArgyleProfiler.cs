@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ArgyleProfiler : MonoBehaviour
 {
-    public GameObject stationUI, peridotCounterUI, pollenMeter, pollinator, pauseMenu, pollenBar;
+    public GameObject stationUI, peridotCounterUI, pollenMeter, pollinator, pauseMenu, ammo;
     public float delayAction = 1f;
     public AudioClip[] argyleHellos, argyleByes, argyleFeelings, argyleSales, argyleNoSales;
     public AudioClip sale, noSale;
@@ -89,14 +89,14 @@ public class ArgyleProfiler : MonoBehaviour
         if (_saleActive && !pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
             // only sell player pollen if they do not have maxAmmo or no peridots.
-            if (pollinator.GetComponent<Pollinator>().pollenAmmo != pollinator.GetComponent<Pollinator>().maxAmmo &&
+            if (ammo.GetComponent<PollinatorAmmo>().pollenAmmo != ammo.GetComponent<PollinatorAmmo>().maxAmmo &&
                 _peridotCounter.GetComponent<PeridotCounter>().peridots != 0)
             {
                 print("Pollen sold");
                 _audio.Stop();
                 _audio.PlayOneShot(argyleSales[Random.Range(0, argyleSales.Length)]);
                 _audio.PlayOneShot(sale, 0.1f);
-                pollinator.GetComponent<Pollinator>().FillUpPollen(10);
+                ammo.GetComponent<PollinatorAmmo>().FillUpPollen(10);
                 _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(1);
                 SwitchAnim();
             }
@@ -111,7 +111,7 @@ public class ArgyleProfiler : MonoBehaviour
                 StartCoroutine(ResetCounterColor(0));
             }
             // decline sale if pollen is full + flash pollenMeter.
-            else if (pollinator.GetComponent<Pollinator>().pollenAmmo == pollinator.GetComponent<Pollinator>().maxAmmo)
+            else if (ammo.GetComponent<PollinatorAmmo>().pollenAmmo == ammo.GetComponent<PollinatorAmmo>().maxAmmo)
             {
                 print("pollen full");
                 _audio.Stop();

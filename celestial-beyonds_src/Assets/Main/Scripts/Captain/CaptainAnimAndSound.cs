@@ -15,7 +15,7 @@ namespace Main.Scripts.Captain
         public AudioClip[] meleeSFX;
         public AudioClip cannonSFX, pollenSFX, capScreamSFX;
         public float delayAction = 1f, dodge;
-        public GameObject pollenMeter, pauseMenu;
+        public GameObject pollenMeter, pauseMenu, ammo;
         public bool meleeActive, cannonFire, pollenFire;
         private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
@@ -222,7 +222,7 @@ namespace Main.Scripts.Captain
                 {
                     WeaponSelect(false, false, true);
                     PlayerState(false, true);
-                    if (_pollinator.GetComponent<Pollinator>().pollenAmmo >= 0)
+                    if (ammo.GetComponent<PollinatorAmmo>().pollenAmmo >= 0)
                     {
                         pollenFire = true;
                         if (!_actionDone && _armed)

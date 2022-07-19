@@ -9,7 +9,7 @@ public class PollinationLevel : MonoBehaviour
     public int pollinationPercent, maxPollination = 100, pollenIncrease;
     public TextMeshProUGUI _pollinationLevel, _dOpt3;
     public GameObject levelCompleteUI, fader, pauseMenu, miniMenu;
-    public bool levelCompleted;
+    public bool levelCompleted, lvlCompLine, lineChanged;
     public AudioClip completeSFX;
     public string planet;
     private InputProfiler _controls;
@@ -56,8 +56,11 @@ public class PollinationLevel : MonoBehaviour
         if (pollinationPercent <= maxPollination)
             _pollinationLevel.text = "POLLINATION: " + pollinationPercent + "%";
 
-        if (pollinationPercent == maxPollination)
+        if (pollinationPercent == maxPollination && !lvlCompLine)
+        {
             _dOpt3.text = planet + " looks beautiful now!";
+            lineChanged = true;
+        }
     }
 
     public void IncreasePollination()

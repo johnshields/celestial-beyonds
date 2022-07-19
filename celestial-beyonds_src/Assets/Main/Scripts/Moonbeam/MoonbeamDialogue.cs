@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class MoonbeamDialogue : MonoBehaviour
 {
     private const string _uri = "https://api.moonbeambot.live/api/chat";
-    private GameObject _responseText, _moonbeamAPI;
+    private GameObject _responseText, _moonbeamAPI, _pl;
     private InputProfiler _controls;
     public GameObject dialogueBoxes, dOptions, askPrompt, pauseMenu, dialogueColor;
     public GameObject[] aQsHolder, artifactQuestions, dialogueOptions;
@@ -23,6 +23,7 @@ public class MoonbeamDialogue : MonoBehaviour
         _controls = new InputProfiler();
         _responseText = GameObject.FindGameObjectWithTag("ResponseText");
         _moonbeamAPI = GameObject.FindGameObjectWithTag("MoonbeamAPI");
+        _pl = GameObject.FindGameObjectWithTag("PollinationLevel");
     }
 
     private void OnEnable()
@@ -156,6 +157,8 @@ public class MoonbeamDialogue : MonoBehaviour
             {
                 ChangeDialogue(dialogueOptions[2].GetComponent<TextMeshProUGUI>().text, 102);
                 dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(102);
+                if (_pl.GetComponent<PollinationLevel>().lineChanged)
+                    _pl.GetComponent<PollinationLevel>().lvlCompLine = true;
             }
             else if (!chatting && asking)
             {
@@ -171,7 +174,6 @@ public class MoonbeamDialogue : MonoBehaviour
 
         if (_moonbeamAPI.GetComponent<MoonbeamAPI>().itIsAQuestion && !_changed)
             StartCoroutine(ChangeOptOnGUI());
-        
     }
 
     private IEnumerator ChangeOptOnGUI()

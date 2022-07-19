@@ -1,38 +1,22 @@
 using System.Collections;
 using Main.Scripts.Captain;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Pollinator : MonoBehaviour
 {
-    public GameObject particles, pollenBar;
-    public int maxAmmo = 150;
-    public int pollenAmmo;
+    public GameObject particles, ammo;
     private GameObject _player;
-    private Slider _pollenBarSlider;
     private int status;
 
     private void Start()
     {
-        pollenAmmo = maxAmmo;
-        _pollenBarSlider = pollenBar.GetComponent<Slider>();
         _player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    private void Update()
-    {
-        _pollenBarSlider.value = pollenAmmo;
-    }
-
-    public void FillUpPollen(int amount)
-    {
-        pollenAmmo += amount;
-    }
-
+    
     public void FirePollinator()
     {
         status = 0;
-        pollenAmmo -= 10;
+        ammo.GetComponent<PollinatorAmmo>().pollenAmmo -= 10;
         StartCoroutine(PollinatorWait());
     }
 
