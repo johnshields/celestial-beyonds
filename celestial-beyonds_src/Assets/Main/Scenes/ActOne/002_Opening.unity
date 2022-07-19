@@ -1439,12 +1439,14 @@ MonoBehaviour:
   enemies: {fileID: 0}
   fader: {fileID: 1622611982}
   skipBtn: {fileID: 452578066}
+  cutSceneAudio: {fileID: 0}
   time: 130
   skipInit: 1
   enemiesInit: 1
   fadeInit: 0
   enableSkip: 0
   skip: 0
+  sceneAudioInit: 0
 --- !u!1 &427609726
 GameObject:
   m_ObjectHideFlags: 0
@@ -4157,6 +4159,9 @@ MonoBehaviour:
   timeline: {fileID: 216703338}
   continueBtn: {fileID: 664683363682232118}
   mainTitle: {fileID: 1027144997}
+  cutSceneAudio: {fileID: 0}
+  cinStarted: 0
+  sceneAudioInit: 0
 --- !u!1 &1735343847
 GameObject:
   m_ObjectHideFlags: 0

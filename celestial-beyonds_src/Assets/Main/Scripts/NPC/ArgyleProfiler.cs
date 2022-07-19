@@ -1,12 +1,11 @@
 using System.Collections;
-using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ArgyleProfiler : MonoBehaviour
 {
-    public GameObject stationUI, peridotCounterUI, pollenMeter, pollinator, pauseMenu, ammo;
+    public GameObject stationUI, peridotCounterUI, pollenMeter, pauseMenu, ammo;
     public float delayAction = 1f;
     public AudioClip[] argyleHellos, argyleByes, argyleFeelings, argyleSales, argyleNoSales;
     public AudioClip sale, noSale;
