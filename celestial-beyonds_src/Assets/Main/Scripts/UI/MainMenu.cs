@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject fader, controlsPanel, muteBtn, unMuteBtn;
+    public GameObject fader, controlsPanel, creditsPanel, muteBtn, unMuteBtn;
     private InputProfiler _controls;
-    public bool controlsMenu;
+    public bool controlsMenu, creditsRolling;
 
     private void Awake()
     {
@@ -28,8 +28,8 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        fader.GetComponent<Animator>().SetBool("FadeIn", true);
-        fader.GetComponent<Animator>().SetBool("FadeOut", false);
+        fader.GetComponent<Animator>().SetBool($"FadeIn", true);
+        fader.GetComponent<Animator>().SetBool($"FadeOut", false);
     }
 
     private void OnEnable()
@@ -39,7 +39,8 @@ public class MainMenu : MonoBehaviour
         _controls.UIActions.Back.started += BackBtn;
         _controls.UIActions.Mute.started += MuteGame;
         _controls.UIActions.UnMute.started += UnMuteGame;
-        _controls.UIActions.QuitGame.started -= QuitGame;
+        _controls.UIActions.Credits.started += RollCredits;
+        _controls.UIActions.QuitGame.started += QuitGame;
         _controls.UIActions.Enable();
     }
 
@@ -48,8 +49,9 @@ public class MainMenu : MonoBehaviour
         _controls.UIActions.StartGame.started -= StartGame;
         _controls.UIActions.Controls.started -= CtrlsMenu;
         _controls.UIActions.Back.started -= BackBtn;
-        _controls.UIActions.Mute.started += MuteGame;
-        _controls.UIActions.UnMute.started += UnMuteGame;
+        _controls.UIActions.Mute.started -= MuteGame;
+        _controls.UIActions.UnMute.started -= UnMuteGame;
+        _controls.UIActions.Credits.started -= RollCredits;
         _controls.UIActions.QuitGame.started -= QuitGame;
         _controls.UIActions.Disable();
     }
@@ -77,6 +79,20 @@ public class MainMenu : MonoBehaviour
             print("Controls menu active:" + controlsMenu);
             controlsMenu = true;
             controlsPanel.SetActive(true);
+        }
+    }
+    
+    private void RollCredits(InputAction.CallbackContext obj)
+    {
+        if (!creditsRolling)
+        {
+            creditsRolling = true;
+            creditsPanel.SetActive(true);
+        }
+        else if (creditsRolling)
+        {
+            creditsRolling = false;
+            creditsPanel.SetActive(false);
         }
     }
 

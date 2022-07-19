@@ -39,6 +39,7 @@ public class PollinationLevel : MonoBehaviour
     {
         _controls.InGameUI.LoadNextPlanet.started += LoadNextPlanet;
         _controls.InGameUI.OpenLevelCompleteUI.started += OpenLevelCompUI;
+        _controls.InGameUI.LoadMainMenu.started += LoadMainMenu;
         _controls.InGameUI.Enable();
     }
 
@@ -46,6 +47,7 @@ public class PollinationLevel : MonoBehaviour
     {
         _controls.InGameUI.LoadNextPlanet.started += LoadNextPlanet;
         _controls.InGameUI.OpenLevelCompleteUI.started += OpenLevelCompUI;
+        _controls.InGameUI.LoadMainMenu.started -= LoadMainMenu;
         _controls.InGameUI.Disable();
     }
 
@@ -106,11 +108,22 @@ public class PollinationLevel : MonoBehaviour
         _audio.PlayOneShot(completeSFX);
     }
 
-    private IEnumerator LoadNextScene()
+    private void LoadMainMenu(InputAction.CallbackContext obj)
     {
-        fader.GetComponent<Animator>().SetBool("FadeIn", true);
-        fader.GetComponent<Animator>().SetBool("FadeOut", false);
+        if (levelCompleteUI.activeInHierarchy)
+        {
+            print("Loading MainMenu...");
+            StartCoroutine(GoLoadLevel(0));   
+        }
+    }
+
+    private IEnumerator GoLoadLevel(int level)
+    {
+        levelCompleteUI.SetActive(false);
+        print("Loading into: " + level);
+        fader.GetComponent<Animator>().SetBool($"FadeIn", false);
+        fader.GetComponent<Animator>().SetBool($"FadeOut", true);
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(level);
     }
 }

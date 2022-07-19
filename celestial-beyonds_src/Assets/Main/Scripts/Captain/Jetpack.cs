@@ -34,6 +34,7 @@ public class Jetpack : MonoBehaviour
         _fuelBarSlider.value = currentFuel;
         if (jetpackActive && currentFuel > 0f)
         {
+            GetComponent<CaptainProfiler>().grounded = false;
             jetpackActive = true;
             currentFuel -= Time.deltaTime;
             _rb.AddForce(_rb.transform.up * thrustForce, ForceMode.Impulse);

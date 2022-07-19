@@ -127,13 +127,13 @@ namespace Main.Scripts.Captain
         {
             if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !GetComponent<Jetpack>().jetpackActive)
             {
-                if (CaptainProfiler.grounded && !_actionDone && !_armed)
+                if (GetComponent<CaptainProfiler>().grounded && !_actionDone && !_armed)
                 {
                     _animator.SetTrigger(_jump);
                     _actionDone = true;
                     Invoke(nameof(ResetAction), delayAction);   
                 }
-                else if (CaptainProfiler.grounded && !_actionDone && _armed)
+                else if (GetComponent<CaptainProfiler>().grounded && !_actionDone && _armed)
                 {
                     AnimWeight(1, .5f);
                     _animator.SetTrigger(_armedJump);

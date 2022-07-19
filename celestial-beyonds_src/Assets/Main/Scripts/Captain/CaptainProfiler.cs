@@ -6,7 +6,7 @@ namespace Main.Scripts.Captain
 {
     public class CaptainProfiler : MonoBehaviour
     {
-        public static bool grounded;
+        public bool grounded;
         public float movementForce = 1f, jumpForce = 5f, maxSpeed = 5f;
 
         public Camera playerCam;
@@ -26,6 +26,7 @@ namespace Main.Scripts.Captain
         {
             _rb = GetComponent<Rigidbody>();
             _controls = new InputProfiler();
+            grounded = true;
         }
 
         private void FixedUpdate()
