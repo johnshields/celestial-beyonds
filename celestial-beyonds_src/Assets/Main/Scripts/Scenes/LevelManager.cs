@@ -21,8 +21,8 @@ public class LevelManager : MonoBehaviour
     {
         if (fadeInit == 0)
         {
-            fader.GetComponent<Animator>().SetBool("FadeIn", true);
-            fader.GetComponent<Animator>().SetBool("FadeOut", false);   
+            fader.GetComponent<Animator>().SetBool($"FadeIn", true);
+            fader.GetComponent<Animator>().SetBool($"FadeOut", false);   
         }
 
         if (time != 0)
@@ -58,6 +58,7 @@ public class LevelManager : MonoBehaviour
         if (!skip && skipInit != 0 && enableSkip)
         {
             skip = true;
+            skipBtn.SetActive(false);
             StartCoroutine(FadeSceneOut());
         }
     }
@@ -82,14 +83,14 @@ public class LevelManager : MonoBehaviour
             yield return new WaitForSeconds(time);
             fader.GetComponent<Animator>().SetBool($"FadeIn", false);
             fader.GetComponent<Animator>().SetBool($"FadeOut", true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(4);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
             fader.GetComponent<Animator>().SetBool($"FadeIn", false);
             fader.GetComponent<Animator>().SetBool($"FadeOut", true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(4);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

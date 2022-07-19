@@ -64,19 +64,33 @@ public class CinematicPause : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
+    
+    private void MuteGame(InputAction.CallbackContext obj)
+    {
+        if (pausedCinActive)
+        {
+            print("Mute Active: " +  Booleans.muteActive);
+            Booleans.muteActive = true;
+            muteBtn.SetActive(false);
+            unMuteBtn.SetActive(true);
+            AudioManager.MuteActive();   
+        }
+    }
+    
+    private void UnMuteGame(InputAction.CallbackContext obj)
+    {
+        if (pausedCinActive)
+        {
+            print("Mute Active: " +  Booleans.muteActive);
+            Booleans.muteActive = false;
+            muteBtn.SetActive(true);
+            unMuteBtn.SetActive(false);
+            AudioManager.MuteActive();   
+        }
+    }
 
     private void LoadMainMenu(InputAction.CallbackContext obj)
     {
         print("LoadMainMenu");
-    }
-
-    private void MuteGame(InputAction.CallbackContext obj)
-    {
-        print("MuteGame");
-    }
-
-    private void UnMuteGame(InputAction.CallbackContext obj)
-    {
-        print("UnMuteGame");
     }
 }

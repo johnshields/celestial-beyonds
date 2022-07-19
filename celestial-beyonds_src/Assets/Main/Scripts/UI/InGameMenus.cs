@@ -175,8 +175,8 @@ public class InGameMenus : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         print("Loading into: " + level);
-        fader.GetComponent<Animator>().SetBool("FadeIn", false);
-        fader.GetComponent<Animator>().SetBool("FadeOut", true);
+        fader.GetComponent<Animator>().SetBool($"FadeIn", false);
+        fader.GetComponent<Animator>().SetBool($"FadeOut", true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(level);
     }
