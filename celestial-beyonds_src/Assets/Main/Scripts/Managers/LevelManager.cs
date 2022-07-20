@@ -25,9 +25,6 @@ public class LevelManager : MonoBehaviour
             fader.GetComponent<Animator>().SetBool($"FadeIn", true);
             fader.GetComponent<Animator>().SetBool($"FadeOut", false);
         }
-
-        if (time != 0)
-            StartCoroutine(FadeSceneOut());
     }
 
     private void OnEnable()
@@ -77,7 +74,7 @@ public class LevelManager : MonoBehaviour
         enemies.SetActive(true);
     }
 
-    private IEnumerator FadeSceneOut()
+    public IEnumerator FadeSceneOut()
     {
         if (!skip)
         {

@@ -53,8 +53,8 @@ public class FlightCinematics : MonoBehaviour
     {
         yield return new WaitForSeconds(vidLenght); // length of cinematic
         video.GetComponent<VideoPlayer>().Stop();
-        _fader.GetComponent<Animator>().SetBool("FadeIn", false);
-        _fader.GetComponent<Animator>().SetBool("FadeOut", true);
+        _fader.GetComponent<Animator>().SetBool($"FadeIn", false);
+        _fader.GetComponent<Animator>().SetBool($"FadeOut", true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.Playables;
 
 public class SyncCinematic : MonoBehaviour
 {
-    public GameObject musicAudio, timeline, continueBtn, mainTitle;
+    public GameObject musicAudio, timeline, continueBtn, mainTitle, lvlManager;
     public AudioSource cutSceneAudio;
     public bool cinStarted;
     public bool sceneAudioInit;
@@ -43,6 +43,9 @@ public class SyncCinematic : MonoBehaviour
         continueBtn.SetActive(false);
         timeline.GetComponent<PlayableDirector>().Play();
         musicAudio.GetComponent<AudioSource>().Play();
+        if (lvlManager.GetComponent<LevelManager>().time != 0)
+            StartCoroutine(lvlManager.GetComponent<LevelManager>().FadeSceneOut());
+        
         if(sceneAudioInit)
             cutSceneAudio.Play();
         
