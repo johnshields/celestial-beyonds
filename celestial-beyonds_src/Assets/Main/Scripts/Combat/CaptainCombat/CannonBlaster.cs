@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CannonBlaster : MonoBehaviour
 {
-    public GameObject particles;
+    public GameObject particles, canAmmo;
     private GameObject _player;
     private int status;
 
@@ -16,6 +16,7 @@ public class CannonBlaster : MonoBehaviour
     public void FireCannon()
     {
         status = 0;
+        canAmmo.GetComponent<CannonAmmo>().cannonAmmo -= 10;
         StartCoroutine(CannonWait());
     }
 

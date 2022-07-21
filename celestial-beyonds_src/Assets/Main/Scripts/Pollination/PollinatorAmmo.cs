@@ -17,6 +17,9 @@ public class PollinatorAmmo : MonoBehaviour
     private void Update()
     {
         _pollenBarSlider.value = pollenAmmo;
+        
+        if (pollenAmmo < 0)
+            pollenAmmo = 0;
     }
     
     public void FillUpPollen(int amount)
