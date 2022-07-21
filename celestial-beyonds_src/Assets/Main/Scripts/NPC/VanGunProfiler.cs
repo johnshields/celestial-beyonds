@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class VanGunProfiler : MonoBehaviour
 {
-    public GameObject stationUI, peridotCounterUI, cannonMeter, pauseMenu, ammo;
+    public GameObject stationUI, peridotCounterUI, cannonMeter, pauseMenu, canAmmo;
     public float delayAction = 1f;
     public AudioClip[] viktorHellos, viktorByes, viktorMaxAmmo, viktorSales, viktorNoSales;
     public AudioClip sale, noSale;
@@ -41,13 +41,13 @@ public class VanGunProfiler : MonoBehaviour
 
     private void OnEnable()
     {
-        _controls.Profiler.TalkArgyle.started += TalkArgyle;
+        _controls.Profiler.StoreInteraction.started += TalkViktor;
         _controls.Profiler.Enable();
     }
 
     private void OnDisable()
     {
-        _controls.Profiler.TalkArgyle.started -= TalkArgyle;
+        _controls.Profiler.StoreInteraction.started -= TalkViktor;
         _controls.Profiler.Disable();
     }
 
@@ -83,19 +83,19 @@ public class VanGunProfiler : MonoBehaviour
         }
     }
 
-    private void TalkArgyle(InputAction.CallbackContext obj)
+    private void TalkViktor(InputAction.CallbackContext obj)
     {
         if (_saleActive && !pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
-            // only sell player pollen if they do not have maxAmmo or no peridots.
-            if (ammo.GetComponent<PollinatorAmmo>().pollenAmmo != ammo.GetComponent<PollinatorAmmo>().maxAmmo &&
+            // only sell ammo if they do not have maxAmmo or no peridots.
+            if (canAmmo.GetComponent<CannonAmmo>().cannonAmmo != canAmmo.GetComponent<CannonAmmo>().maxAmmo &&
                 _peridotCounter.GetComponent<PeridotCounter>().peridots != 0)
             {
-                print("Pollen sold");
+                print("Ammo sold!");
                 _audio.Stop();
                 _audio.PlayOneShot(viktorSales[Random.Range(0, viktorSales.Length)]);
                 _audio.PlayOneShot(sale, 0.1f);
-                ammo.GetComponent<PollinatorAmmo>().FillUpPollen(10);
+                canAmmo.GetComponent<CannonAmmo>().FillUpCannon(10);
                 _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(1);
                 SwitchAnim();
             }
@@ -109,10 +109,10 @@ public class VanGunProfiler : MonoBehaviour
                 peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
                 StartCoroutine(ResetCounterColor(0));
             }
-            // decline sale if pollen is full + flash pollenMeter.
-            else if (ammo.GetComponent<PollinatorAmmo>().pollenAmmo == ammo.GetComponent<PollinatorAmmo>().maxAmmo)
+            // decline sale if ammo is full + flash cannonMeter.
+            else if (canAmmo.GetComponent<CannonAmmo>().cannonAmmo == canAmmo.GetComponent<CannonAmmo>().maxAmmo)
             {
-                print("pollen full");
+                print("Ammo full!");
                 _audio.Stop();
                 _audio.PlayOneShot(viktorMaxAmmo[Random.Range(0, viktorMaxAmmo.Length)]);
                 cannonMeter.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
@@ -142,7 +142,7 @@ public class VanGunProfiler : MonoBehaviour
     private void SwitchAnim()
     {
         var talkBool = Random.Range(0, 7);
-        print("Argyle anim: " + talkBool);
+        print("Viktor anim: " + talkBool);
         switch (talkBool)
         {
             case 0:

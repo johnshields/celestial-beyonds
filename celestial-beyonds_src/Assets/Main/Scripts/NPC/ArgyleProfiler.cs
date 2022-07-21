@@ -41,13 +41,13 @@ public class ArgyleProfiler : MonoBehaviour
 
     private void OnEnable()
     {
-        _controls.Profiler.TalkArgyle.started += TalkArgyle;
+        _controls.Profiler.StoreInteraction.started += TalkArgyle;
         _controls.Profiler.Enable();
     }
 
     private void OnDisable()
     {
-        _controls.Profiler.TalkArgyle.started -= TalkArgyle;
+        _controls.Profiler.StoreInteraction.started -= TalkArgyle;
         _controls.Profiler.Disable();
     }
 

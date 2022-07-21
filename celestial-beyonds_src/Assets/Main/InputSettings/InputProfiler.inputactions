@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TalkArgyle",
+                    "name": "StoreInteraction",
                     "type": "Button",
                     "id": "18e9d62c-414e-4b7a-9df0-b17a30c91170",
                     "expectedControlType": "Button",
@@ -123,18 +123,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DialogueOptionThree",
+                    "name": "ActivateDialogue",
                     "type": "Button",
-                    "id": "d6522fd3-519b-48a0-8e24-73dca8cb989a",
+                    "id": "7ce4b6f2-3777-4a3c-98b2-c3cccf51e619",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ActivateDialogue",
+                    "name": "DialogueOptionThree",
                     "type": "Button",
-                    "id": "7ce4b6f2-3777-4a3c-98b2-c3cccf51e619",
+                    "id": "d6522fd3-519b-48a0-8e24-73dca8cb989a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -460,7 +460,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TalkArgyle",
+                    "action": "StoreInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -471,7 +471,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TalkArgyle",
+                    "action": "StoreInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -565,28 +565,6 @@
                 },
                 {
                     "name": "",
-                    "id": "3c602c61-633d-4931-90a0-5ea9905f6fa7",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ActivateDialogue",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a2eb89b7-5da0-45b9-9775-fe49162b5fa8",
-                    "path": "<Gamepad>/leftStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ActivateDialogue",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "eabb399e-c5b7-421e-a5b9-8e019bfeb2f7",
                     "path": "<Keyboard>/i",
                     "interactions": "",
@@ -670,6 +648,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "EnableSkip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c602c61-633d-4931-90a0-5ea9905f6fa7",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2eb89b7-5da0-45b9-9775-fe49162b5fa8",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateDialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
