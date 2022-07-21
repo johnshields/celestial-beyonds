@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class VanGunProfiler : MonoBehaviour
 {
     public GameObject stationUI, peridotCounterUI, cannonMeter, pauseMenu, canAmmo, randoAudio;
-    public float delayAction = 1f;
-    private AudioClip _viktorHellos, _viktorByes, _viktorMaxAmmo, _viktorSales, _viktorNoSales;
+    public float delayAction = 1f, audioVol = .4f;
     public AudioClip sale, noSale;
     private bool _actionDone, _saleActive;
     private Animator _animator;
@@ -21,6 +20,9 @@ public class VanGunProfiler : MonoBehaviour
     {
         _controls = new InputProfiler();
         _audio = GetComponent<AudioSource>();
+        
+        // to avoid lag on encounter.
+        PlayRandomClip("Hellos", 0f);
     }
 
     private void Start()
@@ -36,13 +38,6 @@ public class VanGunProfiler : MonoBehaviour
         _talk5 = Animator.StringToHash("Talk5");
         _talk6 = Animator.StringToHash("Talk6");
         _animator.SetTrigger(_idle);
-        
-        // Assign random clips
-        _viktorHellos = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("VanGun/Hellos");
-        _viktorByes = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("VanGun/Byes");
-        _viktorMaxAmmo = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("VanGun/MaxAmmo");
-        _viktorSales = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("VanGun/Sold");
-        _viktorNoSales = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("VanGun/NoSale");
     }
 
     private void OnEnable()
@@ -67,8 +62,7 @@ public class VanGunProfiler : MonoBehaviour
             SwitchAnim();
             if (_actionDone) return;
             // Say hello
-            _audio.Stop();
-            _audio.PlayOneShot(_viktorHellos);
+            PlayRandomClip("Hellos", audioVol);
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);
         }
@@ -85,8 +79,7 @@ public class VanGunProfiler : MonoBehaviour
         {
             _saleActive = false;
             stationUI.SetActive(false);
-            _audio.Stop();
-            _audio.PlayOneShot(_viktorByes);
+            PlayRandomClip("Byes", audioVol);
         }
     }
 
@@ -98,9 +91,7 @@ public class VanGunProfiler : MonoBehaviour
             if (canAmmo.GetComponent<CannonAmmo>().cannonAmmo != canAmmo.GetComponent<CannonAmmo>().maxAmmo &&
                 _peridotCounter.GetComponent<PeridotCounter>().peridots != 0)
             {
-                print("Ammo sold!");
-                _audio.Stop();
-                _audio.PlayOneShot(_viktorSales);
+                PlayRandomClip("Sold", audioVol);
                 _audio.PlayOneShot(sale, 0.1f);
                 canAmmo.GetComponent<CannonAmmo>().FillUpCannon(10);
                 _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(1);
@@ -110,8 +101,7 @@ public class VanGunProfiler : MonoBehaviour
             else if (_peridotCounter.GetComponent<PeridotCounter>().peridots <= 0)
             {
                 print("Not enough peridots");
-                _audio.Stop();
-                _audio.PlayOneShot(_viktorNoSales);
+                PlayRandomClip("NoSale", audioVol);
                 _audio.PlayOneShot(noSale, 0.1f);
                 peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
                 StartCoroutine(ResetCounterColor(0));
@@ -120,8 +110,7 @@ public class VanGunProfiler : MonoBehaviour
             else if (canAmmo.GetComponent<CannonAmmo>().cannonAmmo == canAmmo.GetComponent<CannonAmmo>().maxAmmo)
             {
                 print("Ammo full!");
-                _audio.Stop();
-                _audio.PlayOneShot(_viktorMaxAmmo);
+                PlayRandomClip("MaxAmmo", audioVol);
                 cannonMeter.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
                 StartCoroutine(ResetCounterColor(1));
             }
@@ -174,5 +163,11 @@ public class VanGunProfiler : MonoBehaviour
                 _animator.SetTrigger(_talk6);
                 break;
         }
+    }
+
+    private void PlayRandomClip(string path, float vol)
+    {
+        _audio.Stop();
+        _audio.PlayOneShot(randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("VanGun/" + path), vol);
     }
 }

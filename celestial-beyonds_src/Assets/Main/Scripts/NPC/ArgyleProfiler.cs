@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class ArgyleProfiler : MonoBehaviour
 {
     public GameObject stationUI, peridotCounterUI, pollenMeter, pauseMenu, ammo, randoAudio;
-    public float delayAction = 1f;
-    private AudioClip _argyleHellos, _argyleByes, _argyleMaxPollen, _argyleSales, _argyleNoSales;
+    public float delayAction = 1f, audioVol = .4f;
     public AudioClip sale, noSale;
     private bool _actionDone, _saleActive;
     private Animator _animator;
@@ -21,6 +20,9 @@ public class ArgyleProfiler : MonoBehaviour
     {
         _controls = new InputProfiler();
         _audio = GetComponent<AudioSource>();
+        
+        // to avoid lag on encounter.
+        PlayRandomClip("Hellos", 0f);
     }
 
     private void Start()
@@ -36,13 +38,6 @@ public class ArgyleProfiler : MonoBehaviour
         _talk5 = Animator.StringToHash("Talk5");
         _talk6 = Animator.StringToHash("Talk6");
         _animator.SetTrigger(_idle);
-        
-        // Assign random clips
-        _argyleHellos = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Argyle/Hellos");
-        _argyleByes = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Argyle/Byes");
-        _argyleMaxPollen = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Argyle/MaxAmmo");
-        _argyleSales = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Argyle/Sold");
-        _argyleNoSales = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Argyle/NoSale");
     }
 
     private void OnEnable()
@@ -66,9 +61,8 @@ public class ArgyleProfiler : MonoBehaviour
             stationUI.SetActive(true);
             SwitchAnim();
             if (_actionDone) return;
-            _audio.Stop();
-            _audio.PlayOneShot(_argyleHellos);
             _actionDone = true;
+            PlayRandomClip("Hellos", audioVol);
             Invoke(nameof(ResetAction), delayAction);
         }
         else
@@ -84,8 +78,7 @@ public class ArgyleProfiler : MonoBehaviour
         {
             _saleActive = false;
             stationUI.SetActive(false);
-            _audio.Stop();
-            _audio.PlayOneShot(_argyleByes);
+            PlayRandomClip("Byes", audioVol);
         }
     }
 
@@ -98,8 +91,7 @@ public class ArgyleProfiler : MonoBehaviour
                 _peridotCounter.GetComponent<PeridotCounter>().peridots != 0)
             {
                 print("Pollen sold");
-                _audio.Stop();
-                _audio.PlayOneShot(_argyleSales);
+                PlayRandomClip("Sold", audioVol);
                 _audio.PlayOneShot(sale, 0.1f);
                 ammo.GetComponent<PollinatorAmmo>().FillUpPollen(10);
                 _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(1);
@@ -109,8 +101,7 @@ public class ArgyleProfiler : MonoBehaviour
             else if (_peridotCounter.GetComponent<PeridotCounter>().peridots <= 0)
             {
                 print("Not enough peridots");
-                _audio.Stop();
-                _audio.PlayOneShot(_argyleNoSales);
+                PlayRandomClip("NoSale", audioVol);
                 _audio.PlayOneShot(noSale, 0.1f);
                 peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
                 StartCoroutine(ResetCounterColor(0));
@@ -119,8 +110,7 @@ public class ArgyleProfiler : MonoBehaviour
             else if (ammo.GetComponent<PollinatorAmmo>().pollenAmmo == ammo.GetComponent<PollinatorAmmo>().maxAmmo)
             {
                 print("pollen full");
-                _audio.Stop();
-                _audio.PlayOneShot(_argyleMaxPollen);
+                PlayRandomClip("MaxAmmo", audioVol);
                 pollenMeter.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
                 StartCoroutine(ResetCounterColor(1));
             }
@@ -173,5 +163,11 @@ public class ArgyleProfiler : MonoBehaviour
                 _animator.SetTrigger(_talk6);
                 break;
         }
+    }
+
+    private void PlayRandomClip(string path, float vol)
+    {
+        _audio.Stop();
+        _audio.PlayOneShot(randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Argyle/" + path), vol);
     }
 }

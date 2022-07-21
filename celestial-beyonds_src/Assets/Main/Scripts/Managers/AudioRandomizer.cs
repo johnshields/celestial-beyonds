@@ -8,12 +8,12 @@ public class AudioRandomizer : MonoBehaviour
     public List<AudioClip> clipList;
     public AudioClip[] clipListArray;
 
-    public AudioClip GetRandomClip (string path)
+    public AudioClip GetRandomClip(string path)
     {
         // store audio & get random clip
         clipListArray = Resources.LoadAll<AudioClip>(path);
         clipList = clipListArray.ToList();
-        var clipToPlay = clipList [Random.Range (0, clipList.Count)];
+        var clipToPlay = clipList[Random.Range(0, clipList.Count)];
 
         return clipToPlay;
     }

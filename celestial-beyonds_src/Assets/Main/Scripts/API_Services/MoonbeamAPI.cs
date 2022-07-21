@@ -9,7 +9,6 @@ public class MoonbeamAPI : MonoBehaviour
     private const string _uri = "https://api.moonbeambot.live/api/chat";
     private GameObject _mb;
     public GameObject randoAudio;
-    private AudioClip _moonbeamVoice;
     public bool itIsAQuestion;
 
     private void Awake()
@@ -17,7 +16,7 @@ public class MoonbeamAPI : MonoBehaviour
         _response = "";
         _audio = GetComponent<AudioSource>();
         _mb = GameObject.FindGameObjectWithTag("Moonbeam");
-        _moonbeamVoice = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Moonbeam/SFX");
+        PlayRandomClip(0f);
         StartCoroutine(GetRequest(_uri));
     }
 
@@ -48,7 +47,7 @@ public class MoonbeamAPI : MonoBehaviour
             print("Error getting response: " + webRequest.error);
             _response = "Sorry, there seems to be a screw lose.";
             _mb.GetComponent<MoonbeamDialogue>().response = _response;
-            PlayVoice();
+            PlayRandomClip(0.5f);
         }
         else
         {
@@ -56,14 +55,8 @@ public class MoonbeamAPI : MonoBehaviour
             _response = webRequest.downloadHandler.text;
             _mb.GetComponent<MoonbeamDialogue>().response = _response;
             IsItAQuestion();
-            PlayVoice();
+            PlayRandomClip(0.5f);
         }
-    }
-
-    private void PlayVoice()
-    {
-        _audio.Stop();
-        _audio.PlayOneShot(_moonbeamVoice, 0.5f);
     }
 
     private void IsItAQuestion()
@@ -81,5 +74,11 @@ public class MoonbeamAPI : MonoBehaviour
             itIsAQuestion = false;
             print("itIsAQuestion: " + itIsAQuestion);
         }
+    }
+
+    private void PlayRandomClip(float vol)
+    {
+        _audio.Stop();
+        _audio.PlayOneShot(randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Moonbeam/SFX"), vol);
     }
 }
