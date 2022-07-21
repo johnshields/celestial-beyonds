@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -9,7 +8,8 @@ public class MoonbeamAPI : MonoBehaviour
     private string _response;
     private const string _uri = "https://api.moonbeambot.live/api/chat";
     private GameObject _mb;
-    public AudioClip[] moonbeamVoice;
+    public GameObject randoAudio;
+    private AudioClip _moonbeamVoice;
     public bool itIsAQuestion;
 
     private void Awake()
@@ -17,6 +17,7 @@ public class MoonbeamAPI : MonoBehaviour
         _response = "";
         _audio = GetComponent<AudioSource>();
         _mb = GameObject.FindGameObjectWithTag("Moonbeam");
+        _moonbeamVoice = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Moonbeam/SFX");
         StartCoroutine(GetRequest(_uri));
     }
 
@@ -62,7 +63,7 @@ public class MoonbeamAPI : MonoBehaviour
     private void PlayVoice()
     {
         _audio.Stop();
-        _audio.PlayOneShot(moonbeamVoice[Random.Range(0, moonbeamVoice.Length)], 0.5f);
+        _audio.PlayOneShot(_moonbeamVoice, 0.5f);
     }
 
     private void IsItAQuestion()

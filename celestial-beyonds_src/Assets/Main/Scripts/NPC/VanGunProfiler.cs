@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class VanGunProfiler : MonoBehaviour
 {
-    public GameObject stationUI, peridotCounterUI, cannonMeter, pauseMenu, canAmmo;
+    public GameObject stationUI, peridotCounterUI, cannonMeter, pauseMenu, canAmmo, randoAudio;
     public float delayAction = 1f;
-    public AudioClip[] viktorHellos, viktorByes, viktorMaxAmmo, viktorSales, viktorNoSales;
+    private AudioClip _viktorHellos, _viktorByes, _viktorMaxAmmo, _viktorSales, _viktorNoSales;
     public AudioClip sale, noSale;
     private bool _actionDone, _saleActive;
     private Animator _animator;
@@ -35,8 +35,14 @@ public class VanGunProfiler : MonoBehaviour
         _talk4 = Animator.StringToHash("Talk4");
         _talk5 = Animator.StringToHash("Talk5");
         _talk6 = Animator.StringToHash("Talk6");
-
         _animator.SetTrigger(_idle);
+        
+        // Assign random clips
+        _viktorHellos = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("VanGun/Hellos");
+        _viktorByes = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("VanGun/Byes");
+        _viktorMaxAmmo = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("VanGun/MaxAmmo");
+        _viktorSales = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("VanGun/Sold");
+        _viktorNoSales = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("VanGun/NoSale");
     }
 
     private void OnEnable()
@@ -60,8 +66,9 @@ public class VanGunProfiler : MonoBehaviour
             stationUI.SetActive(true);
             SwitchAnim();
             if (_actionDone) return;
+            // Say hello
             _audio.Stop();
-            _audio.PlayOneShot(viktorHellos[Random.Range(0, viktorHellos.Length)]);
+            _audio.PlayOneShot(_viktorHellos);
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);
         }
@@ -79,7 +86,7 @@ public class VanGunProfiler : MonoBehaviour
             _saleActive = false;
             stationUI.SetActive(false);
             _audio.Stop();
-            _audio.PlayOneShot(viktorByes[Random.Range(0, viktorByes.Length)]);
+            _audio.PlayOneShot(_viktorByes);
         }
     }
 
@@ -93,7 +100,7 @@ public class VanGunProfiler : MonoBehaviour
             {
                 print("Ammo sold!");
                 _audio.Stop();
-                _audio.PlayOneShot(viktorSales[Random.Range(0, viktorSales.Length)]);
+                _audio.PlayOneShot(_viktorSales);
                 _audio.PlayOneShot(sale, 0.1f);
                 canAmmo.GetComponent<CannonAmmo>().FillUpCannon(10);
                 _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(1);
@@ -104,7 +111,7 @@ public class VanGunProfiler : MonoBehaviour
             {
                 print("Not enough peridots");
                 _audio.Stop();
-                _audio.PlayOneShot(viktorNoSales[Random.Range(0, viktorNoSales.Length)]);
+                _audio.PlayOneShot(_viktorNoSales);
                 _audio.PlayOneShot(noSale, 0.1f);
                 peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
                 StartCoroutine(ResetCounterColor(0));
@@ -114,7 +121,7 @@ public class VanGunProfiler : MonoBehaviour
             {
                 print("Ammo full!");
                 _audio.Stop();
-                _audio.PlayOneShot(viktorMaxAmmo[Random.Range(0, viktorMaxAmmo.Length)]);
+                _audio.PlayOneShot(_viktorMaxAmmo);
                 cannonMeter.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
                 StartCoroutine(ResetCounterColor(1));
             }

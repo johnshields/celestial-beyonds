@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class ArgyleProfiler : MonoBehaviour
 {
-    public GameObject stationUI, peridotCounterUI, pollenMeter, pauseMenu, ammo;
+    public GameObject stationUI, peridotCounterUI, pollenMeter, pauseMenu, ammo, randoAudio;
     public float delayAction = 1f;
-    public AudioClip[] argyleHellos, argyleByes, argyleFeelings, argyleSales, argyleNoSales;
+    private AudioClip _argyleHellos, _argyleByes, _argyleMaxPollen, _argyleSales, _argyleNoSales;
     public AudioClip sale, noSale;
     private bool _actionDone, _saleActive;
     private Animator _animator;
@@ -35,8 +35,14 @@ public class ArgyleProfiler : MonoBehaviour
         _talk4 = Animator.StringToHash("Talk4");
         _talk5 = Animator.StringToHash("Talk5");
         _talk6 = Animator.StringToHash("Talk6");
-
         _animator.SetTrigger(_idle);
+        
+        // Assign random clips
+        _argyleHellos = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Argyle/Hellos");
+        _argyleByes = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Argyle/Byes");
+        _argyleMaxPollen = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Argyle/MaxAmmo");
+        _argyleSales = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Argyle/Sold");
+        _argyleNoSales = randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Argyle/NoSale");
     }
 
     private void OnEnable()
@@ -61,7 +67,7 @@ public class ArgyleProfiler : MonoBehaviour
             SwitchAnim();
             if (_actionDone) return;
             _audio.Stop();
-            _audio.PlayOneShot(argyleHellos[Random.Range(0, argyleHellos.Length)]);
+            _audio.PlayOneShot(_argyleHellos);
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);
         }
@@ -79,7 +85,7 @@ public class ArgyleProfiler : MonoBehaviour
             _saleActive = false;
             stationUI.SetActive(false);
             _audio.Stop();
-            _audio.PlayOneShot(argyleByes[Random.Range(0, argyleByes.Length)]);
+            _audio.PlayOneShot(_argyleByes);
         }
     }
 
@@ -93,7 +99,7 @@ public class ArgyleProfiler : MonoBehaviour
             {
                 print("Pollen sold");
                 _audio.Stop();
-                _audio.PlayOneShot(argyleSales[Random.Range(0, argyleSales.Length)]);
+                _audio.PlayOneShot(_argyleSales);
                 _audio.PlayOneShot(sale, 0.1f);
                 ammo.GetComponent<PollinatorAmmo>().FillUpPollen(10);
                 _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(1);
@@ -104,7 +110,7 @@ public class ArgyleProfiler : MonoBehaviour
             {
                 print("Not enough peridots");
                 _audio.Stop();
-                _audio.PlayOneShot(argyleNoSales[Random.Range(0, argyleNoSales.Length)]);
+                _audio.PlayOneShot(_argyleNoSales);
                 _audio.PlayOneShot(noSale, 0.1f);
                 peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
                 StartCoroutine(ResetCounterColor(0));
@@ -114,7 +120,7 @@ public class ArgyleProfiler : MonoBehaviour
             {
                 print("pollen full");
                 _audio.Stop();
-                _audio.PlayOneShot(argyleFeelings[Random.Range(0, argyleFeelings.Length)]);
+                _audio.PlayOneShot(_argyleMaxPollen);
                 pollenMeter.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
                 StartCoroutine(ResetCounterColor(1));
             }
