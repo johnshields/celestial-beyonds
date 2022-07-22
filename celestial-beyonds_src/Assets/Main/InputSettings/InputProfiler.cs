@@ -109,15 +109,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""StoreInteraction"",
-                    ""type"": ""Button"",
-                    ""id"": ""18e9d62c-414e-4b7a-9df0-b17a30c91170"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Pollinate"",
                     ""type"": ""Button"",
                     ""id"": ""472b9a33-106c-4dff-9128-c6c5d861eebc"",
@@ -181,9 +172,27 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""StoreInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""18e9d62c-414e-4b7a-9df0-b17a30c91170"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""EnableSkip"",
                     ""type"": ""Button"",
                     ""id"": ""c3a804c7-9da0-424b-b2eb-158a94d50e75"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UpgradeCannon"",
+                    ""type"": ""Button"",
+                    ""id"": ""b44dd092-ad57-4631-bc18-65fd663e0dfe"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -477,28 +486,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""78fd17da-4c0a-4acd-85cd-1cc6329bad8f"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""StoreInteraction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""166b3d92-d287-4545-a235-e41a189588ea"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""StoreInteraction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""cce6541b-739a-418a-a619-9a64e16ee9a0"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
@@ -692,6 +679,39 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ActivateDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78fd17da-4c0a-4acd-85cd-1cc6329bad8f"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StoreInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""166b3d92-d287-4545-a235-e41a189588ea"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StoreInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6abdae71-133e-43bb-91b3-c02d50e0a308"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpgradeCannon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1210,7 +1230,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_Shoot = m_Profiler.FindAction("Shoot", throwIfNotFound: true);
         m_Profiler_Unarmed = m_Profiler.FindAction("Unarmed", throwIfNotFound: true);
         m_Profiler_JetPack = m_Profiler.FindAction("JetPack", throwIfNotFound: true);
-        m_Profiler_StoreInteraction = m_Profiler.FindAction("StoreInteraction", throwIfNotFound: true);
         m_Profiler_Pollinate = m_Profiler.FindAction("Pollinate", throwIfNotFound: true);
         m_Profiler_DialogueOptionOne = m_Profiler.FindAction("DialogueOptionOne", throwIfNotFound: true);
         m_Profiler_DialogueOptionTwo = m_Profiler.FindAction("DialogueOptionTwo", throwIfNotFound: true);
@@ -1218,7 +1237,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_DialogueOptionThree = m_Profiler.FindAction("DialogueOptionThree", throwIfNotFound: true);
         m_Profiler_AskMoonbeam = m_Profiler.FindAction("AskMoonbeam", throwIfNotFound: true);
         m_Profiler_CloseDialogue = m_Profiler.FindAction("CloseDialogue", throwIfNotFound: true);
+        m_Profiler_StoreInteraction = m_Profiler.FindAction("StoreInteraction", throwIfNotFound: true);
         m_Profiler_EnableSkip = m_Profiler.FindAction("EnableSkip", throwIfNotFound: true);
+        m_Profiler_UpgradeCannon = m_Profiler.FindAction("UpgradeCannon", throwIfNotFound: true);
         m_Profiler_Skip = m_Profiler.FindAction("Skip", throwIfNotFound: true);
         // InGameUI
         m_InGameUI = asset.FindActionMap("InGameUI", throwIfNotFound: true);
@@ -1309,7 +1330,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_Shoot;
     private readonly InputAction m_Profiler_Unarmed;
     private readonly InputAction m_Profiler_JetPack;
-    private readonly InputAction m_Profiler_StoreInteraction;
     private readonly InputAction m_Profiler_Pollinate;
     private readonly InputAction m_Profiler_DialogueOptionOne;
     private readonly InputAction m_Profiler_DialogueOptionTwo;
@@ -1317,7 +1337,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_DialogueOptionThree;
     private readonly InputAction m_Profiler_AskMoonbeam;
     private readonly InputAction m_Profiler_CloseDialogue;
+    private readonly InputAction m_Profiler_StoreInteraction;
     private readonly InputAction m_Profiler_EnableSkip;
+    private readonly InputAction m_Profiler_UpgradeCannon;
     private readonly InputAction m_Profiler_Skip;
     public struct ProfilerActions
     {
@@ -1332,7 +1354,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Profiler_Shoot;
         public InputAction @Unarmed => m_Wrapper.m_Profiler_Unarmed;
         public InputAction @JetPack => m_Wrapper.m_Profiler_JetPack;
-        public InputAction @StoreInteraction => m_Wrapper.m_Profiler_StoreInteraction;
         public InputAction @Pollinate => m_Wrapper.m_Profiler_Pollinate;
         public InputAction @DialogueOptionOne => m_Wrapper.m_Profiler_DialogueOptionOne;
         public InputAction @DialogueOptionTwo => m_Wrapper.m_Profiler_DialogueOptionTwo;
@@ -1340,7 +1361,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @DialogueOptionThree => m_Wrapper.m_Profiler_DialogueOptionThree;
         public InputAction @AskMoonbeam => m_Wrapper.m_Profiler_AskMoonbeam;
         public InputAction @CloseDialogue => m_Wrapper.m_Profiler_CloseDialogue;
+        public InputAction @StoreInteraction => m_Wrapper.m_Profiler_StoreInteraction;
         public InputAction @EnableSkip => m_Wrapper.m_Profiler_EnableSkip;
+        public InputAction @UpgradeCannon => m_Wrapper.m_Profiler_UpgradeCannon;
         public InputAction @Skip => m_Wrapper.m_Profiler_Skip;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
@@ -1378,9 +1401,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @JetPack.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJetPack;
                 @JetPack.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJetPack;
                 @JetPack.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnJetPack;
-                @StoreInteraction.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnStoreInteraction;
-                @StoreInteraction.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnStoreInteraction;
-                @StoreInteraction.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnStoreInteraction;
                 @Pollinate.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnPollinate;
                 @Pollinate.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnPollinate;
                 @Pollinate.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnPollinate;
@@ -1402,9 +1422,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @CloseDialogue.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
                 @CloseDialogue.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
                 @CloseDialogue.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
+                @StoreInteraction.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnStoreInteraction;
+                @StoreInteraction.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnStoreInteraction;
+                @StoreInteraction.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnStoreInteraction;
                 @EnableSkip.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnEnableSkip;
                 @EnableSkip.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnEnableSkip;
                 @EnableSkip.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnEnableSkip;
+                @UpgradeCannon.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUpgradeCannon;
+                @UpgradeCannon.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUpgradeCannon;
+                @UpgradeCannon.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUpgradeCannon;
                 @Skip.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
                 @Skip.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
                 @Skip.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
@@ -1439,9 +1465,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @JetPack.started += instance.OnJetPack;
                 @JetPack.performed += instance.OnJetPack;
                 @JetPack.canceled += instance.OnJetPack;
-                @StoreInteraction.started += instance.OnStoreInteraction;
-                @StoreInteraction.performed += instance.OnStoreInteraction;
-                @StoreInteraction.canceled += instance.OnStoreInteraction;
                 @Pollinate.started += instance.OnPollinate;
                 @Pollinate.performed += instance.OnPollinate;
                 @Pollinate.canceled += instance.OnPollinate;
@@ -1463,9 +1486,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @CloseDialogue.started += instance.OnCloseDialogue;
                 @CloseDialogue.performed += instance.OnCloseDialogue;
                 @CloseDialogue.canceled += instance.OnCloseDialogue;
+                @StoreInteraction.started += instance.OnStoreInteraction;
+                @StoreInteraction.performed += instance.OnStoreInteraction;
+                @StoreInteraction.canceled += instance.OnStoreInteraction;
                 @EnableSkip.started += instance.OnEnableSkip;
                 @EnableSkip.performed += instance.OnEnableSkip;
                 @EnableSkip.canceled += instance.OnEnableSkip;
+                @UpgradeCannon.started += instance.OnUpgradeCannon;
+                @UpgradeCannon.performed += instance.OnUpgradeCannon;
+                @UpgradeCannon.canceled += instance.OnUpgradeCannon;
                 @Skip.started += instance.OnSkip;
                 @Skip.performed += instance.OnSkip;
                 @Skip.canceled += instance.OnSkip;
@@ -1670,7 +1699,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnUnarmed(InputAction.CallbackContext context);
         void OnJetPack(InputAction.CallbackContext context);
-        void OnStoreInteraction(InputAction.CallbackContext context);
         void OnPollinate(InputAction.CallbackContext context);
         void OnDialogueOptionOne(InputAction.CallbackContext context);
         void OnDialogueOptionTwo(InputAction.CallbackContext context);
@@ -1678,7 +1706,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnDialogueOptionThree(InputAction.CallbackContext context);
         void OnAskMoonbeam(InputAction.CallbackContext context);
         void OnCloseDialogue(InputAction.CallbackContext context);
+        void OnStoreInteraction(InputAction.CallbackContext context);
         void OnEnableSkip(InputAction.CallbackContext context);
+        void OnUpgradeCannon(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
     }
     public interface IInGameUIActions

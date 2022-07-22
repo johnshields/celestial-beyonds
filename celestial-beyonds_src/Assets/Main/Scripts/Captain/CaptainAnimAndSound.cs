@@ -16,13 +16,14 @@ namespace Main.Scripts.Captain
         public AudioClip cannonSFX, pollenSFX, noAmmoSFX, capScreamSFX;
         public float delayAction = 1f, dodge;
         public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo, viktor, argyle;
-        public bool meleeActive, cannonFire, pollenFire, callMoonbeam;
+        public bool meleeActive, cannonFire, pollenFire, callMoonbeam, pepperBoxUpgrade, celestialDefierUpgrade;
+        public Material celestialDefierMat;
         private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
         private AudioSource _audio;
         private InputProfiler _controls;
         private int _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
-        private GameObject _player, _footsteps, _scraper, _cannon, _pollinator;
+        private GameObject _player, _footsteps, _scraper, _cannon, _pepperBox, _celestialDefier, _pollinator;
         private int _profile, _jump, _armedJump, _dodge, _armedActive, _shoot, _rShoot, _dead;
         private Rigidbody _rb;
 
@@ -41,9 +42,13 @@ namespace Main.Scripts.Captain
             _player = GameObject.FindGameObjectWithTag("Player");
             _scraper = GameObject.FindGameObjectWithTag("Scraper");
             _cannon = GameObject.FindGameObjectWithTag("Cannon");
+            _pepperBox = GameObject.FindGameObjectWithTag("PepperBoxBlaster");
+            _celestialDefier = GameObject.FindGameObjectWithTag("CelestialDefier");
             _pollinator = GameObject.FindGameObjectWithTag("Pollinator");
             _footsteps = GameObject.FindGameObjectWithTag("Footsteps");
             WeaponSelect(false, false, false);
+            _pepperBox.SetActive(false);
+            _celestialDefier.SetActive(false);
 
             _profile = Animator.StringToHash("Profile");
             _jump = Animator.StringToHash("JumpActive");
@@ -119,8 +124,26 @@ namespace Main.Scripts.Captain
         private void WeaponSelect(bool s, bool c, bool p)
         {
             _scraper.SetActive(s);
-            _cannon.SetActive(c);
             _pollinator.SetActive(p);
+            _cannon.SetActive(c);
+            UpgradedCannon();
+        }
+
+        private void UpgradedCannon()
+        {
+            if (pepperBoxUpgrade && !celestialDefierUpgrade && _cannon.activeInHierarchy)
+                _pepperBox.SetActive(true);
+            else if (!pepperBoxUpgrade && celestialDefierUpgrade && _cannon.activeInHierarchy)
+            {
+                _celestialDefier.SetActive(true);
+                // change mat
+                _cannon.GetComponent<MeshRenderer>().material = celestialDefierMat;
+            }
+            else if (!pepperBoxUpgrade && !celestialDefierUpgrade && _cannon.activeInHierarchy)
+            {
+                _pepperBox.SetActive(false);
+                _celestialDefier.SetActive(false);
+            }
         }
 
         private void Jump(InputAction.CallbackContext obj)
@@ -156,6 +179,8 @@ namespace Main.Scripts.Captain
         private void MeleeAttack(InputAction.CallbackContext obj)
         {
             meleeActive = true;
+            _pepperBox.SetActive(false);
+            _celestialDefier.SetActive(false);
             _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
             _pollinator.GetComponent<Pollinator>().StopPollenParticles();
             WeaponSelect(true, false, false);
@@ -163,8 +188,8 @@ namespace Main.Scripts.Captain
             // random animation
             var attackBool = Random.Range(0, 5);
 
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && 
-                !GetComponent<CaptainHealth>().capDead && 
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive &&
+                !GetComponent<CaptainHealth>().capDead &&
                 !argyle.activeInHierarchy && !viktor.activeInHierarchy)
             {
                 if (!_actionDone && !callMoonbeam)
@@ -199,7 +224,7 @@ namespace Main.Scripts.Captain
         {
             if (!GetComponent<CaptainHealth>().capDead)
             {
-                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && 
+                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive &&
                     !argyle.activeInHierarchy && !viktor.activeInHierarchy)
                 {
                     WeaponSelect(false, true, false);
@@ -232,7 +257,7 @@ namespace Main.Scripts.Captain
         {
             if (!GetComponent<CaptainHealth>().capDead)
             {
-                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && 
+                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive &&
                     !argyle.activeInHierarchy && !viktor.activeInHierarchy)
                 {
                     WeaponSelect(false, false, true);

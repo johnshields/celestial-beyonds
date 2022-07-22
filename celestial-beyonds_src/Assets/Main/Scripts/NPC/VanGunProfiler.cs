@@ -1,13 +1,17 @@
 using System.Collections;
+using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class VanGunProfiler : MonoBehaviour
 {
-    public GameObject stationUI, peridotCounterUI, cannonMeter, pauseMenu, canAmmo, randoAudio;
+    public GameObject stationUI, peridotCounterUI, cannonMeter, pauseMenu, canAmmo, randoAudio, 
+        upgradeOption, cannon;
     public float delayAction = 1f, audioVol = .4f;
     public AudioClip sale, noSale;
+    public int upgradeNum, upgradeCost;
+    public bool upgradeCannon;
     private bool _actionDone, _saleActive;
     private Animator _animator;
     private AudioSource _audio;
@@ -20,7 +24,7 @@ public class VanGunProfiler : MonoBehaviour
     {
         _controls = new InputProfiler();
         _audio = GetComponent<AudioSource>();
-        
+
         // to avoid lag on encounter.
         PlayRandomClip("Hellos", 0f);
         PlayRandomClip("Byes", 0f);
@@ -47,12 +51,14 @@ public class VanGunProfiler : MonoBehaviour
     private void OnEnable()
     {
         _controls.Profiler.StoreInteraction.started += TalkViktor;
+        _controls.Profiler.UpgradeCannon.started += ViktorUpgrade;
         _controls.Profiler.Enable();
     }
-
+    
     private void OnDisable()
     {
         _controls.Profiler.StoreInteraction.started -= TalkViktor;
+        _controls.Profiler.UpgradeCannon.started -= ViktorUpgrade;
         _controls.Profiler.Disable();
     }
 
@@ -124,6 +130,21 @@ public class VanGunProfiler : MonoBehaviour
             Invoke(nameof(ResetAction), delayAction);
         }
     }
+    
+    private void ViktorUpgrade(InputAction.CallbackContext obj)
+    {
+        if (upgradeOption.activeInHierarchy && _peridotCounter.GetComponent<PeridotCounter>().peridots >= upgradeCost)
+            UpgradeCannon(upgradeNum);
+        else
+        {
+            print("Not enough peridots");
+            PlayRandomClip("NoSale", audioVol);
+            _audio.PlayOneShot(noSale, 0.1f);
+            peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+            StartCoroutine(ResetCounterColor(0));
+        }
+    }
+
 
     private IEnumerator ResetCounterColor(int whichCounter)
     {
@@ -173,5 +194,23 @@ public class VanGunProfiler : MonoBehaviour
     {
         _audio.Stop();
         _audio.PlayOneShot(randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("VanGun/" + path), vol);
+    }
+
+    private void UpgradeCannon(int upgrade)
+    {
+        if (upgrade == 1 && !upgradeCannon)
+        {
+            upgradeCannon = true;
+            _player.GetComponent<CaptainAnimAndSound>().pepperBoxUpgrade = true;
+            upgradeOption.SetActive(false);
+            print("CANNON BLASTER Upgraded to PEPPERBOX BLASTER!");
+        }
+        else if (upgrade == 2 && !upgradeCannon)
+        {
+            upgradeCannon = true;
+            _player.GetComponent<CaptainAnimAndSound>().celestialDefierUpgrade = true;
+            upgradeOption.SetActive(false);
+            print("PEPPERBOX BLASTER Upgraded to THE CELESTIAL DEFIER!");
+        }
     }
 }

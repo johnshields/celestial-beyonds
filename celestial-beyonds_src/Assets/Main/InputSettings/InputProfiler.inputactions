@@ -87,15 +87,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "StoreInteraction",
-                    "type": "Button",
-                    "id": "18e9d62c-414e-4b7a-9df0-b17a30c91170",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Pollinate",
                     "type": "Button",
                     "id": "472b9a33-106c-4dff-9128-c6c5d861eebc",
@@ -159,9 +150,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "StoreInteraction",
+                    "type": "Button",
+                    "id": "18e9d62c-414e-4b7a-9df0-b17a30c91170",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "EnableSkip",
                     "type": "Button",
                     "id": "c3a804c7-9da0-424b-b2eb-158a94d50e75",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UpgradeCannon",
+                    "type": "Button",
+                    "id": "b44dd092-ad57-4631-bc18-65fd663e0dfe",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -455,28 +464,6 @@
                 },
                 {
                     "name": "",
-                    "id": "78fd17da-4c0a-4acd-85cd-1cc6329bad8f",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "StoreInteraction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "166b3d92-d287-4545-a235-e41a189588ea",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "StoreInteraction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "cce6541b-739a-418a-a619-9a64e16ee9a0",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
@@ -670,6 +657,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "ActivateDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "78fd17da-4c0a-4acd-85cd-1cc6329bad8f",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StoreInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "166b3d92-d287-4545-a235-e41a189588ea",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StoreInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6abdae71-133e-43bb-91b3-c02d50e0a308",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UpgradeCannon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

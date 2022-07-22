@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -7,10 +6,10 @@ public class MiniMenu : MonoBehaviour
 {
     public int enemiesNum, plantsNum, artifactsNum, peridotsNum, totalEnemies, totalPlants, totalArtifacts, totalPeridots;
     public TextMeshProUGUI plantNumTxt, enemyNumTxt, artifactsNumTxt, peridotsNumTxt;
-    public GameObject allEnemiesPanel, allArtifactsPanel, allPeridotsPanel;
+    public GameObject allEnemiesPanel, allArtifactsPanel, allPeridotsPanel, upgradeOption, upgradePanel;
     public AudioClip[] achievementSFX;
     private AudioSource _audio;
-    private bool _allEnemies, allArtifacts, allPeridots;
+    private bool _allEnemies, allArtifacts, _allPeridots;
 
     private void Start()
     {
@@ -41,11 +40,18 @@ public class MiniMenu : MonoBehaviour
             allArtifacts = true;
             StartCoroutine(CloseActivePanel(1));
         }
-        else if (peridotsNum == 67 && !allPeridots)
+        else if (peridotsNum == 67 && !_allPeridots)
         {
-            allPeridots = true;
+            _allPeridots = true;
             StartCoroutine(CloseActivePanel(2));
         }
+    }
+
+    private void UpgradePanel()
+    {
+        upgradePanel.SetActive(true);
+        upgradeOption.SetActive(true);
+        _audio.PlayOneShot(achievementSFX[3]);
     }
 
     private IEnumerator CloseActivePanel(int whichPanel)
@@ -72,6 +78,10 @@ public class MiniMenu : MonoBehaviour
         {
             case 0:
                 allEnemiesPanel.SetActive(false);
+                yield return new WaitForSeconds(3);
+                UpgradePanel();
+                yield return new WaitForSeconds(6);
+                upgradePanel.SetActive(false);
                 break;
             case 1:
                 allArtifactsPanel.SetActive(false);
