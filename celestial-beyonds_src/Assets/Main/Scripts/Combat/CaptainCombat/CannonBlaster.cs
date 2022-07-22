@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CannonBlaster : MonoBehaviour
 {
-    public GameObject particles, canAmmo;
+    public GameObject particles, canAmmo, cannon;
     private GameObject _player;
     private int status;
 
@@ -23,7 +23,7 @@ public class CannonBlaster : MonoBehaviour
     public void HaltCannon()
     {
         status = 1;
-        if (!_player.GetComponent<CaptainAnimAndSound>().meleeActive)
+        if (!_player.GetComponent<CaptainAnimAndSound>().meleeActive && cannon.activeInHierarchy)
             StartCoroutine(CannonWait());
     }
 

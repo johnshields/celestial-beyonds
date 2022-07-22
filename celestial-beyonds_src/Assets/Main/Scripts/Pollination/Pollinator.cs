@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pollinator : MonoBehaviour
 {
-    public GameObject particles, ammo;
+    public GameObject particles, ammo, pollinator;
     private GameObject _player;
     private int status;
 
@@ -23,7 +23,8 @@ public class Pollinator : MonoBehaviour
     public void HaltPollinator()
     {
         status = 1;
-        if (!_player.GetComponent<CaptainAnimAndSound>().meleeActive)
+        if (!_player.GetComponent<CaptainAnimAndSound>().meleeActive  
+            && pollinator.activeInHierarchy)
             StartCoroutine(PollinatorWait());
     }
 

@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class Jetpack : MonoBehaviour
 {
     public bool jetpackActive;
-    public float maxFuel = 4f, thrustForce = 0.3f, currentFuel, resetTime = 4f;
-    public Rigidbody _rb;
+    public float maxFuel = 4f, thrustForce = 0.3f, currentFuel, resetSFXTime = 4f;
     public Transform groundedObj;
     public GameObject flames, fuelBar;
     public AudioClip jetpackSFX;
     public AudioSource _jpAudio;
+    private Rigidbody _rb;
     private bool _alreadyPlayed;
     private InputProfiler _controls;
     private Slider _fuelBarSlider;
@@ -83,13 +83,13 @@ public class Jetpack : MonoBehaviour
         else if (jetpackActive)
         {
             jetpackActive = false;
-            resetTime = 0f;
+            resetSFXTime = 0f;
         }
     }
 
     private IEnumerator ResetAudio()
     {
-        yield return new WaitForSeconds(resetTime);
+        yield return new WaitForSeconds(resetSFXTime);
         _alreadyPlayed = false;
     }
 }

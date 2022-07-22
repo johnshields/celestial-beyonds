@@ -14,11 +14,15 @@ public class Plants : MonoBehaviour
 
     public void Blossom(int num)
     {
+        // Blossom Plant
         AudioSource.PlayClipAtPoint(blossomSFX, plantsOG[num].transform.position, 0.5f);
-        plantClones[num].SetActive(true);
         Destroy(plantsOG[num]);
+        plantClones[num].SetActive(true);
+        plantClones[num].GetComponentInChildren<Light>().enabled = true;
+        // IncreasePollination.
         miniMenu.GetComponent<MiniMenu>().plantsNum += 1;
         _pl.GetComponent<PollinationLevel>().IncreasePollination();
         print("Plant cloned and dummy destroyed: " + num);
     }
+    
 }

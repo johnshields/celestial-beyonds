@@ -33,6 +33,7 @@ public class MiniMenu : MonoBehaviour
         if (enemiesNum == 10 && !_allEnemies)
         {
             _allEnemies = true;
+            print("Upgrade unlocked!");
             StartCoroutine(CloseActivePanel(0));
         }
         else if (artifactsNum == 10 && !allArtifacts)

@@ -15,8 +15,8 @@ namespace Main.Scripts.Captain
         public AudioClip[] meleeSFX;
         public AudioClip cannonSFX, pollenSFX, noAmmoSFX, capScreamSFX;
         public float delayAction = 1f, dodge;
-        public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo;
-        public bool meleeActive, cannonFire, pollenFire;
+        public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo, viktor, argyle;
+        public bool meleeActive, cannonFire, pollenFire, callMoonbeam;
         private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
         private AudioSource _audio;
@@ -163,10 +163,13 @@ namespace Main.Scripts.Captain
             // random animation
             var attackBool = Random.Range(0, 5);
 
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !GetComponent<CaptainHealth>().capDead)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && 
+                !GetComponent<CaptainHealth>().capDead && 
+                !argyle.activeInHierarchy && !viktor.activeInHierarchy)
             {
-                if (!_actionDone)
+                if (!_actionDone && !callMoonbeam)
                 {
+                    callMoonbeam = true;
                     switch (attackBool)
                     {
                         case 0:
@@ -196,15 +199,17 @@ namespace Main.Scripts.Captain
         {
             if (!GetComponent<CaptainHealth>().capDead)
             {
-                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && 
+                    !argyle.activeInHierarchy && !viktor.activeInHierarchy)
                 {
                     WeaponSelect(false, true, false);
                     PlayerState(false, true);
                     if (cannonAmmo.GetComponent<CannonAmmo>().cannonAmmo != 0)
                     {
                         cannonFire = true;
-                        if (!_actionDone && _armed && cannonFire)
+                        if (!_actionDone && _armed && cannonFire && !callMoonbeam)
                         {
+                            callMoonbeam = true;
                             _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
                             // call CannonBlaster
                             _cannon.GetComponent<CannonBlaster>().FireCannon();
@@ -227,7 +232,8 @@ namespace Main.Scripts.Captain
         {
             if (!GetComponent<CaptainHealth>().capDead)
             {
-                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && 
+                    !argyle.activeInHierarchy && !viktor.activeInHierarchy)
                 {
                     WeaponSelect(false, false, true);
                     PlayerState(false, true);
@@ -292,6 +298,7 @@ namespace Main.Scripts.Captain
         {
             meleeActive = false;
             _actionDone = false;
+            callMoonbeam = false;
             if (cannonFire)
             {
                 _cannon.GetComponent<CannonBlaster>().HaltCannon();

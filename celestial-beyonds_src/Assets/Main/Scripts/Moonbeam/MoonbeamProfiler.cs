@@ -93,8 +93,7 @@ namespace Main.Scripts.Moonbeam
         
         private void AttackMode()
         {
-            if (_player.GetComponent<CaptainAnimAndSound>().meleeActive ||
-                _player.GetComponent<CaptainAnimAndSound>().cannonFire)
+            if (_player.GetComponent<CaptainAnimAndSound>().callMoonbeam)
             {
                 if (!_actionDone && !_player.GetComponent<CaptainHealth>().capDead)
                 {

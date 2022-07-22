@@ -23,6 +23,10 @@ public class VanGunProfiler : MonoBehaviour
         
         // to avoid lag on encounter.
         PlayRandomClip("Hellos", 0f);
+        PlayRandomClip("Byes", 0f);
+        PlayRandomClip("Sold", 0f);
+        PlayRandomClip("NoSale", 0f);
+        PlayRandomClip("MaxAmmo", 0f);
     }
 
     private void Start()

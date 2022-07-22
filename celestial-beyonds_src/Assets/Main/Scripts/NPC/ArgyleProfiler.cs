@@ -23,6 +23,10 @@ public class ArgyleProfiler : MonoBehaviour
         
         // to avoid lag on encounter.
         PlayRandomClip("Hellos", 0f);
+        PlayRandomClip("Byes", 0f);
+        PlayRandomClip("Sold", 0f);
+        PlayRandomClip("NoSale", 0f);
+        PlayRandomClip("MaxPollen", 0f);
     }
 
     private void Start()
@@ -110,7 +114,7 @@ public class ArgyleProfiler : MonoBehaviour
             else if (ammo.GetComponent<PollinatorAmmo>().pollenAmmo == ammo.GetComponent<PollinatorAmmo>().maxAmmo)
             {
                 print("pollen full");
-                PlayRandomClip("MaxAmmo", audioVol);
+                PlayRandomClip("MaxPollen", audioVol);
                 pollenMeter.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
                 StartCoroutine(ResetCounterColor(1));
             }
@@ -170,4 +174,5 @@ public class ArgyleProfiler : MonoBehaviour
         _audio.Stop();
         _audio.PlayOneShot(randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Argyle/" + path), vol);
     }
+    
 }

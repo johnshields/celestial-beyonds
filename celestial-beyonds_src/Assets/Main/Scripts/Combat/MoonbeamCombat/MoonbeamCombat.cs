@@ -11,9 +11,5 @@ public class MoonbeamCombat : MonoBehaviour
             other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(other.gameObject);
             other.gameObject.GetComponent<ParticleSystem>().Play();
         }
-        else if (other.gameObject.CompareTag("CollectableBox"))
-        {
-            other.gameObject.GetComponent<CollectableBox>().IfCannon();
-        }
     }
 }
