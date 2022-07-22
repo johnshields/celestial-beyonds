@@ -134,7 +134,12 @@ public class VanGunProfiler : MonoBehaviour
     private void ViktorUpgrade(InputAction.CallbackContext obj)
     {
         if (upgradeOption.activeInHierarchy && _peridotCounter.GetComponent<PeridotCounter>().peridots >= upgradeCost)
+        {
+            PlayRandomClip("Sold", audioVol);
+            _audio.PlayOneShot(sale, 0.1f);
+            _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(upgradeCost);
             UpgradeCannon(upgradeNum);
+        }
         else
         {
             print("Not enough peridots");

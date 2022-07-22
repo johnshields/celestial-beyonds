@@ -17,7 +17,6 @@ namespace Main.Scripts.Captain
         public float delayAction = 1f, dodge;
         public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo, viktor, argyle;
         public bool meleeActive, cannonFire, pollenFire, callMoonbeam, pepperBoxUpgrade, celestialDefierUpgrade;
-        public Material celestialDefierMat;
         private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
         private AudioSource _audio;
@@ -78,6 +77,12 @@ namespace Main.Scripts.Captain
                 _animator.SetBool(_armedActive, false);
             else if (_armed) _animator.SetBool(_armedActive, true);
 
+            if (pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            {
+                _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
+                _pollinator.GetComponent<Pollinator>().StopPollenParticles();   
+            }
+
             // stop particles of the opposite gun.
             if (cannonFire)
                 _pollinator.GetComponent<Pollinator>().StopPollenParticles();
@@ -136,8 +141,9 @@ namespace Main.Scripts.Captain
             else if (!pepperBoxUpgrade && celestialDefierUpgrade && _cannon.activeInHierarchy)
             {
                 _celestialDefier.SetActive(true);
-                // change mat
-                _cannon.GetComponent<MeshRenderer>().material = celestialDefierMat;
+                // change mesh & mat
+                _cannon.GetComponent<CelestialDefier>().SummonCelestialDefier();
+                
             }
             else if (!pepperBoxUpgrade && !celestialDefierUpgrade && _cannon.activeInHierarchy)
             {
