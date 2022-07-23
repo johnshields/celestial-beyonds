@@ -6,14 +6,17 @@ using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PhotoMode : MonoBehaviour
 {
     public GameObject mainCam, pauseMenu, photoModeUI, UI;
     public float movementForce = 1f, fieldOfView = 80;
     public bool photoMode, pmEnabledInScene;
+    public string photoID;
     public AudioClip shutter;
     public TextMeshProUGUI fieldOfViewInput;
+    public Text photoIDTxt;
     private Vector3 forceDir = Vector3.zero;
     private InputProfiler _controls;
     private InputAction _moveKeys, _moveController;
@@ -136,6 +139,7 @@ public class PhotoMode : MonoBehaviour
         {
             var fov = fieldOfView.ToString(CultureInfo.CurrentCulture);
             fieldOfViewInput.text = fov;
+            photoIDTxt.text = "Photo ID: " + photoID;
         }
     }
 
@@ -158,11 +162,13 @@ public class PhotoMode : MonoBehaviour
         const string folderPath = "Assets/Screenshots/"; // TODO - update to DB.
         if (!Directory.Exists(folderPath))
             Directory.CreateDirectory(folderPath);
-        Guid guid; 
-        var photo_id = "celestial_beyonds-img_" + 
-                       DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss" + "_id_" + guid) + ".jpeg";
+        Guid.NewGuid();
+        var guid = Guid.NewGuid();
+        var photo_guid = Guid.NewGuid().ToString();
+        var photo_id = "tcb-photo__" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss") + "__" + photo_guid + ".jpeg";
         ScreenCapture.CaptureScreenshot(Path.Combine(folderPath, photo_id), 4);
         print("Screenshot taken: " + folderPath + photo_id);
+        photoID = photo_id;
         yield return new WaitForSeconds(1);
         photoModeUI.SetActive(true);
     }
