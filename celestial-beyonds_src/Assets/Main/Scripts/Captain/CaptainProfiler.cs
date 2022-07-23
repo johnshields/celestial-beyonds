@@ -20,7 +20,7 @@ namespace Main.Scripts.Captain
         private Vector3 forceDir = Vector3.zero;
         
         // misc
-        public GameObject pauseMenu;
+        public GameObject pauseMenu, photoMode;
 
         private void Awake()
         {

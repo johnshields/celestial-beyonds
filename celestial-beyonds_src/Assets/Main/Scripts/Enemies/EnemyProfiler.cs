@@ -28,7 +28,7 @@ namespace Main.Scripts.Enemies
         private bool _walkPointSet, _actionDone, _played;
 
         // misc
-        public GameObject miniMenu;
+        public GameObject miniMenu, pauseMenu;
         public AudioClip deathSFX;
 
         private void Awake()
@@ -49,11 +49,14 @@ namespace Main.Scripts.Enemies
             playerInAttackRange = Physics.CheckSphere(tp, attackRange, playerMask);
 
             if (!playerInSightRange && !playerInAttackRange) Patrol();
-            if (playerInSightRange && !playerInAttackRange && !player.GetComponent<CaptainHealth>().capDead)
-                ChasePlayer();
-            if (playerInAttackRange && playerInSightRange && !player.GetComponent<CaptainHealth>().capDead)
-                AttackMode();
-            if (player.GetComponent<CaptainHealth>().capDead) Patrol();
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            {
+                if (playerInSightRange && !playerInAttackRange && !player.GetComponent<CaptainHealth>().capDead)
+                    ChasePlayer();
+                if (playerInAttackRange && playerInSightRange && !player.GetComponent<CaptainHealth>().capDead)
+                    AttackMode();
+                if (player.GetComponent<CaptainHealth>().capDead) Patrol();   
+            }
 
             // ref: https://forum.unity.com/threads/ai-getting-stuck-into-corner-of-the-map.1213311/
             if (NavMesh.FindClosestEdge(transform.position, out _hit, NavMesh.AllAreas))

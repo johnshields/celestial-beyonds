@@ -8,8 +8,6 @@ public class CaptainHealth : MonoBehaviour
     public bool capDead, gameOver;
     public int maxHealth = 100, currentHealth;
     public GameObject pHealthBar, GameOverUI;
-    public AudioClip gameOverSFX;
-    private AudioSource _audio;
     private Slider _pHealthBarSlider;
     private GameObject _player;
     private bool _played;
@@ -19,7 +17,6 @@ public class CaptainHealth : MonoBehaviour
         currentHealth = maxHealth;
         _pHealthBarSlider = pHealthBar.GetComponent<Slider>();
         _player = GameObject.FindGameObjectWithTag("Player");
-        _audio = GetComponent<AudioSource>();
     }
 
     private void Update()

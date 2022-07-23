@@ -206,6 +206,42 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TurnOnPhotoMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""4628a971-7ce7-4940-aa99-8b8254946ffd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TakePhoto"",
+                    ""type"": ""Button"",
+                    ""id"": ""89d930c5-3fae-47bc-a3a1-e4f687dec3c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FieldDepthUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""e3210229-93ec-4251-9e8d-bc2958c46c9d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FieldDepthDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""d733fd4d-baca-45f7-8830-3c624ef144ad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -712,6 +748,50 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""UpgradeCannon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e83e85a-062b-40d0-88bd-2112771385c1"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TakePhoto"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68fef0a5-f1fd-42fc-bb9a-8729f12d7c7e"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TurnOnPhotoMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98605d93-2a8b-413c-832b-052e2fa50015"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FieldDepthUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""315794d7-ed29-4388-b0c7-c1acd56f775c"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FieldDepthDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1241,6 +1321,10 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_EnableSkip = m_Profiler.FindAction("EnableSkip", throwIfNotFound: true);
         m_Profiler_UpgradeCannon = m_Profiler.FindAction("UpgradeCannon", throwIfNotFound: true);
         m_Profiler_Skip = m_Profiler.FindAction("Skip", throwIfNotFound: true);
+        m_Profiler_TurnOnPhotoMode = m_Profiler.FindAction("TurnOnPhotoMode", throwIfNotFound: true);
+        m_Profiler_TakePhoto = m_Profiler.FindAction("TakePhoto", throwIfNotFound: true);
+        m_Profiler_FieldDepthUp = m_Profiler.FindAction("FieldDepthUp", throwIfNotFound: true);
+        m_Profiler_FieldDepthDown = m_Profiler.FindAction("FieldDepthDown", throwIfNotFound: true);
         // InGameUI
         m_InGameUI = asset.FindActionMap("InGameUI", throwIfNotFound: true);
         m_InGameUI_OpenLevelCompleteUI = m_InGameUI.FindAction("OpenLevelCompleteUI", throwIfNotFound: true);
@@ -1341,6 +1425,10 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_EnableSkip;
     private readonly InputAction m_Profiler_UpgradeCannon;
     private readonly InputAction m_Profiler_Skip;
+    private readonly InputAction m_Profiler_TurnOnPhotoMode;
+    private readonly InputAction m_Profiler_TakePhoto;
+    private readonly InputAction m_Profiler_FieldDepthUp;
+    private readonly InputAction m_Profiler_FieldDepthDown;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
@@ -1365,6 +1453,10 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @EnableSkip => m_Wrapper.m_Profiler_EnableSkip;
         public InputAction @UpgradeCannon => m_Wrapper.m_Profiler_UpgradeCannon;
         public InputAction @Skip => m_Wrapper.m_Profiler_Skip;
+        public InputAction @TurnOnPhotoMode => m_Wrapper.m_Profiler_TurnOnPhotoMode;
+        public InputAction @TakePhoto => m_Wrapper.m_Profiler_TakePhoto;
+        public InputAction @FieldDepthUp => m_Wrapper.m_Profiler_FieldDepthUp;
+        public InputAction @FieldDepthDown => m_Wrapper.m_Profiler_FieldDepthDown;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1434,6 +1526,18 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Skip.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
                 @Skip.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
                 @Skip.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
+                @TurnOnPhotoMode.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTurnOnPhotoMode;
+                @TurnOnPhotoMode.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTurnOnPhotoMode;
+                @TurnOnPhotoMode.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTurnOnPhotoMode;
+                @TakePhoto.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTakePhoto;
+                @TakePhoto.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTakePhoto;
+                @TakePhoto.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTakePhoto;
+                @FieldDepthUp.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthUp;
+                @FieldDepthUp.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthUp;
+                @FieldDepthUp.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthUp;
+                @FieldDepthDown.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthDown;
+                @FieldDepthDown.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthDown;
+                @FieldDepthDown.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthDown;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1498,6 +1602,18 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Skip.started += instance.OnSkip;
                 @Skip.performed += instance.OnSkip;
                 @Skip.canceled += instance.OnSkip;
+                @TurnOnPhotoMode.started += instance.OnTurnOnPhotoMode;
+                @TurnOnPhotoMode.performed += instance.OnTurnOnPhotoMode;
+                @TurnOnPhotoMode.canceled += instance.OnTurnOnPhotoMode;
+                @TakePhoto.started += instance.OnTakePhoto;
+                @TakePhoto.performed += instance.OnTakePhoto;
+                @TakePhoto.canceled += instance.OnTakePhoto;
+                @FieldDepthUp.started += instance.OnFieldDepthUp;
+                @FieldDepthUp.performed += instance.OnFieldDepthUp;
+                @FieldDepthUp.canceled += instance.OnFieldDepthUp;
+                @FieldDepthDown.started += instance.OnFieldDepthDown;
+                @FieldDepthDown.performed += instance.OnFieldDepthDown;
+                @FieldDepthDown.canceled += instance.OnFieldDepthDown;
             }
         }
     }
@@ -1710,6 +1826,10 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnEnableSkip(InputAction.CallbackContext context);
         void OnUpgradeCannon(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
+        void OnTurnOnPhotoMode(InputAction.CallbackContext context);
+        void OnTakePhoto(InputAction.CallbackContext context);
+        void OnFieldDepthUp(InputAction.CallbackContext context);
+        void OnFieldDepthDown(InputAction.CallbackContext context);
     }
     public interface IInGameUIActions
     {

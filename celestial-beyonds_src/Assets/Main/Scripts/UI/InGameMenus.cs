@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class InGameMenus : MonoBehaviour
 {
     private InputProfiler _controls;
-    public GameObject pauseMenu, miniMenuPanel, fader, player, BtnGO, controlsPanel, muteBtn, unMuteBtn;
-    public bool pausedActive, miniMenuActive, controlsMenu;
+    public GameObject pauseMenu, miniMenuPanel, fader, player, BtnGO, controlsPanel, muteBtn, unMuteBtn, photoMode;
+    public bool pausedActive, miniMenuActive, controlsMenu, photoModeEnabled;
     public AudioSource audioToPause;
     public int audioPauseRequired;
 
@@ -57,6 +58,14 @@ public class InGameMenus : MonoBehaviour
         _controls.UIActions.Disable();
     }
 
+    private void Update()
+    {
+        if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
+            Time.timeScale = 0f;
+        else if(pausedActive && photoMode.GetComponent<PhotoMode>().photoMode)
+            Time.timeScale = 1f;
+    }
+
     private void PauseGame(InputAction.CallbackContext obj)
     {
         if (!pausedActive)
@@ -68,7 +77,7 @@ public class InGameMenus : MonoBehaviour
             if(audioPauseRequired != 0)
                 audioToPause.Pause();
         }
-        else if (pausedActive)
+        else if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
         {
             pausedActive = false;
             pauseMenu.SetActive(false);
@@ -83,7 +92,7 @@ public class InGameMenus : MonoBehaviour
 
     private void ResumeGame(InputAction.CallbackContext obj)
     {
-        if (pausedActive && !player.GetComponent<CaptainHealth>().capDead)
+        if (pausedActive && !player.GetComponent<CaptainHealth>().capDead && !photoMode.GetComponent<PhotoMode>().photoMode)
         {
             pausedActive = false;
             pauseMenu.SetActive(false);
@@ -135,7 +144,7 @@ public class InGameMenus : MonoBehaviour
 
     private void BackBtn(InputAction.CallbackContext obj)
     {
-        if (controlsMenu && pausedActive)
+        if (controlsMenu && pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
         {
             print("Controls menu active: " + controlsMenu);
             controlsMenu = false;
@@ -145,7 +154,7 @@ public class InGameMenus : MonoBehaviour
     
     private void MuteGame(InputAction.CallbackContext obj)
     {
-        if (pausedActive)
+        if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
         {
             print("Mute Active: " +  Booleans.muteActive);
             Booleans.muteActive = true;
@@ -157,7 +166,7 @@ public class InGameMenus : MonoBehaviour
     
     private void UnMuteGame(InputAction.CallbackContext obj)
     {
-        if (pausedActive)
+        if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
         {
             print("Mute Active: " +  Booleans.muteActive);
             Booleans.muteActive = false;
