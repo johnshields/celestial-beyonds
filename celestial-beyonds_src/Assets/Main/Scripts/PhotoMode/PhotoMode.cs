@@ -163,9 +163,9 @@ public class PhotoMode : MonoBehaviour
         if (!Directory.Exists(folderPath))
             Directory.CreateDirectory(folderPath);
         Guid.NewGuid();
-        var guid = Guid.NewGuid();
         var photo_guid = Guid.NewGuid().ToString();
-        var photo_id = "tcb-photo__" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss") + "__" + photo_guid + ".jpeg";
+        var datetime_stamp = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
+        var photo_id = "tcb-photo" + "__" + datetime_stamp + "__" + photo_guid + ".jpeg";
         ScreenCapture.CaptureScreenshot(Path.Combine(folderPath, photo_id), 4);
         print("Screenshot taken: " + folderPath + photo_id);
         photoID = photo_id;

@@ -98,11 +98,23 @@ public class PollinationLevel : MonoBehaviour
     {
         if (levelCompleted && levelCompleteUI.activeInHierarchy)
         {
-            print("Loading: ");
-            //StartCoroutine(LoadNextScene());
+            if (levelCompleteUI.activeInHierarchy)
+            {
+                print("Loading: " + planet);
+                StartCoroutine(GoLoadLevel(planet));   
+            }
         }
     }
 
+    private void LoadMainMenu(InputAction.CallbackContext obj)
+    {
+        if (levelCompleteUI.activeInHierarchy)
+        {
+            print("Loading: MainMenu...");
+            StartCoroutine(GoLoadLevel("001_MainMenu"));   
+        }
+    }
+    
     private IEnumerator LevelCompleteUI()
     {
         yield return new WaitForSeconds(3f);
@@ -111,19 +123,10 @@ public class PollinationLevel : MonoBehaviour
         _audio.PlayOneShot(completeSFX);
     }
 
-    private void LoadMainMenu(InputAction.CallbackContext obj)
-    {
-        if (levelCompleteUI.activeInHierarchy)
-        {
-            print("Loading MainMenu...");
-            StartCoroutine(GoLoadLevel(0));   
-        }
-    }
-
-    private IEnumerator GoLoadLevel(int level)
+    private IEnumerator GoLoadLevel(string level)
     {
         levelCompleteUI.SetActive(false);
-        print("Loading into: " + level);
+        print("Loading: " + level);
         fader.GetComponent<Animator>().SetBool($"FadeIn", false);
         fader.GetComponent<Animator>().SetBool($"FadeOut", true);
         yield return new WaitForSeconds(2f);

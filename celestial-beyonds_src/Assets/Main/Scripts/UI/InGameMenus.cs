@@ -8,9 +8,10 @@ public class InGameMenus : MonoBehaviour
 {
     private InputProfiler _controls;
     public GameObject pauseMenu, miniMenuPanel, fader, player, BtnGO, controlsPanel, muteBtn, unMuteBtn, photoMode;
-    public bool pausedActive, miniMenuActive, controlsMenu, photoModeEnabled;
+    public bool pausedActive, miniMenuActive, controlsMenu;
     public AudioSource audioToPause;
     public int audioPauseRequired;
+    public string planet;
 
     private void Awake()
     {
@@ -105,7 +106,7 @@ public class InGameMenus : MonoBehaviour
         }
         else if (player.GetComponent<CaptainHealth>().gameOver)
         {
-            StartCoroutine(GoLoadLevel(2));
+            StartCoroutine(GoLoadLevel(planet));
         }
     }
 
@@ -114,7 +115,7 @@ public class InGameMenus : MonoBehaviour
         if (pausedActive || player.GetComponent<CaptainHealth>().gameOver)
         {
             pausedActive = false;
-            StartCoroutine(GoLoadLevel(0));
+            StartCoroutine(GoLoadLevel("001_MainMenu"));
         }
     }
 
@@ -176,14 +177,14 @@ public class InGameMenus : MonoBehaviour
         }
     }
 
-    private IEnumerator GoLoadLevel(int level)
+    private IEnumerator GoLoadLevel(string level)
     {
         if(player.GetComponent<CaptainHealth>().gameOver)
             BtnGO.SetActive(false);
             
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
-        print("Loading into: " + level);
+        print("Loading: " + level);
         fader.GetComponent<Animator>().SetBool($"FadeIn", false);
         fader.GetComponent<Animator>().SetBool($"FadeOut", true);
         yield return new WaitForSeconds(2f);
