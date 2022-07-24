@@ -25,7 +25,7 @@ public class PhotoMode : MonoBehaviour
     {
         _controls = new InputProfiler();
         photoMode = false;
-        if(pmEnabledInScene)
+        if (pmEnabledInScene)
             SwitchCam(true, false);
     }
 
@@ -142,34 +142,33 @@ public class PhotoMode : MonoBehaviour
             photoIDTxt.text = "Photo ID: " + photoID;
         }
     }
-
-
-    // ref - https://stackoverflow.com/a/71082189
+    
     private void TakePhoto(InputAction.CallbackContext obj)
     {
-        if (photoMode)
-        {
-            photoModeUI.SetActive(false);
-            AudioSource.PlayClipAtPoint(shutter, transform.position, 0.8f);
-            StartCoroutine(CamTimer());
-        }
+        if (!photoMode) return;
+        photoModeUI.SetActive(false);
+        AudioSource.PlayClipAtPoint(shutter, transform.position, 0.8f);
+        StartCoroutine(CamTimer());
     }
 
+    // ref -  // ref - https://stackoverflow.com/a/71082189
     private IEnumerator CamTimer()
     {
         yield return new WaitForSeconds(1);
-        // TakePhoto
-        const string folderPath = "Assets/Screenshots/"; // TODO - update to DB.
+        // Setup directory.
+        const string folderPath = "/celestial-beyonds-photos/";
         if (!Directory.Exists(folderPath))
             Directory.CreateDirectory(folderPath);
         Guid.NewGuid();
         var photo_guid = Guid.NewGuid().ToString();
         var datetime_stamp = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
-        var photo_id = "tcb-photo" + "__" + datetime_stamp + "__" + photo_guid + ".jpeg";
-        ScreenCapture.CaptureScreenshot(Path.Combine(folderPath, photo_id), 4);
+        var photo_id = photo_guid + "__" + datetime_stamp + ".jpeg";
+        // TakePhoto
+        ScreenCapture.CaptureScreenshot(Path.Combine(folderPath, photo_id), 3);
         print("Screenshot taken: " + folderPath + photo_id);
         photoID = photo_id;
         yield return new WaitForSeconds(1);
         photoModeUI.SetActive(true);
+        GetComponent<ScarlettAutomatonBot>().SendPhotoToGram(folderPath, photo_id);
     }
 }
