@@ -10,9 +10,9 @@ using UnityEngine.UI;
 
 public class PhotoMode : MonoBehaviour
 {
-    public GameObject mainCam, pauseMenu, photoModeUI, UI;
+    public GameObject mainCam, pauseMenu, photoModeUI, UI, link;
     public float movementForce = 1f, fieldOfView = 80;
-    public bool photoMode, pmEnabledInScene;
+    public bool photoMode, pmEnabledInScene, photoTaken;
     public string photoID;
     public AudioClip shutter;
     public TextMeshProUGUI fieldOfViewInput;
@@ -135,14 +135,14 @@ public class PhotoMode : MonoBehaviour
 
     private void OnGUI()
     {
-        if (photoMode)
+        if (photoMode && photoTaken)
         {
             var fov = fieldOfView.ToString(CultureInfo.CurrentCulture);
             fieldOfViewInput.text = fov;
-            photoIDTxt.text = "Photo ID: " + photoID;
+            photoIDTxt.text = "Photo: " + photoID + " -> Copied to clipboard!";
         }
     }
-    
+
     private void TakePhoto(InputAction.CallbackContext obj)
     {
         if (!photoMode) return;
@@ -170,5 +170,15 @@ public class PhotoMode : MonoBehaviour
         yield return new WaitForSeconds(1);
         photoModeUI.SetActive(true);
         GetComponent<ScarlettAutomatonBot>().SendPhotoToGram(folderPath, photo_id);
+        CopyToClipBoard(photo_guid);
+        photoTaken = true;
+    }
+
+    private void CopyToClipBoard(string id)
+    {
+        var textEditor = new TextEditor {text = id};
+        textEditor.SelectAll();
+        textEditor.Copy();
+        print("Photo ID: Copied to clipboard!");
     }
 }

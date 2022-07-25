@@ -50,16 +50,13 @@ public class ScarlettAutomatonBot : MonoBehaviour
         StartCoroutine(SendRequest(www));
     }
 
-    private IEnumerator SendRequest(UnityWebRequest www)
+    private IEnumerator SendRequest(UnityWebRequest webRequest)
     {
-        yield return www.SendWebRequest();
-        if (www.result == UnityWebRequest.Result.ConnectionError)
-        {
-            Debug.Log(www.error);
-        }
+        yield return webRequest.SendWebRequest();
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
+            webRequest.result == UnityWebRequest.Result.ProtocolError)
+            print(webRequest.error);
         else
-        {
-            Debug.Log("Success!\n" + www.downloadHandler.text);
-        }
+            print("Success!\n" + webRequest.downloadHandler.text);
     }
 }
