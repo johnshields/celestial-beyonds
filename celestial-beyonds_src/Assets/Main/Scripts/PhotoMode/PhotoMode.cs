@@ -25,6 +25,7 @@ public class PhotoMode : MonoBehaviour
     {
         _controls = new InputProfiler();
         photoMode = false;
+        photoModeUI.SetActive(false);
         if (pmEnabledInScene)
             SwitchCam(true, false);
     }
@@ -169,6 +170,7 @@ public class PhotoMode : MonoBehaviour
         photoID = photo_id;
         yield return new WaitForSeconds(1);
         photoModeUI.SetActive(true);
+        link.SetActive(true);
         GetComponent<ScarlettAutomatonBot>().SendPhotoToGram(folderPath, photo_id);
         CopyToClipBoard(photo_guid);
         photoTaken = true;

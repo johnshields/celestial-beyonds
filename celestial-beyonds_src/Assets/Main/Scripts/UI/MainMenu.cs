@@ -40,7 +40,6 @@ public class MainMenu : MonoBehaviour
         _controls.UIActions.Mute.started += MuteGame;
         _controls.UIActions.UnMute.started += UnMuteGame;
         _controls.UIActions.Credits.started += RollCredits;
-        _controls.UIActions.QuitGame.started += QuitGame;
         _controls.UIActions.Enable();
     }
 
@@ -52,7 +51,6 @@ public class MainMenu : MonoBehaviour
         _controls.UIActions.Mute.started -= MuteGame;
         _controls.UIActions.UnMute.started -= UnMuteGame;
         _controls.UIActions.Credits.started -= RollCredits;
-        _controls.UIActions.QuitGame.started -= QuitGame;
         _controls.UIActions.Disable();
     }
 
@@ -124,12 +122,6 @@ public class MainMenu : MonoBehaviour
         AudioManager.MuteActive();
     }
 
-    private void QuitGame(InputAction.CallbackContext obj)
-    {
-        print("Quiting Game...");
-        StartCoroutine(FadeAndQuitGame());
-    }
-
 
     private IEnumerator LaunchGame(int level)
     {
@@ -139,17 +131,5 @@ public class MainMenu : MonoBehaviour
         fader.GetComponent<Animator>().SetBool("FadeOut", true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(level);
-    }
-
-    private IEnumerator FadeAndQuitGame()
-    {
-        fader.GetComponent<Animator>().SetBool("FadeIn", false);
-        fader.GetComponent<Animator>().SetBool("FadeOut", true);
-        yield return new WaitForSeconds(2f);
-#if UNITY_EDITOR
-        EditorApplication.isPlaying = false;
-#else
-           Application.Quit();
-#endif
     }
 }

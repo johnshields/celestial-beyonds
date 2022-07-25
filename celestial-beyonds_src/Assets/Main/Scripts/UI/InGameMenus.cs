@@ -115,7 +115,7 @@ public class InGameMenus : MonoBehaviour
         if (pausedActive || player.GetComponent<CaptainHealth>().gameOver)
         {
             pausedActive = false;
-            StartCoroutine(GoLoadLevel("001_MainMenu"));
+            StartCoroutine(GoLoadLevel("101_MainMenu"));
         }
     }
 

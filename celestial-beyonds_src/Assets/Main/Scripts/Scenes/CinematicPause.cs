@@ -91,6 +91,6 @@ public class CinematicPause : MonoBehaviour
 
     private void LoadMainMenu(InputAction.CallbackContext obj)
     {
-        print("LoadMainMenu");
+        print("LoadMainMenu: 101_MainMenu");
     }
 }

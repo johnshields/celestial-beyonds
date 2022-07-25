@@ -8,7 +8,7 @@ public class PollinationLevel : MonoBehaviour
 {
     public int pollinationPercent, maxPollination = 100, pollenIncrease;
     public TextMeshProUGUI _pollinationLevel, _dOpt3;
-    public GameObject levelCompleteUI, fader, pauseMenu, miniMenu;
+    public GameObject levelCompleteUI, fader, pauseMenu;
     public bool levelCompleted, lvlCompLine, lineChanged;
     public AudioClip completeSFX;
     public string planet;
