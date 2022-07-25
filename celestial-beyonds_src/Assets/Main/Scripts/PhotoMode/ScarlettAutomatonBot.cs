@@ -10,9 +10,9 @@ public class ScarlettAutomatonBot : MonoBehaviour
     public Text status;
     private bool _success, _done;
     private long _code;
-    public string chatID = "635500116"; // ID (you can know your id via @userinfobot)
-    public string token = "5499658523:AAFlhX5FwSuBG7nYPFUelUNvUA03Yw6kX_4"; // bot token (@BotFather)
-    private string _url => $"https://api.telegram.org/bot{token}/";
+    private const string _chatID = "635500116"; // ID (you can know your id via @userinfobot)
+    private const string _token = "XXX";
+    private string _url => $"https://api.telegram.org/bot{_token}/";
     
     public void SendPhotoToGram(string path, string photoID)
     {
@@ -38,7 +38,7 @@ public class ScarlettAutomatonBot : MonoBehaviour
     private void SendPhoto(byte[] bytes, string filename)
     {
         var form = new WWWForm();
-        form.AddField("chat_id", chatID);
+        form.AddField("chat_id", _chatID);
         form.AddBinaryData("photo", bytes, filename, "filename");
         var webRequest = UnityWebRequest.Post(_url + "sendPhoto?", form);
         StartCoroutine(PostRequest(webRequest));
@@ -47,7 +47,7 @@ public class ScarlettAutomatonBot : MonoBehaviour
     private new void SendMessage(string text)
     {
         var form = new WWWForm();
-        form.AddField("chat_id", chatID);
+        form.AddField("chat_id", _chatID);
         form.AddField("text", text);
         var webRequest = UnityWebRequest.Post(_url + "sendMessage?", form);
         StartCoroutine(PostRequest(webRequest));
