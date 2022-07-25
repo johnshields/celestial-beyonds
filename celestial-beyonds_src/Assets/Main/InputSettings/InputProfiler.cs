@@ -765,7 +765,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""68fef0a5-f1fd-42fc-bb9a-8729f12d7c7e"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
