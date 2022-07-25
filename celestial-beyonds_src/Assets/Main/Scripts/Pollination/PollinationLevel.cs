@@ -11,7 +11,7 @@ public class PollinationLevel : MonoBehaviour
     public GameObject levelCompleteUI, fader, pauseMenu;
     public bool levelCompleted, lvlCompLine, lineChanged;
     public AudioClip completeSFX;
-    public string planet;
+    public string nextPlanet;
     private InputProfiler _controls;
     private AudioSource _audio;
     private bool _open;
@@ -58,7 +58,7 @@ public class PollinationLevel : MonoBehaviour
 
         if (pollinationPercent == maxPollination && !lvlCompLine)
         {
-            _dOpt3.text = planet + " looks beautiful now!";
+            _dOpt3.text = nextPlanet + " looks beautiful now!";
             lineChanged = true;
         }
     }
@@ -100,8 +100,8 @@ public class PollinationLevel : MonoBehaviour
         {
             if (levelCompleteUI.activeInHierarchy)
             {
-                print("Loading: " + planet);
-                StartCoroutine(GoLoadLevel(planet));   
+                print("Loading: " + nextPlanet);
+                StartCoroutine(GoLoadLevel(nextPlanet));   
             }
         }
     }

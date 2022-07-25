@@ -11,7 +11,7 @@ public class InGameMenus : MonoBehaviour
     public bool pausedActive, miniMenuActive, controlsMenu;
     public AudioSource audioToPause;
     public int audioPauseRequired;
-    public string planet;
+    public string reloadPlanet;
 
     private void Awake()
     {
@@ -106,7 +106,7 @@ public class InGameMenus : MonoBehaviour
         }
         else if (player.GetComponent<CaptainHealth>().gameOver)
         {
-            StartCoroutine(GoLoadLevel(planet));
+            StartCoroutine(GoLoadLevel(reloadPlanet));
         }
     }
 
