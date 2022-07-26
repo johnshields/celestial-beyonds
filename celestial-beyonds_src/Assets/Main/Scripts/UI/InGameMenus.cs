@@ -135,7 +135,7 @@ public class InGameMenus : MonoBehaviour
     
     private void CtrlsMenu(InputAction.CallbackContext obj)
     {
-        if (!controlsMenu && pausedActive)
+        if (!controlsMenu && pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
         {
             print("Controls menu active:" + controlsMenu);
             controlsMenu = true;
