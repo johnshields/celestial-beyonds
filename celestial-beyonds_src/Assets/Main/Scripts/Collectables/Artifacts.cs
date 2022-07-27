@@ -6,7 +6,7 @@ public class Artifacts : MonoBehaviour
     private GameObject _player;
     private string _parentName;
     public bool interaction;
-    public GameObject moonbeamAskPrompt, mb, miniMenu;
+    public GameObject moonbeamAskPrompt, mb;
     public string artifact;
     public int triggeredArtifact;
 
