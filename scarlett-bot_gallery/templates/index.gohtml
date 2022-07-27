@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scarlett Photographer Bot</title>
+    <link href="https://i.ibb.co/NSsqzML/Scarlett-Automaton-Bot.png" rel="icon">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #16192B;
+        }
+
+        div.outer {
+            background-color: #282C4B;
+            color: #BBC4DB;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-family: "Montserrat SemiBold", serif;
+        }
+
+        .project_title {
+            font-family: "Celestial Typeface", serif;
+        }
+
+        .project_tagline {
+            font-family: "Montserrat SemiBold", serif;
+        }
+
+        div.page {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+
+        div.gallery {
+            margin-bottom: 10px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: ghostwhite;
+            color: #16192B;
+            font-family: "Montserrat SemiBold", serif;
+        }
+
+        div.gallery:hover {
+            border: 1px solid #777;
+        }
+
+        div.gallery img {
+            height: auto;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+            <h1 class="project_title">SCARLETT PHOTOGRAPHER BOT</h1>
+            <a href="https://i.ibb.co/NSsqzML/Scarlett-Automaton-Bot.png" target="_blank">
+                <img src="https://i.ibb.co/NSsqzML/Scarlett-Automaton-Bot.png" alt="bot" width="100px">
+            </a>
+            <h3 class="project_tagline">Webpage for in-game photos taken of 'The Celestial Beyonds' by players using the PhotoMode.</h3>
+        </header>
+    </div>
+    <div class="page">
+        {{range .}}
+            <div class="gallery">
+                <a href="/gallery/{{.}}" target="_blank" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="/gallery/{{.}}" alt="/gallery/{{.}}">
+                </a>
+                <p class="desc">Filename: {{.}}</p>
+            </div>
+        {{end}}
+    </div>
+</div>
+</body>
+</html>

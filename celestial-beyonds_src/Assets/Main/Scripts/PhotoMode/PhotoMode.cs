@@ -140,7 +140,7 @@ public class PhotoMode : MonoBehaviour
         {
             var fov = fieldOfView.ToString(CultureInfo.CurrentCulture);
             fieldOfViewInput.text = fov;
-            photoIDTxt.text = "Photo: " + photoID + " -> Copied to clipboard!";
+            photoIDTxt.text = "Datetime stamp: " + photoID + " -> Copied to clipboard!";
         }
     }
 
@@ -162,16 +162,17 @@ public class PhotoMode : MonoBehaviour
             Directory.CreateDirectory(folderPath);
         Guid.NewGuid();
         var photo_guid = Guid.NewGuid().ToString();
+        // 25-07-2022_13-58-10
         var datetime_stamp = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
         var photo_id = photo_guid + "__" + datetime_stamp + ".jpeg";
         // TakePhoto
         ScreenCapture.CaptureScreenshot(Path.Combine(folderPath, photo_id), 3);
         print("Screenshot taken: " + folderPath + photo_id);
-        photoID = photo_id;
+        photoID = datetime_stamp;
         yield return new WaitForSeconds(1);
         photoModeUI.SetActive(true);
         link.SetActive(true);
-        GetComponent<ScarlettAutomatonBot>().SendPhotoToGram(folderPath, photo_id);
+        GetComponent<ScarlettPhotographerBot>().SendPhotoToGram(folderPath, photo_id);
         CopyToClipBoard(photo_guid);
         photoTaken = true;
     }
