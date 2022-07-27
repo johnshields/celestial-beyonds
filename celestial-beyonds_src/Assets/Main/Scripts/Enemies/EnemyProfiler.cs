@@ -21,7 +21,7 @@ namespace Main.Scripts.Enemies
 
         // states
         public float sightRange, attackRange;
-        public bool playerInSightRange, playerInAttackRange;
+        public bool playerInSightRange, playerInAttackRange, staticEnemy;
         public float delayAction = 2f;
 
         private Animator _animator;
@@ -35,9 +35,12 @@ namespace Main.Scripts.Enemies
         private void Awake()
         {
             enemyHealth = enemyMaxHealth;
+            if (!staticEnemy)
+            {
+                agent = GetComponent<NavMeshAgent>();
+                _animator = GetComponent<Animator>();
+            }
             player = GameObject.FindGameObjectWithTag("Player").transform;
-            agent = GetComponent<NavMeshAgent>();
-            _animator = GetComponent<Animator>();
             _idle = Animator.StringToHash("IdleActive");
             _walk = Animator.StringToHash("WalkActive");
             _attack = Animator.StringToHash("AttackActive");
@@ -45,31 +48,37 @@ namespace Main.Scripts.Enemies
 
         private void Update()
         {
-            var tp = transform.position;
-            playerInSightRange = Physics.CheckSphere(tp, sightRange, playerMask);
-            playerInAttackRange = Physics.CheckSphere(tp, attackRange, playerMask);
-
-            if (!playerInSightRange && !playerInAttackRange) Patrol();
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            if (!staticEnemy)
             {
-                if (playerInSightRange && !playerInAttackRange && !player.GetComponent<CaptainHealth>().capDead)
-                    ChasePlayer();
-                if (playerInAttackRange && playerInSightRange && !player.GetComponent<CaptainHealth>().capDead)
-                    AttackMode();
-                if (player.GetComponent<CaptainHealth>().capDead) Patrol();   
-            }
+                var tp = transform.position;
+                playerInSightRange = Physics.CheckSphere(tp, sightRange, playerMask);
+                playerInAttackRange = Physics.CheckSphere(tp, attackRange, playerMask);
 
-            // ref: https://forum.unity.com/threads/ai-getting-stuck-into-corner-of-the-map.1213311/
-            if (NavMesh.FindClosestEdge(transform.position, out _hit, NavMesh.AllAreas))
-                _distanceToEdge = _hit.distance;
-            if (_distanceToEdge < 2f) SearchWalkPoint();
+                if (!playerInSightRange && !playerInAttackRange) Patrol();
+                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+                {
+                    if (playerInSightRange && !playerInAttackRange && !player.GetComponent<CaptainHealth>().capDead)
+                        ChasePlayer();
+                    if (playerInAttackRange && playerInSightRange && !player.GetComponent<CaptainHealth>().capDead)
+                        AttackMode();
+                    if (player.GetComponent<CaptainHealth>().capDead) Patrol();   
+                }
+
+                // ref: https://forum.unity.com/threads/ai-getting-stuck-into-corner-of-the-map.1213311/
+                if (NavMesh.FindClosestEdge(transform.position, out _hit, NavMesh.AllAreas))
+                    _distanceToEdge = _hit.distance;
+                if (_distanceToEdge < 2f) SearchWalkPoint();   
+            }
         }
 
         private void AnimationState(bool idle, bool walk, bool attack)
         {
-            _animator.SetBool(_idle, idle);
-            _animator.SetBool(_walk, walk);
-            _animator.SetBool(_attack, attack);
+            if (!staticEnemy)
+            {
+                _animator.SetBool(_idle, idle);
+                _animator.SetBool(_walk, walk);
+                _animator.SetBool(_attack, attack);   
+            }
         }
 
         private void Patrol()
