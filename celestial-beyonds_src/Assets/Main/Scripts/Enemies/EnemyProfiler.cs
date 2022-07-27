@@ -1,3 +1,4 @@
+using System.Collections;
 using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.AI;

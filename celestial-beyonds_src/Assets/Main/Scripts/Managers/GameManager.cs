@@ -7,8 +7,5 @@ public class GameManager : MonoBehaviour
     {
         foreach (var t in Gamepad.all)
             Debug.Log("Connected Gamepad: " + t.name);
-        
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 }

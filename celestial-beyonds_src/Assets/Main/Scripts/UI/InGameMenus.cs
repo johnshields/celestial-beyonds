@@ -18,7 +18,7 @@ public class InGameMenus : MonoBehaviour
         pausedActive = false;
         pauseMenu.SetActive(false);
         _controls = new InputProfiler();
-        
+
         if (!Booleans.muteActive)
         {
             unMuteBtn.SetActive(false);
@@ -29,6 +29,9 @@ public class InGameMenus : MonoBehaviour
             unMuteBtn.SetActive(true);
             muteBtn.SetActive(false);
         }
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void OnEnable()
@@ -63,7 +66,7 @@ public class InGameMenus : MonoBehaviour
     {
         if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
             Time.timeScale = 0f;
-        else if(pausedActive && photoMode.GetComponent<PhotoMode>().photoMode)
+        else if (pausedActive && photoMode.GetComponent<PhotoMode>().photoMode)
             Time.timeScale = 1f;
     }
 
@@ -75,8 +78,12 @@ public class InGameMenus : MonoBehaviour
             pauseMenu.SetActive(true);
             print("Game paused: " + pausedActive);
             Time.timeScale = 0f;
-            if(audioPauseRequired != 0)
+            if (audioPauseRequired != 0)
                 audioToPause.Pause();
+
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
         {
@@ -86,14 +93,19 @@ public class InGameMenus : MonoBehaviour
             controlsPanel.SetActive(false);
             print("Game paused: " + pausedActive);
             Time.timeScale = 1f;
-            if(audioPauseRequired != 0)
+            if (audioPauseRequired != 0)
                 audioToPause.UnPause();
+            
+                    
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 
     private void ResumeGame(InputAction.CallbackContext obj)
     {
-        if (pausedActive && !player.GetComponent<CaptainHealth>().capDead && !photoMode.GetComponent<PhotoMode>().photoMode)
+        if (pausedActive && !player.GetComponent<CaptainHealth>().capDead &&
+            !photoMode.GetComponent<PhotoMode>().photoMode)
         {
             pausedActive = false;
             pauseMenu.SetActive(false);
@@ -101,8 +113,12 @@ public class InGameMenus : MonoBehaviour
             controlsPanel.SetActive(false);
             print("Game paused: " + pausedActive);
             Time.timeScale = 1f;
-            if(audioPauseRequired != 0)
+            if (audioPauseRequired != 0)
                 audioToPause.UnPause();
+
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         else if (player.GetComponent<CaptainHealth>().gameOver)
         {
@@ -132,7 +148,7 @@ public class InGameMenus : MonoBehaviour
             miniMenuActive = false;
         }
     }
-    
+
     private void CtrlsMenu(InputAction.CallbackContext obj)
     {
         if (!controlsMenu && pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
@@ -152,36 +168,36 @@ public class InGameMenus : MonoBehaviour
             controlsPanel.SetActive(false);
         }
     }
-    
+
     private void MuteGame(InputAction.CallbackContext obj)
     {
         if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
         {
-            print("Mute Active: " +  Booleans.muteActive);
+            print("Mute Active: " + Booleans.muteActive);
             Booleans.muteActive = true;
             muteBtn.SetActive(false);
             unMuteBtn.SetActive(true);
-            AudioManager.MuteActive();   
+            AudioManager.MuteActive();
         }
     }
-    
+
     private void UnMuteGame(InputAction.CallbackContext obj)
     {
         if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
         {
-            print("Mute Active: " +  Booleans.muteActive);
+            print("Mute Active: " + Booleans.muteActive);
             Booleans.muteActive = false;
             muteBtn.SetActive(true);
             unMuteBtn.SetActive(false);
-            AudioManager.MuteActive();   
+            AudioManager.MuteActive();
         }
     }
 
     private IEnumerator GoLoadLevel(string level)
     {
-        if(player.GetComponent<CaptainHealth>().gameOver)
+        if (player.GetComponent<CaptainHealth>().gameOver)
             BtnGO.SetActive(false);
-            
+
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         print("Loading: " + level);

@@ -23,6 +23,9 @@ public class CinematicPause : MonoBehaviour
             unMuteBtn.SetActive(true);
             muteBtn.SetActive(false);
         }
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void OnEnable()
@@ -54,6 +57,9 @@ public class CinematicPause : MonoBehaviour
             pausedCinActive = true;   
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
+            
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else
         {
@@ -62,6 +68,9 @@ public class CinematicPause : MonoBehaviour
             pausedCinActive = false;
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
+            
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
     
