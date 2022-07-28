@@ -5,10 +5,10 @@ namespace UnityStandardAssets.Cameras
 {
     public class HandHeldCam : LookatTarget
     {
-        [SerializeField] private float m_SwaySpeed = .5f;
-        [SerializeField] private float m_BaseSwayAmount = .5f;
-        [SerializeField] private float m_TrackingSwayAmount = .5f;
-        [Range(-1, 1)] [SerializeField] private float m_TrackingBias = 0;
+        // [SerializeField] private float m_SwaySpeed = .5f;
+        // [SerializeField] private float m_BaseSwayAmount = .5f;
+        // [SerializeField] private float m_TrackingSwayAmount = .5f;
+        // [Range(-1, 1)] [SerializeField] private float m_TrackingBias = 0;
 
 
         // protected override void FollowTarget(float deltaTime)

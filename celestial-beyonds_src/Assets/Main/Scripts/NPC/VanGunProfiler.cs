@@ -209,6 +209,8 @@ public class VanGunProfiler : MonoBehaviour
             _player.GetComponent<CaptainAnimAndSound>().pepperBoxUpgrade = true;
             upgradeOption.SetActive(false);
             print("CANNON BLASTER Upgraded to PEPPERBOX BLASTER!");
+            Booleans.pepperBoxUpgraded = true;
+            Booleans.celestialDeferUpgraded = false;
         }
         else if (upgrade == 2 && !upgradeCannon)
         {
@@ -216,6 +218,8 @@ public class VanGunProfiler : MonoBehaviour
             _player.GetComponent<CaptainAnimAndSound>().celestialDefierUpgrade = true;
             upgradeOption.SetActive(false);
             print("PEPPERBOX BLASTER Upgraded to THE CELESTIAL DEFIER!");
+            Booleans.pepperBoxUpgraded = false;
+            Booleans.celestialDeferUpgraded = true;
         }
     }
 }

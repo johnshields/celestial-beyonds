@@ -5,10 +5,11 @@ public class Artifacts : MonoBehaviour
 {
     private GameObject _player;
     private string _parentName;
-    public bool interaction;
+    public bool interaction, vanInScene;
     public GameObject moonbeamAskPrompt, mb;
     public string artifact;
     public int triggeredArtifact;
+    public AudioClip vincentBark;
 
     private void Awake()
     {
@@ -29,6 +30,9 @@ public class Artifacts : MonoBehaviour
             mb.GetComponent<MoonbeamDialogue>().artifactNum = triggeredArtifact;
             print("interaction w/ Artifact " + triggeredArtifact + " :" 
                   + _parentName + ": " + interaction);
+
+            if (gameObject.name == "ArtifactTrigger (6)" && vanInScene)
+                AudioSource.PlayClipAtPoint(vincentBark, other.transform.position, 0.05f);
         }
     }
 

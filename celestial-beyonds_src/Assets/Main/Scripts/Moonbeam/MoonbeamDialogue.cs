@@ -14,7 +14,7 @@ public class MoonbeamDialogue : MonoBehaviour
     public string[] gOptsOne, gOptsTwo, openingOpts, treeOpts;
     public string response;
     public int whichDialogue, artifactNum;
-    public bool chatting, asking;
+    public bool chatting, asking, generalQ, artifactQ;
     private bool _changed;
 
     private void Awake()
@@ -121,11 +121,13 @@ public class MoonbeamDialogue : MonoBehaviour
         {
             if (chatting && !asking)
             {
+                GeneralOrArtifactQ(true, false);
                 ChangeDialogue(dialogueOptions[0].GetComponent<TextMeshProUGUI>().text, 100);
                 dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(100);
             }
             else if (!chatting && asking)
             {
+                GeneralOrArtifactQ(false, true);
                 ArtifactQOnes();
                 dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(whichDialogue);
             }
@@ -138,11 +140,13 @@ public class MoonbeamDialogue : MonoBehaviour
         {
             if (chatting && !asking)
             {
+                GeneralOrArtifactQ(true, false);
                 ChangeDialogue(dialogueOptions[1].GetComponent<TextMeshProUGUI>().text, 101);
                 dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(101);
             }
             else if (!chatting && asking)
             {
+                GeneralOrArtifactQ(false, true);
                 ArtifactQTwos();
                 dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(whichDialogue);
             }
@@ -155,6 +159,7 @@ public class MoonbeamDialogue : MonoBehaviour
         {
             if (chatting && !asking)
             {
+                GeneralOrArtifactQ(true, false);
                 ChangeDialogue(dialogueOptions[2].GetComponent<TextMeshProUGUI>().text, 102);
                 dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(102);
                 if (_pl.GetComponent<PollinationLevel>().lineChanged)
@@ -162,10 +167,17 @@ public class MoonbeamDialogue : MonoBehaviour
             }
             else if (!chatting && asking)
             {
+                GeneralOrArtifactQ(false, true);
                 ArtifactQThrees();
                 dialogueColor.GetComponent<DialogueColorChanger>().ChangeTextColor(whichDialogue);
             }
         }
+    }
+
+    private void GeneralOrArtifactQ(bool g, bool a)
+    {
+        generalQ = g;
+        artifactQ = a;
     }
 
     private void OnGUI()

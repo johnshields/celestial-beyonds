@@ -10,7 +10,7 @@ public class ScarlettPhotographerBot : MonoBehaviour
     public Text status;
     private bool _success, _done;
     private long _code;
-    private string chatID = "635500116"; // ID (you can know your id via @userinfobot)
+    private string chatID = "635500116";
     private string token = "";
     private string _url => $"https://api.telegram.org/bot{token}/";
     

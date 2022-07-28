@@ -62,17 +62,18 @@ public class CannonBlaster : MonoBehaviour
 
     private void PlayCannonParticles()
     {
-        if (pepperBox.activeInHierarchy)
+        if (pepperBox.activeInHierarchy && Booleans.pepperBoxUpgraded && !Booleans.celestialDeferUpgraded)
         {
             print("pepperBoxParticles");
             UpgradedParticle(1, 0);
         }
-        else if (celestialDefier.activeInHierarchy)
+        else if (celestialDefier.activeInHierarchy && !Booleans.pepperBoxUpgraded && Booleans.celestialDeferUpgraded)
         {
             print("celestialParticles");
             UpgradedParticle(3, 0);
         }
-        else if (!pepperBox.activeInHierarchy || !celestialDefier.activeInHierarchy)
+        else if (!pepperBox.activeInHierarchy || !celestialDefier.activeInHierarchy 
+                 && !Booleans.pepperBoxUpgraded && !Booleans.celestialDeferUpgraded)
         {
             particles.GetComponent<ParticleSystem>().Play();
         }

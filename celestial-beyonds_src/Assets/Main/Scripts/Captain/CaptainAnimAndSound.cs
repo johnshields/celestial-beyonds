@@ -133,21 +133,28 @@ namespace Main.Scripts.Captain
                 _scraper.SetActive(s);
                 _pollinator.SetActive(p);
                 _cannon.SetActive(c);
+                if(pepperBoxUpgrade)
+                    _pepperBox.SetActive(c);
+                if(celestialDefierUpgrade)
+                    _celestialDefier.SetActive(c);
                 UpgradedCannon();
             }
         }
 
         private void UpgradedCannon()
             {
-                if (pepperBoxUpgrade && !celestialDefierUpgrade && _cannon.activeInHierarchy)
+                if (pepperBoxUpgrade && !celestialDefierUpgrade && _cannon.activeInHierarchy 
+                    && Booleans.pepperBoxUpgraded && !Booleans.celestialDeferUpgraded)
                     _pepperBox.SetActive(true);
-                else if (!pepperBoxUpgrade && celestialDefierUpgrade && _cannon.activeInHierarchy)
+                else if (!pepperBoxUpgrade && celestialDefierUpgrade && _cannon.activeInHierarchy
+                         && !Booleans.pepperBoxUpgraded && Booleans.celestialDeferUpgraded)
                 {
                     _celestialDefier.SetActive(true);
                     // change mesh & mat
                     _cannon.GetComponent<CelestialDefier>().SummonCelestialDefier();
                 }
-                else if (!pepperBoxUpgrade && !celestialDefierUpgrade && _cannon.activeInHierarchy)
+                else if (!pepperBoxUpgrade && !celestialDefierUpgrade && _cannon.activeInHierarchy
+                         && !Booleans.pepperBoxUpgraded && !Booleans.celestialDeferUpgraded)
                 {
                     _pepperBox.SetActive(false);
                     _celestialDefier.SetActive(false);

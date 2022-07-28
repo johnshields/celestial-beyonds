@@ -75,6 +75,8 @@ public class PhotoMode : MonoBehaviour
             SwitchCam(false, true);
             photoModeUI.SetActive(true);
             UI.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         else if (photoMode)
         {
@@ -83,6 +85,8 @@ public class PhotoMode : MonoBehaviour
             SwitchCam(true, false);
             photoModeUI.SetActive(false);
             UI.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
