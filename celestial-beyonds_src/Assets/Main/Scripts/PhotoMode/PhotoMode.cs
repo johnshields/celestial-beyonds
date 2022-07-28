@@ -140,12 +140,13 @@ public class PhotoMode : MonoBehaviour
 
     private void OnGUI()
     {
-        if (photoMode && photoTaken)
+        if (photoMode)
         {
             var fov = fieldOfView.ToString(CultureInfo.CurrentCulture);
-            fieldOfViewInput.text = fov;
-            photoIDTxt.text = "Datetime stamp: " + photoID + " -> Copied to clipboard!";
+            fieldOfViewInput.text = fov;   
         }
+        else if (photoMode && photoTaken)
+            photoIDTxt.text = "Datetime stamp: " + photoID + " -> Copied to clipboard!";
     }
 
     private void TakePhoto(InputAction.CallbackContext obj)

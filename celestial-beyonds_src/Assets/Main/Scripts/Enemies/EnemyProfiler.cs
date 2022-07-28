@@ -1,4 +1,3 @@
-using System.Collections;
 using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.AI;
@@ -21,7 +20,7 @@ namespace Main.Scripts.Enemies
 
         // states
         public float sightRange, attackRange;
-        public bool playerInSightRange, playerInAttackRange, staticEnemy;
+        public bool playerInSightRange, playerInAttackRange, staticEnemy, isSpider;
         public float delayAction = 2f;
 
         private Animator _animator;
@@ -29,7 +28,7 @@ namespace Main.Scripts.Enemies
         private bool _walkPointSet, _actionDone, _played;
 
         // misc
-        public GameObject miniMenu, pauseMenu;
+        public GameObject miniMenu, pauseMenu, photoMode;
         public AudioClip deathSFX;
 
         private void Awake()
@@ -69,6 +68,16 @@ namespace Main.Scripts.Enemies
                     _distanceToEdge = _hit.distance;
                 if (_distanceToEdge < 2f) SearchWalkPoint();   
             }
+
+            if (photoMode.GetComponent<PhotoMode>().photoMode)
+                agent.stoppingDistance = 5f;
+            else if(isSpider && photoMode.GetComponent<PhotoMode>().photoMode)
+                agent.stoppingDistance = 15f;
+            else if(isSpider && !photoMode.GetComponent<PhotoMode>().photoMode)
+                agent.stoppingDistance = 5f;
+            else if(!isSpider && !photoMode.GetComponent<PhotoMode>().photoMode)
+                agent.stoppingDistance = 1f;
+
         }
 
         private void AnimationState(bool idle, bool walk, bool attack)
