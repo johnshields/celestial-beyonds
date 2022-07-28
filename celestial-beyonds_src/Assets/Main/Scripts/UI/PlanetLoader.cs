@@ -7,12 +7,12 @@ public class PlanetLoader : MonoBehaviour
 {
     public GameObject planetPanel, fader;
     private InputProfiler _controls;
-    
+
     private void Awake()
     {
         _controls = new InputProfiler();
     }
-    
+
     private void OnEnable()
     {
         _controls.UIActions.LoadTrappist.started += LoadTrappist;
@@ -30,19 +30,15 @@ public class PlanetLoader : MonoBehaviour
     private void LoadTrappist(InputAction.CallbackContext obj)
     {
         if (planetPanel.activeInHierarchy)
-        {
             StartCoroutine(LaunchPlanet("004_Intro_TRAPPIST-1"));
-        }
     }
 
     private void LoadPCB(InputAction.CallbackContext obj)
     {
         if (planetPanel.activeInHierarchy)
-        {
             StartCoroutine(LaunchPlanet("007_ProximaCentauriB"));
-        }
     }
-    
+
     private IEnumerator LaunchPlanet(string level)
     {
         fader.SetActive(true);
