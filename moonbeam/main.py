@@ -17,10 +17,19 @@ mb_bot = ChatBot(
 print('[INFO] Training bot...')
 trainer = ListTrainer(mb_bot)
 
-with open('data/mb_data.json') as f:
-    data = json.load(f)
+with open('data/general.json') as f:
+    general_data = json.load(f)
 
-trainer.train(data)
+with open('data/trappist.json') as f:
+    trappist_data = json.load(f)
+
+    with open('data/pcb.json') as f:
+        pcb_data = json.load(f)
+
+
+trainer.train(general_data)
+trainer.train(trappist_data)
+trainer.train(pcb_data)
 print('[INFO] Training complete!' + '\n Chat with Moonbeam!' +
       '\n Local: http://0.0.0.0:5000/' + '\n Hosted: https://api.moonbeambot.live/' +
       '\n Awaiting request...')
