@@ -15,7 +15,7 @@ namespace Main.Scripts.Captain
         public AudioClip[] meleeSFX;
         public AudioClip cannonSFX, pollenSFX, noAmmoSFX, capScreamSFX;
         public float delayAction = 1f, dodge;
-        public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo, viktor, argyle;
+        public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo, viktor, argyle, pbUI, cdUI;
         public bool meleeActive, cannonFire, pollenFire, callMoonbeam, pepperBoxUpgrade, celestialDefierUpgrade;
         private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
@@ -261,7 +261,12 @@ namespace Main.Scripts.Captain
                         {
                             print("out of cannon ammo");
                             _audio.PlayOneShot(noAmmoSFX);
-                            cannonMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                            if (Booleans.pepperBoxUpgraded)
+                                pbUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                            else if (Booleans.pepperBoxUpgraded)
+                                cdUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                            else
+                                cannonMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
                             StartCoroutine(ResetAmmoMeter(0));
                         }
                     }
@@ -304,6 +309,12 @@ namespace Main.Scripts.Captain
                 yield return new WaitForSeconds(1);
                 switch (which)
                 {
+                    case 0 when Booleans.pepperBoxUpgraded:
+                        pbUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
+                        break;
+                    case 0 when Booleans.pepperBoxUpgraded:
+                        cdUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
+                        break;
                     case 0:
                         cannonMeter.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
                         break;

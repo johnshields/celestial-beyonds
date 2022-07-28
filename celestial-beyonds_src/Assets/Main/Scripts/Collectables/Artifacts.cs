@@ -32,7 +32,7 @@ public class Artifacts : MonoBehaviour
                   + _parentName + ": " + interaction);
 
             if (gameObject.name == "ArtifactTrigger (6)" && vanInScene)
-                AudioSource.PlayClipAtPoint(vincentBark, other.transform.position, 0.05f);
+                AudioSource.PlayClipAtPoint(vincentBark, other.transform.position, 0.01f);
         }
     }
 
