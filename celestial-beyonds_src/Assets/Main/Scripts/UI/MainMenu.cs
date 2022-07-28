@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject fader, controlsPanel, creditsPanel, muteBtn, unMuteBtn;
+    public GameObject fader, planetPanel, controlsPanel, creditsPanel, muteBtn, unMuteBtn;
     private InputProfiler _controls;
-    public bool controlsMenu, creditsRolling;
+    public bool controlsMenu, creditsRolling, loadPlanet;
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
     {
         _controls.UIActions.StartGame.started += StartGame;
         _controls.UIActions.Controls.started += CtrlsMenu;
-        _controls.UIActions.Back.started += BackBtn;
+        _controls.UIActions.LoadPlanet.started += LoadPlanet;
         _controls.UIActions.Mute.started += MuteGame;
         _controls.UIActions.UnMute.started += UnMuteGame;
         _controls.UIActions.Credits.started += RollCredits;
@@ -47,7 +47,7 @@ public class MainMenu : MonoBehaviour
     {
         _controls.UIActions.StartGame.started -= StartGame;
         _controls.UIActions.Controls.started -= CtrlsMenu;
-        _controls.UIActions.Back.started -= BackBtn;
+        _controls.UIActions.LoadPlanet.started -= LoadPlanet;
         _controls.UIActions.Mute.started -= MuteGame;
         _controls.UIActions.UnMute.started -= UnMuteGame;
         _controls.UIActions.Credits.started -= RollCredits;
@@ -70,19 +70,41 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(LaunchGame(1));
     }
 
+    private void LoadPlanet(InputAction.CallbackContext obj)
+    {
+        if (!loadPlanet)
+        {
+            loadPlanet = true;
+            print("loadPlanet menu active:" + loadPlanet);
+            planetPanel.SetActive(true);
+        }
+        else if(loadPlanet)
+        {
+            loadPlanet = false;
+            print("loadPlanet menu active:" + loadPlanet);
+            planetPanel.SetActive(false);
+        }
+    }
+
     private void CtrlsMenu(InputAction.CallbackContext obj)
     {
-        if (!controlsMenu)
+        if (!controlsMenu && !loadPlanet)
         {
-            print("Controls menu active:" + controlsMenu);
             controlsMenu = true;
+            print("Controls menu active:" + controlsMenu);
             controlsPanel.SetActive(true);
+        }
+        else if (controlsMenu)
+        {
+            controlsMenu = false;
+            print("Controls menu active:" + controlsMenu);
+            controlsPanel.SetActive(false);
         }
     }
     
     private void RollCredits(InputAction.CallbackContext obj)
     {
-        if (!creditsRolling)
+        if (!creditsRolling && !loadPlanet)
         {
             creditsRolling = true;
             creditsPanel.SetActive(true);
@@ -94,16 +116,6 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private void BackBtn(InputAction.CallbackContext obj)
-    {
-        if (controlsMenu)
-        {
-            print("Controls menu active: " + controlsMenu);
-            controlsMenu = false;
-            controlsPanel.SetActive(false);
-        }
-    }
-    
     private void MuteGame(InputAction.CallbackContext obj)
     {
         print("Mute Active: " +  Booleans.muteActive);
@@ -127,8 +139,8 @@ public class MainMenu : MonoBehaviour
     {
         fader.SetActive(true);
         print("Loading into: " + level);
-        fader.GetComponent<Animator>().SetBool("FadeIn", false);
-        fader.GetComponent<Animator>().SetBool("FadeOut", true);
+        fader.GetComponent<Animator>().SetBool($"FadeIn", false);
+        fader.GetComponent<Animator>().SetBool($"FadeOut", true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(level);
     }

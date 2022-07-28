@@ -1012,6 +1012,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""LoadPlanet"",
+                    ""type"": ""Button"",
+                    ""id"": ""5394f907-7633-4529-b332-1009823bfb06"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Credits"",
                     ""type"": ""Button"",
                     ""id"": ""61455fbf-0693-47c0-8cdf-384696e64811"",
@@ -1078,6 +1087,24 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""name"": ""QuitGame"",
                     ""type"": ""Button"",
                     ""id"": ""29608661-196f-4664-b429-d1cc0ed251d9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadTrappist"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ae0f406-7a1f-4120-9ec6-928c7919bb80"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadPCB"",
+                    ""type"": ""Button"",
+                    ""id"": ""04bed582-d9c1-430b-871d-97d36cc6abd6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1304,6 +1331,39 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""QuitGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""172106ee-148c-4940-a838-85b451c2bf6c"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadPlanet"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a695c97-0d3f-410f-9760-d394e3d23c87"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadTrappist"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32484fc6-a185-43ab-9091-f388a5f5ff54"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadPCB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1349,6 +1409,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_UIActions_StartGame = m_UIActions.FindAction("StartGame", throwIfNotFound: true);
         m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
         m_UIActions_Controls = m_UIActions.FindAction("Controls", throwIfNotFound: true);
+        m_UIActions_LoadPlanet = m_UIActions.FindAction("LoadPlanet", throwIfNotFound: true);
         m_UIActions_Credits = m_UIActions.FindAction("Credits", throwIfNotFound: true);
         m_UIActions_Back = m_UIActions.FindAction("Back", throwIfNotFound: true);
         m_UIActions_KeyboardControls = m_UIActions.FindAction("KeyboardControls", throwIfNotFound: true);
@@ -1357,6 +1418,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_UIActions_Mute = m_UIActions.FindAction("Mute", throwIfNotFound: true);
         m_UIActions_UnMute = m_UIActions.FindAction("UnMute", throwIfNotFound: true);
         m_UIActions_QuitGame = m_UIActions.FindAction("QuitGame", throwIfNotFound: true);
+        m_UIActions_LoadTrappist = m_UIActions.FindAction("LoadTrappist", throwIfNotFound: true);
+        m_UIActions_LoadPCB = m_UIActions.FindAction("LoadPCB", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1709,6 +1772,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_UIActions_StartGame;
     private readonly InputAction m_UIActions_PlayCinematic;
     private readonly InputAction m_UIActions_Controls;
+    private readonly InputAction m_UIActions_LoadPlanet;
     private readonly InputAction m_UIActions_Credits;
     private readonly InputAction m_UIActions_Back;
     private readonly InputAction m_UIActions_KeyboardControls;
@@ -1717,6 +1781,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_UIActions_Mute;
     private readonly InputAction m_UIActions_UnMute;
     private readonly InputAction m_UIActions_QuitGame;
+    private readonly InputAction m_UIActions_LoadTrappist;
+    private readonly InputAction m_UIActions_LoadPCB;
     public struct UIActionsActions
     {
         private @InputProfiler m_Wrapper;
@@ -1724,6 +1790,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @StartGame => m_Wrapper.m_UIActions_StartGame;
         public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
         public InputAction @Controls => m_Wrapper.m_UIActions_Controls;
+        public InputAction @LoadPlanet => m_Wrapper.m_UIActions_LoadPlanet;
         public InputAction @Credits => m_Wrapper.m_UIActions_Credits;
         public InputAction @Back => m_Wrapper.m_UIActions_Back;
         public InputAction @KeyboardControls => m_Wrapper.m_UIActions_KeyboardControls;
@@ -1732,6 +1799,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Mute => m_Wrapper.m_UIActions_Mute;
         public InputAction @UnMute => m_Wrapper.m_UIActions_UnMute;
         public InputAction @QuitGame => m_Wrapper.m_UIActions_QuitGame;
+        public InputAction @LoadTrappist => m_Wrapper.m_UIActions_LoadTrappist;
+        public InputAction @LoadPCB => m_Wrapper.m_UIActions_LoadPCB;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1750,6 +1819,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Controls.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnControls;
                 @Controls.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnControls;
                 @Controls.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnControls;
+                @LoadPlanet.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadPlanet;
+                @LoadPlanet.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadPlanet;
+                @LoadPlanet.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadPlanet;
                 @Credits.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnCredits;
                 @Credits.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnCredits;
                 @Credits.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnCredits;
@@ -1774,6 +1846,12 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @QuitGame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
                 @QuitGame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
                 @QuitGame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
+                @LoadTrappist.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTrappist;
+                @LoadTrappist.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTrappist;
+                @LoadTrappist.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTrappist;
+                @LoadPCB.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadPCB;
+                @LoadPCB.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadPCB;
+                @LoadPCB.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadPCB;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1787,6 +1865,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Controls.started += instance.OnControls;
                 @Controls.performed += instance.OnControls;
                 @Controls.canceled += instance.OnControls;
+                @LoadPlanet.started += instance.OnLoadPlanet;
+                @LoadPlanet.performed += instance.OnLoadPlanet;
+                @LoadPlanet.canceled += instance.OnLoadPlanet;
                 @Credits.started += instance.OnCredits;
                 @Credits.performed += instance.OnCredits;
                 @Credits.canceled += instance.OnCredits;
@@ -1811,6 +1892,12 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @QuitGame.started += instance.OnQuitGame;
                 @QuitGame.performed += instance.OnQuitGame;
                 @QuitGame.canceled += instance.OnQuitGame;
+                @LoadTrappist.started += instance.OnLoadTrappist;
+                @LoadTrappist.performed += instance.OnLoadTrappist;
+                @LoadTrappist.canceled += instance.OnLoadTrappist;
+                @LoadPCB.started += instance.OnLoadPCB;
+                @LoadPCB.performed += instance.OnLoadPCB;
+                @LoadPCB.canceled += instance.OnLoadPCB;
             }
         }
     }
@@ -1856,6 +1943,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnStartGame(InputAction.CallbackContext context);
         void OnPlayCinematic(InputAction.CallbackContext context);
         void OnControls(InputAction.CallbackContext context);
+        void OnLoadPlanet(InputAction.CallbackContext context);
         void OnCredits(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
         void OnKeyboardControls(InputAction.CallbackContext context);
@@ -1864,5 +1952,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnMute(InputAction.CallbackContext context);
         void OnUnMute(InputAction.CallbackContext context);
         void OnQuitGame(InputAction.CallbackContext context);
+        void OnLoadTrappist(InputAction.CallbackContext context);
+        void OnLoadPCB(InputAction.CallbackContext context);
     }
 }

@@ -1,12 +1,12 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ControlsMenu : MonoBehaviour
 {
-    public GameObject keyboard, playstation, xbox, ctrlsPanel;
+    public GameObject keyboard, playstation, xbox, ctrlsPanel, planetPanel;
     public TextMeshProUGUI[] keyboardTxt, playstationText, xboxTxt;
+    public bool isMainMenu;
     private InputProfiler _controls;
 
     private void Awake()
@@ -51,9 +51,18 @@ public class ControlsMenu : MonoBehaviour
     private void WhichControls(bool k, bool p, bool x)
     {
         if (!ctrlsPanel.activeInHierarchy) return;
-        keyboard.SetActive(k);
-        playstation.SetActive(p);
-        xbox.SetActive(x);
+        if (!planetPanel.activeInHierarchy && isMainMenu)
+        {
+            keyboard.SetActive(k);
+            playstation.SetActive(p);
+            xbox.SetActive(x);   
+        }
+        else
+        {
+            keyboard.SetActive(k);
+            playstation.SetActive(p);
+            xbox.SetActive(x);  
+        }
 
         //Booleans.keyboardSelected = k;
         //Booleans.playstationSelected = p;

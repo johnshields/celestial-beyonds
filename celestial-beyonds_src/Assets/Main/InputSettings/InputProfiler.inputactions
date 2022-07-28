@@ -990,6 +990,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "LoadPlanet",
+                    "type": "Button",
+                    "id": "5394f907-7633-4529-b332-1009823bfb06",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Credits",
                     "type": "Button",
                     "id": "61455fbf-0693-47c0-8cdf-384696e64811",
@@ -1056,6 +1065,24 @@
                     "name": "QuitGame",
                     "type": "Button",
                     "id": "29608661-196f-4664-b429-d1cc0ed251d9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LoadTrappist",
+                    "type": "Button",
+                    "id": "8ae0f406-7a1f-4120-9ec6-928c7919bb80",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LoadPCB",
+                    "type": "Button",
+                    "id": "04bed582-d9c1-430b-871d-97d36cc6abd6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1280,6 +1307,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "QuitGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "172106ee-148c-4940-a838-85b451c2bf6c",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadPlanet",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1a695c97-0d3f-410f-9760-d394e3d23c87",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadTrappist",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32484fc6-a185-43ab-9091-f388a5f5ff54",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadPCB",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
