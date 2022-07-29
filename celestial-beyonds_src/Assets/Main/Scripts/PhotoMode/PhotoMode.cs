@@ -24,9 +24,11 @@ public class PhotoMode : MonoBehaviour
     {
         _controls = new InputProfiler();
         photoMode = false;
-        photoModeUI.SetActive(false);
         if (pmEnabledInScene)
-            SwitchCam(true, false);
+        {
+            photoModeUI.SetActive(false);
+            SwitchCam(true, false);   
+        }
     }
 
     private void FixedUpdate()
@@ -41,8 +43,9 @@ public class PhotoMode : MonoBehaviour
                         (_moveController.ReadValue<Vector2>().y * movementForce);
             forceDir = Vector3.zero;
         }
-
-        GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView = fieldOfView;
+        
+        if(pmEnabledInScene)
+            GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView = fieldOfView;
     }
 
     private void OnEnable()
