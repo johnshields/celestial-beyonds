@@ -31,6 +31,9 @@ namespace Main.Scripts.Moonbeam
         // AttackMode
         public float delayAction = 2f;
         private GameObject _player;
+        
+        // misc
+        public bool cutsceneInit;
 
         private void Awake()
         {
@@ -41,17 +44,20 @@ namespace Main.Scripts.Moonbeam
 
         private void Update()
         {
-            var position = transform.position;
-            playerInSightRange = Physics.CheckSphere(position, sightRange, playerMask);
-            playerInFollowRange = Physics.CheckSphere(position, followRange, playerMask);
+            if (!cutsceneInit)
+            {
+                var position = transform.position;
+                playerInSightRange = Physics.CheckSphere(position, sightRange, playerMask);
+                playerInFollowRange = Physics.CheckSphere(position, followRange, playerMask);
 
-            if (!playerInSightRange && !playerInFollowRange) Wander();
-            if (playerInSightRange && !playerInFollowRange) Follow();
-            if (playerInFollowRange && playerInSightRange) SideBySide();
+                if (!playerInSightRange && !playerInFollowRange) Wander();
+                if (playerInSightRange && !playerInFollowRange) Follow();
+                if (playerInFollowRange && playerInSightRange) SideBySide();
             
-            transform.LookAt(_target);
+                transform.LookAt(_target);
             
-            AttackMode();
+                AttackMode();   
+            }
         }
 
         private void Wander()

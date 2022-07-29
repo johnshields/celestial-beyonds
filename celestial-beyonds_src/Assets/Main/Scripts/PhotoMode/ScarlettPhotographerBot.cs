@@ -7,11 +7,11 @@ using UnityEngine.UI;
 // ref - https://github.com/Nrjwolf/UnityTelegramExample
 public class ScarlettPhotographerBot : MonoBehaviour
 {
-    public Text status;
+    public Text status, photoIDTxt;
     private bool _success, _done;
     private long _code;
     private string chatID = "635500116";
-    private string token = "54996-l2NB7at-";
+    private string token = "549965-l2NB7at-";
     private string _url => $"https://api.telegram.org/bot{token}/";
     
     public void SendPhotoToGram(string path, string photoID)
@@ -76,6 +76,9 @@ public class ScarlettPhotographerBot : MonoBehaviour
     private void OnGUI()
     {
         if (_done)
+        {
+            photoIDTxt.text = "Datetime stamp: " + GetComponent<PhotoMode>().photoID + " -> Copied to clipboard!";   
             status.text = "Success: " + _success + " -> " + _code;
+        }
     }
 }

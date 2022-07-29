@@ -12,11 +12,10 @@ public class PhotoMode : MonoBehaviour
 {
     public GameObject mainCam, pauseMenu, photoModeUI, UI, link;
     public float movementForce = 1f, fieldOfView = 80;
-    public bool photoMode, pmEnabledInScene, photoTaken;
+    public bool photoMode, pmEnabledInScene;
     public string photoID;
     public AudioClip shutter;
     public TextMeshProUGUI fieldOfViewInput;
-    public Text photoIDTxt;
     private Vector3 forceDir = Vector3.zero;
     private InputProfiler _controls;
     private InputAction _moveKeys, _moveController;
@@ -145,8 +144,6 @@ public class PhotoMode : MonoBehaviour
             var fov = fieldOfView.ToString(CultureInfo.CurrentCulture);
             fieldOfViewInput.text = fov;   
         }
-        else if (photoMode && photoTaken)
-            photoIDTxt.text = "Datetime stamp: " + photoID + " -> Copied to clipboard!";
     }
 
     private void TakePhoto(InputAction.CallbackContext obj)
@@ -178,8 +175,7 @@ public class PhotoMode : MonoBehaviour
         photoModeUI.SetActive(true);
         link.SetActive(true);
         GetComponent<ScarlettPhotographerBot>().SendPhotoToGram(folderPath, photo_id);
-        CopyToClipBoard(photo_guid);
-        photoTaken = true;
+        CopyToClipBoard(datetime_stamp);
     }
 
     private void CopyToClipBoard(string id)
