@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject fader, planetPanel, controlsPanel, creditsPanel, muteBtn, unMuteBtn;
+    public GameObject fader, actPanel, controlsPanel, creditsPanel, muteBtn, unMuteBtn;
     private InputProfiler _controls;
     public bool controlsMenu, creditsRolling, loadPlanet;
 
@@ -76,13 +76,13 @@ public class MainMenu : MonoBehaviour
         {
             loadPlanet = true;
             print("loadPlanet menu active:" + loadPlanet);
-            planetPanel.SetActive(true);
+            actPanel.SetActive(true);
         }
         else if(loadPlanet)
         {
             loadPlanet = false;
             print("loadPlanet menu active:" + loadPlanet);
-            planetPanel.SetActive(false);
+            actPanel.SetActive(false);
         }
     }
 

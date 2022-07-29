@@ -1093,7 +1093,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LoadTrappist"",
+                    ""name"": ""LoadActOne"",
                     ""type"": ""Button"",
                     ""id"": ""8ae0f406-7a1f-4120-9ec6-928c7919bb80"",
                     ""expectedControlType"": ""Button"",
@@ -1102,9 +1102,18 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LoadPCB"",
+                    ""name"": ""LoadActTwo"",
                     ""type"": ""Button"",
                     ""id"": ""04bed582-d9c1-430b-871d-97d36cc6abd6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadActThree"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c5633e2-90f6-417b-ac7a-6ac1ac4fdb6d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1346,22 +1355,33 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1a695c97-0d3f-410f-9760-d394e3d23c87"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LoadTrappist"",
+                    ""action"": ""LoadActOne"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""32484fc6-a185-43ab-9091-f388a5f5ff54"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LoadPCB"",
+                    ""action"": ""LoadActTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a92d47a2-2163-4e50-9ed1-b1a2ef3fe082"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadActThree"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1418,8 +1438,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_UIActions_Mute = m_UIActions.FindAction("Mute", throwIfNotFound: true);
         m_UIActions_UnMute = m_UIActions.FindAction("UnMute", throwIfNotFound: true);
         m_UIActions_QuitGame = m_UIActions.FindAction("QuitGame", throwIfNotFound: true);
-        m_UIActions_LoadTrappist = m_UIActions.FindAction("LoadTrappist", throwIfNotFound: true);
-        m_UIActions_LoadPCB = m_UIActions.FindAction("LoadPCB", throwIfNotFound: true);
+        m_UIActions_LoadActOne = m_UIActions.FindAction("LoadActOne", throwIfNotFound: true);
+        m_UIActions_LoadActTwo = m_UIActions.FindAction("LoadActTwo", throwIfNotFound: true);
+        m_UIActions_LoadActThree = m_UIActions.FindAction("LoadActThree", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1781,8 +1802,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_UIActions_Mute;
     private readonly InputAction m_UIActions_UnMute;
     private readonly InputAction m_UIActions_QuitGame;
-    private readonly InputAction m_UIActions_LoadTrappist;
-    private readonly InputAction m_UIActions_LoadPCB;
+    private readonly InputAction m_UIActions_LoadActOne;
+    private readonly InputAction m_UIActions_LoadActTwo;
+    private readonly InputAction m_UIActions_LoadActThree;
     public struct UIActionsActions
     {
         private @InputProfiler m_Wrapper;
@@ -1799,8 +1821,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Mute => m_Wrapper.m_UIActions_Mute;
         public InputAction @UnMute => m_Wrapper.m_UIActions_UnMute;
         public InputAction @QuitGame => m_Wrapper.m_UIActions_QuitGame;
-        public InputAction @LoadTrappist => m_Wrapper.m_UIActions_LoadTrappist;
-        public InputAction @LoadPCB => m_Wrapper.m_UIActions_LoadPCB;
+        public InputAction @LoadActOne => m_Wrapper.m_UIActions_LoadActOne;
+        public InputAction @LoadActTwo => m_Wrapper.m_UIActions_LoadActTwo;
+        public InputAction @LoadActThree => m_Wrapper.m_UIActions_LoadActThree;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1846,12 +1869,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @QuitGame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
                 @QuitGame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
                 @QuitGame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
-                @LoadTrappist.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTrappist;
-                @LoadTrappist.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTrappist;
-                @LoadTrappist.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadTrappist;
-                @LoadPCB.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadPCB;
-                @LoadPCB.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadPCB;
-                @LoadPCB.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadPCB;
+                @LoadActOne.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActOne;
+                @LoadActOne.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActOne;
+                @LoadActOne.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActOne;
+                @LoadActTwo.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActTwo;
+                @LoadActTwo.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActTwo;
+                @LoadActTwo.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActTwo;
+                @LoadActThree.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActThree;
+                @LoadActThree.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActThree;
+                @LoadActThree.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActThree;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1892,12 +1918,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @QuitGame.started += instance.OnQuitGame;
                 @QuitGame.performed += instance.OnQuitGame;
                 @QuitGame.canceled += instance.OnQuitGame;
-                @LoadTrappist.started += instance.OnLoadTrappist;
-                @LoadTrappist.performed += instance.OnLoadTrappist;
-                @LoadTrappist.canceled += instance.OnLoadTrappist;
-                @LoadPCB.started += instance.OnLoadPCB;
-                @LoadPCB.performed += instance.OnLoadPCB;
-                @LoadPCB.canceled += instance.OnLoadPCB;
+                @LoadActOne.started += instance.OnLoadActOne;
+                @LoadActOne.performed += instance.OnLoadActOne;
+                @LoadActOne.canceled += instance.OnLoadActOne;
+                @LoadActTwo.started += instance.OnLoadActTwo;
+                @LoadActTwo.performed += instance.OnLoadActTwo;
+                @LoadActTwo.canceled += instance.OnLoadActTwo;
+                @LoadActThree.started += instance.OnLoadActThree;
+                @LoadActThree.performed += instance.OnLoadActThree;
+                @LoadActThree.canceled += instance.OnLoadActThree;
             }
         }
     }
@@ -1952,7 +1981,8 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnMute(InputAction.CallbackContext context);
         void OnUnMute(InputAction.CallbackContext context);
         void OnQuitGame(InputAction.CallbackContext context);
-        void OnLoadTrappist(InputAction.CallbackContext context);
-        void OnLoadPCB(InputAction.CallbackContext context);
+        void OnLoadActOne(InputAction.CallbackContext context);
+        void OnLoadActTwo(InputAction.CallbackContext context);
+        void OnLoadActThree(InputAction.CallbackContext context);
     }
 }

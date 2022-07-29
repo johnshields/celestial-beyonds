@@ -1071,7 +1071,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LoadTrappist",
+                    "name": "LoadActOne",
                     "type": "Button",
                     "id": "8ae0f406-7a1f-4120-9ec6-928c7919bb80",
                     "expectedControlType": "Button",
@@ -1080,9 +1080,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LoadPCB",
+                    "name": "LoadActTwo",
                     "type": "Button",
                     "id": "04bed582-d9c1-430b-871d-97d36cc6abd6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LoadActThree",
+                    "type": "Button",
+                    "id": "6c5633e2-90f6-417b-ac7a-6ac1ac4fdb6d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1324,22 +1333,33 @@
                 {
                     "name": "",
                     "id": "1a695c97-0d3f-410f-9760-d394e3d23c87",
-                    "path": "<Keyboard>/t",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LoadTrappist",
+                    "action": "LoadActOne",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "32484fc6-a185-43ab-9091-f388a5f5ff54",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LoadPCB",
+                    "action": "LoadActTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a92d47a2-2163-4e50-9ed1-b1a2ef3fe082",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadActThree",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
