@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject enemies, fader, skipBtn;
+    public GameObject enemies, fader, skipBtn, rainFader;
     public AudioSource cutSceneAudio;
     public int time, skipInit, enemiesInit, fadeInit;
-    public bool enableSkip, skip, sceneAudioInit;
+    public bool enableSkip, skip, sceneAudioInit, rainFadeInit;
     private InputProfiler _controls;
 
     private void Awake()
@@ -81,6 +81,8 @@ public class LevelManager : MonoBehaviour
             yield return new WaitForSeconds(time);
             fader.GetComponent<Animator>().SetBool($"FadeIn", false);
             fader.GetComponent<Animator>().SetBool($"FadeOut", true);
+            if(rainFadeInit)
+                rainFader.GetComponent<RainFade>().RainFader(1);
             yield return new WaitForSeconds(4);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
@@ -90,6 +92,8 @@ public class LevelManager : MonoBehaviour
                 cutSceneAudio.Stop();
             fader.GetComponent<Animator>().SetBool($"FadeIn", false);
             fader.GetComponent<Animator>().SetBool($"FadeOut", true);
+            if(rainFadeInit)
+                rainFader.GetComponent<RainFade>().RainFader(1);
             yield return new WaitForSeconds(4);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

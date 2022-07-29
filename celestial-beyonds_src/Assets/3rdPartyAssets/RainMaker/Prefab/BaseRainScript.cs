@@ -21,18 +21,6 @@ namespace DigitalRuby.RainMaker
         [Tooltip("Whether rain should follow the camera. If false, rain must be moved manually and will not follow the camera.")]
         public bool FollowCamera = true;
 
-        [Tooltip("Light rain looping clip")]
-        public AudioClip RainSoundLight;
-
-        [Tooltip("Medium rain looping clip")]
-        public AudioClip RainSoundMedium;
-
-        [Tooltip("Heavy rain looping clip")]
-        public AudioClip RainSoundHeavy;
-
-        [Tooltip("AudoMixer used for the rain sound")]
-        public AudioMixerGroup RainSoundAudioMixer;
-
         [Tooltip("Intensity of rain (0-1)")]
         [Range(0.0f, 1.0f)]
         public float RainIntensity;
@@ -67,12 +55,7 @@ namespace DigitalRuby.RainMaker
 
         [Tooltip("Whether wind should be enabled.")]
         public bool EnableWind = true;
-
-        protected LoopingAudioSource audioSourceRainLight;
-        protected LoopingAudioSource audioSourceRainMedium;
-        protected LoopingAudioSource audioSourceRainHeavy;
-        protected LoopingAudioSource audioSourceRainCurrent;
-        protected LoopingAudioSource audioSourceWind;
+        
         protected Material rainMaterial;
         protected Material rainExplosionMaterial;
         protected Material rainMistMaterial;
@@ -107,7 +90,6 @@ namespace DigitalRuby.RainMaker
                         WindZone.transform.rotation = Quaternion.Euler(UnityEngine.Random.Range(-30.0f, 30.0f), UnityEngine.Random.Range(0.0f, 360.0f), 0.0f);
                     }
                     nextWindTime = Time.time + UnityEngine.Random.Range(WindChangeInterval.x, WindChangeInterval.y);
-                    audioSourceWind.Play((WindZone.windMain / WindSpeedRange.z) * WindSoundVolumeModifier);
                 }
             }
             else
@@ -116,10 +98,7 @@ namespace DigitalRuby.RainMaker
                 {
                     WindZone.gameObject.SetActive(false);
                 }
-                audioSourceWind.Stop();
             }
-
-            audioSourceWind.Update();
         }
 
         private void CheckForRainChange()
@@ -129,11 +108,6 @@ namespace DigitalRuby.RainMaker
                 lastRainIntensityValue = RainIntensity;
                 if (RainIntensity <= 0.01f)
                 {
-                    if (audioSourceRainCurrent != null)
-                    {
-                        audioSourceRainCurrent.Stop();
-                        audioSourceRainCurrent = null;
-                    }
                     if (RainFallParticleSystem != null)
                     {
                         ParticleSystem.EmissionModule e = RainFallParticleSystem.emission;
@@ -149,28 +123,6 @@ namespace DigitalRuby.RainMaker
                 }
                 else
                 {
-                    LoopingAudioSource newSource;
-                    if (RainIntensity >= 0.67f)
-                    {
-                        newSource = audioSourceRainHeavy;
-                    }
-                    else if (RainIntensity >= 0.33f)
-                    {
-                        newSource = audioSourceRainMedium;
-                    }
-                    else
-                    {
-                        newSource = audioSourceRainLight;
-                    }
-                    if (audioSourceRainCurrent != newSource)
-                    {
-                        if (audioSourceRainCurrent != null)
-                        {
-                            audioSourceRainCurrent.Stop();
-                        }
-                        audioSourceRainCurrent = newSource;
-                        audioSourceRainCurrent.Play(1.0f);
-                    }
                     if (RainFallParticleSystem != null)
                     {
                         ParticleSystem.EmissionModule e = RainFallParticleSystem.emission;
@@ -229,11 +181,6 @@ namespace DigitalRuby.RainMaker
                 Camera = Camera.main;
             }
 
-            audioSourceRainLight = new LoopingAudioSource(this, RainSoundLight, RainSoundAudioMixer);
-            audioSourceRainMedium = new LoopingAudioSource(this, RainSoundMedium, RainSoundAudioMixer);
-            audioSourceRainHeavy = new LoopingAudioSource(this, RainSoundHeavy, RainSoundAudioMixer);
-            audioSourceWind = new LoopingAudioSource(this, WindSound, RainSoundAudioMixer);
-
             if (RainFallParticleSystem != null)
             {
                 ParticleSystem.EmissionModule e = RainFallParticleSystem.emission;
@@ -287,9 +234,6 @@ namespace DigitalRuby.RainMaker
 
             CheckForRainChange();
             UpdateWind();
-            audioSourceRainLight.Update();
-            audioSourceRainMedium.Update();
-            audioSourceRainHeavy.Update();
         }
 
         protected virtual float RainFallEmissionRate()

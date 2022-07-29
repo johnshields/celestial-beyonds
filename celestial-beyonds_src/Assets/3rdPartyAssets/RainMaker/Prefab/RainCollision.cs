@@ -16,26 +16,16 @@ namespace DigitalRuby.RainMaker
         public ParticleSystem RainExplosion;
         public ParticleSystem RainParticleSystem;
 
-        private void Start()
-        {
-
-        }
-
-        private void Update()
-        {
-
-        }
-
         private void Emit(ParticleSystem p, ref Vector3 pos)
         {
-            int count = UnityEngine.Random.Range(2, 5);
+            int count = Random.Range(2, 5);
             while (count != 0)
             {
-                float yVelocity = UnityEngine.Random.Range(1.0f, 3.0f);
-                float zVelocity = UnityEngine.Random.Range(-2.0f, 2.0f);
-                float xVelocity = UnityEngine.Random.Range(-2.0f, 2.0f);
+                float yVelocity = Random.Range(1.0f, 3.0f);
+                float zVelocity = Random.Range(-2.0f, 2.0f);
+                float xVelocity = Random.Range(-2.0f, 2.0f);
                 const float lifetime = 0.75f;// UnityEngine.Random.Range(0.25f, 0.75f);
-                float size = UnityEngine.Random.Range(0.05f, 0.1f);
+                float size = Random.Range(0.05f, 0.1f);
                 ParticleSystem.EmitParams param = new ParticleSystem.EmitParams();
                 param.position = pos;
                 param.velocity = new Vector3(xVelocity, yVelocity, zVelocity);
