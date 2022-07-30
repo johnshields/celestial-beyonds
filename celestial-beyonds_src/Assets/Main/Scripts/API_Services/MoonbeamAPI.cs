@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -14,6 +15,7 @@ public class MoonbeamAPI : MonoBehaviour
     private void Awake()
     {
         _response = "";
+        
         _audio = GetComponent<AudioSource>();
         _mb = GameObject.FindGameObjectWithTag("Moonbeam");
         PlayRandomClip(0f);
