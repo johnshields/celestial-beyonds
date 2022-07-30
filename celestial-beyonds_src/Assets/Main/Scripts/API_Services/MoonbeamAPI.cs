@@ -9,7 +9,7 @@ public class MoonbeamAPI : MonoBehaviour
     private const string _uri = "https://api.moonbeambot.live/api/chat";
     private GameObject _mb;
     public GameObject randoAudio;
-    public bool itIsAQuestion;
+    public bool itIsAQuestion, disabledMoonbeam;
 
     private void Awake()
     {
@@ -17,45 +17,52 @@ public class MoonbeamAPI : MonoBehaviour
         _audio = GetComponent<AudioSource>();
         _mb = GameObject.FindGameObjectWithTag("Moonbeam");
         PlayRandomClip(0f);
-        StartCoroutine(GetRequest(_uri));
+        if (!disabledMoonbeam)
+            StartCoroutine(GetRequest(_uri));
     }
 
     private IEnumerator GetRequest(string uri)
     {
-        // Send GET request.
-        using var webRequest = UnityWebRequest.Get(uri);
-        yield return webRequest.SendWebRequest();
-        if (webRequest.result == UnityWebRequest.Result.ConnectionError)
+        if (!disabledMoonbeam)
         {
-            print("Connection to API - Error: " + webRequest.error);
-            _response = "Sorry, I seem to have a screw lose.";
+            // Send GET request.
+            using var webRequest = UnityWebRequest.Get(uri);
+            yield return webRequest.SendWebRequest();
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError)
+            {
+                print("Connection to API - Error: " + webRequest.error);
+                _response = "Sorry, I seem to have a screw lose.";
+            }
+            else
+                print("Connection to API: " + webRequest.result);   
         }
-        else
-            print("Connection to API: " + webRequest.result);
     }
 
     public IEnumerator PostRequest(string uri)
     {
-        var form = new WWWForm();
-        GetComponent<DialogueForm>().SetUpForm(form);
-        // Send POST request.
-        using var webRequest = UnityWebRequest.Post(uri, form);
-        yield return webRequest.SendWebRequest();
-        if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
-            webRequest.result == UnityWebRequest.Result.ProtocolError)
+        if (!disabledMoonbeam)
         {
-            print("Error getting response: " + webRequest.error);
-            _response = "Sorry, there seems to be a screw lose.";
-            _mb.GetComponent<MoonbeamDialogue>().response = _response;
-            PlayRandomClip(0.5f);
-        }
-        else
-        {
-            print("Moonbeam says: " + webRequest.downloadHandler.text);
-            _response = webRequest.downloadHandler.text;
-            _mb.GetComponent<MoonbeamDialogue>().response = _response;
-            IsItAQuestion();
-            PlayRandomClip(0.5f);
+            var form = new WWWForm();
+            GetComponent<DialogueForm>().SetUpForm(form);
+            // Send POST request.
+            using var webRequest = UnityWebRequest.Post(uri, form);
+            yield return webRequest.SendWebRequest();
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
+                webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                print("Error getting response: " + webRequest.error);
+                _response = "Sorry, there seems to be a screw lose.";
+                _mb.GetComponent<MoonbeamDialogue>().response = _response;
+                PlayRandomClip(0.5f);
+            }
+            else
+            {
+                print("Moonbeam says: " + webRequest.downloadHandler.text);
+                _response = webRequest.downloadHandler.text;
+                _mb.GetComponent<MoonbeamDialogue>().response = _response;
+                IsItAQuestion();
+                PlayRandomClip(0.5f);
+            }
         }
     }
 
