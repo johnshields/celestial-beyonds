@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class ScarlettPhotographerBot : MonoBehaviour
 {
     public Text status, photoIDTxt;
-    private bool _success, _done;
+    private bool _success, _trySend;
     private long _code;
     private string chatID = "635500116";
     private string token = "";
@@ -16,7 +16,7 @@ public class ScarlettPhotographerBot : MonoBehaviour
     
     public void SendPhotoToGram(string path, string photoID)
     {
-        _done = false;
+        _trySend = false;
         GetMe();
         var bytes = File.ReadAllBytes(path + photoID);
         SendMessage(GetUserInfo() + "\n\nHi there! Check out the new Photo!" + "\nPhoto ID: " + photoID);
@@ -62,20 +62,20 @@ public class ScarlettPhotographerBot : MonoBehaviour
             print("Connection to ScarlettAutomatonBot - Error: " + webRequest.error);
             _code = webRequest.responseCode;
             _success = false;
-            _done = true;
+            _trySend = true;
         }
         else
         {
             print("Success!\n" + webRequest.downloadHandler.text);
             _code = webRequest.responseCode;
             _success = true;
-            _done = true;
+            _trySend = true;
         }
     }
 
     private void OnGUI()
     {
-        if (_done)
+        if (_trySend)
         {
             photoIDTxt.text = "Datetime stamp: " + GetComponent<PhotoMode>().photoID + " -> Copied to clipboard!";   
             status.text = "Success: " + _success + " -> " + _code;

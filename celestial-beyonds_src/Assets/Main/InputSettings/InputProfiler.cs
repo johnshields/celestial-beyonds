@@ -242,6 +242,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenDungeon"",
+                    ""type"": ""Button"",
+                    ""id"": ""7da6b3d3-30bf-454c-815c-56d7eaa9557f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -792,6 +801,17 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""FieldDepthDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""747f54f8-af26-4fda-b334-452d82134dd1"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenDungeon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1416,6 +1436,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_TakePhoto = m_Profiler.FindAction("TakePhoto", throwIfNotFound: true);
         m_Profiler_FieldDepthUp = m_Profiler.FindAction("FieldDepthUp", throwIfNotFound: true);
         m_Profiler_FieldDepthDown = m_Profiler.FindAction("FieldDepthDown", throwIfNotFound: true);
+        m_Profiler_OpenDungeon = m_Profiler.FindAction("OpenDungeon", throwIfNotFound: true);
         // InGameUI
         m_InGameUI = asset.FindActionMap("InGameUI", throwIfNotFound: true);
         m_InGameUI_OpenLevelCompleteUI = m_InGameUI.FindAction("OpenLevelCompleteUI", throwIfNotFound: true);
@@ -1524,6 +1545,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_TakePhoto;
     private readonly InputAction m_Profiler_FieldDepthUp;
     private readonly InputAction m_Profiler_FieldDepthDown;
+    private readonly InputAction m_Profiler_OpenDungeon;
     public struct ProfilerActions
     {
         private @InputProfiler m_Wrapper;
@@ -1552,6 +1574,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @TakePhoto => m_Wrapper.m_Profiler_TakePhoto;
         public InputAction @FieldDepthUp => m_Wrapper.m_Profiler_FieldDepthUp;
         public InputAction @FieldDepthDown => m_Wrapper.m_Profiler_FieldDepthDown;
+        public InputAction @OpenDungeon => m_Wrapper.m_Profiler_OpenDungeon;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1633,6 +1656,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @FieldDepthDown.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthDown;
                 @FieldDepthDown.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthDown;
                 @FieldDepthDown.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthDown;
+                @OpenDungeon.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnOpenDungeon;
+                @OpenDungeon.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnOpenDungeon;
+                @OpenDungeon.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnOpenDungeon;
             }
             m_Wrapper.m_ProfilerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1709,6 +1735,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @FieldDepthDown.started += instance.OnFieldDepthDown;
                 @FieldDepthDown.performed += instance.OnFieldDepthDown;
                 @FieldDepthDown.canceled += instance.OnFieldDepthDown;
+                @OpenDungeon.started += instance.OnOpenDungeon;
+                @OpenDungeon.performed += instance.OnOpenDungeon;
+                @OpenDungeon.canceled += instance.OnOpenDungeon;
             }
         }
     }
@@ -1957,6 +1986,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnTakePhoto(InputAction.CallbackContext context);
         void OnFieldDepthUp(InputAction.CallbackContext context);
         void OnFieldDepthDown(InputAction.CallbackContext context);
+        void OnOpenDungeon(InputAction.CallbackContext context);
     }
     public interface IInGameUIActions
     {

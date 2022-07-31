@@ -12,10 +12,11 @@ public class PhotoMode : MonoBehaviour
 {
     public GameObject mainCam, pauseMenu, photoModeUI, UI, link;
     public float movementForce = 1f, fieldOfView = 80;
-    public bool photoMode, pmEnabledInScene;
+    public bool photoMode, pmEnabledInScene, done;
     public string photoID;
     public AudioClip shutter;
     public TextMeshProUGUI fieldOfViewInput;
+    public Text photoIDTxt;
     private Vector3 forceDir = Vector3.zero;
     private InputProfiler _controls;
     private InputAction _moveKeys, _moveController;
@@ -139,19 +140,11 @@ public class PhotoMode : MonoBehaviour
             print("fieldOfView is to high: " + fieldOfView);
         }
     }
-
-    private void OnGUI()
-    {
-        if (photoMode)
-        {
-            var fov = fieldOfView.ToString(CultureInfo.CurrentCulture);
-            fieldOfViewInput.text = fov;   
-        }
-    }
-
+    
     private void TakePhoto(InputAction.CallbackContext obj)
     {
         if (!photoMode) return;
+        done = false;
         photoModeUI.SetActive(false);
         AudioSource.PlayClipAtPoint(shutter, transform.position, 0.8f);
         StartCoroutine(CamTimer());
@@ -171,10 +164,11 @@ public class PhotoMode : MonoBehaviour
         var datetime_stamp = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
         var photo_id = photo_guid + "__" + datetime_stamp + ".jpeg";
         // TakePhoto
-        ScreenCapture.CaptureScreenshot(Path.Combine(folderPath, photo_id), 3);
+        ScreenCapture.CaptureScreenshot(Path.Combine(folderPath, photo_id), 2);
         print("Screenshot taken: " + folderPath + photo_id);
         photoID = datetime_stamp;
         yield return new WaitForSeconds(1);
+        done = true;
         photoModeUI.SetActive(true);
         link.SetActive(true);
         GetComponent<ScarlettPhotographerBot>().SendPhotoToGram(folderPath, photo_id);
@@ -188,4 +182,17 @@ public class PhotoMode : MonoBehaviour
         textEditor.Copy();
         print("Photo ID: Copied to clipboard!");
     }
+    
+    private void OnGUI()
+    {
+        if (photoMode)
+        {
+            var fov = fieldOfView.ToString(CultureInfo.CurrentCulture);
+            fieldOfViewInput.text = fov;   
+        }
+        
+        if (done)
+            photoIDTxt.text = "Datetime stamp: " + GetComponent<PhotoMode>().photoID + " -> Copied to clipboard!";
+    }
+
 }

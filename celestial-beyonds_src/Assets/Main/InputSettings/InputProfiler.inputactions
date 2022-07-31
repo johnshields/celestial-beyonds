@@ -220,6 +220,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenDungeon",
+                    "type": "Button",
+                    "id": "7da6b3d3-30bf-454c-815c-56d7eaa9557f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -770,6 +779,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "FieldDepthDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "747f54f8-af26-4fda-b334-452d82134dd1",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenDungeon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

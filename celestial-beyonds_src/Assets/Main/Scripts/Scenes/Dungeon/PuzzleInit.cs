@@ -7,16 +7,26 @@ public class PuzzleInit : MonoBehaviour
     public bool initPuzzle;
     public TextMeshProUGUI mbDialogue;
     public GameObject mbAPI, lightControl;
+    public AudioSource holyGrailMusic;
+
+    private void Awake()
+    {
+        holyGrailMusic.Pause();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !lightControl.GetComponent<LightControl>().lightActivated)
+        if (other.CompareTag("Player"))
         {
-            initPuzzle = true;
-            print("initPuzzle: " + initPuzzle);
-            mbDialogue.text = "What lies beyond that Wall? \nWhat does that Light do?";
-            mbAPI.GetComponent<MoonbeamAPI>().PlayRandomClip(0.5f);
-            StartCoroutine(CloseDialogue());
+            holyGrailMusic.UnPause();
+            if(!lightControl.GetComponent<LightControl>().lightActivated)
+            {
+                initPuzzle = true;
+                print("initPuzzle: " + initPuzzle);
+                mbDialogue.text = "What lies beyond that Wall? \nWhat does that Light do?";
+                mbAPI.GetComponent<MoonbeamAPI>().PlayRandomClip(0.5f);
+                StartCoroutine(CloseDialogue());
+            }   
         }
     }
 
