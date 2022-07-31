@@ -11,7 +11,7 @@ public class ScarlettPhotographerBot : MonoBehaviour
     private bool _success, _trySend;
     private long _code;
     private string chatID = "635500116";
-    private string token = "";
+    private string token = "c";
     private string _url => $"https://api.telegram.org/bot{token}/";
     
     public void SendPhotoToGram(string path, string photoID)
