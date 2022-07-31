@@ -85,7 +85,7 @@ public class MoonbeamAPI : MonoBehaviour
         }
     }
 
-    private void PlayRandomClip(float vol)
+    public void PlayRandomClip(float vol)
     {
         _audio.Stop();
         _audio.PlayOneShot(randoAudio.GetComponent<AudioRandomizer>().GetRandomClip("Moonbeam/SFX"), vol);
