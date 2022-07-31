@@ -16,7 +16,7 @@ public class ScarlettPhotographerBot : MonoBehaviour
     
     public void SendPhotoToGram(string path, string photoID)
     {
-        _trySend = false;
+        _trySend = true;
         GetMe();
         var bytes = File.ReadAllBytes(path + photoID);
         SendMessage(GetUserInfo() + "\n\nHi there! Check out the new Photo!" + "\nPhoto ID: " + photoID);
