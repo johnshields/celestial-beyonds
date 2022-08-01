@@ -14,14 +14,14 @@ public class TestingOnly : MonoBehaviour
         
         if (enablePepperBox)
         {
-            Booleans.pepperBoxUpgraded = true;
-            player.GetComponent<CaptainAnimAndSound>().pepperBoxUpgrade = true;
+            Bools.pbUpgraded = true;
+            player.GetComponent<CaptainAnimAndSound>().pbUpgrade = true;
         }
 
         if (enableDefier)
         {
-            Booleans.celestialDeferUpgraded = true;
-            player.GetComponent<CaptainAnimAndSound>().celestialDefierUpgrade = true;
+            Bools.cdUpgraded = true;
+            player.GetComponent<CaptainAnimAndSound>().cdUpgrade = true;
         }
 
         if (lotsOfPeridots)

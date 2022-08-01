@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     {
         _controls = new InputProfiler();
         
-        if (!Booleans.muteActive)
+        if (!Bools.muteActive)
         {
             unMuteBtn.SetActive(false);
             muteBtn.SetActive(true);
@@ -118,8 +118,8 @@ public class MainMenu : MonoBehaviour
 
     private void MuteGame(InputAction.CallbackContext obj)
     {
-        print("Mute Active: " +  Booleans.muteActive);
-        Booleans.muteActive = true;
+        print("Mute Active: " +  Bools.muteActive);
+        Bools.muteActive = true;
         muteBtn.SetActive(false);
         unMuteBtn.SetActive(true);
         AudioManager.MuteActive();
@@ -127,8 +127,8 @@ public class MainMenu : MonoBehaviour
     
     private void UnMuteGame(InputAction.CallbackContext obj)
     {
-        print("Mute Active: " +  Booleans.muteActive);
-        Booleans.muteActive = false;
+        print("Mute Active: " +  Bools.muteActive);
+        Bools.muteActive = false;
         muteBtn.SetActive(true);
         unMuteBtn.SetActive(false);
         AudioManager.MuteActive();

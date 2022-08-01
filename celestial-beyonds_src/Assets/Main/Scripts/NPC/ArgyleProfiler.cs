@@ -62,9 +62,9 @@ public class ArgyleProfiler : MonoBehaviour
         // say Hello
         if (other.gameObject == _player && !_saleActive)
         {
-            _saleActive = true;
-            _player.GetComponent<CaptainAnimAndSound>().PlayerState(true, false);
             _player.GetComponent<CaptainAnimAndSound>().WeaponSelect(false, false, true);
+            _player.GetComponent<CaptainAnimAndSound>().PlayerState(false, true);
+            _saleActive = true;
             stationUI.SetActive(true);
             SwitchAnim();
             if (_actionDone) return;

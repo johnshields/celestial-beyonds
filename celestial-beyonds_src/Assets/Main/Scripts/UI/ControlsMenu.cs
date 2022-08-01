@@ -71,19 +71,19 @@ public class ControlsMenu : MonoBehaviour
 
     private void OnGUI()
     {
-        if (Booleans.keyboardSelected)
+        if (Bools.keyboardSelected)
         {
             keyboardTxt[0].text = "Keyboard: K";
             playstationText[0].text = "Playstation: P";
             xboxTxt[0].text = "Xbox: X";
         }
-        else if (Booleans.playstationSelected)
+        else if (Bools.playstationSelected)
         {
             keyboardTxt[0].text = "Keyboard: ■";
             playstationText[0].text = "Playstation: ▲";
             xboxTxt[0].text = "Xbox: X";
         }
-        else if (Booleans.xboxSelected)
+        else if (Bools.xboxSelected)
         {
             keyboardTxt[0].text = "Keyboard: X";
             playstationText[0].text = "Playstation: Y";

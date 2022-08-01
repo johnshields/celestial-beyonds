@@ -16,7 +16,7 @@ namespace Main.Scripts.Captain
         public AudioClip cannonSFX, pollenSFX, noAmmoSFX, capScreamSFX;
         public float delayAction = 1f, dodge;
         public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo, viktor, argyle, pbUI, cdUI;
-        public bool meleeActive, cannonFire, pollenFire, callMoonbeam, pepperBoxUpgrade, celestialDefierUpgrade;
+        public bool meleeActive, cannonFire, pollenFire, callMoonbeam, pbUpgrade, cdUpgrade;
         private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
         private AudioSource _audio;
@@ -151,28 +151,27 @@ namespace Main.Scripts.Captain
                 _scraper.SetActive(s);
                 _pollinator.SetActive(p);
                 _cannonObj.SetActive(c);
-                if(pepperBoxUpgrade)
-                    _pepperBox.SetActive(c);
-                if(celestialDefierUpgrade)
-                    _celestialDefier.SetActive(c);
                 UpgradedCannon();
+                if(pbUpgrade)
+                    _pepperBox.SetActive(c);
+                if(cdUpgrade)
+                    _celestialDefier.SetActive(c);
             }
         }
 
         private void UpgradedCannon()
             {
-                if (pepperBoxUpgrade && !celestialDefierUpgrade && _cannon.activeInHierarchy 
-                    && Booleans.pepperBoxUpgraded && !Booleans.celestialDeferUpgraded)
+                // PepperBox Upgrade
+                if (pbUpgrade && !cdUpgrade && _cannon.activeInHierarchy && Bools.pbUpgraded && !Bools.cdUpgraded)
                     _pepperBox.SetActive(true);
-                else if (!pepperBoxUpgrade && celestialDefierUpgrade && _cannon.activeInHierarchy
-                         && !Booleans.pepperBoxUpgraded && Booleans.celestialDeferUpgraded)
+                // Celestial Defier Upgrade
+                else if (!pbUpgrade && cdUpgrade && _cannon.activeInHierarchy && !Bools.pbUpgraded && Bools.cdUpgraded)
                 {
                     _celestialDefier.SetActive(true);
-                    // change mesh & mat
-                    _cannon.GetComponent<CelestialDefier>().SummonCelestialDefier();
+                    _cannon.GetComponent<CelestialDefier>().SummonCelestialDefier(); // change mesh & mat
                 }
-                else if (!pepperBoxUpgrade && !celestialDefierUpgrade && _cannon.activeInHierarchy
-                         && !Booleans.pepperBoxUpgraded && !Booleans.celestialDeferUpgraded)
+                // Standard Cannon
+                else if (!pbUpgrade && !cdUpgrade && _cannon.activeInHierarchy && !Bools.pbUpgraded && !Bools.cdUpgraded)
                 {
                     _pepperBox.SetActive(false);
                     _celestialDefier.SetActive(false);
@@ -275,12 +274,9 @@ namespace Main.Scripts.Captain
                         {
                             print("out of cannon ammo");
                             _audio.PlayOneShot(noAmmoSFX);
-                            if (Booleans.pepperBoxUpgraded)
-                                pbUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-                            else if (Booleans.pepperBoxUpgraded)
-                                cdUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-                            else
-                                cannonMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                            pbUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                            cdUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                            cannonMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
                             StartCoroutine(ResetAmmoMeter(0));
                         }
                     }
@@ -291,8 +287,7 @@ namespace Main.Scripts.Captain
             {
                 if (!GetComponent<CaptainHealth>().capDead)
                 {
-                    if (!pauseMenu.GetComponent<InGameMenus>().pausedActive &&
-                        !argyle.activeInHierarchy && !viktor.activeInHierarchy)
+                    if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
                     {
                         WeaponSelect(false, false, true);
                         PlayerState(false, true);
@@ -323,13 +318,9 @@ namespace Main.Scripts.Captain
                 yield return new WaitForSeconds(1);
                 switch (which)
                 {
-                    case 0 when Booleans.pepperBoxUpgraded:
-                        pbUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
-                        break;
-                    case 0 when Booleans.pepperBoxUpgraded:
-                        cdUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
-                        break;
                     case 0:
+                        pbUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
+                        cdUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
                         cannonMeter.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
                         break;
                     case 1:

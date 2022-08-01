@@ -6,12 +6,11 @@ using UnityEngine.UI;
 
 public class VanGunProfiler : MonoBehaviour
 {
-    public GameObject stationUI, peridotCounterUI, cannonMeter, pauseMenu, canAmmo, randoAudio, 
-        upgradeOption, cannon;
+    public GameObject stationUI, peridotCounterUI, ammoHandle, pauseMenu, canAmmo, randoAudio, upgradeOption;
     public float delayAction = 1f, audioVol = .4f;
     public AudioClip sale, noSale;
     public int upgradeNum, upgradeCost;
-    public bool upgradeCannon;
+    public bool upgradeCannon, transaction;
     private bool _actionDone, _saleActive;
     private Animator _animator;
     private AudioSource _audio;
@@ -101,6 +100,7 @@ public class VanGunProfiler : MonoBehaviour
             if (canAmmo.GetComponent<CannonAmmo>().cannonAmmo != canAmmo.GetComponent<CannonAmmo>().maxAmmo &&
                 _peridotCounter.GetComponent<PeridotCounter>().peridots != 0)
             {
+                transaction = true;
                 PlayRandomClip("Sold", audioVol);
                 _audio.PlayOneShot(sale, 0.1f);
                 canAmmo.GetComponent<CannonAmmo>().FillUpCannon(10);
@@ -114,15 +114,16 @@ public class VanGunProfiler : MonoBehaviour
                 PlayRandomClip("NoSale", audioVol);
                 _audio.PlayOneShot(noSale, 0.1f);
                 peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-                StartCoroutine(ResetCounterColor(0));
+                StartCoroutine(ResetCounterColor());
             }
             // decline sale if ammo is full + flash cannonMeter.
             else if (canAmmo.GetComponent<CannonAmmo>().cannonAmmo == canAmmo.GetComponent<CannonAmmo>().maxAmmo)
             {
+                transaction = true;
                 print("Ammo full!");
+                ammoHandle.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
                 PlayRandomClip("MaxAmmo", audioVol);
-                cannonMeter.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
-                StartCoroutine(ResetCounterColor(1));
+                StartCoroutine(ResetCounterColor());
             }
 
             if (_actionDone) return;
@@ -141,28 +142,27 @@ public class VanGunProfiler : MonoBehaviour
             canAmmo.GetComponent<CannonAmmo>().cannonAmmo = canAmmo.GetComponent<CannonAmmo>().maxAmmo;
             UpgradeCannon(upgradeNum);
         }
-        else
+        else if(_peridotCounter.GetComponent<PeridotCounter>().peridots < upgradeCost)
         {
             print("Not enough peridots");
             PlayRandomClip("NoSale", audioVol);
             _audio.PlayOneShot(noSale, 0.1f);
             peridotCounterUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-            StartCoroutine(ResetCounterColor(0));
+            StartCoroutine(ResetCounterColor());
         }
     }
 
 
-    private IEnumerator ResetCounterColor(int whichCounter)
+    private IEnumerator ResetCounterColor()
     {
         yield return new WaitForSeconds(1);
-        if (whichCounter == 0)
-            peridotCounterUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
-        else if (whichCounter == 1)
-            cannonMeter.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
+        peridotCounterUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
+        ammoHandle.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
     }
 
     private void ResetAction()
     {
+        transaction = false;
         _actionDone = false;
     }
 
@@ -207,20 +207,21 @@ public class VanGunProfiler : MonoBehaviour
         if (upgrade == 1 && !upgradeCannon)
         {
             upgradeCannon = true;
-            _player.GetComponent<CaptainAnimAndSound>().pepperBoxUpgrade = true;
+            _player.GetComponent<CaptainAnimAndSound>().pbUpgrade = true;
             upgradeOption.SetActive(false);
             print("CANNON BLASTER Upgraded to PEPPERBOX BLASTER!");
-            Booleans.pepperBoxUpgraded = true;
-            Booleans.celestialDeferUpgraded = false;
+            Bools.pbUpgraded = true;
+            Bools.cdUpgraded = false;
         }
         else if (upgrade == 2 && !upgradeCannon)
         {
             upgradeCannon = true;
-            _player.GetComponent<CaptainAnimAndSound>().celestialDefierUpgrade = true;
+            _player.GetComponent<CaptainAnimAndSound>().cdUpgrade = true;
             upgradeOption.SetActive(false);
             print("PEPPERBOX BLASTER Upgraded to THE CELESTIAL DEFIER!");
-            Booleans.pepperBoxUpgraded = false;
-            Booleans.celestialDeferUpgraded = true;
+            Bools.pbUpgraded = false;
+            Bools.cdUpgraded = true;
         }
     }
+    
 }

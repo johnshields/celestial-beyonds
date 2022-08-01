@@ -34,9 +34,9 @@ public class CannonBlaster : MonoBehaviour
 
     private void CallCannon()
     {
-        if (_player.GetComponent<CaptainAnimAndSound>().pepperBoxUpgrade)
+        if (_player.GetComponent<CaptainAnimAndSound>().pbUpgrade)
             StartCoroutine(CannonWait());
-        else if (_player.GetComponent<CaptainAnimAndSound>().celestialDefierUpgrade)
+        else if (_player.GetComponent<CaptainAnimAndSound>().cdUpgrade)
             StartCoroutine(CannonWait());
         else
             StartCoroutine(CannonWait());
@@ -62,18 +62,18 @@ public class CannonBlaster : MonoBehaviour
 
     private void PlayCannonParticles()
     {
-        if (pepperBox.activeInHierarchy && Booleans.pepperBoxUpgraded && !Booleans.celestialDeferUpgraded)
+        if (pepperBox.activeInHierarchy && Bools.pbUpgraded && !Bools.cdUpgraded)
         {
             print("pepperBoxParticles");
             UpgradedParticle(1, 0);
         }
-        else if (celestialDefier.activeInHierarchy && !Booleans.pepperBoxUpgraded && Booleans.celestialDeferUpgraded)
+        else if (celestialDefier.activeInHierarchy && !Bools.pbUpgraded && Bools.cdUpgraded)
         {
             print("celestialParticles");
             UpgradedParticle(3, 0);
         }
         else if (!pepperBox.activeInHierarchy || !celestialDefier.activeInHierarchy 
-                 && !Booleans.pepperBoxUpgraded && !Booleans.celestialDeferUpgraded)
+                 && !Bools.pbUpgraded && !Bools.cdUpgraded)
         {
             particles.GetComponent<ParticleSystem>().Play();
         }

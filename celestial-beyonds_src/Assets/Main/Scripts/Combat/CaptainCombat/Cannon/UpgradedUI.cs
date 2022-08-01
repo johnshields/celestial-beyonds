@@ -6,12 +6,12 @@ public class UpgradedUI : MonoBehaviour
 
     private void Update()
     {
-        if (Booleans.pepperBoxUpgraded)
+        if (Bools.pbUpgraded)
         {
             cannon.SetActive(false);
             pepperbox.SetActive(true);
         }
-        else if (Booleans.celestialDeferUpgraded)
+        else if (Bools.cdUpgraded)
         {
             pepperbox.SetActive(false);
             defier.SetActive(true);

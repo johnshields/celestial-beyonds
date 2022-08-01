@@ -4,9 +4,9 @@ public class AudioManager : MonoBehaviour
 {
     public static void MuteActive()
     {
-        if (Booleans.muteActive)
+        if (Bools.muteActive)
             AudioListener.volume = 0f;
-        else if (!Booleans.muteActive)
+        else if (!Bools.muteActive)
             AudioListener.volume = 1f;
         else
             Debug.LogWarning("No audio in scene.");

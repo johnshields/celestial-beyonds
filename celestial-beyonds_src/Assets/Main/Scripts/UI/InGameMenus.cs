@@ -18,7 +18,7 @@ public class InGameMenus : MonoBehaviour
         pauseMenu.SetActive(false);
         _controls = new InputProfiler();
 
-        if (!Booleans.muteActive)
+        if (!Bools.muteActive)
         {
             unMuteBtn.SetActive(false);
             muteBtn.SetActive(true);
@@ -172,8 +172,8 @@ public class InGameMenus : MonoBehaviour
     {
         if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
         {
-            print("Mute Active: " + Booleans.muteActive);
-            Booleans.muteActive = true;
+            print("Mute Active: " + Bools.muteActive);
+            Bools.muteActive = true;
             muteBtn.SetActive(false);
             unMuteBtn.SetActive(true);
             AudioManager.MuteActive();
@@ -184,8 +184,8 @@ public class InGameMenus : MonoBehaviour
     {
         if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
         {
-            print("Mute Active: " + Booleans.muteActive);
-            Booleans.muteActive = false;
+            print("Mute Active: " + Bools.muteActive);
+            Bools.muteActive = false;
             muteBtn.SetActive(true);
             unMuteBtn.SetActive(false);
             AudioManager.MuteActive();

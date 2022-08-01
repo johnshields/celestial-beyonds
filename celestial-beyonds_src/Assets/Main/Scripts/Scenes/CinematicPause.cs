@@ -13,7 +13,7 @@ public class CinematicPause : MonoBehaviour
         _controls = new InputProfiler();
         pausedCinActive = false;
         
-        if (!Booleans.muteActive)
+        if (!Bools.muteActive)
         {
             unMuteBtn.SetActive(false);
             muteBtn.SetActive(true);
@@ -78,8 +78,8 @@ public class CinematicPause : MonoBehaviour
     {
         if (pausedCinActive)
         {
-            print("Mute Active: " +  Booleans.muteActive);
-            Booleans.muteActive = true;
+            print("Mute Active: " +  Bools.muteActive);
+            Bools.muteActive = true;
             muteBtn.SetActive(false);
             unMuteBtn.SetActive(true);
             AudioManager.MuteActive();   
@@ -90,8 +90,8 @@ public class CinematicPause : MonoBehaviour
     {
         if (pausedCinActive)
         {
-            print("Mute Active: " +  Booleans.muteActive);
-            Booleans.muteActive = false;
+            print("Mute Active: " +  Bools.muteActive);
+            Bools.muteActive = false;
             muteBtn.SetActive(true);
             unMuteBtn.SetActive(false);
             AudioManager.MuteActive();   
