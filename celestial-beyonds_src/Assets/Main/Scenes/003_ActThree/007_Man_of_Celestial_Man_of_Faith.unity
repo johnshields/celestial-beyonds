@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.14447927, g: 0.018546851, b: 0.09699377, a: 1}
+  m_IndirectSpecularColor: {r: 0.10267276, g: 0.017546471, b: 0.09098757, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -610,9 +610,11 @@ MonoBehaviour:
   fieldOfView: 80
   photoMode: 0
   pmEnabledInScene: 0
+  done: 0
   photoID: 
   shutter: {fileID: 0}
   fieldOfViewInput: {fileID: 0}
+  photoIDTxt: {fileID: 0}
 --- !u!4 &285352362
 Transform:
   m_ObjectHideFlags: 0
@@ -25351,7 +25353,7 @@ GameObject:
   - component: {fileID: 4039798188725909532}
   - component: {fileID: 4039798188725909533}
   m_Layer: 0
-  m_Name: anthophila_ps-200
+  m_Name: anthophila_ps-200_w/lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
