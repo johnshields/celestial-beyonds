@@ -81,12 +81,9 @@ public class CannonBlaster : MonoBehaviour
 
     public void StopCannonParticles()
     {
-        if (pepperBox.activeInHierarchy)
-            UpgradedParticle(0, 2);
-        else if (celestialDefier.activeInHierarchy)
-            UpgradedParticle(0, 4);
-        else if (!pepperBox.activeInHierarchy || !celestialDefier.activeInHierarchy)
-            particles.GetComponent<ParticleSystem>().Stop();
+        particles.GetComponent<ParticleSystem>().Stop();
+        UpgradedParticle(0, 2);
+        UpgradedParticle(0, 4);
     }
 
     private void UpgradedParticle(int turnOn, int turnOff)

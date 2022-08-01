@@ -22,7 +22,7 @@ namespace Main.Scripts.Captain
         private AudioSource _audio;
         private InputProfiler _controls;
         private int _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
-        private GameObject _player, _footsteps, _scraper, _cannon, _pepperBox, _celestialDefier, _pollinator;
+        private GameObject _player, _footsteps, _scraper, _cannon, _cannonObj, _pepperBox, _celestialDefier, _pollinator;
         private int _profile, _jump, _armedJump, _dodge, _armedActive, _shoot, _rShoot, _dead;
         private Rigidbody _rb;
 
@@ -41,6 +41,7 @@ namespace Main.Scripts.Captain
             _player = GameObject.FindGameObjectWithTag("Player");
             _scraper = GameObject.FindGameObjectWithTag("Scraper");
             _cannon = GameObject.FindGameObjectWithTag("Cannon");
+            _cannonObj =  GameObject.FindGameObjectWithTag("CannonObj");
             _pepperBox = GameObject.FindGameObjectWithTag("PepperBoxBlaster");
             _celestialDefier = GameObject.FindGameObjectWithTag("CelestialDefier");
             _pollinator = GameObject.FindGameObjectWithTag("Pollinator");
@@ -96,6 +97,23 @@ namespace Main.Scripts.Captain
                 cannonFire = false;
                 pollenFire = false;
             }
+
+            if (meleeActive)
+            {
+                _cannonObj.SetActive(false);
+                _pepperBox.SetActive(false);
+                _celestialDefier.SetActive(false);
+                _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
+                _pollinator.GetComponent<Pollinator>().StopPollenParticles();
+            } 
+            else if (pollenFire)
+            {
+                _cannonObj.SetActive(false);
+                _pepperBox.SetActive(false);
+                _celestialDefier.SetActive(false);
+                _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
+            }
+                
         }
 
         private void OnEnable()
@@ -120,19 +138,19 @@ namespace Main.Scripts.Captain
             _controls.Profiler.Disable();
         }
 
-        private void PlayerState(bool unarmed, bool armed)
+        public void PlayerState(bool unarmed, bool armed)
         {
             _unarmed = unarmed;
             _armed = armed;
         }
 
-        private void WeaponSelect(bool s, bool c, bool p)
+        public void WeaponSelect(bool s, bool c, bool p)
         {
             if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
             {
                 _scraper.SetActive(s);
                 _pollinator.SetActive(p);
-                _cannon.SetActive(c);
+                _cannonObj.SetActive(c);
                 if(pepperBoxUpgrade)
                     _pepperBox.SetActive(c);
                 if(celestialDefierUpgrade)
@@ -194,10 +212,6 @@ namespace Main.Scripts.Captain
             private void MeleeAttack(InputAction.CallbackContext obj)
             {
                 meleeActive = true;
-                _pepperBox.SetActive(false);
-                _celestialDefier.SetActive(false);
-                _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
-                _pollinator.GetComponent<Pollinator>().StopPollenParticles();
                 // random animation
                 var attackBool = Random.Range(0, 5);
 

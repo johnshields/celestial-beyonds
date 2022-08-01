@@ -1,4 +1,5 @@
 using System.Collections;
+using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -62,6 +63,8 @@ public class ArgyleProfiler : MonoBehaviour
         if (other.gameObject == _player && !_saleActive)
         {
             _saleActive = true;
+            _player.GetComponent<CaptainAnimAndSound>().PlayerState(true, false);
+            _player.GetComponent<CaptainAnimAndSound>().WeaponSelect(false, false, true);
             stationUI.SetActive(true);
             SwitchAnim();
             if (_actionDone) return;
