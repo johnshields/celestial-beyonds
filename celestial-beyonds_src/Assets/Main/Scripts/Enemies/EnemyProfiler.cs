@@ -39,6 +39,7 @@ namespace Main.Scripts.Enemies
                 agent = GetComponent<NavMeshAgent>();
                 _animator = GetComponent<Animator>();
             }
+
             player = GameObject.FindGameObjectWithTag("Player").transform;
             _idle = Animator.StringToHash("IdleActive");
             _walk = Animator.StringToHash("WalkActive");
@@ -60,24 +61,23 @@ namespace Main.Scripts.Enemies
                         ChasePlayer();
                     if (playerInAttackRange && playerInSightRange && !player.GetComponent<CaptainHealth>().capDead)
                         AttackMode();
-                    if (player.GetComponent<CaptainHealth>().capDead) Patrol();   
+                    if (player.GetComponent<CaptainHealth>().capDead) Patrol();
                 }
 
                 // ref: https://forum.unity.com/threads/ai-getting-stuck-into-corner-of-the-map.1213311/
                 if (NavMesh.FindClosestEdge(transform.position, out _hit, NavMesh.AllAreas))
                     _distanceToEdge = _hit.distance;
-                if (_distanceToEdge < 2f) SearchWalkPoint();   
+                if (_distanceToEdge < 2f) SearchWalkPoint();
             }
 
             if (photoMode.GetComponent<PhotoMode>().photoMode)
                 agent.stoppingDistance = 5f;
-            else if(isSpider && photoMode.GetComponent<PhotoMode>().photoMode)
+            else if (isSpider && photoMode.GetComponent<PhotoMode>().photoMode)
                 agent.stoppingDistance = 15f;
-            else if(isSpider && !photoMode.GetComponent<PhotoMode>().photoMode)
+            else if (isSpider && !photoMode.GetComponent<PhotoMode>().photoMode)
                 agent.stoppingDistance = 5f;
-            else if(!isSpider && !photoMode.GetComponent<PhotoMode>().photoMode)
+            else if (!isSpider && !photoMode.GetComponent<PhotoMode>().photoMode)
                 agent.stoppingDistance = 1f;
-
         }
 
         private void AnimationState(bool idle, bool walk, bool attack)
@@ -86,33 +86,34 @@ namespace Main.Scripts.Enemies
             {
                 _animator.SetBool(_idle, idle);
                 _animator.SetBool(_walk, walk);
-                _animator.SetBool(_attack, attack);   
+                _animator.SetBool(_attack, attack);
             }
         }
 
         private void Patrol()
         {
             if (!_walkPointSet) SearchWalkPoint();
-
             if (_walkPointSet)
             {
-                agent.SetDestination(walkPoint);
                 AnimationState(false, true, false);
+                agent.SetDestination(walkPoint);
             }
-
             var distanceToWalkPoint = transform.position - walkPoint;
 
             // walkPoint reached
             if (distanceToWalkPoint.magnitude < 1f)
+            {
                 _walkPointSet = false;
+            }
         }
 
         private void SearchWalkPoint()
         {
             // calculate random point in range
-            AnimationState(true, false, false);
             var randomZ = Random.Range(-walkPointRange, walkPointRange);
             var randomX = Random.Range(-walkPointRange, walkPointRange);
+            
+            AnimationState(true, false, false);
 
             // check if point is on ground
             var tp = transform.position;
@@ -171,6 +172,7 @@ namespace Main.Scripts.Enemies
                     AudioSource.PlayClipAtPoint(deathSFX, transform.position, .3f);
                     _played = true;
                 }
+
                 print(enemy.name + " Terminated!");
                 miniMenu.GetComponent<MiniMenu>().enemiesNum += 1;
                 Destroy(enemy);
