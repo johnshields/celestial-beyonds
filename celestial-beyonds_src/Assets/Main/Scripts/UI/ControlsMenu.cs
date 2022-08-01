@@ -32,18 +32,21 @@ public class ControlsMenu : MonoBehaviour
 
     private void KeyboardControls(InputAction.CallbackContext obj)
     {
+        if (!ctrlsPanel.activeInHierarchy) return;
         print("Keyboard");
         WhichControls(true, false, false);
     }
 
     private void PlayStationControls(InputAction.CallbackContext obj)
     {
+        if (!ctrlsPanel.activeInHierarchy) return;
         print("Playstation Controller");
         WhichControls(false, true, false);
     }
 
     private void XboxControls(InputAction.CallbackContext obj)
     {
+        if (!ctrlsPanel.activeInHierarchy) return;
         print("Xbox Controller");
         WhichControls(false, false, true);
     }

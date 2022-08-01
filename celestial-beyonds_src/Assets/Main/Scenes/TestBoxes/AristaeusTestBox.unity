@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.10107816, g: 0.018430699, b: 0.09340993, a: 1}
+  m_IndirectSpecularColor: {r: 0.10267276, g: 0.017546471, b: 0.09098757, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4537,8 +4537,11 @@ MonoBehaviour:
   cannonFire: 0
   pollenFire: 0
   callMoonbeam: 0
-  pepperBoxUpgrade: 0
-  celestialDefierUpgrade: 0
+  pbUpgrade: 0
+  cdUpgrade: 0
+  aUpgrade: 0
+  aUpgradeInLevel: 0
+  armorUpgrade: []
 --- !u!114 &3066007434264232764
 MonoBehaviour:
   m_ObjectHideFlags: 0
