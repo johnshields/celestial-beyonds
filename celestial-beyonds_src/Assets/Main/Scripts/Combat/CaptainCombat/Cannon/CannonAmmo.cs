@@ -1,10 +1,9 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CannonAmmo : MonoBehaviour
 {
-    public GameObject cannonBar, pbUI, cdUI, cUI, vvg;
+    public GameObject cannonBar, vvg;
     public GameObject handle;
     public int maxAmmo = 100;
     public int cannonAmmo;

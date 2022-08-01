@@ -16,13 +16,23 @@ namespace Main.Scripts.Captain
         public AudioClip cannonSFX, pollenSFX, noAmmoSFX, capScreamSFX;
         public float delayAction = 1f, dodge;
         public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo, viktor, argyle, pbUI, cdUI;
-        public bool meleeActive, cannonFire, pollenFire, callMoonbeam, pbUpgrade, cdUpgrade;
+        public bool meleeActive, cannonFire, pollenFire, callMoonbeam, pbUpgrade, cdUpgrade, aUpgrade, aUpgradeInLevel;
         private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
         private AudioSource _audio;
         private InputProfiler _controls;
         private int _melee0ne, _meleeTwo, _meleeThree, _meleeFour, _meleeFive;
-        private GameObject _player, _footsteps, _scraper, _cannon, _cannonObj, _pepperBox, _celestialDefier, _pollinator;
+
+        private GameObject _player,
+            _footsteps,
+            _scraper,
+            _cannon,
+            _cannonObj,
+            _pepperBox,
+            _celestialDefier,
+            _pollinator;
+
+        public GameObject[] armorUpgrade;
         private int _profile, _jump, _armedJump, _dodge, _armedActive, _shoot, _rShoot, _dead;
         private Rigidbody _rb;
 
@@ -41,7 +51,7 @@ namespace Main.Scripts.Captain
             _player = GameObject.FindGameObjectWithTag("Player");
             _scraper = GameObject.FindGameObjectWithTag("Scraper");
             _cannon = GameObject.FindGameObjectWithTag("Cannon");
-            _cannonObj =  GameObject.FindGameObjectWithTag("CannonObj");
+            _cannonObj = GameObject.FindGameObjectWithTag("CannonObj");
             _pepperBox = GameObject.FindGameObjectWithTag("PepperBoxBlaster");
             _celestialDefier = GameObject.FindGameObjectWithTag("CelestialDefier");
             _pollinator = GameObject.FindGameObjectWithTag("Pollinator");
@@ -105,7 +115,7 @@ namespace Main.Scripts.Captain
                 _celestialDefier.SetActive(false);
                 _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
                 _pollinator.GetComponent<Pollinator>().StopPollenParticles();
-            } 
+            }
             else if (pollenFire)
             {
                 _cannonObj.SetActive(false);
@@ -113,7 +123,14 @@ namespace Main.Scripts.Captain
                 _celestialDefier.SetActive(false);
                 _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
             }
-                
+            
+            if (aUpgrade && Bools.aUpgraded && aUpgradeInLevel)
+            {
+                armorUpgrade[0].SetActive(true);
+                armorUpgrade[1].SetActive(true);
+                GetComponent<CaptainHealth>().maxHealth = 200;
+                GetComponent<CaptainHealth>().pHealthBarSlider.maxValue = 200;
+            }
         }
 
         private void OnEnable()
@@ -152,267 +169,267 @@ namespace Main.Scripts.Captain
                 _pollinator.SetActive(p);
                 _cannonObj.SetActive(c);
                 UpgradedCannon();
-                if(pbUpgrade)
+                if (pbUpgrade)
                     _pepperBox.SetActive(c);
-                if(cdUpgrade)
+                if (cdUpgrade)
                     _celestialDefier.SetActive(c);
             }
         }
 
         private void UpgradedCannon()
+        {
+            // PepperBox Upgrade
+            if (pbUpgrade && !cdUpgrade && _cannon.activeInHierarchy && Bools.pbUpgraded && !Bools.cdUpgraded)
+                _pepperBox.SetActive(true);
+            // Celestial Defier Upgrade
+            else if (!pbUpgrade && cdUpgrade && _cannon.activeInHierarchy && !Bools.pbUpgraded && Bools.cdUpgraded)
             {
-                // PepperBox Upgrade
-                if (pbUpgrade && !cdUpgrade && _cannon.activeInHierarchy && Bools.pbUpgraded && !Bools.cdUpgraded)
-                    _pepperBox.SetActive(true);
-                // Celestial Defier Upgrade
-                else if (!pbUpgrade && cdUpgrade && _cannon.activeInHierarchy && !Bools.pbUpgraded && Bools.cdUpgraded)
+                _celestialDefier.SetActive(true);
+                _cannon.GetComponent<CelestialDefier>().SummonCelestialDefier(); // change mesh & mat
+            }
+            // Standard Cannon
+            else if (!pbUpgrade && !cdUpgrade && _cannon.activeInHierarchy && !Bools.pbUpgraded && !Bools.cdUpgraded)
+            {
+                _pepperBox.SetActive(false);
+                _celestialDefier.SetActive(false);
+            }
+        }
+
+        private void Jump(InputAction.CallbackContext obj)
+        {
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !GetComponent<Jetpack>().jetpackActive)
+            {
+                if (GetComponent<CaptainProfiler>().grounded && !_actionDone && !_armed)
                 {
-                    _celestialDefier.SetActive(true);
-                    _cannon.GetComponent<CelestialDefier>().SummonCelestialDefier(); // change mesh & mat
+                    _animator.SetTrigger(_jump);
+                    _actionDone = true;
+                    Invoke(nameof(ResetAction), delayAction);
                 }
-                // Standard Cannon
-                else if (!pbUpgrade && !cdUpgrade && _cannon.activeInHierarchy && !Bools.pbUpgraded && !Bools.cdUpgraded)
+                else if (GetComponent<CaptainProfiler>().grounded && !_actionDone && _armed)
                 {
-                    _pepperBox.SetActive(false);
-                    _celestialDefier.SetActive(false);
+                    AnimWeight(1, .5f);
+                    _animator.SetTrigger(_armedJump);
+                    _actionDone = true;
+                    Invoke(nameof(ResetAction), 1.7f);
                 }
             }
+        }
 
-            private void Jump(InputAction.CallbackContext obj)
+        private void Unarmed(InputAction.CallbackContext obj)
+        {
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
             {
-                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !GetComponent<Jetpack>().jetpackActive)
+                PlayerState(true, false);
+                if (_unarmed) WeaponSelect(false, false, false);
+            }
+        }
+
+
+        private void MeleeAttack(InputAction.CallbackContext obj)
+        {
+            meleeActive = true;
+            // random animation
+            var attackBool = Random.Range(0, 5);
+
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive &&
+                !GetComponent<CaptainHealth>().capDead &&
+                !argyle.activeInHierarchy && !viktor.activeInHierarchy)
+            {
+                WeaponSelect(true, false, false);
+                PlayerState(true, false);
+                if (!_actionDone && !callMoonbeam)
                 {
-                    if (GetComponent<CaptainProfiler>().grounded && !_actionDone && !_armed)
+                    callMoonbeam = true;
+                    switch (attackBool)
                     {
-                        _animator.SetTrigger(_jump);
-                        _actionDone = true;
-                        Invoke(nameof(ResetAction), delayAction);
+                        case 0:
+                            _animator.SetTrigger(_melee0ne);
+                            break;
+                        case 1:
+                            _animator.SetTrigger(_meleeTwo);
+                            break;
+                        case 2:
+                            _animator.SetTrigger(_meleeThree);
+                            break;
+                        case 3:
+                            _animator.SetTrigger(_meleeFour);
+                            break;
+                        case 4:
+                            _animator.SetTrigger(_meleeFive);
+                            break;
                     }
-                    else if (GetComponent<CaptainProfiler>().grounded && !_actionDone && _armed)
+                }
+
+                _actionDone = true;
+                Invoke(nameof(ResetAction), delayAction);
+            }
+        }
+
+        private void ShootCannon(InputAction.CallbackContext obj)
+        {
+            if (!GetComponent<CaptainHealth>().capDead)
+            {
+                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive &&
+                    !argyle.activeInHierarchy && !viktor.activeInHierarchy)
+                {
+                    WeaponSelect(false, true, false);
+                    PlayerState(false, true);
+                    if (cannonAmmo.GetComponent<CannonAmmo>().cannonAmmo != 0)
                     {
-                        AnimWeight(1, .5f);
-                        _animator.SetTrigger(_armedJump);
-                        _actionDone = true;
-                        Invoke(nameof(ResetAction), 1.7f);
+                        cannonFire = true;
+                        if (!_actionDone && _armed && cannonFire && !callMoonbeam)
+                        {
+                            callMoonbeam = true;
+                            _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
+                            // call CannonBlaster
+                            _cannon.GetComponent<CannonBlaster>().FireCannon();
+                            _actionDone = true;
+                            Invoke(nameof(ResetAction), delayAction);
+                        }
+                    }
+                    else
+                    {
+                        print("out of cannon ammo");
+                        _audio.PlayOneShot(noAmmoSFX);
+                        pbUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                        cdUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                        cannonMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                        StartCoroutine(ResetAmmoMeter(0));
                     }
                 }
             }
+        }
 
-            private void Unarmed(InputAction.CallbackContext obj)
+        private void Pollinate(InputAction.CallbackContext obj)
+        {
+            if (!GetComponent<CaptainHealth>().capDead)
             {
                 if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
                 {
-                    PlayerState(true, false);
-                    if (_unarmed) WeaponSelect(false, false, false);
-                }
-            }
-
-
-            private void MeleeAttack(InputAction.CallbackContext obj)
-            {
-                meleeActive = true;
-                // random animation
-                var attackBool = Random.Range(0, 5);
-
-                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive &&
-                    !GetComponent<CaptainHealth>().capDead &&
-                    !argyle.activeInHierarchy && !viktor.activeInHierarchy)
-                {
-                    WeaponSelect(true, false, false);
-                    PlayerState(true, false);
-                    if (!_actionDone && !callMoonbeam)
+                    WeaponSelect(false, false, true);
+                    PlayerState(false, true);
+                    if (pollenAmmo.GetComponent<PollinatorAmmo>().pollenAmmo != 0)
                     {
-                        callMoonbeam = true;
-                        switch (attackBool)
+                        pollenFire = true;
+                        if (!_actionDone && _armed && pollenFire)
                         {
-                            case 0:
-                                _animator.SetTrigger(_melee0ne);
-                                break;
-                            case 1:
-                                _animator.SetTrigger(_meleeTwo);
-                                break;
-                            case 2:
-                                _animator.SetTrigger(_meleeThree);
-                                break;
-                            case 3:
-                                _animator.SetTrigger(_meleeFour);
-                                break;
-                            case 4:
-                                _animator.SetTrigger(_meleeFive);
-                                break;
+                            _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
+                            _pollinator.GetComponent<Pollinator>().FirePollinator();
+                            _actionDone = true;
+                            Invoke(nameof(ResetAction), delayAction);
                         }
                     }
-
-                    _actionDone = true;
-                    Invoke(nameof(ResetAction), delayAction);
-                }
-            }
-
-            private void ShootCannon(InputAction.CallbackContext obj)
-            {
-                if (!GetComponent<CaptainHealth>().capDead)
-                {
-                    if (!pauseMenu.GetComponent<InGameMenus>().pausedActive &&
-                        !argyle.activeInHierarchy && !viktor.activeInHierarchy)
+                    else
                     {
-                        WeaponSelect(false, true, false);
-                        PlayerState(false, true);
-                        if (cannonAmmo.GetComponent<CannonAmmo>().cannonAmmo != 0)
-                        {
-                            cannonFire = true;
-                            if (!_actionDone && _armed && cannonFire && !callMoonbeam)
-                            {
-                                callMoonbeam = true;
-                                _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
-                                // call CannonBlaster
-                                _cannon.GetComponent<CannonBlaster>().FireCannon();
-                                _actionDone = true;
-                                Invoke(nameof(ResetAction), delayAction);
-                            }
-                        }
-                        else
-                        {
-                            print("out of cannon ammo");
-                            _audio.PlayOneShot(noAmmoSFX);
-                            pbUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-                            cdUI.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-                            cannonMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-                            StartCoroutine(ResetAmmoMeter(0));
-                        }
+                        print("out of pollen ammo");
+                        _audio.PlayOneShot(noAmmoSFX);
+                        pollenMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                        StartCoroutine(ResetAmmoMeter(1));
                     }
                 }
-            }
-
-            private void Pollinate(InputAction.CallbackContext obj)
-            {
-                if (!GetComponent<CaptainHealth>().capDead)
-                {
-                    if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
-                    {
-                        WeaponSelect(false, false, true);
-                        PlayerState(false, true);
-                        if (pollenAmmo.GetComponent<PollinatorAmmo>().pollenAmmo != 0)
-                        {
-                            pollenFire = true;
-                            if (!_actionDone && _armed && pollenFire)
-                            {
-                                _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
-                                _pollinator.GetComponent<Pollinator>().FirePollinator();
-                                _actionDone = true;
-                                Invoke(nameof(ResetAction), delayAction);
-                            }
-                        }
-                        else
-                        {
-                            print("out of pollen ammo");
-                            _audio.PlayOneShot(noAmmoSFX);
-                            pollenMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-                            StartCoroutine(ResetAmmoMeter(1));
-                        }
-                    }
-                }
-            }
-
-            private IEnumerator ResetAmmoMeter(int which)
-            {
-                yield return new WaitForSeconds(1);
-                switch (which)
-                {
-                    case 0:
-                        pbUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
-                        cdUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
-                        cannonMeter.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
-                        break;
-                    case 1:
-                        pollenMeter.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
-                        break;
-                }
-            }
-
-            private void Dodge(InputAction.CallbackContext obj)
-            {
-                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !GetComponent<CaptainHealth>().capDead)
-                {
-                    if (_actionDone) return;
-                    AnimWeight(1f, 0f);
-                    _animator.SetTrigger(_dodge);
-                    StartCoroutine(WaitToDodge());
-                    _actionDone = true;
-                    Invoke(nameof(ResetAction), delayAction);
-                }
-            }
-
-            public void CapDeath()
-            {
-                _unarmed = true;
-                _animator.SetTrigger(_dead);
-                _player.GetComponent<CaptainProfiler>().enabled = false;
-                _player.GetComponent<Jetpack>().enabled = false;
-            }
-
-            private void ResetAction()
-            {
-                meleeActive = false;
-                _actionDone = false;
-                callMoonbeam = false;
-                if (cannonFire)
-                {
-                    _cannon.GetComponent<CannonBlaster>().HaltCannon();
-                    cannonFire = false;
-                }
-                else if (pollenFire)
-                {
-                    _pollinator.GetComponent<Pollinator>().HaltPollinator();
-                    pollenFire = false;
-                }
-
-                ResetAnimWeight();
-            }
-
-            private IEnumerator WaitToDodge()
-            {
-                yield return new WaitForSeconds(.25f);
-                _rb.velocity = transform.TransformDirection(0, 0, dodge);
-                Invoke(nameof(ResetAnimWeight), delayAction);
-            }
-
-            private void AnimWeight(float actions, float shoot)
-            {
-                if (!_armed) return;
-                _animator.SetLayerWeight(1, actions); // Dodge
-                _animator.SetLayerWeight(3, shoot);
-                _animator.SetLayerWeight(4, shoot);
-            }
-
-
-            private void ResetAnimWeight()
-            {
-                _animator.SetLayerWeight(1, 1f);
-                _animator.SetLayerWeight(3, 1f);
-                _animator.SetLayerWeight(4, 1f);
-            }
-
-            private void Footsteps()
-            {
-                _footsteps.GetComponent<CaptainFootsteps>().FootstepSounds();
-            }
-
-            private void Melee()
-            {
-                _audio.PlayOneShot(meleeSFX[Random.Range(0, meleeSFX.Length)], 0.1f);
-            }
-
-            private void CannonFireSFX()
-            {
-                if (cannonFire)
-                    _audio.PlayOneShot(cannonSFX, 0.1f);
-                else if (pollenFire)
-                    _audio.PlayOneShot(pollenSFX, 0.1f);
-            }
-
-            private void CapScreamSFX()
-            {
-                _audio.PlayOneShot(capScreamSFX, 0.5f);
             }
         }
+
+        private IEnumerator ResetAmmoMeter(int which)
+        {
+            yield return new WaitForSeconds(1);
+            switch (which)
+            {
+                case 0:
+                    pbUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
+                    cdUI.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
+                    cannonMeter.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
+                    break;
+                case 1:
+                    pollenMeter.GetComponent<Image>().color = new Color32(255, 255, 255, 225);
+                    break;
+            }
+        }
+
+        private void Dodge(InputAction.CallbackContext obj)
+        {
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !GetComponent<CaptainHealth>().capDead)
+            {
+                if (_actionDone) return;
+                AnimWeight(1f, 0f);
+                _animator.SetTrigger(_dodge);
+                StartCoroutine(WaitToDodge());
+                _actionDone = true;
+                Invoke(nameof(ResetAction), delayAction);
+            }
+        }
+
+        public void CapDeath()
+        {
+            _unarmed = true;
+            _animator.SetTrigger(_dead);
+            _player.GetComponent<CaptainProfiler>().enabled = false;
+            _player.GetComponent<Jetpack>().enabled = false;
+        }
+
+        private void ResetAction()
+        {
+            meleeActive = false;
+            _actionDone = false;
+            callMoonbeam = false;
+            if (cannonFire)
+            {
+                _cannon.GetComponent<CannonBlaster>().HaltCannon();
+                cannonFire = false;
+            }
+            else if (pollenFire)
+            {
+                _pollinator.GetComponent<Pollinator>().HaltPollinator();
+                pollenFire = false;
+            }
+
+            ResetAnimWeight();
+        }
+
+        private IEnumerator WaitToDodge()
+        {
+            yield return new WaitForSeconds(.25f);
+            _rb.velocity = transform.TransformDirection(0, 0, dodge);
+            Invoke(nameof(ResetAnimWeight), delayAction);
+        }
+
+        private void AnimWeight(float actions, float shoot)
+        {
+            if (!_armed) return;
+            _animator.SetLayerWeight(1, actions); // Dodge
+            _animator.SetLayerWeight(3, shoot);
+            _animator.SetLayerWeight(4, shoot);
+        }
+
+
+        private void ResetAnimWeight()
+        {
+            _animator.SetLayerWeight(1, 1f);
+            _animator.SetLayerWeight(3, 1f);
+            _animator.SetLayerWeight(4, 1f);
+        }
+
+        private void Footsteps()
+        {
+            _footsteps.GetComponent<CaptainFootsteps>().FootstepSounds();
+        }
+
+        private void Melee()
+        {
+            _audio.PlayOneShot(meleeSFX[Random.Range(0, meleeSFX.Length)], 0.1f);
+        }
+
+        private void CannonFireSFX()
+        {
+            if (cannonFire)
+                _audio.PlayOneShot(cannonSFX, 0.1f);
+            else if (pollenFire)
+                _audio.PlayOneShot(pollenSFX, 0.1f);
+        }
+
+        private void CapScreamSFX()
+        {
+            _audio.PlayOneShot(capScreamSFX, 0.5f);
+        }
     }
+}

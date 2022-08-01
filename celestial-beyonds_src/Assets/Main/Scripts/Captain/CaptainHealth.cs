@@ -8,23 +8,25 @@ public class CaptainHealth : MonoBehaviour
     public bool capDead, gameOver;
     public int maxHealth = 100, currentHealth;
     public GameObject pHealthBar, GameOverUI;
-    private Slider _pHealthBarSlider;
+    public Slider pHealthBarSlider;
     private GameObject _player;
     private bool _played;
 
     private void Start()
     {
         currentHealth = maxHealth;
-        _pHealthBarSlider = pHealthBar.GetComponent<Slider>();
+        pHealthBarSlider = pHealthBar.GetComponent<Slider>();
         _player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
-        _pHealthBarSlider.value = currentHealth;
+        pHealthBarSlider.value = currentHealth;
 
-        if (currentHealth >= maxHealth)
+        if (currentHealth >= maxHealth && !GetComponent<CaptainAnimAndSound>().aUpgrade && !Bools.aUpgraded)
             currentHealth = 100;
+        else if (currentHealth >= maxHealth && GetComponent<CaptainAnimAndSound>().aUpgrade && Bools.aUpgraded)
+            currentHealth = 200;
     }
 
     public void PlayerTakeDamage(int amount)

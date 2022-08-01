@@ -10,7 +10,7 @@ public class VanGunProfiler : MonoBehaviour
     public float delayAction = 1f, audioVol = .4f;
     public AudioClip sale, noSale;
     public int upgradeNum, upgradeCost;
-    public bool upgradeCannon, transaction;
+    public bool upgradeCannon, upgradeArmor, transaction;
     private bool _actionDone, _saleActive;
     private Animator _animator;
     private AudioSource _audio;
@@ -221,6 +221,15 @@ public class VanGunProfiler : MonoBehaviour
             print("PEPPERBOX BLASTER Upgraded to THE CELESTIAL DEFIER!");
             Bools.pbUpgraded = false;
             Bools.cdUpgraded = true;
+        }
+        else if (upgrade == 3 && !upgradeArmor)
+        {
+            upgradeArmor = true;
+            _player.GetComponent<CaptainAnimAndSound>().aUpgrade = true;
+            _player.GetComponent<CaptainHealth>().currentHealth = 200;
+            upgradeOption.SetActive(false);
+            print("ARMOR UPGRADED!");
+            Bools.aUpgraded = true;
         }
     }
     

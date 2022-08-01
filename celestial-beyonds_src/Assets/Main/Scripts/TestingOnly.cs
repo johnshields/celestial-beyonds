@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TestingOnly : MonoBehaviour
 {
-    public bool enablePepperBox, enableDefier, lotsOfPeridots, lotsOfAmmo, lotsOfPollen, fog;
+    public bool enablePepperBox, enableDefier, enableArmor, lotsOfPeridots, lotsOfAmmo, lotsOfPollen, fog;
     public GameObject pc, ca, pa, player;
     
     // Testing Cheats
@@ -22,6 +22,12 @@ public class TestingOnly : MonoBehaviour
         {
             Bools.cdUpgraded = true;
             player.GetComponent<CaptainAnimAndSound>().cdUpgrade = true;
+        }
+
+        if (enableArmor)
+        {
+            Bools.aUpgraded = true;
+            player.GetComponent<CaptainAnimAndSound>().aUpgrade = true;
         }
 
         if (lotsOfPeridots)
