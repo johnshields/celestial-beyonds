@@ -24,6 +24,12 @@ namespace Main.Scripts.Combat
                 other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(other.gameObject);
                 other.gameObject.GetComponent<ParticleSystem>().Play();
             }
+            
+            if (other.gameObject.CompareTag("Enemy") && _player.GetComponent<CaptainAnimAndSound>().endgame)
+            {
+                other.gameObject.GetComponent<AristauesProfiler>().TakeDamage(other.gameObject);
+                other.gameObject.GetComponent<ParticleSystem>().Play();
+            }
         }
     }
 }

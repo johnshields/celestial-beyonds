@@ -1,19 +1,36 @@
+using System;
+using Main.Scripts.Captain;
 using Main.Scripts.Enemies;
 using UnityEngine;
 
 public class CannonParticles : MonoBehaviour
 {
+
+    private GameObject _player;
+
+    private void Start()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     private void OnParticleCollision(GameObject other)
     {
         print("Cannon hit: " + other.gameObject.name);
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") && !_player.GetComponent<CaptainAnimAndSound>().endgame)
         {
             other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(other.gameObject);
             other.gameObject.GetComponent<ParticleSystem>().Play();
         }
-        else if (other.gameObject.CompareTag("CollectableBox"))
+        
+        if (other.gameObject.CompareTag("CollectableBox"))
         {
             other.gameObject.GetComponent<CollectableBox>().IfCannon();
+        }
+        
+        if (other.gameObject.CompareTag("Enemy") && _player.GetComponent<CaptainAnimAndSound>().endgame)
+        {
+            other.gameObject.GetComponent<AristauesProfiler>().TakeDamage(other.gameObject);
+            other.gameObject.GetComponent<ParticleSystem>().Play();
         }
     }
 }

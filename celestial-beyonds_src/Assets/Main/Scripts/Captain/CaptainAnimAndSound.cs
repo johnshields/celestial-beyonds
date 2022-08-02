@@ -16,7 +16,7 @@ namespace Main.Scripts.Captain
         public AudioClip cannonSFX, pollenSFX, noAmmoSFX, capScreamSFX;
         public float delayAction = 1f, dodge;
         public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo, viktor, argyle, pbUI, cdUI;
-        public bool meleeActive, cannonFire, pollenFire, callMoonbeam, pbUpgrade, cdUpgrade, aUpgrade, aUpgradeInLevel;
+        public bool meleeActive, cannonFire, pollenFire, callMoonbeam, pbUpgrade, cdUpgrade, aUpgrade, aUpgradeInLevel, endgame;
         private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
         private AudioSource _audio;
@@ -302,31 +302,34 @@ namespace Main.Scripts.Captain
 
         private void Pollinate(InputAction.CallbackContext obj)
         {
-            if (!GetComponent<CaptainHealth>().capDead)
+            if (!endgame)
             {
-                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+                if (!GetComponent<CaptainHealth>().capDead)
                 {
-                    WeaponSelect(false, false, true);
-                    PlayerState(false, true);
-                    if (pollenAmmo.GetComponent<PollinatorAmmo>().pollenAmmo != 0)
+                    if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
                     {
-                        pollenFire = true;
-                        if (!_actionDone && _armed && pollenFire)
+                        WeaponSelect(false, false, true);
+                        PlayerState(false, true);
+                        if (pollenAmmo.GetComponent<PollinatorAmmo>().pollenAmmo != 0)
                         {
-                            _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
-                            _pollinator.GetComponent<Pollinator>().FirePollinator();
-                            _actionDone = true;
-                            Invoke(nameof(ResetAction), delayAction);
+                            pollenFire = true;
+                            if (!_actionDone && _armed && pollenFire)
+                            {
+                                _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
+                                _pollinator.GetComponent<Pollinator>().FirePollinator();
+                                _actionDone = true;
+                                Invoke(nameof(ResetAction), delayAction);
+                            }
+                        }
+                        else
+                        {
+                            print("out of pollen ammo");
+                            _audio.PlayOneShot(noAmmoSFX);
+                            pollenMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
+                            StartCoroutine(ResetAmmoMeter(1));
                         }
                     }
-                    else
-                    {
-                        print("out of pollen ammo");
-                        _audio.PlayOneShot(noAmmoSFX);
-                        pollenMeter.GetComponent<Image>().color = new Color32(255, 0, 0, 225);
-                        StartCoroutine(ResetAmmoMeter(1));
-                    }
-                }
+                }   
             }
         }
 

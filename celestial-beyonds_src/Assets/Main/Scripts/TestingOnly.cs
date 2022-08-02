@@ -1,3 +1,4 @@
+using System.Collections;
 using Main.Scripts.Captain;
 using UnityEngine;
 
@@ -28,6 +29,7 @@ public class TestingOnly : MonoBehaviour
         {
             Bools.aUpgraded = true;
             player.GetComponent<CaptainAnimAndSound>().aUpgrade = true;
+            StartCoroutine(AddHealth());
         }
 
         if (lotsOfPeridots)
@@ -45,5 +47,11 @@ public class TestingOnly : MonoBehaviour
             pa.GetComponent<PollinatorAmmo>().pollenAmmo = 500;
         }
 #endif
+    }
+
+    private IEnumerator AddHealth()
+    {
+        yield return new WaitForSeconds(3);
+        player.GetComponent<CaptainHealth>().currentHealth = 200;
     }
 }

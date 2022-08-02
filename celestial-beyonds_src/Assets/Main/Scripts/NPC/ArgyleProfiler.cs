@@ -60,7 +60,7 @@ public class ArgyleProfiler : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // say Hello
-        if (other.gameObject == _player && !_saleActive)
+        if (other.gameObject == _player && !_saleActive && !_player.GetComponent<CaptainAnimAndSound>().endgame)
         {
             _player.GetComponent<CaptainAnimAndSound>().WeaponSelect(false, false, true);
             _player.GetComponent<CaptainAnimAndSound>().PlayerState(false, true);

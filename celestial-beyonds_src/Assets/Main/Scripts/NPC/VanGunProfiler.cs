@@ -10,8 +10,8 @@ public class VanGunProfiler : MonoBehaviour
     public float delayAction = 1f, audioVol = .4f;
     public AudioClip sale, noSale;
     public int upgradeNum, upgradeCost;
-    public bool upgradeCannon, upgradeArmor, transaction;
-    private bool _actionDone, _saleActive;
+    public bool saleActive, upgradeCannon, upgradeArmor, transaction;
+    private bool _actionDone;
     private Animator _animator;
     private AudioSource _audio;
     private InputProfiler _controls;
@@ -64,9 +64,9 @@ public class VanGunProfiler : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // say Hello
-        if (other.gameObject == _player && !_saleActive)
+        if (other.gameObject == _player && !saleActive)
         {
-            _saleActive = true;
+            saleActive = true;
             stationUI.SetActive(true);
             SwitchAnim();
             if (_actionDone) return;
@@ -77,7 +77,7 @@ public class VanGunProfiler : MonoBehaviour
         }
         else
         {
-            _saleActive = false;
+            saleActive = false;
             _animator.SetTrigger(_idle);
         }
     }
@@ -86,7 +86,7 @@ public class VanGunProfiler : MonoBehaviour
     {
         if (other.gameObject == _player)
         {
-            _saleActive = false;
+            saleActive = false;
             stationUI.SetActive(false);
             PlayRandomClip("Byes", audioVol);
         }
@@ -94,7 +94,7 @@ public class VanGunProfiler : MonoBehaviour
 
     private void TalkViktor(InputAction.CallbackContext obj)
     {
-        if (_saleActive && !pauseMenu.GetComponent<InGameMenus>().pausedActive)
+        if (saleActive && !pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
             // only sell ammo if they do not have maxAmmo or no peridots.
             if (canAmmo.GetComponent<CannonAmmo>().cannonAmmo != canAmmo.GetComponent<CannonAmmo>().maxAmmo &&
