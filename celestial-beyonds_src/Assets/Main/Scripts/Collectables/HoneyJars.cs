@@ -22,7 +22,7 @@ public class HoneyJars : MonoBehaviour
             _player.GetComponent<CaptainHealth>().maxHealth)
         {
             _player.GetComponent<CaptainHealth>().PlayerGainHealth(healthAmount);
-            AudioSource.PlayClipAtPoint(pickupSound, transform.position, 0.1f);
+            AudioSource.PlayClipAtPoint(pickupSound, transform.position, 0.2f);
             Destroy(gameObject);
         }
         // if they do flash the healthBar UI

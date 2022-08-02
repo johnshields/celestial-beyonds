@@ -1116,6 +1116,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LoadEndgame",
+                    "type": "Button",
+                    "id": "bb72c0f0-0e34-4232-afa2-bb7ea368a670",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1380,6 +1389,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "LoadActThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "534bf12c-0276-4433-a78a-6d979415e15f",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadEndgame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

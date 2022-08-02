@@ -9,17 +9,13 @@ public class CaptainHealth : MonoBehaviour
     public int maxHealth = 100, currentHealth;
     public GameObject pHealthBar, GameOverUI;
     public Slider pHealthBarSlider;
-    public AudioClip terminatedSFX;
     private GameObject _player;
-    private bool _played;
-    private AudioSource _audio;
 
     private void Start()
     {
         currentHealth = maxHealth;
         pHealthBarSlider = pHealthBar.GetComponent<Slider>();
         _player = GameObject.FindGameObjectWithTag("Player");
-        _audio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -56,10 +52,5 @@ public class CaptainHealth : MonoBehaviour
         yield return new WaitForSeconds(3f);
         gameOver = true;
         GameOverUI.SetActive(true);
-        if (!_played && _player.GetComponent<CaptainAnimAndSound>().endgame)
-        {
-            _audio.PlayOneShot(terminatedSFX, 1); // terminated tagline
-            _played = true;
-        }
     }
 }

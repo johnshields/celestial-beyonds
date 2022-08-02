@@ -419,15 +419,16 @@ namespace Main.Scripts.Captain
 
         private void Melee()
         {
-            _audio.PlayOneShot(meleeSFX[Random.Range(0, meleeSFX.Length)], 0.1f);
+            _audio.PlayOneShot(meleeSFX[Random.Range(0, meleeSFX.Length)], 0.15f);
         }
 
         private void CannonFireSFX()
         {
             if (cannonFire)
-                _audio.PlayOneShot(cannonSFX, 0.1f);
+                _audio.PlayOneShot(cannonSFX, 0.15f);
             else if (pollenFire)
-                _audio.PlayOneShot(pollenSFX, 0.1f);
+                _audio.PlayOneShot(pollenSFX, 0.15f);
+            
         }
 
         private void CapScreamSFX()

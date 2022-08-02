@@ -1,4 +1,3 @@
-using System;
 using Main.Scripts.Captain;
 using Main.Scripts.Enemies;
 using UnityEngine;
@@ -22,9 +21,15 @@ public class CannonParticles : MonoBehaviour
             other.gameObject.GetComponent<ParticleSystem>().Play();
         }
         
+        var collisionModule = GetComponent<ParticleSystem>().collision;
         if (other.gameObject.CompareTag("CollectableBox"))
         {
+            collisionModule.maxCollisionShapes = 500;
             other.gameObject.GetComponent<CollectableBox>().IfCannon();
+        }
+        else
+        {
+            collisionModule.maxCollisionShapes = 1;
         }
         
         if (other.gameObject.CompareTag("Enemy") && _player.GetComponent<CaptainAnimAndSound>().endgame)

@@ -17,6 +17,8 @@ public class ActLoader : MonoBehaviour
     {
         _controls.UIActions.LoadActOne.started += LoadActOne;
         _controls.UIActions.LoadActTwo.started += LoadActTwo;
+        _controls.UIActions.LoadActThree.started += LoadActThree;
+        _controls.UIActions.LoadEndgame.started += LoadEndgame;
         _controls.UIActions.Enable();
     }
 
@@ -24,6 +26,8 @@ public class ActLoader : MonoBehaviour
     {
         _controls.UIActions.LoadActOne.started -= LoadActOne;
         _controls.UIActions.LoadActTwo.started -= LoadActTwo;
+        _controls.UIActions.LoadActThree.started -= LoadActThree;
+        _controls.UIActions.LoadEndgame.started += LoadEndgame;
         _controls.UIActions.Disable();
     }
 
@@ -37,6 +41,18 @@ public class ActLoader : MonoBehaviour
     {
         if (actPanel.activeInHierarchy)
             StartCoroutine(LaunchAct("005_LunarPulse"));
+    }
+    
+    private void LoadActThree(InputAction.CallbackContext obj)
+    {
+        if (actPanel.activeInHierarchy)
+            StartCoroutine(LaunchAct("007_Man_of_Celestial_Man_of_Faith"));
+    }
+    
+    private void LoadEndgame(InputAction.CallbackContext obj)
+    {
+        if (actPanel.activeInHierarchy)
+            StartCoroutine(LaunchAct("009_Intro_Endgame"));
     }
 
     private IEnumerator LaunchAct(string level)

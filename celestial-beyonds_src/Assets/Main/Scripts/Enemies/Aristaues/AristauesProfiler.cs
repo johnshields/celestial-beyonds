@@ -80,7 +80,10 @@ public class AristauesProfiler : MonoBehaviour
             }
 
             if (photoMode.GetComponent<PhotoMode>().photoMode || vvg.GetComponent<VanGunProfiler>().saleActive)
-                aristaues.stoppingDistance = 10;
+            {
+                aristaues.stoppingDistance = 10;   
+                AnimationState(true, false, false, false, false);
+            }
             else
                 aristaues.stoppingDistance = 3;
         }
