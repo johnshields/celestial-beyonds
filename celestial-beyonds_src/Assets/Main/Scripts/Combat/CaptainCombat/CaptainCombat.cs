@@ -19,13 +19,15 @@ namespace Main.Scripts.Combat
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Enemy") && _player.GetComponent<CaptainAnimAndSound>().meleeActive)
+            if (other.gameObject.CompareTag("Enemy") && _player.GetComponent<CaptainAnimAndSound>().meleeActive && 
+                !_player.GetComponent<CaptainAnimAndSound>().endgame)
             {
                 other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(other.gameObject);
                 other.gameObject.GetComponent<ParticleSystem>().Play();
             }
             
-            if (other.gameObject.CompareTag("Enemy") && _player.GetComponent<CaptainAnimAndSound>().endgame)
+            if (other.gameObject.CompareTag("Enemy") && _player.GetComponent<CaptainAnimAndSound>().meleeActive && 
+                _player.GetComponent<CaptainAnimAndSound>().endgame)
             {
                 other.gameObject.GetComponent<AristauesProfiler>().TakeDamage(other.gameObject);
                 other.gameObject.GetComponent<ParticleSystem>().Play();
