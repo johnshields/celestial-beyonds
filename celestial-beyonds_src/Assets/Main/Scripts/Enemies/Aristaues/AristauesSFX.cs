@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class AristauesSFX: MonoBehaviour
+public class AristauesSFX : MonoBehaviour
 {
-    public AudioClip footstepSFX;
+    public AudioClip footstepSFX, fallSFX;
     public GameObject randoAudio;
     private AudioSource _audio;
     private bool _tlPlayed, aPlayed;
@@ -18,7 +18,7 @@ public class AristauesSFX: MonoBehaviour
     {
         _audio.PlayOneShot(footstepSFX, 0.1f);
     }
-    
+
     private void TaglinesSFX()
     {
         if (!_tlPlayed)
@@ -28,7 +28,7 @@ public class AristauesSFX: MonoBehaviour
             Invoke(nameof(ResetTL_SFX), 6);
         }
     }
-    
+
     private void AttackSFX()
     {
         if (!aPlayed)
@@ -37,6 +37,12 @@ public class AristauesSFX: MonoBehaviour
             PlayRandomClip("Triton", .6f);
             Invoke(nameof(ResetAttackSFX), 3);
         }
+    }
+
+    private void FallSFX()
+    {
+        _audio.Stop();
+        _audio.PlayOneShot( fallSFX, 0.8f);
     }
 
     private void ResetAttackSFX()

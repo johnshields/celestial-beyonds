@@ -2,13 +2,14 @@ using System.Collections;
 using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class AristauesProfiler : MonoBehaviour
 {
     public int aristauesMaxHealth = 3000, AristauesHealth, meleeDamage, cannonDamage;
-    public GameObject aHealthBar, vvg;
+    public GameObject aHealthBar, vvg, fader;
     public Slider aHealthBarSlider;
     public NavMeshAgent aristaues;
     public Transform player;
@@ -26,7 +27,7 @@ public class AristauesProfiler : MonoBehaviour
     private bool _actionDone;
 
     private Animator _animator;
-    private int _idle, _walk, _run, _attack_1, _attack_2;
+    private int _idle, _walk, _run, _attack_1, _attack_2, _fall;
 
     // misc
     public GameObject pauseMenu, photoMode;
@@ -46,6 +47,7 @@ public class AristauesProfiler : MonoBehaviour
         _run = Animator.StringToHash("RunActive");
         _attack_1 = Animator.StringToHash("Attack_1");
         _attack_2 = Animator.StringToHash("Attack_2");
+        _fall = Animator.StringToHash("Fall");
     }
 
     private void Update()
@@ -191,7 +193,23 @@ public class AristauesProfiler : MonoBehaviour
         if (AristauesHealth <= 0 && !terminated)
         {
             terminated = true;
-            print(enemy.name + " Terminated!");
+            print(enemy.name + " Defeated!");
+            AnimationState(true, false, false, false, false);
+            _animator.SetTrigger(_fall);
         }
+    }
+
+    private void CallGR()
+    {
+        StartCoroutine(LoadGoldenRecord());
+    }
+    
+    private IEnumerator LoadGoldenRecord()
+    {
+        print("Loading: 010_TheGoldenRecord...");
+        fader.GetComponent<Animator>().SetBool($"FadeIn", false);
+        fader.GetComponent<Animator>().SetBool($"FadeOut", true);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("010_TheGoldenRecord");
     }
 }
