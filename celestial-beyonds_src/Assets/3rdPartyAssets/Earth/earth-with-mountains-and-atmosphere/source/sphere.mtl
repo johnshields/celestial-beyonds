@@ -1,0 +1,26 @@
+#wavefront material library
+#cc-sa-by-4.0 Chris Langhans 2020
+
+newmtl sphere
+Ka 0.0 0.0 0.0
+Kd 1.0 1.0 1.0
+Ks 0.1 0.1 0.1
+Ns 1000
+Ni 1.0
+d 1.0
+illum 2
+bump Normal.jpg
+map_Kd Albedo.jpg
+
+
+#clouds
+newmtl clouds
+Ka 0.0 0.0 0.0
+Kd 1.0 1.0 1.0
+Ks 0.0 0.0 0.0
+Ns 1000
+Ni 1.1
+d 0.25
+illum 2
+map_Kd Sky.jpg
+map_d Sky.jpg
