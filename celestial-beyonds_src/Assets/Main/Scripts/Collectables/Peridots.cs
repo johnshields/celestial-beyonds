@@ -7,11 +7,23 @@ public class Peridots : MonoBehaviour
     public int peridotValue = 1;
     private Component _peridotCounter;
     private GameObject _player;
+    private Rigidbody _rb;
+    private bool _hasTarget;
+    private Vector3 _targetPos;
 
     private void Start()
     {
+        _rb = gameObject.AddComponent<Rigidbody>();
+        _rb.useGravity = false;
         _player = GameObject.FindGameObjectWithTag("Player");
         _peridotCounter = _player.GetComponent<PeridotCounter>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (!_hasTarget || gameObject.name == "BigPeridot") return;
+        var targetDir = (_targetPos - transform.position).normalized;
+        _rb.velocity = new Vector3(targetDir.x, targetDir.y, targetDir.z) * 8f;
     }
 
     // Allows only the Player to collect the _peridotCounter.
@@ -24,5 +36,11 @@ public class Peridots : MonoBehaviour
         Destroy(gameObject);
         _peridotCounter.GetComponent<PeridotCounter>().peridots += peridotValue;
         miniMenu.GetComponent<MiniMenu>().peridotsNum += 1;
+    }
+
+    public void SetTarget(Vector3 position)
+    {
+        _targetPos = position;
+        _hasTarget = true;
     }
 }

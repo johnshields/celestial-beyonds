@@ -62,8 +62,6 @@ public class ArgyleProfiler : MonoBehaviour
         // say Hello
         if (other.gameObject == _player && !_saleActive && !_player.GetComponent<CaptainAnimAndSound>().endgame)
         {
-            _player.GetComponent<CaptainAnimAndSound>().WeaponSelect(false, false, true);
-            _player.GetComponent<CaptainAnimAndSound>().PlayerState(false, true);
             _saleActive = true;
             stationUI.SetActive(true);
             SwitchAnim();
@@ -98,6 +96,8 @@ public class ArgyleProfiler : MonoBehaviour
                 _peridotCounter.GetComponent<PeridotCounter>().peridots != 0)
             {
                 print("Pollen sold");
+                _player.GetComponent<CaptainAnimAndSound>().WeaponSelect(false, false, true);
+                _player.GetComponent<CaptainAnimAndSound>().PlayerState(false, true);
                 PlayRandomClip("Sold", audioVol);
                 _audio.PlayOneShot(sale, 0.1f);
                 ammo.GetComponent<PollinatorAmmo>().FillUpPollen(10);

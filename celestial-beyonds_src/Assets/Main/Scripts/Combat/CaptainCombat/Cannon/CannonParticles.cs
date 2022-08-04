@@ -22,9 +22,9 @@ public class CannonParticles : MonoBehaviour
         }
         
         var collisionModule = GetComponent<ParticleSystem>().collision;
-        if (other.gameObject.CompareTag("CollectableBox"))
+        if (other.gameObject.CompareTag("CollectableBox") && !other.gameObject.CompareTag("Enemy"))
         {
-            collisionModule.maxCollisionShapes = 500;
+            collisionModule.maxCollisionShapes = 1000;
             other.gameObject.GetComponent<CollectableBox>().IfCannon();
         }
         else

@@ -3,8 +3,7 @@ using UnityEngine.UI;
 
 public class CannonAmmo : MonoBehaviour
 {
-    public GameObject cannonBar, vvg;
-    public GameObject handle;
+    public GameObject cannonBar;
     public int maxAmmo = 100;
     public int cannonAmmo;
     private Slider _cannonBarSlider;
@@ -21,17 +20,6 @@ public class CannonAmmo : MonoBehaviour
         
         if (cannonAmmo < 0)
             cannonAmmo = 0;
-
-        if (cannonAmmo == 0)
-        {
-            handle.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
-        }
-        else
-        {
-            if(!vvg.GetComponent<VanGunProfiler>().transaction)
-                handle.GetComponent<Image>().color = new Color32(255, 255, 255, 255);   
-        }
-
     }
 
     public void FillUpCannon(int amount)

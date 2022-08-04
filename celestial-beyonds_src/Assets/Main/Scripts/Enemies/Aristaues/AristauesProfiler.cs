@@ -68,7 +68,7 @@ public class AristauesProfiler : MonoBehaviour
                 if (playerInAttackRange && playerInSightRange) AttackMode();
             }
 
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive || !photoMode.GetComponent<PhotoMode>().photoMode)
             {
                 if (playerInSightRange && !playerInAttackRange && !player.GetComponent<CaptainHealth>().capDead)
                     ChasePlayer();
@@ -81,9 +81,10 @@ public class AristauesProfiler : MonoBehaviour
                 }
             }
 
-            if (photoMode.GetComponent<PhotoMode>().photoMode || vvg.GetComponent<VanGunProfiler>().saleActive)
+            // Stop Aristaues during PhotoMode.
+            if (photoMode.GetComponent<PhotoMode>().photoMode)
             {
-                aristaues.stoppingDistance = 10;   
+                aristaues.stoppingDistance = 15;   
                 AnimationState(true, false, false, false, false);
             }
             else
@@ -144,7 +145,7 @@ public class AristauesProfiler : MonoBehaviour
 
     private void AttackMode()
     {
-        // Enemy does not move and looks at player.
+        // Enemy does not move and looks at player
         aristaues.SetDestination(player.position);
         transform.LookAt(player);
         AnimationState(false, true, false, false, false);

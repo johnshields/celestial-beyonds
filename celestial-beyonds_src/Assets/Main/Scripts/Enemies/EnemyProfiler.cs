@@ -55,7 +55,7 @@ namespace Main.Scripts.Enemies
                 playerInAttackRange = Physics.CheckSphere(tp, attackRange, playerMask);
 
                 if (!playerInSightRange && !playerInAttackRange) Patrol();
-                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive || !photoMode.GetComponent<PhotoMode>().photoMode)
                 {
                     if (playerInSightRange && !playerInAttackRange && !player.GetComponent<CaptainHealth>().capDead)
                         ChasePlayer();
@@ -113,7 +113,7 @@ namespace Main.Scripts.Enemies
             var randomZ = Random.Range(-walkPointRange, walkPointRange);
             var randomX = Random.Range(-walkPointRange, walkPointRange);
             
-            AnimationState(true, false, false);
+            AnimationState(false, true, false);
 
             // check if point is on ground
             var tp = transform.position;

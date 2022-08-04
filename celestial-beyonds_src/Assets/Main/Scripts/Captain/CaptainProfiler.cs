@@ -7,7 +7,7 @@ namespace Main.Scripts.Captain
     public class CaptainProfiler : MonoBehaviour
     {
         public bool grounded;
-        public float movementForce = 1f, jumpForce = 5f, maxSpeed = 5f;
+        public float movementForce = 1f, jumpForce = 5f;
 
         public Camera playerCam;
 
@@ -20,7 +20,7 @@ namespace Main.Scripts.Captain
         private Vector3 forceDir = Vector3.zero;
         
         // misc
-        public GameObject pauseMenu, photoMode;
+        public GameObject pauseMenu;
 
         private void Awake()
         {

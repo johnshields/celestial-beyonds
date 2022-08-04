@@ -77,7 +77,6 @@ namespace Main.Scripts.Captain
 
         private void Update()
         {
-            // only animate if jetpack is not active (still passes through)
             if (!GetComponent<Jetpack>().jetpackActive)
                 _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
             else
@@ -88,26 +87,43 @@ namespace Main.Scripts.Captain
                 _animator.SetBool(_armedActive, false);
             else if (_armed) _animator.SetBool(_armedActive, true);
 
-            if (pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            if (GetComponent<CaptainHealth>().capDead)
             {
-                _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
-                _pollinator.GetComponent<Pollinator>().StopPollenParticles();
-            }
-
-            // stop particles of the opposite gun.
-            if (cannonFire)
-                _pollinator.GetComponent<Pollinator>().StopPollenParticles();
-            else if (pollenFire)
-                _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
-
-            // PauseMenu - false to melee, cannonFire and pollenFire
-            if (pauseMenu.GetComponent<InGameMenus>().pausedActive)
-            {
+                _actionDone = true;
                 meleeActive = false;
                 cannonFire = false;
                 pollenFire = false;
             }
+            
+            IfPauseMenu();
+            StopParticleIfOtherGun();
+            WeaponState();
+        }
 
+        private void OnEnable()
+        {
+            _controls.Profiler.Jump.started += Jump;
+            _controls.Profiler.Attack.started += MeleeAttack;
+            _controls.Profiler.Dodge.started += Dodge;
+            _controls.Profiler.Shoot.started += ShootCannon;
+            _controls.Profiler.Unarmed.started += Unarmed;
+            _controls.Profiler.Pollinate.started += Pollinate;
+            _controls.Profiler.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _controls.Profiler.Jump.started -= Jump;
+            _controls.Profiler.Attack.started -= MeleeAttack;
+            _controls.Profiler.Dodge.started -= Dodge;
+            _controls.Profiler.Shoot.started -= ShootCannon;
+            _controls.Profiler.Unarmed.started -= Unarmed;
+            _controls.Profiler.Pollinate.started -= Pollinate;
+            _controls.Profiler.Disable();
+        }
+
+        private void WeaponState()
+        {
             if (meleeActive)
             {
                 _cannonObj.SetActive(false);
@@ -133,26 +149,30 @@ namespace Main.Scripts.Captain
             }
         }
 
-        private void OnEnable()
+        private void StopParticleIfOtherGun()
         {
-            _controls.Profiler.Jump.started += Jump;
-            _controls.Profiler.Attack.started += MeleeAttack;
-            _controls.Profiler.Dodge.started += Dodge;
-            _controls.Profiler.Shoot.started += ShootCannon;
-            _controls.Profiler.Unarmed.started += Unarmed;
-            _controls.Profiler.Pollinate.started += Pollinate;
-            _controls.Profiler.Enable();
+            // stop particles of the opposite gun.
+            if (cannonFire)
+                _pollinator.GetComponent<Pollinator>().StopPollenParticles();
+            else if (pollenFire)
+                _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
         }
 
-        private void OnDisable()
+        private void IfPauseMenu()
         {
-            _controls.Profiler.Jump.started -= Jump;
-            _controls.Profiler.Attack.started -= MeleeAttack;
-            _controls.Profiler.Dodge.started -= Dodge;
-            _controls.Profiler.Shoot.started -= ShootCannon;
-            _controls.Profiler.Unarmed.started -= Unarmed;
-            _controls.Profiler.Pollinate.started -= Pollinate;
-            _controls.Profiler.Disable();
+            if (pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            {
+                _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
+                _pollinator.GetComponent<Pollinator>().StopPollenParticles();
+            }
+
+            // PauseMenu - false to melee, cannonFire and pollenFire
+            if (pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            {
+                meleeActive = false;
+                cannonFire = false;
+                pollenFire = false;
+            }
         }
 
         public void PlayerState(bool unarmed, bool armed)
@@ -231,9 +251,7 @@ namespace Main.Scripts.Captain
             // random animation
             var attackBool = Random.Range(0, 5);
 
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive &&
-                !GetComponent<CaptainHealth>().capDead &&
-                !argyle.activeInHierarchy && !viktor.activeInHierarchy)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !GetComponent<CaptainHealth>().capDead)
             {
                 WeaponSelect(true, false, false);
                 PlayerState(true, false);
@@ -269,8 +287,7 @@ namespace Main.Scripts.Captain
         {
             if (!GetComponent<CaptainHealth>().capDead)
             {
-                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive &&
-                    !argyle.activeInHierarchy && !viktor.activeInHierarchy)
+                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
                 {
                     WeaponSelect(false, true, false);
                     PlayerState(false, true);
