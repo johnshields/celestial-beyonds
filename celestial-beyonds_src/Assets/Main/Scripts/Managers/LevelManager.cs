@@ -8,7 +8,8 @@ public class LevelManager : MonoBehaviour
     public GameObject enemies, fader, skipBtn, rainFader;
     public AudioSource cutSceneAudio;
     public int time, skipInit, enemiesInit, fadeInit;
-    public bool enableSkip, skip, sceneAudioInit, rainFadeInit;
+    public bool enableSkip, skip, sceneAudioInit, rainFadeInit, epilogue;
+    public string scene;
     private InputProfiler _controls;
 
     private void Awake()
@@ -95,7 +96,10 @@ public class LevelManager : MonoBehaviour
             if(rainFadeInit)
                 rainFader.GetComponent<RainFade>().RainFader(1);
             yield return new WaitForSeconds(4);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if(!epilogue)
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            else
+                SceneManager.LoadScene(scene);
         }
     }
 }

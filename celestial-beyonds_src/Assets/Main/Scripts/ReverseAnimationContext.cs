@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using System.IO;
@@ -6,6 +7,7 @@ using System.IO;
 public static class ReverseAnimationContext
 {
     [MenuItem("Assets/Create Reversed Clip", false, 14)]
+    [Obsolete("Obsolete")]
     private static void ReverseClip()
     {
         string directoryPath = Path.GetDirectoryName(AssetDatabase.GetAssetPath(Selection.activeObject));
@@ -24,7 +26,7 @@ public static class ReverseAnimationContext
         float clipLength = clip.length;
         var curves = AnimationUtility.GetAllCurves(clip, true);
         clip.ClearCurves();
-        foreach (AnimationClipCurveData curve in curves)
+        foreach (var curve in curves)
         {
             var keys = curve.curve.keys;
             int keyCount = keys.Length;
@@ -62,7 +64,7 @@ public static class ReverseAnimationContext
     [MenuItem("Assets/Create Reversed Clip", true)]
     static bool ReverseClipValidation()
     {
-        return Selection.activeObject.GetType() == typeof(AnimationClip);
+        return Selection.activeObject is AnimationClip;
     }
 
     public static AnimationClip GetSelectedClip()

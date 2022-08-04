@@ -5,9 +5,9 @@ using UnityEngine.Playables;
 
 public class SyncCinematic : MonoBehaviour
 {
-    public GameObject musicAudio, timeline, continueBtn, mainTitle, lvlManager;
+    public GameObject musicAudio, timeline, continueBtn, mainTitle, lvlManager, daisyBell;
     public AudioSource cutSceneAudio;
-    public bool cinStarted;
+    public bool cinStarted, daisy;
     public bool sceneAudioInit;
     private InputProfiler _controls;
     private bool _played;
@@ -17,7 +17,7 @@ public class SyncCinematic : MonoBehaviour
         _controls = new InputProfiler();
         StartCoroutine(ActivateContinueBtn());
     }
-    
+
     private void OnEnable()
     {
         _controls.UIActions.PlayCinematic.started += PlayCinematic;
@@ -32,8 +32,12 @@ public class SyncCinematic : MonoBehaviour
 
     private void PlayCinematic(InputAction.CallbackContext obj)
     {
-        if(!_played)
+        if (!_played)
+        {
             SyncCinAndMusic();
+            if (daisy)
+                daisyBell.GetComponent<Animator>().SetTrigger($"FadeOut");
+        }
     }
 
     private void SyncCinAndMusic()
@@ -45,10 +49,10 @@ public class SyncCinematic : MonoBehaviour
         musicAudio.GetComponent<AudioSource>().Play();
         if (lvlManager.GetComponent<LevelManager>().time != 0)
             StartCoroutine(lvlManager.GetComponent<LevelManager>().FadeSceneOut());
-        
-        if(sceneAudioInit)
+
+        if (sceneAudioInit)
             cutSceneAudio.Play();
-        
+
         mainTitle.SetActive(true);
     }
 

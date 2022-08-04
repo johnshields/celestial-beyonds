@@ -4,14 +4,14 @@ Shader "Skybox/Cubemap Blend"
 {
 	Properties
 	{
-		[StyledBanner(Skybox Cubemap Blend)]_SkyboxExtended("< SkyboxExtended >", Float) = 1
-		[StyledCategory(Cubemap Settings, 5, 10)]_Cubemapp("[ Cubemapp ]", Float) = 1
+		[StyledBanner(Blend)]_SkyboxExtended("< SkyboxExtended >", Float) = 1
+		[StyledCategory(Settings, 5, 10)]_Cubemapp("[ Cubemapp ]", Float) = 1
 		[NoScaleOffset][StyledTextureSingleLine]_Tex("Cubemap (HDR)", CUBE) = "black" {}
 		[NoScaleOffset][StyledTextureSingleLine]_Tex_Blend("Cubemap Blend (HDR)", CUBE) = "black" {}
-		[Space(10)]_CubemapTransition("Cubemap Transition", Range( 0 , 1)) = 0
-		[Space(10)]_Exposure("Cubemap Exposure", Range( 0 , 8)) = 1
-		[Gamma]_TintColor("Cubemap Tint Color", Color) = (0.5,0.5,0.5,1)
-		_CubemapPosition("Cubemap Position", Float) = 0
+		[Space(10)]_CubemapTransition("Transition", Range( 0 , 1)) = 0
+		[Space(10)]_Exposure("Exposure", Range( 0 , 8)) = 1
+		[Gamma]_TintColor("Sky Tint", Color) = (0.5,0.5,0.5,1)
+		_CubemapPosition("Position", Float) = 0
 		[StyledCategory(Rotation Settings)]_Rotationn("[ Rotationn ]", Float) = 1
 		[Toggle(_ENABLEROTATION_ON)] _EnableRotation("Enable Rotation", Float) = 0
 		[IntRange][Space(10)]_Rotation("Rotation", Range( 0 , 360)) = 0
