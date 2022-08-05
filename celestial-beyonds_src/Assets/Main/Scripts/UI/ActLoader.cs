@@ -19,6 +19,7 @@ public class ActLoader : MonoBehaviour
         _controls.UIActions.LoadActTwo.started += LoadActTwo;
         _controls.UIActions.LoadActThree.started += LoadActThree;
         _controls.UIActions.LoadEndgame.started += LoadEndgame;
+        _controls.UIActions.LoadEpilogue.started += LoadEpilogue;
         _controls.UIActions.Enable();
     }
 
@@ -27,7 +28,8 @@ public class ActLoader : MonoBehaviour
         _controls.UIActions.LoadActOne.started -= LoadActOne;
         _controls.UIActions.LoadActTwo.started -= LoadActTwo;
         _controls.UIActions.LoadActThree.started -= LoadActThree;
-        _controls.UIActions.LoadEndgame.started += LoadEndgame;
+        _controls.UIActions.LoadEndgame.started -= LoadEndgame;
+        _controls.UIActions.LoadEpilogue.started -= LoadEpilogue;
         _controls.UIActions.Disable();
     }
 
@@ -54,9 +56,16 @@ public class ActLoader : MonoBehaviour
         if (actPanel.activeInHierarchy)
             StartCoroutine(LaunchAct("009_Intro_Endgame"));
     }
+    
+    private void LoadEpilogue(InputAction.CallbackContext obj)
+    {
+        if (actPanel.activeInHierarchy)
+            StartCoroutine(LaunchAct("010_TheGoldenRecord"));
+    }
 
     private IEnumerator LaunchAct(string level)
     {
+        actPanel.SetActive(false);
         fader.SetActive(true);
         print("Loading into: " + level);
         fader.GetComponent<Animator>().SetBool($"FadeIn", false);

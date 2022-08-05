@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Main.Scripts.Captain;
 using UnityEngine;
@@ -64,26 +65,19 @@ public class AristauesProfiler : MonoBehaviour
             playerInSightRange = Physics.CheckSphere(tp, sightRange, playerMask);
             playerInAttackRange = Physics.CheckSphere(tp, attackRange, playerMask);
 
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !player.GetComponent<CaptainHealth>().capDead)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive || !player.GetComponent<CaptainHealth>().capDead
+                || !photoMode.GetComponent<PhotoMode>().photoMode || !terminated)
             {
                 if (!playerInSightRange && !playerInAttackRange) Patrol();
                 if (playerInSightRange && !playerInAttackRange) ChasePlayer();
                 if (playerInAttackRange && playerInSightRange) AttackMode();
-            }
-
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive || !photoMode.GetComponent<PhotoMode>().photoMode)
-            {
-                if (playerInSightRange && !playerInAttackRange && !player.GetComponent<CaptainHealth>().capDead)
-                    ChasePlayer();
-                if (playerInAttackRange && playerInSightRange && !player.GetComponent<CaptainHealth>().capDead)
-                    AttackMode();
                 if (player.GetComponent<CaptainHealth>().capDead)
                 {
                     AnimationState(true, false, false, false, false);
                     _rb.constraints = RigidbodyConstraints.FreezeAll;
                 }
             }
-
+            
             // Stop Aristaues during PhotoMode.
             if (photoMode.GetComponent<PhotoMode>().photoMode)
             {

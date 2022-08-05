@@ -1174,6 +1174,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadEpilogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d75654e-f482-42f1-a1f3-82ab9c8abe99"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1484,6 +1493,17 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""No"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc120153-46a0-40fd-9ffb-320939f82d97"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadEpilogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1546,6 +1566,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_UIActions_LoadActTwo = m_UIActions.FindAction("LoadActTwo", throwIfNotFound: true);
         m_UIActions_LoadActThree = m_UIActions.FindAction("LoadActThree", throwIfNotFound: true);
         m_UIActions_LoadEndgame = m_UIActions.FindAction("LoadEndgame", throwIfNotFound: true);
+        m_UIActions_LoadEpilogue = m_UIActions.FindAction("LoadEpilogue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1922,6 +1943,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_UIActions_LoadActTwo;
     private readonly InputAction m_UIActions_LoadActThree;
     private readonly InputAction m_UIActions_LoadEndgame;
+    private readonly InputAction m_UIActions_LoadEpilogue;
     public struct UIActionsActions
     {
         private @InputProfiler m_Wrapper;
@@ -1945,6 +1967,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @LoadActTwo => m_Wrapper.m_UIActions_LoadActTwo;
         public InputAction @LoadActThree => m_Wrapper.m_UIActions_LoadActThree;
         public InputAction @LoadEndgame => m_Wrapper.m_UIActions_LoadEndgame;
+        public InputAction @LoadEpilogue => m_Wrapper.m_UIActions_LoadEpilogue;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2011,6 +2034,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @LoadEndgame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEndgame;
                 @LoadEndgame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEndgame;
                 @LoadEndgame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEndgame;
+                @LoadEpilogue.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEpilogue;
+                @LoadEpilogue.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEpilogue;
+                @LoadEpilogue.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEpilogue;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -2072,6 +2098,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @LoadEndgame.started += instance.OnLoadEndgame;
                 @LoadEndgame.performed += instance.OnLoadEndgame;
                 @LoadEndgame.canceled += instance.OnLoadEndgame;
+                @LoadEpilogue.started += instance.OnLoadEpilogue;
+                @LoadEpilogue.performed += instance.OnLoadEpilogue;
+                @LoadEpilogue.canceled += instance.OnLoadEpilogue;
             }
         }
     }
@@ -2134,5 +2163,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnLoadActTwo(InputAction.CallbackContext context);
         void OnLoadActThree(InputAction.CallbackContext context);
         void OnLoadEndgame(InputAction.CallbackContext context);
+        void OnLoadEpilogue(InputAction.CallbackContext context);
     }
 }

@@ -16,8 +16,18 @@ namespace Main.Scripts.Captain
         public AudioClip[] meleeSFX;
         public AudioClip cannonSFX, pollenSFX, noAmmoSFX, capScreamSFX;
         public float delayAction = 1f, dodge;
-        public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo, viktor, argyle, pbUI, cdUI;
-        public bool meleeActive, cannonFire, pollenFire, callMoonbeam, pbUpgrade, cdUpgrade, aUpgrade, aUpgradeInLevel, endgame;
+        public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo, pbUI, cdUI;
+
+        public bool meleeActive,
+            cannonFire,
+            pollenFire,
+            callMoonbeam,
+            pbUpgrade,
+            cdUpgrade,
+            aUpgrade,
+            aUpgradeInLevel,
+            endgame;
+
         private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
         private AudioSource _audio;
@@ -95,7 +105,7 @@ namespace Main.Scripts.Captain
                 cannonFire = false;
                 pollenFire = false;
             }
-            
+
             IfPauseMenu();
             StopParticleIfOtherGun();
             WeaponState();
@@ -140,7 +150,7 @@ namespace Main.Scripts.Captain
                 _celestialDefier.SetActive(false);
                 _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
             }
-            
+
             if (aUpgrade && Bools.aUpgraded && aUpgradeInLevel)
             {
                 armorUpgrade[0].SetActive(true);
@@ -353,7 +363,7 @@ namespace Main.Scripts.Captain
                             StartCoroutine(ResetAmmoMeter(1));
                         }
                     }
-                }   
+                }
             }
         }
 
@@ -452,7 +462,6 @@ namespace Main.Scripts.Captain
                 _audio.PlayOneShot(cannonSFX, 0.15f);
             else if (pollenFire)
                 _audio.PlayOneShot(pollenSFX, 0.15f);
-            
         }
 
         private void CapScreamSFX()

@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class MiniMenu : MonoBehaviour
 {
-    public int enemiesNum, plantsNum, artifactsNum, peridotsNum, totalEnemies, totalPlants, totalArtifacts, totalPeridots;
+    public int enemiesNum,
+        plantsNum,
+        artifactsNum,
+        peridotsNum,
+        totalEnemies,
+        totalPlants,
+        totalArtifacts,
+        totalPeridots;
+
     public TextMeshProUGUI plantNumTxt, enemyNumTxt, artifactsNumTxt, peridotsNumTxt;
     public GameObject allEnemiesPanel, allArtifactsPanel, allPeridotsPanel, upgradeOption, upgradePanel;
     public AudioClip[] achievementSFX;
@@ -49,9 +57,12 @@ public class MiniMenu : MonoBehaviour
 
     private void UpgradePanel()
     {
-        upgradePanel.SetActive(true);
-        upgradeOption.SetActive(true);
-        _audio.PlayOneShot(achievementSFX[3]);
+        if (PlayerMemory.cannonUpgrade != 1 || PlayerMemory.cannonUpgrade != 2 || PlayerMemory.armorUpgrade != 1)
+        {
+            upgradePanel.SetActive(true);
+            upgradeOption.SetActive(true);
+            _audio.PlayOneShot(achievementSFX[3]);
+        }
     }
 
     private IEnumerator CloseActivePanel(int whichPanel)

@@ -18,9 +18,13 @@ public class MoonbeamAPI : MonoBehaviour
         
         _audio = GetComponent<AudioSource>();
         _mb = GameObject.FindGameObjectWithTag("Moonbeam");
-        PlayRandomClip(0f);
         if (!disabledMoonbeam)
             StartCoroutine(GetRequest(_uri));
+    }
+
+    private void Start()
+    {
+        PlayRandomClip(0f);
     }
 
     private IEnumerator GetRequest(string uri)

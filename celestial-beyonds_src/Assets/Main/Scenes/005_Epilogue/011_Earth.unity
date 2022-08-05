@@ -944,6 +944,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 3508007366029446089}
   muteBtn: {fileID: 477107699783904116}
   unMuteBtn: {fileID: 477107699193983373}
+  fader: {fileID: 1887348422}
   cinMusic: {fileID: 266054557}
 --- !u!1 &351082697
 GameObject:
@@ -1318,7 +1319,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'JOHN SHIELDS
 
-    LINUS JOHNSON
+    LINUS JOHNSSON
 
     JULIUSH
 
@@ -2364,7 +2365,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A SPECIAL THANKS TO NASA and VOYAGER ONE \nFOR INSPIRING THE NARATIVE"
+  m_text: "A SPECIAL THANKS TO NASA and VOYAGER ONE \nFOR INSPIRING THE NARRATIVE"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a1dfd70c2f5b994aa64bbfc80c56745, type: 2}
   m_sharedMaterial: {fileID: 1107936774579258750, guid: 9a1dfd70c2f5b994aa64bbfc80c56745, type: 2}
@@ -3790,6 +3791,7 @@ Transform:
   - {fileID: 351082698}
   - {fileID: 336759888}
   - {fileID: 2058524373}
+  - {fileID: 8521008953977904921}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3854,8 +3856,8 @@ MonoBehaviour:
     BORODIN\nCORA DE COURCY MAC DONNELL\nCOCO ELSBY\nHANNE KLEINHANS KROGSAETER\nJISHU
     SUN\nANNICK WEINANDI\nARUNDHATI PUSHPAGARN\nUSMAN SATTAR\nSAM KEANE\nMIHAIL TSVETOGOROV\nCHRISTOPHE
     NOTEBAERT\nJULIA GARCIA\nBLAKE Grmek\nNISHANT KSHIRSAGAR\nMARTYNA WALCZAK\nANNA
-    ROURKE\nDE COURCY MAC DONNELL\nIN\xC9S P\xC9LADAN\nPEERAWAT RUIYL\nMICHAEL BORODIN\nCONOR
-    O'LOUGHLIN\n\n"
+    ROURKE\nMaighr\xE9ad Mhic Dhomhnaill\nIN\xC9S P\xC9LADAN\nPEERAWAT RUIYL\nMICHAEL
+    BORODIN\nCONOR O'LOUGHLIN\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a1dfd70c2f5b994aa64bbfc80c56745, type: 2}
   m_sharedMaterial: {fileID: 1107936774579258750, guid: 9a1dfd70c2f5b994aa64bbfc80c56745, type: 2}
@@ -6272,6 +6274,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3245102892396972331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022326427443317618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500388a313aa9648a925df6cd8e01dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInScene: 0
+  armourUpgradeInScene: 0
+  resetMemory: 0
 --- !u!1 &3246378071770055625
 GameObject:
   m_ObjectHideFlags: 0
@@ -14001,6 +14018,23 @@ Transform:
   m_Father: {fileID: 5582655504172003289}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7022326427443317618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8521008953977904921}
+  - component: {fileID: 3245102892396972331}
+  m_Layer: 0
+  m_Name: PlayerMemory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &7158266203179621973
 GameObject:
   m_ObjectHideFlags: 0
@@ -14444,6 +14478,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &8521008953977904921
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022326427443317618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1836188462}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8717261971812297741
 GameObject:
   m_ObjectHideFlags: 0

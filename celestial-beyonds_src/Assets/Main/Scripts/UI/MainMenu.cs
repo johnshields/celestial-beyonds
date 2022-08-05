@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject fader, actPanel, controlsPanel, creditsPanel, muteBtn, unMuteBtn, restartBtn, restartPanel;
+    public GameObject fader, actPanel, controlsPanel, creditsPanel, muteBtn, unMuteBtn, actBtn, restartBtn, restartPanel;
     private InputProfiler _controls;
     public bool controlsMenu, creditsRolling, loadPlanet;
 
@@ -17,8 +17,7 @@ public class MainMenu : MonoBehaviour
             print("Players first time: " + true);
             PlayerMemory.sceneToLoad = "002_Opening";
         }
-        else
-            print("Players first time: " + false);
+        else print("Players first time: " + false + "\nSceneToLoad: " + PlayerMemory.sceneToLoad);
 
         _controls = new InputProfiler();
 
@@ -43,6 +42,18 @@ public class MainMenu : MonoBehaviour
         {
             restartBtn.GetComponent<Button>().interactable = false;
             restartBtn.GetComponent<Image>().color = Color.black;
+        }
+
+        if (PlayerMemory.sceneToLoad == "011_Earth")
+        {
+            ColorUtility.TryParseHtmlString("#2A2E4E", out var blue);
+            actBtn.GetComponent<Button>().interactable = true;
+            actBtn.GetComponent<Image>().color = blue;
+        }
+        else
+        {
+            actBtn.GetComponent<Button>().interactable = false;
+            actBtn.GetComponent<Image>().color = Color.black;
         }
     }
 
@@ -101,6 +112,8 @@ public class MainMenu : MonoBehaviour
             PlayerMemory.ResetMemory();
             restartBtn.GetComponent<Button>().interactable = false;
             restartBtn.GetComponent<Image>().color = Color.black;
+            actBtn.GetComponent<Button>().interactable = false;
+            actBtn.GetComponent<Image>().color = Color.black;
             StartCoroutine(LaunchGame("002_Opening"));   
         }
     }

@@ -7,7 +7,7 @@ public class AristauesSFX : MonoBehaviour
     private AudioSource _audio;
     private bool _tlPlayed, aPlayed;
 
-    private void Awake()
+    private void Start()
     {
         _audio = GetComponent<AudioSource>();
         PlayRandomClip("Taglines", 0f);
@@ -25,7 +25,7 @@ public class AristauesSFX : MonoBehaviour
         {
             _tlPlayed = true;
             PlayRandomClip("Taglines", 0.5f);
-            Invoke(nameof(ResetTL_SFX), 6);
+            Invoke(nameof(ResetTaglineSFX), 6);
         }
     }
 
@@ -50,7 +50,7 @@ public class AristauesSFX : MonoBehaviour
         aPlayed = false;
     }
     
-    private void ResetTL_SFX()
+    private void ResetTaglineSFX()
     {
         _tlPlayed = false;
     }

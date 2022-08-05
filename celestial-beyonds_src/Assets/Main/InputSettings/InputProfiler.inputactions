@@ -1152,6 +1152,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LoadEpilogue",
+                    "type": "Button",
+                    "id": "0d75654e-f482-42f1-a1f3-82ab9c8abe99",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1460,6 +1469,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "No",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc120153-46a0-40fd-9ffb-320939f82d97",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadEpilogue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -246,7 +246,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2022324448}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -827,6 +827,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 3508007366029446089}
   muteBtn: {fileID: 477107699783904116}
   unMuteBtn: {fileID: 477107699193983373}
+  fader: {fileID: 1887348422}
   cinMusic: {fileID: 266054557}
 --- !u!1 &351082697
 GameObject:
@@ -1036,7 +1037,7 @@ RectTransform:
   m_Children:
   - {fileID: 1887348423}
   m_Father: {fileID: 2022324448}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1516,7 +1517,7 @@ RectTransform:
   m_Children:
   - {fileID: 2080077515}
   m_Father: {fileID: 2022324448}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1948,7 +1949,7 @@ RectTransform:
   m_Children:
   - {fileID: 452578067}
   m_Father: {fileID: 2022324448}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2538,11 +2539,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1418731585}
+  - {fileID: 111387992}
   - {fileID: 546554606}
   - {fileID: 1044328895}
   - {fileID: 1385865620}
   - {fileID: 3508007366029446088}
-  - {fileID: 111387992}
   - {fileID: 129449487}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -4181,7 +4182,7 @@ RectTransform:
   - {fileID: 3508007365349736783}
   - {fileID: 3508007365666788844}
   m_Father: {fileID: 2022324448}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9833,6 +9834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2500388a313aa9648a925df6cd8e01dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInScene: 0
 --- !u!23 &6643837267114963338
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -1435,6 +1435,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 3508007366029446089}
   muteBtn: {fileID: 477107699783904116}
   unMuteBtn: {fileID: 477107699193983373}
+  fader: {fileID: 1622611982}
   cinMusic: {fileID: 266054557}
 --- !u!1 &351082697
 GameObject:
@@ -3081,7 +3082,7 @@ RectTransform:
   m_Children:
   - {fileID: 2080077515}
   m_Father: {fileID: 2022324448}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3613,7 +3614,7 @@ RectTransform:
   m_Children:
   - {fileID: 452578067}
   m_Father: {fileID: 2022324448}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4450,7 +4451,7 @@ RectTransform:
   m_Children:
   - {fileID: 1622611983}
   m_Father: {fileID: 2022324448}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4756,6 +4757,7 @@ Transform:
   - {fileID: 1712192075}
   - {fileID: 336759888}
   - {fileID: 192121147}
+  - {fileID: 3497685731635862665}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4851,11 +4853,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1418731585}
+  - {fileID: 664683363682232121}
   - {fileID: 1736174424}
   - {fileID: 1044328895}
   - {fileID: 1385865620}
   - {fileID: 3508007366029446088}
-  - {fileID: 664683363682232121}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5739,7 +5741,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2022324448}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5922,6 +5924,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &2863905038248823010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3497685731635862665}
+  - component: {fileID: 7764796437178026683}
+  m_Layer: 0
+  m_Name: PlayerMemory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &3369947547753445623
 Transform:
   m_ObjectHideFlags: 0
@@ -5935,6 +5954,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5371422519343259883}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &3497685731635862665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863905038248823010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1836188462}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3508007364452758400
 MonoBehaviour:
@@ -6632,7 +6665,7 @@ RectTransform:
   - {fileID: 3508007365349736783}
   - {fileID: 3508007365666788844}
   m_Father: {fileID: 2022324448}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7015,6 +7048,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2436655417268850333}
   m_Mesh: {fileID: 5475528490184862348, guid: 2dcae370fd04179d0b3145a842a0be61, type: 3}
+--- !u!114 &7764796437178026683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863905038248823010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500388a313aa9648a925df6cd8e01dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInScene: 0
 --- !u!1 &8342547129775264302
 GameObject:
   m_ObjectHideFlags: 0

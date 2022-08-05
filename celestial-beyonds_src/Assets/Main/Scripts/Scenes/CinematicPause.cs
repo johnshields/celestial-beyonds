@@ -1,11 +1,13 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CinematicPause : MonoBehaviour
 {
     private InputProfiler _controls;
     public bool pausedCinActive;
-    public GameObject pauseMenu, muteBtn, unMuteBtn;
+    public GameObject pauseMenu, muteBtn, unMuteBtn, fader;
     public AudioSource cinMusic;
     
     private void Awake()
@@ -101,5 +103,17 @@ public class CinematicPause : MonoBehaviour
     private void LoadMainMenu(InputAction.CallbackContext obj)
     {
         print("LoadMainMenu: 101_MainMenu");
+        StartCoroutine(LoadMainMenu());
+    }
+    
+    private IEnumerator LoadMainMenu()
+    {
+        cinMusic.UnPause();
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        fader.GetComponent<Animator>().SetBool($"FadeIn", false);
+        fader.GetComponent<Animator>().SetBool($"FadeOut", true);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("101_MainMenu");
     }
 }
