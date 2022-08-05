@@ -98,7 +98,7 @@ public class VanGunProfiler : MonoBehaviour
         {
             // only sell ammo if they do not have maxAmmo or no peridots.
             if (canAmmo.GetComponent<CannonAmmo>().cannonAmmo != canAmmo.GetComponent<CannonAmmo>().maxAmmo &&
-                _peridotCounter.GetComponent<PeridotCounter>().peridots != 0)
+                PlayerMemory.peridots != 0)
             {
                 transaction = true;
                 PlayRandomClip("Sold", audioVol);
@@ -108,7 +108,7 @@ public class VanGunProfiler : MonoBehaviour
                 SwitchAnim();
             }
             // decline the sale if the player has less than 0 peridots + flash peridotCounter.
-            else if (_peridotCounter.GetComponent<PeridotCounter>().peridots <= 0)
+            else if (PlayerMemory.peridots <= 0)
             {
                 print("Not enough peridots");
                 PlayRandomClip("NoSale", audioVol);
@@ -134,7 +134,7 @@ public class VanGunProfiler : MonoBehaviour
     
     private void ViktorUpgrade(InputAction.CallbackContext obj)
     {
-        if (upgradeOption.activeInHierarchy && _peridotCounter.GetComponent<PeridotCounter>().peridots >= upgradeCost)
+        if (PlayerMemory.peridots >= upgradeCost)
         {
             PlayRandomClip("Sold", audioVol);
             _audio.PlayOneShot(sale, 0.1f);
@@ -142,7 +142,7 @@ public class VanGunProfiler : MonoBehaviour
             canAmmo.GetComponent<CannonAmmo>().cannonAmmo = canAmmo.GetComponent<CannonAmmo>().maxAmmo;
             UpgradeCannon(upgradeNum);
         }
-        else if(_peridotCounter.GetComponent<PeridotCounter>().peridots < upgradeCost)
+        else if(PlayerMemory.peridots < upgradeCost)
         {
             print("Not enough peridots");
             PlayRandomClip("NoSale", audioVol);

@@ -1,19 +1,27 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject fader, actPanel, controlsPanel, creditsPanel, muteBtn, unMuteBtn;
+    public GameObject fader, actPanel, controlsPanel, creditsPanel, muteBtn, unMuteBtn, restartBtn, restartPanel;
     private InputProfiler _controls;
     public bool controlsMenu, creditsRolling, loadPlanet;
 
     private void Awake()
     {
+        if (PlayerMemory.sceneToLoad == "")
+        {
+            print("Players first time: " + true);
+            PlayerMemory.sceneToLoad = "002_Opening";
+        }
+        else
+            print("Players first time: " + false);
+
         _controls = new InputProfiler();
-        
+
         if (!Bools.muteActive)
         {
             unMuteBtn.SetActive(false);
@@ -23,6 +31,18 @@ public class MainMenu : MonoBehaviour
         {
             unMuteBtn.SetActive(true);
             muteBtn.SetActive(false);
+        }
+
+        if (PlayerMemory.sceneToLoad != "002_Opening")
+        {
+            ColorUtility.TryParseHtmlString("#2A2E4E", out var blue);
+            restartBtn.GetComponent<Button>().interactable = true;
+            restartBtn.GetComponent<Image>().color = blue;
+        }
+        else
+        {
+            restartBtn.GetComponent<Button>().interactable = false;
+            restartBtn.GetComponent<Image>().color = Color.black;
         }
     }
 
@@ -36,10 +56,13 @@ public class MainMenu : MonoBehaviour
     {
         _controls.UIActions.StartGame.started += StartGame;
         _controls.UIActions.Controls.started += CtrlsMenu;
-        _controls.UIActions.LoadPlanet.started += LoadPlanet;
+        _controls.UIActions.RestartGame.started += RestartGame;
+        _controls.UIActions.Yes.started += ConfirmYes;
+        _controls.UIActions.No.started += ConfirmNo;
         _controls.UIActions.Mute.started += MuteGame;
         _controls.UIActions.UnMute.started += UnMuteGame;
         _controls.UIActions.Credits.started += RollCredits;
+        _controls.UIActions.LoadPlanet.started += LoadAct;
         _controls.UIActions.Enable();
     }
 
@@ -47,42 +70,63 @@ public class MainMenu : MonoBehaviour
     {
         _controls.UIActions.StartGame.started -= StartGame;
         _controls.UIActions.Controls.started -= CtrlsMenu;
-        _controls.UIActions.LoadPlanet.started -= LoadPlanet;
+        _controls.UIActions.RestartGame.started -= RestartGame;
+        _controls.UIActions.Yes.started -= ConfirmYes;
+        _controls.UIActions.No.started -= ConfirmNo;
         _controls.UIActions.Mute.started -= MuteGame;
         _controls.UIActions.UnMute.started -= UnMuteGame;
         _controls.UIActions.Credits.started -= RollCredits;
+        _controls.UIActions.LoadPlanet.started -= LoadAct;
         _controls.UIActions.Disable();
     }
 
-    // ControllerInput
     private void StartGame(InputAction.CallbackContext obj)
     {
         controlsMenu = false;
         controlsPanel.SetActive(false);
-        StartCoroutine(LaunchGame(1));
-    }
-    
-    // MouseUI Input
-    public void StartGameM()
-    {
-        controlsMenu = false;
-        controlsPanel.SetActive(false);
-        StartCoroutine(LaunchGame(1));
+        StartCoroutine(LaunchGame(PlayerMemory.sceneToLoad));
     }
 
-    private void LoadPlanet(InputAction.CallbackContext obj)
+    private void RestartGame(InputAction.CallbackContext obj)
     {
-        if (!loadPlanet)
+        if (PlayerMemory.sceneToLoad != "002_Opening")
+            restartPanel.SetActive(true);
+    }
+    
+    private void ConfirmYes(InputAction.CallbackContext obj)
+    {
+        if (restartPanel.activeInHierarchy)
         {
-            loadPlanet = true;
-            print("loadPlanet menu active:" + loadPlanet);
-            actPanel.SetActive(true);
+            restartPanel.SetActive(false);
+            PlayerMemory.ResetMemory();
+            restartBtn.GetComponent<Button>().interactable = false;
+            restartBtn.GetComponent<Image>().color = Color.black;
+            StartCoroutine(LaunchGame("002_Opening"));   
         }
-        else if(loadPlanet)
+    }
+
+    private void ConfirmNo(InputAction.CallbackContext obj)
+    {
+        restartPanel.SetActive(false);
+    }
+
+
+    private void LoadAct(InputAction.CallbackContext obj)
+    {
+        if (PlayerMemory.sceneToLoad == "011_Earth")
         {
-            loadPlanet = false;
-            print("loadPlanet menu active:" + loadPlanet);
-            actPanel.SetActive(false);
+            if (!loadPlanet)
+            {
+                loadPlanet = true;
+                print("loadPlanet menu active:" + loadPlanet);
+                actPanel.SetActive(true);
+            }
+            else if (loadPlanet)
+            {
+                loadPlanet = false;
+                print("loadPlanet menu active:" + loadPlanet);
+                actPanel.SetActive(false);
+            }   
         }
     }
 
@@ -101,7 +145,7 @@ public class MainMenu : MonoBehaviour
             controlsPanel.SetActive(false);
         }
     }
-    
+
     private void RollCredits(InputAction.CallbackContext obj)
     {
         if (!creditsRolling && !loadPlanet)
@@ -118,16 +162,16 @@ public class MainMenu : MonoBehaviour
 
     private void MuteGame(InputAction.CallbackContext obj)
     {
-        print("Mute Active: " +  Bools.muteActive);
+        print("Mute Active: " + Bools.muteActive);
         Bools.muteActive = true;
         muteBtn.SetActive(false);
         unMuteBtn.SetActive(true);
         AudioManager.MuteActive();
     }
-    
+
     private void UnMuteGame(InputAction.CallbackContext obj)
     {
-        print("Mute Active: " +  Bools.muteActive);
+        print("Mute Active: " + Bools.muteActive);
         Bools.muteActive = false;
         muteBtn.SetActive(true);
         unMuteBtn.SetActive(false);
@@ -135,8 +179,10 @@ public class MainMenu : MonoBehaviour
     }
 
 
-    private IEnumerator LaunchGame(int level)
+    private IEnumerator LaunchGame(string level)
     {
+        PlayerPrefs.Save();
+
         fader.SetActive(true);
         print("Loading into: " + level);
         fader.GetComponent<Animator>().SetBool($"FadeIn", false);

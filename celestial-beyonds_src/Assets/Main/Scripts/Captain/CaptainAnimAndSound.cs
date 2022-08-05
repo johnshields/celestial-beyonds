@@ -147,6 +147,7 @@ namespace Main.Scripts.Captain
                 armorUpgrade[1].SetActive(true);
                 GetComponent<CaptainHealth>().maxHealth = 200;
                 GetComponent<CaptainHealth>().pHealthBarSlider.maxValue = 200;
+                PlayerMemory.armorUpgrade = 1;
             }
         }
 
@@ -201,16 +202,21 @@ namespace Main.Scripts.Captain
         {
             // PepperBox Upgrade
             if (pbUpgrade && !cdUpgrade && _cannon.activeInHierarchy && Bools.pbUpgraded && !Bools.cdUpgraded)
+            {
                 _pepperBox.SetActive(true);
+                PlayerMemory.cannonUpgrade = 1;
+            }
             // Celestial Defier Upgrade
             else if (!pbUpgrade && cdUpgrade && _cannon.activeInHierarchy && !Bools.pbUpgraded && Bools.cdUpgraded)
             {
+                PlayerMemory.cannonUpgrade = 2;
                 _celestialDefier.SetActive(true);
                 _cannon.GetComponent<CelestialDefier>().SummonCelestialDefier(); // change mesh & mat
             }
             // Standard Cannon
             else if (!pbUpgrade && !cdUpgrade && _cannon.activeInHierarchy && !Bools.pbUpgraded && !Bools.cdUpgraded)
             {
+                PlayerMemory.cannonUpgrade = 0;
                 _pepperBox.SetActive(false);
                 _celestialDefier.SetActive(false);
             }

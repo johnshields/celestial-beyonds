@@ -35,7 +35,7 @@ public class Peridots : MonoBehaviour
         AudioSource.PlayClipAtPoint(pickupSound,  transform.position, 0.1f);
         // Destroy peridot and add to the _peridotCounter
         Destroy(gameObject);
-        _peridotCounter.GetComponent<PeridotCounter>().peridots += peridotValue;
+        PlayerMemory.peridots += peridotValue;
         miniMenu.GetComponent<MiniMenu>().peridotsNum += 1;
     }
 

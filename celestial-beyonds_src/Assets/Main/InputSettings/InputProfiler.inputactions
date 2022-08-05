@@ -992,6 +992,33 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "RestartGame",
+                    "type": "Button",
+                    "id": "b3eec5d5-bc63-4d20-923f-e629ac9eb5f7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Yes",
+                    "type": "Button",
+                    "id": "88db3052-a28d-46a6-9089-88812f3d24c1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "No",
+                    "type": "Button",
+                    "id": "e9a07c92-0142-4d7d-aff5-26116e931a00",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "PlayCinematic",
                     "type": "Button",
                     "id": "447e6ff1-0c55-4154-845f-22acd7f8881a",
@@ -1400,6 +1427,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "LoadEndgame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5e67b129-2b91-43fc-81ad-cf490a6db376",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RestartGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f2e709b-d23e-473b-9ae5-ea2498b8b206",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yes",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "422553eb-2e6f-4837-a88c-10add688e77b",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "No",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

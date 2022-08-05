@@ -34,7 +34,7 @@ public class TestingOnly : MonoBehaviour
 
         if (lotsOfPeridots)
         {
-            pc.GetComponent<PeridotCounter>().peridots = 500;
+            PlayerMemory.peridots = 500;
         }
 
         if (lotsOfAmmo)

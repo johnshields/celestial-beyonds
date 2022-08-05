@@ -93,7 +93,7 @@ public class ArgyleProfiler : MonoBehaviour
         {
             // only sell player pollen if they do not have maxAmmo or no peridots.
             if (ammo.GetComponent<PollinatorAmmo>().pollenAmmo != ammo.GetComponent<PollinatorAmmo>().maxAmmo &&
-                _peridotCounter.GetComponent<PeridotCounter>().peridots != 0)
+                PlayerMemory.peridots != 0)
             {
                 print("Pollen sold");
                 _player.GetComponent<CaptainAnimAndSound>().WeaponSelect(false, false, true);
@@ -105,7 +105,7 @@ public class ArgyleProfiler : MonoBehaviour
                 SwitchAnim();
             }
             // decline the sale if the player has less than 0 peridots + flash peridotCounter.
-            else if (_peridotCounter.GetComponent<PeridotCounter>().peridots <= 0)
+            else if (PlayerMemory.peridots <= 0)
             {
                 print("Not enough peridots");
                 PlayRandomClip("NoSale", audioVol);

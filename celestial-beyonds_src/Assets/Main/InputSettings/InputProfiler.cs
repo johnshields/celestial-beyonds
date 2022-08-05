@@ -1014,6 +1014,33 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""RestartGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""b3eec5d5-bc63-4d20-923f-e629ac9eb5f7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Yes"",
+                    ""type"": ""Button"",
+                    ""id"": ""88db3052-a28d-46a6-9089-88812f3d24c1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""No"",
+                    ""type"": ""Button"",
+                    ""id"": ""e9a07c92-0142-4d7d-aff5-26116e931a00"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""PlayCinematic"",
                     ""type"": ""Button"",
                     ""id"": ""447e6ff1-0c55-4154-845f-22acd7f8881a"",
@@ -1424,6 +1451,39 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""LoadEndgame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e67b129-2b91-43fc-81ad-cf490a6db376"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RestartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f2e709b-d23e-473b-9ae5-ea2498b8b206"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""422553eb-2e6f-4837-a88c-10add688e77b"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""No"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1468,6 +1528,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         // UIActions
         m_UIActions = asset.FindActionMap("UIActions", throwIfNotFound: true);
         m_UIActions_StartGame = m_UIActions.FindAction("StartGame", throwIfNotFound: true);
+        m_UIActions_RestartGame = m_UIActions.FindAction("RestartGame", throwIfNotFound: true);
+        m_UIActions_Yes = m_UIActions.FindAction("Yes", throwIfNotFound: true);
+        m_UIActions_No = m_UIActions.FindAction("No", throwIfNotFound: true);
         m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
         m_UIActions_Controls = m_UIActions.FindAction("Controls", throwIfNotFound: true);
         m_UIActions_LoadPlanet = m_UIActions.FindAction("LoadPlanet", throwIfNotFound: true);
@@ -1841,6 +1904,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UIActions;
     private IUIActionsActions m_UIActionsActionsCallbackInterface;
     private readonly InputAction m_UIActions_StartGame;
+    private readonly InputAction m_UIActions_RestartGame;
+    private readonly InputAction m_UIActions_Yes;
+    private readonly InputAction m_UIActions_No;
     private readonly InputAction m_UIActions_PlayCinematic;
     private readonly InputAction m_UIActions_Controls;
     private readonly InputAction m_UIActions_LoadPlanet;
@@ -1861,6 +1927,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         private @InputProfiler m_Wrapper;
         public UIActionsActions(@InputProfiler wrapper) { m_Wrapper = wrapper; }
         public InputAction @StartGame => m_Wrapper.m_UIActions_StartGame;
+        public InputAction @RestartGame => m_Wrapper.m_UIActions_RestartGame;
+        public InputAction @Yes => m_Wrapper.m_UIActions_Yes;
+        public InputAction @No => m_Wrapper.m_UIActions_No;
         public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
         public InputAction @Controls => m_Wrapper.m_UIActions_Controls;
         public InputAction @LoadPlanet => m_Wrapper.m_UIActions_LoadPlanet;
@@ -1888,6 +1957,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @StartGame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnStartGame;
                 @StartGame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnStartGame;
                 @StartGame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnStartGame;
+                @RestartGame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnRestartGame;
+                @RestartGame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnRestartGame;
+                @RestartGame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnRestartGame;
+                @Yes.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnYes;
+                @Yes.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnYes;
+                @Yes.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnYes;
+                @No.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnNo;
+                @No.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnNo;
+                @No.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnNo;
                 @PlayCinematic.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
@@ -1940,6 +2018,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @StartGame.started += instance.OnStartGame;
                 @StartGame.performed += instance.OnStartGame;
                 @StartGame.canceled += instance.OnStartGame;
+                @RestartGame.started += instance.OnRestartGame;
+                @RestartGame.performed += instance.OnRestartGame;
+                @RestartGame.canceled += instance.OnRestartGame;
+                @Yes.started += instance.OnYes;
+                @Yes.performed += instance.OnYes;
+                @Yes.canceled += instance.OnYes;
+                @No.started += instance.OnNo;
+                @No.performed += instance.OnNo;
+                @No.canceled += instance.OnNo;
                 @PlayCinematic.started += instance.OnPlayCinematic;
                 @PlayCinematic.performed += instance.OnPlayCinematic;
                 @PlayCinematic.canceled += instance.OnPlayCinematic;
@@ -2029,6 +2116,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     public interface IUIActionsActions
     {
         void OnStartGame(InputAction.CallbackContext context);
+        void OnRestartGame(InputAction.CallbackContext context);
+        void OnYes(InputAction.CallbackContext context);
+        void OnNo(InputAction.CallbackContext context);
         void OnPlayCinematic(InputAction.CallbackContext context);
         void OnControls(InputAction.CallbackContext context);
         void OnLoadPlanet(InputAction.CallbackContext context);
