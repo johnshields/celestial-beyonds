@@ -51,7 +51,7 @@ public class TestingOnly : MonoBehaviour
 
     private IEnumerator AddHealth()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         player.GetComponent<CaptainHealth>().currentHealth = 200;
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.07842114, g: 0.09750528, b: 0.2017082, a: 1}
+  m_IndirectSpecularColor: {r: 0.066415295, g: 0.085030876, b: 0.18570524, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1482,6 +1482,7 @@ MonoBehaviour:
   enemies: {fileID: 0}
   fader: {fileID: 1622611982}
   skipBtn: {fileID: 452578066}
+  rainFader: {fileID: 0}
   cutSceneAudio: {fileID: 0}
   time: 135
   skipInit: 1
@@ -1490,6 +1491,9 @@ MonoBehaviour:
   enableSkip: 0
   skip: 0
   sceneAudioInit: 0
+  rainFadeInit: 0
+  credits: 0
+  scene: 
 --- !u!1 &427609726
 GameObject:
   m_ObjectHideFlags: 0
@@ -4203,8 +4207,10 @@ MonoBehaviour:
   continueBtn: {fileID: 664683363682232118}
   mainTitle: {fileID: 1027144997}
   lvlManager: {fileID: 351082697}
+  daisyBell: {fileID: 0}
   cutSceneAudio: {fileID: 0}
   cinStarted: 0
+  daisy: 0
   sceneAudioInit: 0
 --- !u!1 &1735343847
 GameObject:

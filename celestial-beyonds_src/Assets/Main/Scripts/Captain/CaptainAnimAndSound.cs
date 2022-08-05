@@ -6,6 +6,7 @@ using UnityEngine.UI;
 /*
  * PlayerAnimAndSound
  * Script that controls the Player's animations & sounds.
+ * ref - https://youtu.be/WIl6ysorTE0
  */
 namespace Main.Scripts.Captain
 {

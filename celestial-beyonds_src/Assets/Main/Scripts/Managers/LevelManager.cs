@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
     public GameObject enemies, fader, skipBtn, rainFader;
     public AudioSource cutSceneAudio;
     public int time, skipInit, enemiesInit, fadeInit;
-    public bool enableSkip, skip, sceneAudioInit, rainFadeInit, epilogue;
+    public bool enableSkip, skip, sceneAudioInit, rainFadeInit, credits;
     public string scene;
     private InputProfiler _controls;
 
@@ -26,6 +26,9 @@ public class LevelManager : MonoBehaviour
             fader.GetComponent<Animator>().SetBool($"FadeIn", true);
             fader.GetComponent<Animator>().SetBool($"FadeOut", false);
         }
+        
+        if(credits)
+            StartCoroutine(FadeSceneOut());
     }
 
     private void OnEnable()
@@ -64,7 +67,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator DisableSkip()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3);
         enableSkip = false;
         skipBtn.SetActive(false);
     }
@@ -85,7 +88,10 @@ public class LevelManager : MonoBehaviour
             if(rainFadeInit)
                 rainFader.GetComponent<RainFade>().RainFader(1);
             yield return new WaitForSeconds(4);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if(!credits)
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            else
+                SceneManager.LoadScene(scene);
         }
         else
         {
@@ -96,7 +102,7 @@ public class LevelManager : MonoBehaviour
             if(rainFadeInit)
                 rainFader.GetComponent<RainFade>().RainFader(1);
             yield return new WaitForSeconds(4);
-            if(!epilogue)
+            if(!credits)
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             else
                 SceneManager.LoadScene(scene);

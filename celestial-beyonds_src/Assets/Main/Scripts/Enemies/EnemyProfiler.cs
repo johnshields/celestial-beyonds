@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
+/*
+ * ref -https://youtu.be/UjkSFoLxesw
+ */
 namespace Main.Scripts.Enemies
 {
     public class EnemyProfiler : MonoBehaviour

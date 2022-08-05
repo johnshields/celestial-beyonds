@@ -8,6 +8,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+/*
+ * ref - https://gamedevplanet.com/how-to-take-a-screenshot-from-within-your-game-in-unity/
+ */
 public class PhotoMode : MonoBehaviour
 {
     public GameObject mainCam, pauseMenu, photoModeUI, UI, link;

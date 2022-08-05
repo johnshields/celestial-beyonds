@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/*
+ * ref - https://youtu.be/x8_LJ22QnlE
+ */
 public class Magnet : MonoBehaviour
 {
     private GameObject _cap, _ammo;
