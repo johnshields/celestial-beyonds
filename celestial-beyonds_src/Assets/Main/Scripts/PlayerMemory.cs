@@ -41,13 +41,14 @@ public class PlayerMemory : MonoBehaviour
 
         if (resetMemory)
             ResetMemory();
-
+        
+        PlayerPrefs.Save();
     }
 
     public static void ResetMemory()
     {
         completed = false;
-        sceneToLoad = "002_Opening";
+        sceneToLoad = string.Empty;
         peridots = 0;
         cannonUpgrade = 0;
         armorUpgrade = 0;
@@ -80,7 +81,6 @@ public class PlayerMemory : MonoBehaviour
             sceneToLoad = "011_Earth";
 
         print("sceneToLoad: " + sceneToLoad);
-        PlayerPrefs.Save();
     }
 
     private void LoadUpgrade()

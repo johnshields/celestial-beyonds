@@ -10,6 +10,7 @@ public class CaptainHealth : MonoBehaviour
     public GameObject pHealthBar, GameOverUI;
     public Slider pHealthBarSlider;
     private GameObject _player;
+    private bool peridotsReset;
 
     private void Start()
     {
@@ -30,15 +31,27 @@ public class CaptainHealth : MonoBehaviour
 
     public void PlayerTakeDamage(int amount)
     {
-        currentHealth -= amount;
+        if(!capDead)
+            currentHealth -= amount;
 
         if (currentHealth <= 0)
         {
             capDead = true;
             print("Player Terminated!");
+            if (!peridotsReset)
+            {
+                peridotsReset = true;
+                PlayerMemory.peridots -= Peridots.peridotsCollectedInLvl;   
+            }
             _player.GetComponent<CaptainAnimAndSound>().CapDeath();
             StartCoroutine(GameOverScreen());
         }
+    }
+
+    public void ResetPeridots()
+    {
+        Peridots.peridotsCollectedInLvl = 0;
+        peridotsReset = false;
     }
 
     public void PlayerGainHealth(int amount)

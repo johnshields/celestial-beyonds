@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Peridots : MonoBehaviour
@@ -5,18 +6,22 @@ public class Peridots : MonoBehaviour
     public AudioClip pickupSound;
     public GameObject miniMenu;
     public int peridotValue = 1;
-    private Component _peridotCounter;
+    public static int peridotsCollectedInLvl;
     private GameObject _player;
     private Rigidbody _rb;
     private bool _hasTarget;
     private Vector3 _targetPos;
+
+    private void Awake()
+    {
+        peridotsCollectedInLvl = 0;
+    }
 
     private void Start()
     {
         _rb = gameObject.AddComponent<Rigidbody>();
         _rb.useGravity = false;
         _player = GameObject.FindGameObjectWithTag("Player");
-        _peridotCounter = _player.GetComponent<PeridotCounter>();
     }
 
     private void FixedUpdate()
@@ -37,6 +42,8 @@ public class Peridots : MonoBehaviour
         Destroy(gameObject);
         PlayerMemory.peridots += peridotValue;
         miniMenu.GetComponent<MiniMenu>().peridotsNum += 1;
+        peridotsCollectedInLvl += 1;
+        print("peridotsCollectedInLvl: " + peridotsCollectedInLvl);
     }
 
     public void SetTarget(Vector3 position)

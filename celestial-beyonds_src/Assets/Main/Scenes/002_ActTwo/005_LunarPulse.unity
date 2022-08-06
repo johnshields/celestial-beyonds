@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 6d371c8611a9c5347bd4b547f3d49f32, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -843,7 +843,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 3508007366029446089}
   muteBtn: {fileID: 477107699783904116}
   unMuteBtn: {fileID: 477107699193983373}
-  fader: {fileID: 336759887}
+  fader: {fileID: 1887348422}
   cinMusic: {fileID: 266054557}
 --- !u!1 &351082697
 GameObject:
@@ -12321,6 +12321,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInScene: 0
+  armourUpgradeInScene: 0
+  resetMemory: 0
 --- !u!33 &7825512299835349601
 MeshFilter:
   m_ObjectHideFlags: 0

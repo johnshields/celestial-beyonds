@@ -103,8 +103,9 @@ public class MoonbeamDialogue : MonoBehaviour
         {
             if (chatting) // quit Chat
             {
-                response = "";
+                response = string.Empty;
                 dialogueBoxes.SetActive(false);
+                OptsRandomizer();
                 chatting = false;
             }
             else if (asking) // quit Ask

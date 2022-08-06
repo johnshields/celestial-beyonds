@@ -14,7 +14,7 @@ public class MoonbeamAPI : MonoBehaviour
 
     private void Awake()
     {
-        _response = "";
+        _response = string.Empty;
         
         _audio = GetComponent<AudioSource>();
         _mb = GameObject.FindGameObjectWithTag("Moonbeam");

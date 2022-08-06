@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -6,13 +8,27 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject fader, actPanel, controlsPanel, creditsPanel, muteBtn, unMuteBtn, actBtn, restartBtn, restartPanel;
+    public GameObject fader,
+        actPanel,
+        controlsPanel,
+        creditsPanel,
+        muteBtn,
+        unMuteBtn,
+        actBtn,
+        restartBtn,
+        restartPanel;
+
+    public TextMeshProUGUI lockedMsg;
+    public bool controlsMenu, creditsRolling, loadActs;
+    private bool _launchGameEnabled, _restartEnabled;
     private InputProfiler _controls;
-    public bool controlsMenu, creditsRolling, loadPlanet;
 
     private void Awake()
     {
-        if (PlayerMemory.sceneToLoad == "")
+        _launchGameEnabled = true;
+        _restartEnabled = true;
+
+        if (PlayerMemory.sceneToLoad == string.Empty)
         {
             print("Players first time: " + true);
             PlayerMemory.sceneToLoad = "002_Opening";
@@ -93,66 +109,94 @@ public class MainMenu : MonoBehaviour
 
     private void StartGame(InputAction.CallbackContext obj)
     {
-        controlsMenu = false;
-        controlsPanel.SetActive(false);
-        StartCoroutine(LaunchGame(PlayerMemory.sceneToLoad));
+        if (_launchGameEnabled)
+            StartCoroutine(LaunchGame(PlayerMemory.sceneToLoad));
     }
 
     private void RestartGame(InputAction.CallbackContext obj)
     {
+        if (PlayerMemory.sceneToLoad == "002_Opening")
+        {
+            lockedMsg.text = "Saved Progress == Null!";
+            Invoke(nameof(TurnOffLockedMsg), 3);
+        }
         if (PlayerMemory.sceneToLoad != "002_Opening")
-            restartPanel.SetActive(true);
+            if (_restartEnabled)
+                restartPanel.SetActive(true);
     }
-    
+
     private void ConfirmYes(InputAction.CallbackContext obj)
     {
         if (restartPanel.activeInHierarchy)
         {
+            _launchGameEnabled = false;
             restartPanel.SetActive(false);
             PlayerMemory.ResetMemory();
             restartBtn.GetComponent<Button>().interactable = false;
             restartBtn.GetComponent<Image>().color = Color.black;
             actBtn.GetComponent<Button>().interactable = false;
             actBtn.GetComponent<Image>().color = Color.black;
-            StartCoroutine(LaunchGame("002_Opening"));   
+            StartCoroutine(LaunchGame("002_Opening"));
         }
     }
 
     private void ConfirmNo(InputAction.CallbackContext obj)
     {
-        restartPanel.SetActive(false);
+        if (restartPanel.activeInHierarchy)
+        {
+            restartPanel.SetActive(false);
+            _launchGameEnabled = true;
+        }
     }
 
 
     private void LoadAct(InputAction.CallbackContext obj)
     {
+        if (PlayerMemory.sceneToLoad != "011_Earth")
+        {
+            lockedMsg.text = "All Acts must be Completed to Unlock the Act Loader!";
+            Invoke(nameof(TurnOffLockedMsg), 3);
+        }
+
         if (PlayerMemory.sceneToLoad == "011_Earth")
         {
-            if (!loadPlanet)
+            if (!loadActs)
             {
-                loadPlanet = true;
-                print("loadPlanet menu active:" + loadPlanet);
-                actPanel.SetActive(true);
+                _launchGameEnabled = false;
+                _restartEnabled = false;
+                loadActs = true;
+                print("loadPlanet menu active:" + loadActs);
+                Panels(true, false, false);
             }
-            else if (loadPlanet)
+            else if (loadActs)
             {
-                loadPlanet = false;
-                print("loadPlanet menu active:" + loadPlanet);
+                _launchGameEnabled = true;
+                _restartEnabled = true;
+                loadActs = false;
+                print("loadPlanet menu active:" + loadActs);
                 actPanel.SetActive(false);
-            }   
+            }
         }
+    }
+
+    private void TurnOffLockedMsg()
+    {
+        lockedMsg.text = string.Empty;
     }
 
     private void CtrlsMenu(InputAction.CallbackContext obj)
     {
-        if (!controlsMenu && !loadPlanet)
+        if (!controlsMenu)
         {
+            _launchGameEnabled = false;
+            _restartEnabled = false;
             controlsMenu = true;
-            print("Controls menu active:" + controlsMenu);
-            controlsPanel.SetActive(true);
+            Panels(false, true, false);
         }
         else if (controlsMenu)
         {
+            _launchGameEnabled = true;
+            _restartEnabled = true;
             controlsMenu = false;
             print("Controls menu active:" + controlsMenu);
             controlsPanel.SetActive(false);
@@ -161,16 +205,35 @@ public class MainMenu : MonoBehaviour
 
     private void RollCredits(InputAction.CallbackContext obj)
     {
-        if (!creditsRolling && !loadPlanet)
+        if (!creditsRolling)
         {
+            _launchGameEnabled = false;
+            _restartEnabled = false;
             creditsRolling = true;
-            creditsPanel.SetActive(true);
+            Panels(false, false, true);
+            creditsPanel.GetComponentInChildren<Animator>().SetBool($"CreditsRoll", true);
+            StartCoroutine(EndCredits());
         }
         else if (creditsRolling)
         {
+            _launchGameEnabled = true;
+            _restartEnabled = true;
             creditsRolling = false;
             creditsPanel.SetActive(false);
+            creditsPanel.GetComponentInChildren<Animator>().SetBool($"CreditsRoll", false);
+            StopCoroutine(EndCredits());
         }
+    }
+
+    private void Panels(bool acts, bool ctrls, bool credits)
+    {
+        actPanel.SetActive(acts);
+        controlsPanel.SetActive(ctrls);
+        creditsPanel.SetActive(credits);
+        restartPanel.SetActive(false);
+        loadActs = acts;
+        controlsMenu = ctrls;
+        creditsRolling = credits;
     }
 
     private void MuteGame(InputAction.CallbackContext obj)
@@ -194,13 +257,19 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator LaunchGame(string level)
     {
-        PlayerPrefs.Save();
-
         fader.SetActive(true);
         print("Loading into: " + level);
         fader.GetComponent<Animator>().SetBool($"FadeIn", false);
         fader.GetComponent<Animator>().SetBool($"FadeOut", true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(level);
+    }
+
+    private IEnumerator EndCredits()
+    {
+        yield return new WaitForSeconds(90f);
+        creditsRolling = false;
+        creditsPanel.SetActive(false);
+        creditsPanel.GetComponentInChildren<Animator>().SetBool($"CreditsRoll", false);
     }
 }

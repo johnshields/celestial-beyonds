@@ -131,6 +131,8 @@ public class InGameMenus : MonoBehaviour
         {
             pausedActive = false;
             StartCoroutine(GoLoadLevel("101_MainMenu"));
+            PlayerMemory.peridots -= Peridots.peridotsCollectedInLvl;
+            Peridots.peridotsCollectedInLvl = 0;
         }
     }
 
@@ -203,6 +205,8 @@ public class InGameMenus : MonoBehaviour
         fader.GetComponent<Animator>().SetBool($"FadeIn", false);
         fader.GetComponent<Animator>().SetBool($"FadeOut", true);
         yield return new WaitForSeconds(2f);
+        if(player.GetComponent<CaptainHealth>().gameOver)
+            player.GetComponent<CaptainHealth>().ResetPeridots();
         SceneManager.LoadScene(level);
     }
 }
