@@ -18,9 +18,12 @@ public class MainMenu : MonoBehaviour
         restartBtn,
         restartPanel;
 
-    public TextMeshProUGUI lockedMsg;
+    public TextMeshProUGUI lockedMsg, currentGameTxt;
+    public RawImage sceneImg;
+    public Texture[] sceneImgToChange;
     public bool controlsMenu, creditsRolling, loadActs;
     private bool _launchGameEnabled, _restartEnabled;
+    private string _currentScene;
     private InputProfiler _controls;
 
     private void Awake()
@@ -105,6 +108,75 @@ public class MainMenu : MonoBehaviour
         _controls.UIActions.Credits.started -= RollCredits;
         _controls.UIActions.LoadPlanet.started -= LoadAct;
         _controls.UIActions.Disable();
+    }
+
+    private void OnGUI()
+    {
+        switch (PlayerMemory.sceneToLoad)
+        {
+            case "":
+                _currentScene = "Opening";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[0];
+                break;
+            case "002_Opening":
+                _currentScene = "Opening";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[0];
+                break;
+            case "003_CelestialWaltz":
+                _currentScene = "Celestial Waltz";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[1];
+                break;
+            case "004_Intro_TRAPPIST-1":
+                _currentScene = "TRAPPIST-1 Intro";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[2];
+                break;
+            case "004_TRAPPIST-1":
+                _currentScene = "TRAPPIST-1";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[3];
+                break;
+            case "005_LunarPulse":
+                _currentScene = "Lunar Pulse";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[4];
+                break;
+            case "006_Intro_PCB":
+                _currentScene = "Proxima Centauri B Intro";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[5];
+                break;
+            case "006_ProximaCentauriB":
+                _currentScene = "Proxima Centauri B";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[6];
+                break;
+            case "007_Man_of_Celestial_Man_of_Faith":
+                _currentScene = "Man of Celestial Man of Faith";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[7];
+                break;
+            case "008_IntroKepler-186f":
+                _currentScene = "Kepler-186f Intro";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[8];
+                break;
+            case "008_Kepler-186f":
+                _currentScene = "Kepler-186f";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[9];
+                break;
+            case "009_Intro_Endgame":
+                _currentScene = "Endgame Intro";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[10];
+                break;
+            case "009_Endgame":
+                _currentScene = "Endgame";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[11];
+                break;
+            case "010_TheGoldenRecord":
+                _currentScene = "The Golden Record";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[12];
+                break;
+            case "011_Earth":
+                _currentScene = "Earth";
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[0];
+                break;
+        }
+
+        currentGameTxt.text = _currentScene;
     }
 
     private void StartGame(InputAction.CallbackContext obj)

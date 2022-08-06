@@ -16,6 +16,7 @@ namespace DigitalRuby.RainMaker
 {
     public class BaseRainScript : MonoBehaviour
     {
+        public bool noPhotoMode;
         [Tooltip("Camera the rain should hover over, defaults to main camera")]
         public Camera Camera, PmCamera;
         public GameObject pm, mainCam;
@@ -223,8 +224,13 @@ namespace DigitalRuby.RainMaker
 
         private void FixedUpdate()
         {
-            if (pm.GetComponent<PhotoMode>().photoMode)
-                Camera = PmCamera;
+            if (!noPhotoMode)
+            {
+                if (pm.GetComponent<PhotoMode>().photoMode)
+                    Camera = PmCamera;
+                else
+                    Camera = mainCam.GetComponent<Camera>();   
+            }
             else
                 Camera = mainCam.GetComponent<Camera>();
         }
