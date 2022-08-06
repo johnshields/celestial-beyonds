@@ -67,9 +67,9 @@ public class ControlsMenu : MonoBehaviour
             xbox.SetActive(x);  
         }
 
-        //Booleans.keyboardSelected = k;
-        //Booleans.playstationSelected = p;
-        //Booleans.xboxSelected = x;
+        Bools.keyboardSelected = k;
+        Bools.playstationSelected = p;
+        Bools.xboxSelected = x;
     }
 
     private void OnGUI()

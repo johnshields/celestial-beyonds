@@ -1041,15 +1041,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""PlayCinematic"",
-                    ""type"": ""Button"",
-                    ""id"": ""447e6ff1-0c55-4154-845f-22acd7f8881a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Controls"",
                     ""type"": ""Button"",
                     ""id"": ""3715612c-dace-4bb2-aa78-24ef7c7bd661"",
@@ -1183,6 +1174,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayCinematic"",
+                    ""type"": ""Button"",
+                    ""id"": ""447e6ff1-0c55-4154-845f-22acd7f8881a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1205,28 +1205,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""StartGame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""66f3690e-94ed-479c-8097-368cde6a5a93"",
-                    ""path"": ""<Keyboard>/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PlayCinematic"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d7a619a7-85e8-4916-b330-8d437ade9649"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PlayCinematic"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1255,7 +1233,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""03152725-7416-4171-b186-5bdaf81ed51d"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1419,8 +1397,30 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1a695c97-0d3f-410f-9760-d394e3d23c87"",
+                    ""id"": ""4de64f37-1afd-4b70-ad0a-58daac59805d"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadPlanet"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4540abd8-4d62-467e-a5fa-ae3f5dd2db0f"",
                     ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadActOne"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a695c97-0d3f-410f-9760-d394e3d23c87"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1441,8 +1441,30 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ac602e1a-dda8-45c6-a2fe-5b2651895e66"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadActTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""a92d47a2-2163-4e50-9ed1-b1a2ef3fe082"",
                     ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadActThree"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17c04e25-6420-4538-b008-b965406d4084"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1463,8 +1485,30 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""31c5fa3a-6aaf-4eac-a318-fb72e84e9eb0"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadEndgame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5e67b129-2b91-43fc-81ad-cf490a6db376"",
                     ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RestartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a63b34ae-a8bf-4dba-8851-7948fe94cce0"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1485,8 +1529,30 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""b438e43a-7868-4171-9a7d-69bb2173b86d"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""422553eb-2e6f-4837-a88c-10add688e77b"",
                     ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""No"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37e2a791-aad3-4569-a50f-75381479adef"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1504,11 +1570,72 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""LoadEpilogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a831ba1-645a-4c73-8995-12cef0fcf025"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadEpilogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66f3690e-94ed-479c-8097-368cde6a5a93"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayCinematic"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7a619a7-85e8-4916-b330-8d437ade9649"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayCinematic"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9bcd6afc-487f-45c9-8cd4-943a794bf25d"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayCinematic"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<VirtualMouse>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Profiler
         m_Profiler = asset.FindActionMap("Profiler", throwIfNotFound: true);
@@ -1551,7 +1678,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_UIActions_RestartGame = m_UIActions.FindAction("RestartGame", throwIfNotFound: true);
         m_UIActions_Yes = m_UIActions.FindAction("Yes", throwIfNotFound: true);
         m_UIActions_No = m_UIActions.FindAction("No", throwIfNotFound: true);
-        m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
         m_UIActions_Controls = m_UIActions.FindAction("Controls", throwIfNotFound: true);
         m_UIActions_LoadPlanet = m_UIActions.FindAction("LoadPlanet", throwIfNotFound: true);
         m_UIActions_Credits = m_UIActions.FindAction("Credits", throwIfNotFound: true);
@@ -1567,6 +1693,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_UIActions_LoadActThree = m_UIActions.FindAction("LoadActThree", throwIfNotFound: true);
         m_UIActions_LoadEndgame = m_UIActions.FindAction("LoadEndgame", throwIfNotFound: true);
         m_UIActions_LoadEpilogue = m_UIActions.FindAction("LoadEpilogue", throwIfNotFound: true);
+        m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1928,7 +2055,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_UIActions_RestartGame;
     private readonly InputAction m_UIActions_Yes;
     private readonly InputAction m_UIActions_No;
-    private readonly InputAction m_UIActions_PlayCinematic;
     private readonly InputAction m_UIActions_Controls;
     private readonly InputAction m_UIActions_LoadPlanet;
     private readonly InputAction m_UIActions_Credits;
@@ -1944,6 +2070,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_UIActions_LoadActThree;
     private readonly InputAction m_UIActions_LoadEndgame;
     private readonly InputAction m_UIActions_LoadEpilogue;
+    private readonly InputAction m_UIActions_PlayCinematic;
     public struct UIActionsActions
     {
         private @InputProfiler m_Wrapper;
@@ -1952,7 +2079,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @RestartGame => m_Wrapper.m_UIActions_RestartGame;
         public InputAction @Yes => m_Wrapper.m_UIActions_Yes;
         public InputAction @No => m_Wrapper.m_UIActions_No;
-        public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
         public InputAction @Controls => m_Wrapper.m_UIActions_Controls;
         public InputAction @LoadPlanet => m_Wrapper.m_UIActions_LoadPlanet;
         public InputAction @Credits => m_Wrapper.m_UIActions_Credits;
@@ -1968,6 +2094,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @LoadActThree => m_Wrapper.m_UIActions_LoadActThree;
         public InputAction @LoadEndgame => m_Wrapper.m_UIActions_LoadEndgame;
         public InputAction @LoadEpilogue => m_Wrapper.m_UIActions_LoadEpilogue;
+        public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1989,9 +2116,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @No.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnNo;
                 @No.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnNo;
                 @No.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnNo;
-                @PlayCinematic.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
-                @PlayCinematic.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
-                @PlayCinematic.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @Controls.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnControls;
                 @Controls.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnControls;
                 @Controls.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnControls;
@@ -2037,6 +2161,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @LoadEpilogue.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEpilogue;
                 @LoadEpilogue.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEpilogue;
                 @LoadEpilogue.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEpilogue;
+                @PlayCinematic.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
+                @PlayCinematic.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
+                @PlayCinematic.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -2053,9 +2180,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @No.started += instance.OnNo;
                 @No.performed += instance.OnNo;
                 @No.canceled += instance.OnNo;
-                @PlayCinematic.started += instance.OnPlayCinematic;
-                @PlayCinematic.performed += instance.OnPlayCinematic;
-                @PlayCinematic.canceled += instance.OnPlayCinematic;
                 @Controls.started += instance.OnControls;
                 @Controls.performed += instance.OnControls;
                 @Controls.canceled += instance.OnControls;
@@ -2101,10 +2225,22 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @LoadEpilogue.started += instance.OnLoadEpilogue;
                 @LoadEpilogue.performed += instance.OnLoadEpilogue;
                 @LoadEpilogue.canceled += instance.OnLoadEpilogue;
+                @PlayCinematic.started += instance.OnPlayCinematic;
+                @PlayCinematic.performed += instance.OnPlayCinematic;
+                @PlayCinematic.canceled += instance.OnPlayCinematic;
             }
         }
     }
     public UIActionsActions @UIActions => new UIActionsActions(this);
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
     public interface IProfilerActions
     {
         void OnMoveKeys(InputAction.CallbackContext context);
@@ -2148,7 +2284,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnRestartGame(InputAction.CallbackContext context);
         void OnYes(InputAction.CallbackContext context);
         void OnNo(InputAction.CallbackContext context);
-        void OnPlayCinematic(InputAction.CallbackContext context);
         void OnControls(InputAction.CallbackContext context);
         void OnLoadPlanet(InputAction.CallbackContext context);
         void OnCredits(InputAction.CallbackContext context);
@@ -2164,5 +2299,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnLoadActThree(InputAction.CallbackContext context);
         void OnLoadEndgame(InputAction.CallbackContext context);
         void OnLoadEpilogue(InputAction.CallbackContext context);
+        void OnPlayCinematic(InputAction.CallbackContext context);
     }
 }

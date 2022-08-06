@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
         restartBtn,
         restartPanel;
 
-    public TextMeshProUGUI lockedMsg, currentGameTxt;
+    public TextMeshProUGUI ActsLockedMsg, restartLockedMsg, currentGameTxt;
     public RawImage sceneImg;
     public Texture[] sceneImgToChange;
     public bool controlsMenu, creditsRolling, loadActs;
@@ -172,7 +172,7 @@ public class MainMenu : MonoBehaviour
                 break;
             case "011_Earth":
                 _currentScene = "Earth";
-                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[0];
+                sceneImg.GetComponent<RawImage>().texture = sceneImgToChange[13];
                 break;
         }
 
@@ -181,7 +181,7 @@ public class MainMenu : MonoBehaviour
 
     private void StartGame(InputAction.CallbackContext obj)
     {
-        if (_launchGameEnabled)
+        if (_launchGameEnabled && !actPanel.activeInHierarchy)
             StartCoroutine(LaunchGame(PlayerMemory.sceneToLoad));
     }
 
@@ -189,11 +189,11 @@ public class MainMenu : MonoBehaviour
     {
         if (PlayerMemory.sceneToLoad == "002_Opening")
         {
-            lockedMsg.text = "Saved Progress == Null!";
-            Invoke(nameof(TurnOffLockedMsg), 3);
+            restartLockedMsg.text = "Saved Progress == Null!";
+            StartCoroutine(TurnOffLockedMsg(restartLockedMsg));
         }
         if (PlayerMemory.sceneToLoad != "002_Opening")
-            if (_restartEnabled)
+            if (_restartEnabled  && !actPanel.activeInHierarchy)
                 restartPanel.SetActive(true);
     }
 
@@ -202,6 +202,7 @@ public class MainMenu : MonoBehaviour
         if (restartPanel.activeInHierarchy)
         {
             _launchGameEnabled = false;
+            _restartEnabled = false;
             restartPanel.SetActive(false);
             PlayerMemory.ResetMemory();
             restartBtn.GetComponent<Button>().interactable = false;
@@ -217,6 +218,7 @@ public class MainMenu : MonoBehaviour
         if (restartPanel.activeInHierarchy)
         {
             restartPanel.SetActive(false);
+            _restartEnabled = true;
             _launchGameEnabled = true;
         }
     }
@@ -226,8 +228,8 @@ public class MainMenu : MonoBehaviour
     {
         if (PlayerMemory.sceneToLoad != "011_Earth")
         {
-            lockedMsg.text = "All Acts must be Completed to Unlock the Act Loader!";
-            Invoke(nameof(TurnOffLockedMsg), 3);
+            ActsLockedMsg.text = "All Acts must be Completed to Unlock the Act Loader!";
+            StartCoroutine(TurnOffLockedMsg(ActsLockedMsg));
         }
 
         if (PlayerMemory.sceneToLoad == "011_Earth")
@@ -251,14 +253,15 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private void TurnOffLockedMsg()
+    private IEnumerator TurnOffLockedMsg(TMP_Text txt)
     {
-        lockedMsg.text = string.Empty;
+        yield return new WaitForSeconds(3);
+        txt.text = string.Empty;
     }
 
     private void CtrlsMenu(InputAction.CallbackContext obj)
     {
-        if (!controlsMenu)
+        if (!controlsMenu && !actPanel.activeInHierarchy)
         {
             _launchGameEnabled = false;
             _restartEnabled = false;
@@ -277,7 +280,7 @@ public class MainMenu : MonoBehaviour
 
     private void RollCredits(InputAction.CallbackContext obj)
     {
-        if (!creditsRolling)
+        if (!creditsRolling && !actPanel.activeInHierarchy)
         {
             _launchGameEnabled = false;
             _restartEnabled = false;
