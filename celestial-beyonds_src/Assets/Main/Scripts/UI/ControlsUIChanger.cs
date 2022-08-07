@@ -5,9 +5,10 @@ public class ControlsUIChanger : MonoBehaviour
 {
     public TextMeshProUGUI resumeBtn, mainMenuBtn, ctrlsBtn, photoMode, closePm, takePhoto, ctrlsBack;
     public TextMeshProUGUI opt1, opt2, opt3, talk, ask, quit;
+    public TextMeshProUGUI c_openOrClose;
     public TextMeshProUGUI[] a_opt1, a_opt2, a_opt3;
     public TextMeshProUGUI argylePrompt, viktorPrompt, upgradePrompt;
-    public bool cin, photoModeInScene, moonbeam, stores, trappist, pcb, kepler;
+    public bool cin, photoModeInScene, moonbeam, stores, trappist, pcb, kepler, pollinationComplete;
     private int _peridotCost = 20;
     
     private void OnGUI()
@@ -146,6 +147,12 @@ public class ControlsUIChanger : MonoBehaviour
             
             if (Bools.playstationSelected || Bools.xboxSelected)
                 upgradePrompt.text = $"Trade {_peridotCost} Peridots for Upgrade? ↑";
+        }
+
+        if (pollinationComplete)
+        {
+            if (Bools.keyboardSelected) c_openOrClose.text = "Open/Close: O";
+            if (Bools.playstationSelected || Bools.xboxSelected) c_openOrClose.text = "Open/Close: Select";
         }
     }
 }

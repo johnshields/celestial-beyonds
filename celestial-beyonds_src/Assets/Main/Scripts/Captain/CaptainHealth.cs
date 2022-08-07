@@ -31,7 +31,7 @@ public class CaptainHealth : MonoBehaviour
 
     public void PlayerTakeDamage(int amount)
     {
-        if(!capDead)
+        if (!capDead)
             currentHealth -= amount;
 
         if (currentHealth <= 0)
@@ -41,8 +41,9 @@ public class CaptainHealth : MonoBehaviour
             if (!peridotsReset)
             {
                 peridotsReset = true;
-                PlayerMemory.peridots -= Peridots.peridotsCollectedInLvl;   
+                PlayerMemory.peridots -= Peridots.peridotsCollectedInLvl;
             }
+
             _player.GetComponent<CaptainAnimAndSound>().CapDeath();
             StartCoroutine(GameOverScreen());
         }
@@ -63,6 +64,11 @@ public class CaptainHealth : MonoBehaviour
     private IEnumerator GameOverScreen()
     {
         yield return new WaitForSeconds(3f);
+        GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
+        GameObject.Find("ControllerCursor/Controller").GetComponent<Rigidbody2D>().constraints =
+            RigidbodyConstraints2D.None;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         gameOver = true;
         GameOverUI.SetActive(true);
     }

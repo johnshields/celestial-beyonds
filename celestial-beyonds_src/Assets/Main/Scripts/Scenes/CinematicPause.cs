@@ -26,7 +26,6 @@ public class CinematicPause : MonoBehaviour
             muteBtn.SetActive(false);
         }
         
-        GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -60,8 +59,7 @@ public class CinematicPause : MonoBehaviour
             pausedCinActive = true;   
             pauseMenu.SetActive(true);
             Time.timeScale = 0;
-
-            GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
+            
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -73,7 +71,6 @@ public class CinematicPause : MonoBehaviour
             pauseMenu.SetActive(false);
             Time.timeScale = 1;
             
-            GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

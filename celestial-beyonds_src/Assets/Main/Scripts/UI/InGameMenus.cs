@@ -1,4 +1,5 @@
 using System.Collections;
+using Main.Scripts.UI.CursorControls;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -6,11 +7,13 @@ using UnityEngine.SceneManagement;
 public class InGameMenus : MonoBehaviour
 {
     private InputProfiler _controls;
+    private GameObject _cursor;
     public GameObject pauseMenu, miniMenuPanel, fader, player, BtnGO, controlsPanel, muteBtn, unMuteBtn, photoMode;
     public bool pausedActive, miniMenuActive, controlsMenu;
     public AudioSource audioToPause;
     public int audioPauseRequired;
     public string reloadPlanet;
+    public bool cursor;
 
     private void Awake()
     {
@@ -28,7 +31,13 @@ public class InGameMenus : MonoBehaviour
             unMuteBtn.SetActive(true);
             muteBtn.SetActive(false);
         }
-        
+
+        if (cursor)
+        {
+            _cursor = GameObject.FindGameObjectWithTag("Cursor");
+            _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
+        }
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -63,6 +72,12 @@ public class InGameMenus : MonoBehaviour
 
     private void Update()
     {
+        if (_cursor.GetComponent<ControllerCursor>().clickedElement == "RestartPlanet")
+            StartCoroutine(GoLoadLevel(reloadPlanet));
+        else if (_cursor.GetComponent<ControllerCursor>().clickedElement == "MainMenuTerm")
+            StartCoroutine(GoLoadLevel("101_MainMenu"));
+
+
         if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
             Time.timeScale = 0f;
         else if (pausedActive && photoMode.GetComponent<PhotoMode>().photoMode)
@@ -78,6 +93,11 @@ public class InGameMenus : MonoBehaviour
             print("Game paused: " + pausedActive);
             Time.timeScale = 0f;
             if (audioPauseRequired != 0) audioToPause.Pause();
+            if (cursor)
+            {
+                GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
+                _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            }
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -90,6 +110,11 @@ public class InGameMenus : MonoBehaviour
             print("Game paused: " + pausedActive);
             Time.timeScale = 1f;
             if (audioPauseRequired != 0) audioToPause.UnPause();
+            if (cursor)
+            {
+                GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
+                _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;   
+            }
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -109,7 +134,11 @@ public class InGameMenus : MonoBehaviour
             if (audioPauseRequired != 0)
                 audioToPause.UnPause();
 
-
+            if (cursor)
+            {
+                GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
+                _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;  
+            }
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -190,6 +219,7 @@ public class InGameMenus : MonoBehaviour
 
     private IEnumerator GoLoadLevel(string level)
     {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (player.GetComponent<CaptainHealth>().gameOver)
             BtnGO.SetActive(false);
 

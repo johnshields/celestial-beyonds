@@ -1,4 +1,5 @@
 using System.Collections;
+using Main.Scripts.UI.CursorControls;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,11 +16,13 @@ public class PollinationLevel : MonoBehaviour
     private InputProfiler _controls;
     private AudioSource _audio;
     private bool _open;
+    private GameObject _cursor;
 
     private void Awake()
     {
         _controls = new InputProfiler();
         _audio = GetComponent<AudioSource>();
+        _cursor = GameObject.FindGameObjectWithTag("Cursor");
     }
 
     private void Start()
@@ -33,6 +36,11 @@ public class PollinationLevel : MonoBehaviour
     private void Update()
     {
         PlayerPrefs.SetInt("PollinationLevel", pollinationPercent);
+        
+        if (_cursor.GetComponent<ControllerCursor>().clickedElement == "NextPlanetComp")
+            StartCoroutine(GoLoadLevel(nextPlanet));
+        else if (_cursor.GetComponent<ControllerCursor>().clickedElement == "MainMenuComp")
+            StartCoroutine(GoLoadLevel("101_MainMenu"));
     }
 
     private void OnEnable()
@@ -83,11 +91,19 @@ public class PollinationLevel : MonoBehaviour
         {
             if (levelCompleted && !_open)
             {
+                GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
+                _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 _open = true;
                 levelCompleteUI.SetActive(true);
             }
             else if (levelCompleted && _open)
             {
+                GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
+                _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 _open = false;
                 levelCompleteUI.SetActive(false);
             }
@@ -118,6 +134,9 @@ public class PollinationLevel : MonoBehaviour
     private IEnumerator LevelCompleteUI()
     {
         yield return new WaitForSeconds(3f);
+        GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         levelCompleteUI.SetActive(true);
         _open = true;
         _audio.PlayOneShot(completeSFX);
