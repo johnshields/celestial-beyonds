@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class InGameMenus : MonoBehaviour
 {
     private InputProfiler _controls;
-    private GameObject _cursor;
+    private GameObject _cursor, pl;
     public GameObject pauseMenu, miniMenuPanel, fader, player, BtnGO, controlsPanel, muteBtn, unMuteBtn, photoMode;
     public bool pausedActive, miniMenuActive, controlsMenu;
     public AudioSource audioToPause;
@@ -17,6 +17,7 @@ public class InGameMenus : MonoBehaviour
 
     private void Awake()
     {
+        pl = GameObject.FindGameObjectWithTag("PollinationLevel");
         pausedActive = false;
         pauseMenu.SetActive(false);
         _controls = new InputProfiler();
@@ -38,7 +39,7 @@ public class InGameMenus : MonoBehaviour
             _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
         }
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = false;
     }
 
@@ -98,7 +99,6 @@ public class InGameMenus : MonoBehaviour
                 GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
                 _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             }
-            Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
@@ -115,7 +115,6 @@ public class InGameMenus : MonoBehaviour
                 GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
                 _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;   
             }
-            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
     }
@@ -139,7 +138,6 @@ public class InGameMenus : MonoBehaviour
                 GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
                 _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;  
             }
-            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
         else if (player.GetComponent<CaptainHealth>().gameOver)
@@ -154,8 +152,11 @@ public class InGameMenus : MonoBehaviour
         {
             pausedActive = false;
             StartCoroutine(GoLoadLevel("101_MainMenu"));
-            PlayerMemory.peridots -= Peridots.peridotsCollectedInLvl;
-            Peridots.peridotsCollectedInLvl = 0;
+            if (pl.GetComponent<PollinationLevel>().pollinationPercent != 100)
+            {
+                PlayerMemory.peridots -= Peridots.peridotsCollectedInLvl;
+                Peridots.peridotsCollectedInLvl = 0;   
+            }
         }
     }
 

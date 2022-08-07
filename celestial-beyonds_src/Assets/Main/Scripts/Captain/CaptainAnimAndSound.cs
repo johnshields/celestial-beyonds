@@ -28,7 +28,8 @@ namespace Main.Scripts.Captain
             aUpgrade,
             aUpgradeInLevel,
             endgame,
-            lookingAtArgyle, lookingAtViktor;
+            lookingAtArgyle,
+            lookingAtViktor;
 
         private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
@@ -43,7 +44,8 @@ namespace Main.Scripts.Captain
             _cannonObj,
             _pepperBox,
             _celestialDefier,
-            _pollinator;
+            _pollinator,
+            _mb;
 
         public GameObject[] armorUpgrade;
         private int _profile, _jump, _armedJump, _dodge, _armedActive, _shoot, _rShoot, _dead;
@@ -71,6 +73,7 @@ namespace Main.Scripts.Captain
             _celestialDefier = GameObject.FindGameObjectWithTag("CelestialDefier");
             _pollinator = GameObject.FindGameObjectWithTag("Pollinator");
             _footsteps = GameObject.FindGameObjectWithTag("Footsteps");
+            _mb = GameObject.FindGameObjectWithTag("Moonbeam");
             WeaponSelect(false, false, false);
             _pepperBox.SetActive(false);
             _celestialDefier.SetActive(false);
@@ -112,16 +115,16 @@ namespace Main.Scripts.Captain
 
             IfPauseMenu();
             ArmorState();
-            
-            if(Physics.Raycast(transform.position, transform.forward, out var aHit, 3, argyle))
+
+            if (Physics.Raycast(transform.position, transform.forward, out var aHit, 3, argyle))
             {
                 lookingAtArgyle = true;
                 var obj = aHit.collider.gameObject;
                 Debug.Log($"looking at {obj.name}", this);
             }
             else lookingAtArgyle = false;
-            
-            if(Physics.Raycast(transform.position, transform.forward, out var vHit, 3, viktor))
+
+            if (Physics.Raycast(transform.position, transform.forward, out var vHit, 3, viktor))
             {
                 lookingAtViktor = true;
                 var obj = vHit.collider.gameObject;
@@ -248,7 +251,7 @@ namespace Main.Scripts.Captain
 
         private void Unarmed(InputAction.CallbackContext obj)
         {
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && _mb.GetComponent<MoonbeamDialogue>().convEnd)
             {
                 PlayerState(true, false);
                 if (_unarmed) WeaponSelect(false, false, false);

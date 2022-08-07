@@ -14,11 +14,12 @@ public class MoonbeamDialogue : MonoBehaviour
     public string[] gOptsOne, gOptsTwo, openingOpts, treeOpts;
     public string response;
     public int whichDialogue, artifactNum;
-    public bool chatting, asking, generalQ, artifactQ;
+    public bool chatting, asking, convEnd, generalQ, artifactQ;
     private bool _changed;
 
     private void Awake()
     {
+        convEnd = true;
         response = "";
         _controls = new InputProfiler();
         _responseText = GameObject.FindGameObjectWithTag("ResponseText");
@@ -70,6 +71,7 @@ public class MoonbeamDialogue : MonoBehaviour
                 dialogueBoxes.SetActive(true);
                 chatting = true;
                 _changed = false;
+                convEnd = false;
             }
         }
     }
@@ -80,7 +82,10 @@ public class MoonbeamDialogue : MonoBehaviour
         if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
             if (!asking && askPrompt.activeInHierarchy) // open
+            {
+                convEnd = false;
                 AskMoonbeamHelper(true, true, false, true);
+            }
         }
     }
 
@@ -113,7 +118,13 @@ public class MoonbeamDialogue : MonoBehaviour
                 response = "";
                 AskMoonbeamHelper(false, false, true, false);
             }
+            Invoke(nameof(ResetConvEnd), 1);
         }
+    }
+
+    private void ResetConvEnd()
+    {
+        convEnd = true;
     }
 
     private void DialogueOptionOne(InputAction.CallbackContext obj)

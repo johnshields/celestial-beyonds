@@ -140,7 +140,7 @@ public class VanGunProfiler : MonoBehaviour
     
     private void ViktorUpgrade(InputAction.CallbackContext obj)
     {
-        if (PlayerMemory.peridots >= upgradeCost)
+        if (PlayerMemory.peridots >= upgradeCost && _player.GetComponent<CaptainAnimAndSound>().lookingAtViktor)
         {
             PlayRandomClip("Sold", audioVol);
             _audio.PlayOneShot(sale, 0.1f);
@@ -148,7 +148,7 @@ public class VanGunProfiler : MonoBehaviour
             canAmmo.GetComponent<CannonAmmo>().cannonAmmo = canAmmo.GetComponent<CannonAmmo>().maxAmmo;
             UpgradeCannon(upgradeNum);
         }
-        else if(PlayerMemory.peridots < upgradeCost)
+        else if(PlayerMemory.peridots < upgradeCost && _player.GetComponent<CaptainAnimAndSound>().lookingAtViktor)
         {
             print("Not enough peridots");
             PlayRandomClip("NoSale", audioVol);

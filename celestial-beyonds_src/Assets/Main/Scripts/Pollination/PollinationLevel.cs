@@ -47,7 +47,6 @@ public class PollinationLevel : MonoBehaviour
     {
         _controls.InGameUI.LoadNextPlanet.started += LoadNextPlanet;
         _controls.InGameUI.OpenLevelCompleteUI.started += OpenLevelCompUI;
-        _controls.InGameUI.LoadMainMenu.started += LoadMainMenu;
         _controls.InGameUI.Enable();
     }
 
@@ -55,7 +54,6 @@ public class PollinationLevel : MonoBehaviour
     {
         _controls.InGameUI.LoadNextPlanet.started += LoadNextPlanet;
         _controls.InGameUI.OpenLevelCompleteUI.started += OpenLevelCompUI;
-        _controls.InGameUI.LoadMainMenu.started -= LoadMainMenu;
         _controls.InGameUI.Disable();
     }
 
@@ -93,7 +91,6 @@ public class PollinationLevel : MonoBehaviour
             {
                 GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
                 _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 _open = true;
                 levelCompleteUI.SetActive(true);
@@ -102,7 +99,6 @@ public class PollinationLevel : MonoBehaviour
             {
                 GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
                 _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-                Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 _open = false;
                 levelCompleteUI.SetActive(false);
@@ -122,20 +118,10 @@ public class PollinationLevel : MonoBehaviour
         }
     }
 
-    private void LoadMainMenu(InputAction.CallbackContext obj)
-    {
-        if (levelCompleteUI.activeInHierarchy)
-        {
-            print("Loading: MainMenu...");
-            StartCoroutine(GoLoadLevel("001_MainMenu"));   
-        }
-    }
-    
     private IEnumerator LevelCompleteUI()
     {
         yield return new WaitForSeconds(3f);
         GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         levelCompleteUI.SetActive(true);
         _open = true;
