@@ -17,6 +17,7 @@ namespace Main.Scripts.Captain
         public AudioClip cannonSFX, pollenSFX, noAmmoSFX, capScreamSFX;
         public float delayAction = 1f, dodge;
         public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo, pbUI, cdUI;
+        public LayerMask argyle, viktor;
 
         public bool meleeActive,
             cannonFire,
@@ -26,7 +27,8 @@ namespace Main.Scripts.Captain
             cdUpgrade,
             aUpgrade,
             aUpgradeInLevel,
-            endgame;
+            endgame,
+            lookingAtArgyle, lookingAtViktor;
 
         private bool _actionDone, _unarmed, _armed;
         private Animator _animator;
@@ -59,6 +61,8 @@ namespace Main.Scripts.Captain
             _audio = GetComponent<AudioSource>();
             _animator = GetComponent<Animator>();
 
+            argyle = LayerMask.GetMask("HiveShack");
+            viktor = LayerMask.GetMask("VanGuns");
             _player = GameObject.FindGameObjectWithTag("Player");
             _scraper = GameObject.FindGameObjectWithTag("Scraper");
             _cannon = GameObject.FindGameObjectWithTag("Cannon");
@@ -107,8 +111,23 @@ namespace Main.Scripts.Captain
             }
 
             IfPauseMenu();
-            StopParticleIfOtherGun();
-            WeaponState();
+            ArmorState();
+            
+            if(Physics.Raycast(transform.position, transform.forward, out var aHit, 3, argyle))
+            {
+                lookingAtArgyle = true;
+                var obj = aHit.collider.gameObject;
+                Debug.Log($"looking at {obj.name}", this);
+            }
+            else lookingAtArgyle = false;
+            
+            if(Physics.Raycast(transform.position, transform.forward, out var vHit, 3, viktor))
+            {
+                lookingAtViktor = true;
+                var obj = vHit.collider.gameObject;
+                Debug.Log($"looking at {obj.name}", this);
+            }
+            else lookingAtViktor = false;
         }
 
         private void OnEnable()
@@ -133,24 +152,8 @@ namespace Main.Scripts.Captain
             _controls.Profiler.Disable();
         }
 
-        private void WeaponState()
+        private void ArmorState()
         {
-            if (meleeActive)
-            {
-                _cannonObj.SetActive(false);
-                _pepperBox.SetActive(false);
-                _celestialDefier.SetActive(false);
-                _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
-                _pollinator.GetComponent<Pollinator>().StopPollenParticles();
-            }
-            else if (pollenFire)
-            {
-                _cannonObj.SetActive(false);
-                _pepperBox.SetActive(false);
-                _celestialDefier.SetActive(false);
-                _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
-            }
-
             if (aUpgrade && Bools.aUpgraded && aUpgradeInLevel)
             {
                 armorUpgrade[0].SetActive(true);
@@ -159,15 +162,6 @@ namespace Main.Scripts.Captain
                 GetComponent<CaptainHealth>().pHealthBarSlider.maxValue = 200;
                 PlayerMemory.armorUpgrade = 1;
             }
-        }
-
-        private void StopParticleIfOtherGun()
-        {
-            // stop particles of the opposite gun.
-            if (cannonFire)
-                _pollinator.GetComponent<Pollinator>().StopPollenParticles();
-            else if (pollenFire)
-                _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
         }
 
         private void IfPauseMenu()
@@ -265,6 +259,8 @@ namespace Main.Scripts.Captain
         private void MeleeAttack(InputAction.CallbackContext obj)
         {
             meleeActive = true;
+            _pollinator.GetComponent<Pollinator>().StopPollenParticles();
+            _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
             // random animation
             var attackBool = Random.Range(0, 5);
 
@@ -306,6 +302,7 @@ namespace Main.Scripts.Captain
             {
                 if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
                 {
+                    _pollinator.GetComponent<Pollinator>().StopPollenParticles();
                     WeaponSelect(false, true, false);
                     PlayerState(false, true);
                     if (cannonAmmo.GetComponent<CannonAmmo>().cannonAmmo != 0)
@@ -342,6 +339,7 @@ namespace Main.Scripts.Captain
                 {
                     if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
                     {
+                        _cannon.GetComponent<CannonBlaster>().StopCannonParticles();
                         WeaponSelect(false, false, true);
                         PlayerState(false, true);
                         if (pollenAmmo.GetComponent<PollinatorAmmo>().pollenAmmo != 0)

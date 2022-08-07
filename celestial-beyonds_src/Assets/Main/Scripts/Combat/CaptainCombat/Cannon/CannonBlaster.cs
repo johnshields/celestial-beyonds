@@ -35,11 +35,20 @@ public class CannonBlaster : MonoBehaviour
     private void CallCannon()
     {
         if (_player.GetComponent<CaptainAnimAndSound>().pbUpgrade)
+        {
+            StopCoroutine(CannonWait());
             StartCoroutine(CannonWait());
+        }
         else if (_player.GetComponent<CaptainAnimAndSound>().cdUpgrade)
+        {
+            StopCoroutine(CannonWait());
             StartCoroutine(CannonWait());
+        }
         else
+        {
+            StopCoroutine(CannonWait());
             StartCoroutine(CannonWait());
+        }
     }
 
     private IEnumerator CannonWait()

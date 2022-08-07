@@ -77,10 +77,7 @@ public class InGameMenus : MonoBehaviour
             pauseMenu.SetActive(true);
             print("Game paused: " + pausedActive);
             Time.timeScale = 0f;
-            if (audioPauseRequired != 0)
-                audioToPause.Pause();
-
-
+            if (audioPauseRequired != 0) audioToPause.Pause();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -92,10 +89,7 @@ public class InGameMenus : MonoBehaviour
             controlsPanel.SetActive(false);
             print("Game paused: " + pausedActive);
             Time.timeScale = 1f;
-            if (audioPauseRequired != 0)
-                audioToPause.UnPause();
-            
-                    
+            if (audioPauseRequired != 0) audioToPause.UnPause();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

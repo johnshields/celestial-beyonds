@@ -193,7 +193,7 @@ public class MainMenu : MonoBehaviour
             StartCoroutine(TurnOffLockedMsg(restartLockedMsg));
         }
         if (PlayerMemory.sceneToLoad != "002_Opening")
-            if (_restartEnabled  && !actPanel.activeInHierarchy)
+            if (_restartEnabled  && !actPanel.activeInHierarchy && !restartPanel.activeInHierarchy)
                 restartPanel.SetActive(true);
     }
 
@@ -261,7 +261,7 @@ public class MainMenu : MonoBehaviour
 
     private void CtrlsMenu(InputAction.CallbackContext obj)
     {
-        if (!controlsMenu && !actPanel.activeInHierarchy)
+        if (!controlsMenu)
         {
             _launchGameEnabled = false;
             _restartEnabled = false;
@@ -280,7 +280,7 @@ public class MainMenu : MonoBehaviour
 
     private void RollCredits(InputAction.CallbackContext obj)
     {
-        if (!creditsRolling && !actPanel.activeInHierarchy)
+        if (!creditsRolling)
         {
             _launchGameEnabled = false;
             _restartEnabled = false;

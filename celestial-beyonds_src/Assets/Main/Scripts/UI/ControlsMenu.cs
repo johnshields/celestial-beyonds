@@ -82,7 +82,7 @@ public class ControlsMenu : MonoBehaviour
         }
         else if (Bools.playstationSelected)
         {
-            keyboardTxt[0].text = "Keyboard: ■";
+            keyboardTxt[0].text = "Keyboard: ●";
             playstationText[0].text = "Playstation: ▲";
             xboxTxt[0].text = "Xbox: X";
         }

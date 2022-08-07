@@ -707,6 +707,17 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""b40d3d3f-e838-4163-bc86-3fdf8b6b80a6"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnableSkip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""3c602c61-633d-4931-90a0-5ea9905f6fa7"",
                     ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
@@ -808,6 +819,17 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""747f54f8-af26-4fda-b334-452d82134dd1"",
                     ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenDungeon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""686146ae-7408-4e1c-98cd-fcf37307e2c1"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1277,7 +1299,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ed615cd9-3923-440f-a8a3-7500b16a0672"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1507,17 +1529,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a63b34ae-a8bf-4dba-8851-7948fe94cce0"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RestartGame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9f2e709b-d23e-473b-9ae5-ea2498b8b206"",
                     ""path"": ""<Keyboard>/y"",
                     ""interactions"": """",
@@ -1530,7 +1541,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b438e43a-7868-4171-9a7d-69bb2173b86d"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1552,7 +1563,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""37e2a791-aad3-4569-a50f-75381479adef"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1612,6 +1623,17 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PlayCinematic"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a63b34ae-a8bf-4dba-8851-7948fe94cce0"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RestartGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }

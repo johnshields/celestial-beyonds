@@ -10,8 +10,8 @@ public class VanGunProfiler : MonoBehaviour
     public float delayAction = 1f, audioVol = .4f;
     public AudioClip sale, noSale;
     public int upgradeNum, upgradeCost;
-    public bool saleActive, upgradeCannon, upgradeArmor, transaction;
-    private bool _actionDone;
+    public bool saleActive, upgradeCannon, upgradeArmor;
+    private bool _actionDone, _saidHello, _saidBye;
     private Animator _animator;
     private AudioSource _audio;
     private InputProfiler _controls;
@@ -60,36 +60,44 @@ public class VanGunProfiler : MonoBehaviour
         _controls.Profiler.UpgradeCannon.started -= ViktorUpgrade;
         _controls.Profiler.Disable();
     }
+    
+    private void Update()
+    {
+        if (_player.GetComponent<CaptainAnimAndSound>().lookingAtViktor) StoreOpen();
+        else StoreClose();
+    }
 
-    private void OnTriggerEnter(Collider other)
+    private void StoreOpen()
     {
         // say Hello
-        if (other.gameObject == _player && !saleActive)
+        if (!_saidHello && !saleActive)
         {
+            if (!_saidHello)
+            {
+                PlayRandomClip("Hellos", audioVol);
+                _saidHello = true;   
+            }
             saleActive = true;
+            _saidBye = false;
             stationUI.SetActive(true);
             SwitchAnim();
             if (_actionDone) return;
-            // Say hello
-            PlayRandomClip("Hellos", audioVol);
             _actionDone = true;
             Invoke(nameof(ResetAction), delayAction);
         }
-        else
-        {
-            saleActive = false;
-            _animator.SetTrigger(_idle);
-        }
     }
-
-    private void OnTriggerExit(Collider other)
+    
+    private void StoreClose()
     {
-        if (other.gameObject == _player)
+        if (!_saidBye && _saidHello)
         {
-            saleActive = false;
-            stationUI.SetActive(false);
             PlayRandomClip("Byes", audioVol);
+            _saidBye = true;
+            _saidHello = false;
         }
+        saleActive = false;
+        stationUI.SetActive(false);
+        
     }
 
     private void TalkViktor(InputAction.CallbackContext obj)
@@ -100,7 +108,6 @@ public class VanGunProfiler : MonoBehaviour
             if (canAmmo.GetComponent<CannonAmmo>().cannonAmmo != canAmmo.GetComponent<CannonAmmo>().maxAmmo &&
                 PlayerMemory.peridots != 0)
             {
-                transaction = true;
                 PlayRandomClip("Sold", audioVol);
                 _audio.PlayOneShot(sale, 0.1f);
                 canAmmo.GetComponent<CannonAmmo>().FillUpCannon(10);
@@ -119,7 +126,6 @@ public class VanGunProfiler : MonoBehaviour
             // decline sale if ammo is full + flash cannonMeter.
             else if (canAmmo.GetComponent<CannonAmmo>().cannonAmmo == canAmmo.GetComponent<CannonAmmo>().maxAmmo)
             {
-                transaction = true;
                 print("Ammo full!");
                 ammoHandle.GetComponent<Image>().color = new Color32(52, 255, 0, 225);
                 PlayRandomClip("MaxAmmo", audioVol);
@@ -162,7 +168,6 @@ public class VanGunProfiler : MonoBehaviour
 
     private void ResetAction()
     {
-        transaction = false;
         _actionDone = false;
     }
 

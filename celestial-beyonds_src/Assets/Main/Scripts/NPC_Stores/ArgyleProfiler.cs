@@ -3,20 +3,21 @@ using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class ArgyleProfiler : MonoBehaviour
 {
     public GameObject stationUI, peridotCounterUI, pollenMeter, pauseMenu, ammo, randoAudio;
     public float delayAction = 1f, audioVol = .4f;
     public AudioClip sale, noSale;
-    private bool _actionDone, _saleActive;
+    private bool _actionDone, _saleActive, _saidHello, _saidBye;
     private Animator _animator;
     private AudioSource _audio;
     private InputProfiler _controls;
     private int _idle, _talk1, _talk2, _talk3, _talk4, _talk5, _talk6;
     private Component _peridotCounter;
     private GameObject _player;
-
+    
     private void Awake()
     {
         _controls = new InputProfiler();
@@ -45,7 +46,7 @@ public class ArgyleProfiler : MonoBehaviour
         PlayRandomClip("NoSale", 0f);
         PlayRandomClip("MaxPollen", 0f);
     }
-
+    
     private void OnEnable()
     {
         _controls.Profiler.StoreInteraction.started += TalkArgyle;
@@ -58,36 +59,44 @@ public class ArgyleProfiler : MonoBehaviour
         _controls.Profiler.Disable();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
+    {
+        if (_player.GetComponent<CaptainAnimAndSound>().lookingAtArgyle) StoreOpen();
+        else StoreClose();
+    }
+    
+    private void StoreOpen()
     {
         // say Hello
-        if (other.gameObject == _player && !_saleActive && !_player.GetComponent<CaptainAnimAndSound>().endgame)
+        if (!_saidHello && !_saleActive && !_player.GetComponent<CaptainAnimAndSound>().endgame)
         {
+            if (!_saidHello)
+            {
+                PlayRandomClip("Hellos", audioVol);
+                _saidHello = true;   
+            }
+            _saidBye = false;
             _saleActive = true;
             stationUI.SetActive(true);
             SwitchAnim();
             if (_actionDone) return;
             _actionDone = true;
-            PlayRandomClip("Hellos", audioVol);
             Invoke(nameof(ResetAction), delayAction);
         }
-        else
-        {
-            _saleActive = false;
-            _animator.SetTrigger(_idle);
-        }
     }
-
-    private void OnTriggerExit(Collider other)
+    
+    private void StoreClose()
     {
-        if (other.gameObject == _player)
+        if (!_saidBye && _saidHello)
         {
-            _saleActive = false;
-            stationUI.SetActive(false);
             PlayRandomClip("Byes", audioVol);
+            _saidBye = true;
+            _saidHello = false;
         }
+        _saleActive = false;
+        stationUI.SetActive(false);
     }
-
+    
     private void TalkArgyle(InputAction.CallbackContext obj)
     {
         if (_saleActive && !pauseMenu.GetComponent<InGameMenus>().pausedActive)
@@ -97,8 +106,8 @@ public class ArgyleProfiler : MonoBehaviour
                 PlayerMemory.peridots != 0)
             {
                 print("Pollen sold");
-                _player.GetComponent<CaptainAnimAndSound>().WeaponSelect(false, false, true);
                 _player.GetComponent<CaptainAnimAndSound>().PlayerState(false, true);
+                _player.GetComponent<CaptainAnimAndSound>().WeaponSelect(false, false, true);
                 PlayRandomClip("Sold", audioVol);
                 _audio.PlayOneShot(sale, 0.1f);
                 ammo.GetComponent<PollinatorAmmo>().FillUpPollen(10);

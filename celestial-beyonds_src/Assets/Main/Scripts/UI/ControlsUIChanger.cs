@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ControlsMainMenuUIChanger : MonoBehaviour
+public class ControlsUIChanger : MonoBehaviour
 {
     public TextMeshProUGUI launchBtn, restartBtn, actBtn, ctrlsBtn, creditsBtn;
     public TextMeshProUGUI restartInput, closeActs, closeCtrls, closeCredits;
@@ -17,7 +17,7 @@ public class ControlsMainMenuUIChanger : MonoBehaviour
         {
             // Restart
             restartBtn.text = "Restart: ●";
-            restartInput.text = "Yes: X     No: ●";
+            restartInput.text = "Yes: L2     No: R2";
             // Controls
             ctrlsBtn.text = "Controls: ■";
             closeCtrls.text = "Close: ■";  
