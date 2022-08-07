@@ -73,10 +73,13 @@ public class InGameMenus : MonoBehaviour
 
     private void Update()
     {
-        if (_cursor.GetComponent<ControllerCursor>().clickedElement == "RestartPlanet")
-            StartCoroutine(GoLoadLevel(reloadPlanet));
-        else if (_cursor.GetComponent<ControllerCursor>().clickedElement == "MainMenuTerm")
-            StartCoroutine(GoLoadLevel("101_MainMenu"));
+        if (cursor)
+        {
+            if (_cursor.GetComponent<ControllerCursor>().clickedElement == "RestartPlanet")
+                StartCoroutine(GoLoadLevel(reloadPlanet));
+            else if (_cursor.GetComponent<ControllerCursor>().clickedElement == "MainMenuTerm")
+                StartCoroutine(GoLoadLevel("101_MainMenu"));   
+        }
 
 
         if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)

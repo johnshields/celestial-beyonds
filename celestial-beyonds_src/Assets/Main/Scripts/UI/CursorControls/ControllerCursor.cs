@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+// refs - https://youtu.be/cWAdUrw2bXQ & https://youtu.be/7h1cnGggY2M
+// Required with new Input System to control Cursor with Mouse and Gamepad
 namespace Main.Scripts.UI.CursorControls
 {
     public class ControllerCursor : MonoBehaviour
@@ -23,7 +25,7 @@ namespace Main.Scripts.UI.CursorControls
             foreach (var t in Gamepad.all)
                 print(t == null ? $"Connected Gamepad: {false}" : $"Connected Gamepad: {t.name}");
         }
-        
+
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -52,7 +54,7 @@ namespace Main.Scripts.UI.CursorControls
         private void FixedUpdate()
         {
             MoveLogicMethod();
-            
+
             if (Mouse.current.leftButton.wasReleasedThisFrame || Gamepad.current.buttonSouth.IsPressed())
                 GetClickedUI();
 
@@ -70,9 +72,7 @@ namespace Main.Scripts.UI.CursorControls
                 _pointerEventData.position = transform.position;
             }
 
-
             _raycastResults.Clear();
-            
             _raycaster.Raycast(_pointerEventData, _raycastResults);
 
             foreach (RaycastResult result in _raycastResults)
