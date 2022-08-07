@@ -118,81 +118,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""DialogueOptionOne"",
-                    ""type"": ""Button"",
-                    ""id"": ""d4eb482d-3c77-466c-a30a-884dd7e02770"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""DialogueOptionTwo"",
-                    ""type"": ""Button"",
-                    ""id"": ""e1b888a9-49e9-4227-9191-9bbd435f9b49"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ActivateDialogue"",
-                    ""type"": ""Button"",
-                    ""id"": ""7ce4b6f2-3777-4a3c-98b2-c3cccf51e619"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""DialogueOptionThree"",
-                    ""type"": ""Button"",
-                    ""id"": ""d6522fd3-519b-48a0-8e24-73dca8cb989a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""AskMoonbeam"",
-                    ""type"": ""Button"",
-                    ""id"": ""ddd09c6b-dbc8-4bfc-b87e-6f71e761ce47"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CloseDialogue"",
-                    ""type"": ""Button"",
-                    ""id"": ""3b951d3c-7090-46db-a2e0-f3ba9de0f604"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""StoreInteraction"",
-                    ""type"": ""Button"",
-                    ""id"": ""18e9d62c-414e-4b7a-9df0-b17a30c91170"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""EnableSkip"",
                     ""type"": ""Button"",
                     ""id"": ""c3a804c7-9da0-424b-b2eb-158a94d50e75"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""UpgradeCannon"",
-                    ""type"": ""Button"",
-                    ""id"": ""b44dd092-ad57-4631-bc18-65fd663e0dfe"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -217,9 +145,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""TakePhoto"",
+                    ""name"": ""FieldDepthDown"",
                     ""type"": ""Button"",
-                    ""id"": ""89d930c5-3fae-47bc-a3a1-e4f687dec3c6"",
+                    ""id"": ""d733fd4d-baca-45f7-8830-3c624ef144ad"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -235,9 +163,81 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""FieldDepthDown"",
+                    ""name"": ""TakePhoto"",
                     ""type"": ""Button"",
-                    ""id"": ""d733fd4d-baca-45f7-8830-3c624ef144ad"",
+                    ""id"": ""89d930c5-3fae-47bc-a3a1-e4f687dec3c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActivateDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ce4b6f2-3777-4a3c-98b2-c3cccf51e619"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AskMoonbeam"",
+                    ""type"": ""Button"",
+                    ""id"": ""ddd09c6b-dbc8-4bfc-b87e-6f71e761ce47"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DialogueOptionOne"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4eb482d-3c77-466c-a30a-884dd7e02770"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DialogueOptionTwo"",
+                    ""type"": ""Button"",
+                    ""id"": ""e1b888a9-49e9-4227-9191-9bbd435f9b49"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DialogueOptionThree"",
+                    ""type"": ""Button"",
+                    ""id"": ""d6522fd3-519b-48a0-8e24-73dca8cb989a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b951d3c-7090-46db-a2e0-f3ba9de0f604"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StoreInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""18e9d62c-414e-4b7a-9df0-b17a30c91170"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UpgradeCannon"",
+                    ""type"": ""Button"",
+                    ""id"": ""b44dd092-ad57-4631-bc18-65fd663e0dfe"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -619,28 +619,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eabb399e-c5b7-421e-a5b9-8e019bfeb2f7"",
-                    ""path"": ""<Keyboard>/i"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AskMoonbeam"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0a13734e-9ad8-4924-915b-d5f5872ef1b2"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AskMoonbeam"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""de35c756-dbd2-4afb-bcdb-9c4a747b7427"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
@@ -658,83 +636,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CloseDialogue"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c5261529-de21-4e99-aa67-3d6ad458ffa1"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ed173062-3a2a-4a48-b974-4ecb2ba42099"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""390a0887-178b-47df-a184-42d9ae14173e"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""EnableSkip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ac37b8ae-84b1-4363-946d-f15da4030561"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""EnableSkip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b40d3d3f-e838-4163-bc86-3fdf8b6b80a6"",
-                    ""path"": ""<Gamepad>/select"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""EnableSkip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3c602c61-633d-4931-90a0-5ea9905f6fa7"",
-                    ""path"": ""<Keyboard>/t"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ActivateDialogue"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a2eb89b7-5da0-45b9-9775-fe49162b5fa8"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ActivateDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -773,45 +674,12 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1e83e85a-062b-40d0-88bd-2112771385c1"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""id"": ""7bb255c5-2ece-4cd3-a981-5706877df174"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TakePhoto"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""68fef0a5-f1fd-42fc-bb9a-8729f12d7c7e"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TurnOnPhotoMode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""98605d93-2a8b-413c-832b-052e2fa50015"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FieldDepthUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""315794d7-ed29-4388-b0c7-c1acd56f775c"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FieldDepthDown"",
+                    ""action"": ""UpgradeCannon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -834,6 +702,193 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""OpenDungeon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c602c61-633d-4931-90a0-5ea9905f6fa7"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2eb89b7-5da0-45b9-9775-fe49162b5fa8"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eabb399e-c5b7-421e-a5b9-8e019bfeb2f7"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AskMoonbeam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a13734e-9ad8-4924-915b-d5f5872ef1b2"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AskMoonbeam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5261529-de21-4e99-aa67-3d6ad458ffa1"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed173062-3a2a-4a48-b974-4ecb2ba42099"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68fef0a5-f1fd-42fc-bb9a-8729f12d7c7e"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TurnOnPhotoMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c177dae2-8a08-4885-bf73-ee66320fa920"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TurnOnPhotoMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e83e85a-062b-40d0-88bd-2112771385c1"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TakePhoto"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed635c93-2cca-42d6-ac72-773f91e77e58"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TakePhoto"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98605d93-2a8b-413c-832b-052e2fa50015"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FieldDepthUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9249d95-ecc2-4cb7-bde0-6ec397aeb5eb"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FieldDepthUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""315794d7-ed29-4388-b0c7-c1acd56f775c"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FieldDepthDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1bee2da9-4947-44a8-8a35-97db472d0d14"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FieldDepthDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""390a0887-178b-47df-a184-42d9ae14173e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnableSkip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac37b8ae-84b1-4363-946d-f15da4030561"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnableSkip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b40d3d3f-e838-4163-bc86-3fdf8b6b80a6"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnableSkip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -892,6 +947,51 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""name"": ""MiniMenu"",
                     ""type"": ""Button"",
                     ""id"": ""4cb82695-ff8b-4d06-9278-8c5e4eef1ed6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Controls"",
+                    ""type"": ""Button"",
+                    ""id"": ""47d5a112-a9a2-4079-b6eb-23d9f7b734a2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BackBtn"",
+                    ""type"": ""Button"",
+                    ""id"": ""66181cf6-c60d-4814-a082-39c4c0ce2fb5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""type"": ""Button"",
+                    ""id"": ""c39670eb-76d8-426e-8e3a-5126c7af213f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayStation"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5cabd3e-d77e-46e9-8ae6-5d7855669c0f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Xbox"",
+                    ""type"": ""Button"",
+                    ""id"": ""38603cc5-57f7-443a-9b68-2c743b297b23"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1000,6 +1100,17 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""6883ac68-ff02-4769-b743-a30b619331c5"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadMainMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""88a808d2-1e74-4508-a443-3f0145adf5dc"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
@@ -1017,6 +1128,83 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MiniMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b5ef65e-ce2d-48f4-bcdf-f191b9da4a08"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Controls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57b12ab3-e638-4c65-8faf-99c31994cb86"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Controls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6354e31-6096-4eb5-951d-7b6baa224ce2"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BackBtn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2f5b418-2e11-4474-8d95-619a81b89950"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BackBtn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5fd98f22-4e27-4805-b0e2-877316713942"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcb1e818-29ce-4414-9afe-72b947f12f96"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayStation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""353e8574-0710-438b-a0e9-3f6058e3c695"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Xbox"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1194,20 +1382,20 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Profiler_Unarmed = m_Profiler.FindAction("Unarmed", throwIfNotFound: true);
         m_Profiler_JetPack = m_Profiler.FindAction("JetPack", throwIfNotFound: true);
         m_Profiler_Pollinate = m_Profiler.FindAction("Pollinate", throwIfNotFound: true);
-        m_Profiler_DialogueOptionOne = m_Profiler.FindAction("DialogueOptionOne", throwIfNotFound: true);
-        m_Profiler_DialogueOptionTwo = m_Profiler.FindAction("DialogueOptionTwo", throwIfNotFound: true);
-        m_Profiler_ActivateDialogue = m_Profiler.FindAction("ActivateDialogue", throwIfNotFound: true);
-        m_Profiler_DialogueOptionThree = m_Profiler.FindAction("DialogueOptionThree", throwIfNotFound: true);
-        m_Profiler_AskMoonbeam = m_Profiler.FindAction("AskMoonbeam", throwIfNotFound: true);
-        m_Profiler_CloseDialogue = m_Profiler.FindAction("CloseDialogue", throwIfNotFound: true);
-        m_Profiler_StoreInteraction = m_Profiler.FindAction("StoreInteraction", throwIfNotFound: true);
         m_Profiler_EnableSkip = m_Profiler.FindAction("EnableSkip", throwIfNotFound: true);
-        m_Profiler_UpgradeCannon = m_Profiler.FindAction("UpgradeCannon", throwIfNotFound: true);
         m_Profiler_Skip = m_Profiler.FindAction("Skip", throwIfNotFound: true);
         m_Profiler_TurnOnPhotoMode = m_Profiler.FindAction("TurnOnPhotoMode", throwIfNotFound: true);
-        m_Profiler_TakePhoto = m_Profiler.FindAction("TakePhoto", throwIfNotFound: true);
-        m_Profiler_FieldDepthUp = m_Profiler.FindAction("FieldDepthUp", throwIfNotFound: true);
         m_Profiler_FieldDepthDown = m_Profiler.FindAction("FieldDepthDown", throwIfNotFound: true);
+        m_Profiler_FieldDepthUp = m_Profiler.FindAction("FieldDepthUp", throwIfNotFound: true);
+        m_Profiler_TakePhoto = m_Profiler.FindAction("TakePhoto", throwIfNotFound: true);
+        m_Profiler_ActivateDialogue = m_Profiler.FindAction("ActivateDialogue", throwIfNotFound: true);
+        m_Profiler_AskMoonbeam = m_Profiler.FindAction("AskMoonbeam", throwIfNotFound: true);
+        m_Profiler_DialogueOptionOne = m_Profiler.FindAction("DialogueOptionOne", throwIfNotFound: true);
+        m_Profiler_DialogueOptionTwo = m_Profiler.FindAction("DialogueOptionTwo", throwIfNotFound: true);
+        m_Profiler_DialogueOptionThree = m_Profiler.FindAction("DialogueOptionThree", throwIfNotFound: true);
+        m_Profiler_CloseDialogue = m_Profiler.FindAction("CloseDialogue", throwIfNotFound: true);
+        m_Profiler_StoreInteraction = m_Profiler.FindAction("StoreInteraction", throwIfNotFound: true);
+        m_Profiler_UpgradeCannon = m_Profiler.FindAction("UpgradeCannon", throwIfNotFound: true);
         m_Profiler_OpenDungeon = m_Profiler.FindAction("OpenDungeon", throwIfNotFound: true);
         // InGameUI
         m_InGameUI = asset.FindActionMap("InGameUI", throwIfNotFound: true);
@@ -1217,6 +1405,11 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_InGameUI_PauseGame = m_InGameUI.FindAction("PauseGame", throwIfNotFound: true);
         m_InGameUI_LoadNextPlanet = m_InGameUI.FindAction("LoadNextPlanet", throwIfNotFound: true);
         m_InGameUI_MiniMenu = m_InGameUI.FindAction("MiniMenu", throwIfNotFound: true);
+        m_InGameUI_Controls = m_InGameUI.FindAction("Controls", throwIfNotFound: true);
+        m_InGameUI_BackBtn = m_InGameUI.FindAction("BackBtn", throwIfNotFound: true);
+        m_InGameUI_Keyboard = m_InGameUI.FindAction("Keyboard", throwIfNotFound: true);
+        m_InGameUI_PlayStation = m_InGameUI.FindAction("PlayStation", throwIfNotFound: true);
+        m_InGameUI_Xbox = m_InGameUI.FindAction("Xbox", throwIfNotFound: true);
         // UIActions
         m_UIActions = asset.FindActionMap("UIActions", throwIfNotFound: true);
         m_UIActions_Mute = m_UIActions.FindAction("Mute", throwIfNotFound: true);
@@ -1294,20 +1487,20 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_Profiler_Unarmed;
     private readonly InputAction m_Profiler_JetPack;
     private readonly InputAction m_Profiler_Pollinate;
-    private readonly InputAction m_Profiler_DialogueOptionOne;
-    private readonly InputAction m_Profiler_DialogueOptionTwo;
-    private readonly InputAction m_Profiler_ActivateDialogue;
-    private readonly InputAction m_Profiler_DialogueOptionThree;
-    private readonly InputAction m_Profiler_AskMoonbeam;
-    private readonly InputAction m_Profiler_CloseDialogue;
-    private readonly InputAction m_Profiler_StoreInteraction;
     private readonly InputAction m_Profiler_EnableSkip;
-    private readonly InputAction m_Profiler_UpgradeCannon;
     private readonly InputAction m_Profiler_Skip;
     private readonly InputAction m_Profiler_TurnOnPhotoMode;
-    private readonly InputAction m_Profiler_TakePhoto;
-    private readonly InputAction m_Profiler_FieldDepthUp;
     private readonly InputAction m_Profiler_FieldDepthDown;
+    private readonly InputAction m_Profiler_FieldDepthUp;
+    private readonly InputAction m_Profiler_TakePhoto;
+    private readonly InputAction m_Profiler_ActivateDialogue;
+    private readonly InputAction m_Profiler_AskMoonbeam;
+    private readonly InputAction m_Profiler_DialogueOptionOne;
+    private readonly InputAction m_Profiler_DialogueOptionTwo;
+    private readonly InputAction m_Profiler_DialogueOptionThree;
+    private readonly InputAction m_Profiler_CloseDialogue;
+    private readonly InputAction m_Profiler_StoreInteraction;
+    private readonly InputAction m_Profiler_UpgradeCannon;
     private readonly InputAction m_Profiler_OpenDungeon;
     public struct ProfilerActions
     {
@@ -1323,20 +1516,20 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Unarmed => m_Wrapper.m_Profiler_Unarmed;
         public InputAction @JetPack => m_Wrapper.m_Profiler_JetPack;
         public InputAction @Pollinate => m_Wrapper.m_Profiler_Pollinate;
-        public InputAction @DialogueOptionOne => m_Wrapper.m_Profiler_DialogueOptionOne;
-        public InputAction @DialogueOptionTwo => m_Wrapper.m_Profiler_DialogueOptionTwo;
-        public InputAction @ActivateDialogue => m_Wrapper.m_Profiler_ActivateDialogue;
-        public InputAction @DialogueOptionThree => m_Wrapper.m_Profiler_DialogueOptionThree;
-        public InputAction @AskMoonbeam => m_Wrapper.m_Profiler_AskMoonbeam;
-        public InputAction @CloseDialogue => m_Wrapper.m_Profiler_CloseDialogue;
-        public InputAction @StoreInteraction => m_Wrapper.m_Profiler_StoreInteraction;
         public InputAction @EnableSkip => m_Wrapper.m_Profiler_EnableSkip;
-        public InputAction @UpgradeCannon => m_Wrapper.m_Profiler_UpgradeCannon;
         public InputAction @Skip => m_Wrapper.m_Profiler_Skip;
         public InputAction @TurnOnPhotoMode => m_Wrapper.m_Profiler_TurnOnPhotoMode;
-        public InputAction @TakePhoto => m_Wrapper.m_Profiler_TakePhoto;
-        public InputAction @FieldDepthUp => m_Wrapper.m_Profiler_FieldDepthUp;
         public InputAction @FieldDepthDown => m_Wrapper.m_Profiler_FieldDepthDown;
+        public InputAction @FieldDepthUp => m_Wrapper.m_Profiler_FieldDepthUp;
+        public InputAction @TakePhoto => m_Wrapper.m_Profiler_TakePhoto;
+        public InputAction @ActivateDialogue => m_Wrapper.m_Profiler_ActivateDialogue;
+        public InputAction @AskMoonbeam => m_Wrapper.m_Profiler_AskMoonbeam;
+        public InputAction @DialogueOptionOne => m_Wrapper.m_Profiler_DialogueOptionOne;
+        public InputAction @DialogueOptionTwo => m_Wrapper.m_Profiler_DialogueOptionTwo;
+        public InputAction @DialogueOptionThree => m_Wrapper.m_Profiler_DialogueOptionThree;
+        public InputAction @CloseDialogue => m_Wrapper.m_Profiler_CloseDialogue;
+        public InputAction @StoreInteraction => m_Wrapper.m_Profiler_StoreInteraction;
+        public InputAction @UpgradeCannon => m_Wrapper.m_Profiler_UpgradeCannon;
         public InputAction @OpenDungeon => m_Wrapper.m_Profiler_OpenDungeon;
         public InputActionMap Get() { return m_Wrapper.m_Profiler; }
         public void Enable() { Get().Enable(); }
@@ -1377,48 +1570,48 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Pollinate.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnPollinate;
                 @Pollinate.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnPollinate;
                 @Pollinate.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnPollinate;
-                @DialogueOptionOne.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionOne;
-                @DialogueOptionOne.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionOne;
-                @DialogueOptionOne.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionOne;
-                @DialogueOptionTwo.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionTwo;
-                @DialogueOptionTwo.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionTwo;
-                @DialogueOptionTwo.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionTwo;
-                @ActivateDialogue.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnActivateDialogue;
-                @ActivateDialogue.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnActivateDialogue;
-                @ActivateDialogue.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnActivateDialogue;
-                @DialogueOptionThree.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionThree;
-                @DialogueOptionThree.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionThree;
-                @DialogueOptionThree.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionThree;
-                @AskMoonbeam.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnAskMoonbeam;
-                @AskMoonbeam.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnAskMoonbeam;
-                @AskMoonbeam.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnAskMoonbeam;
-                @CloseDialogue.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
-                @CloseDialogue.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
-                @CloseDialogue.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
-                @StoreInteraction.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnStoreInteraction;
-                @StoreInteraction.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnStoreInteraction;
-                @StoreInteraction.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnStoreInteraction;
                 @EnableSkip.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnEnableSkip;
                 @EnableSkip.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnEnableSkip;
                 @EnableSkip.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnEnableSkip;
-                @UpgradeCannon.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUpgradeCannon;
-                @UpgradeCannon.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUpgradeCannon;
-                @UpgradeCannon.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUpgradeCannon;
                 @Skip.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
                 @Skip.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
                 @Skip.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnSkip;
                 @TurnOnPhotoMode.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTurnOnPhotoMode;
                 @TurnOnPhotoMode.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTurnOnPhotoMode;
                 @TurnOnPhotoMode.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTurnOnPhotoMode;
-                @TakePhoto.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTakePhoto;
-                @TakePhoto.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTakePhoto;
-                @TakePhoto.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTakePhoto;
-                @FieldDepthUp.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthUp;
-                @FieldDepthUp.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthUp;
-                @FieldDepthUp.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthUp;
                 @FieldDepthDown.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthDown;
                 @FieldDepthDown.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthDown;
                 @FieldDepthDown.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthDown;
+                @FieldDepthUp.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthUp;
+                @FieldDepthUp.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthUp;
+                @FieldDepthUp.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnFieldDepthUp;
+                @TakePhoto.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTakePhoto;
+                @TakePhoto.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTakePhoto;
+                @TakePhoto.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnTakePhoto;
+                @ActivateDialogue.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnActivateDialogue;
+                @ActivateDialogue.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnActivateDialogue;
+                @ActivateDialogue.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnActivateDialogue;
+                @AskMoonbeam.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnAskMoonbeam;
+                @AskMoonbeam.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnAskMoonbeam;
+                @AskMoonbeam.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnAskMoonbeam;
+                @DialogueOptionOne.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionOne;
+                @DialogueOptionOne.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionOne;
+                @DialogueOptionOne.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionOne;
+                @DialogueOptionTwo.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionTwo;
+                @DialogueOptionTwo.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionTwo;
+                @DialogueOptionTwo.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionTwo;
+                @DialogueOptionThree.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionThree;
+                @DialogueOptionThree.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionThree;
+                @DialogueOptionThree.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnDialogueOptionThree;
+                @CloseDialogue.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
+                @CloseDialogue.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
+                @CloseDialogue.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnCloseDialogue;
+                @StoreInteraction.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnStoreInteraction;
+                @StoreInteraction.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnStoreInteraction;
+                @StoreInteraction.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnStoreInteraction;
+                @UpgradeCannon.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUpgradeCannon;
+                @UpgradeCannon.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUpgradeCannon;
+                @UpgradeCannon.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnUpgradeCannon;
                 @OpenDungeon.started -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnOpenDungeon;
                 @OpenDungeon.performed -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnOpenDungeon;
                 @OpenDungeon.canceled -= m_Wrapper.m_ProfilerActionsCallbackInterface.OnOpenDungeon;
@@ -1456,48 +1649,48 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @Pollinate.started += instance.OnPollinate;
                 @Pollinate.performed += instance.OnPollinate;
                 @Pollinate.canceled += instance.OnPollinate;
-                @DialogueOptionOne.started += instance.OnDialogueOptionOne;
-                @DialogueOptionOne.performed += instance.OnDialogueOptionOne;
-                @DialogueOptionOne.canceled += instance.OnDialogueOptionOne;
-                @DialogueOptionTwo.started += instance.OnDialogueOptionTwo;
-                @DialogueOptionTwo.performed += instance.OnDialogueOptionTwo;
-                @DialogueOptionTwo.canceled += instance.OnDialogueOptionTwo;
-                @ActivateDialogue.started += instance.OnActivateDialogue;
-                @ActivateDialogue.performed += instance.OnActivateDialogue;
-                @ActivateDialogue.canceled += instance.OnActivateDialogue;
-                @DialogueOptionThree.started += instance.OnDialogueOptionThree;
-                @DialogueOptionThree.performed += instance.OnDialogueOptionThree;
-                @DialogueOptionThree.canceled += instance.OnDialogueOptionThree;
-                @AskMoonbeam.started += instance.OnAskMoonbeam;
-                @AskMoonbeam.performed += instance.OnAskMoonbeam;
-                @AskMoonbeam.canceled += instance.OnAskMoonbeam;
-                @CloseDialogue.started += instance.OnCloseDialogue;
-                @CloseDialogue.performed += instance.OnCloseDialogue;
-                @CloseDialogue.canceled += instance.OnCloseDialogue;
-                @StoreInteraction.started += instance.OnStoreInteraction;
-                @StoreInteraction.performed += instance.OnStoreInteraction;
-                @StoreInteraction.canceled += instance.OnStoreInteraction;
                 @EnableSkip.started += instance.OnEnableSkip;
                 @EnableSkip.performed += instance.OnEnableSkip;
                 @EnableSkip.canceled += instance.OnEnableSkip;
-                @UpgradeCannon.started += instance.OnUpgradeCannon;
-                @UpgradeCannon.performed += instance.OnUpgradeCannon;
-                @UpgradeCannon.canceled += instance.OnUpgradeCannon;
                 @Skip.started += instance.OnSkip;
                 @Skip.performed += instance.OnSkip;
                 @Skip.canceled += instance.OnSkip;
                 @TurnOnPhotoMode.started += instance.OnTurnOnPhotoMode;
                 @TurnOnPhotoMode.performed += instance.OnTurnOnPhotoMode;
                 @TurnOnPhotoMode.canceled += instance.OnTurnOnPhotoMode;
-                @TakePhoto.started += instance.OnTakePhoto;
-                @TakePhoto.performed += instance.OnTakePhoto;
-                @TakePhoto.canceled += instance.OnTakePhoto;
-                @FieldDepthUp.started += instance.OnFieldDepthUp;
-                @FieldDepthUp.performed += instance.OnFieldDepthUp;
-                @FieldDepthUp.canceled += instance.OnFieldDepthUp;
                 @FieldDepthDown.started += instance.OnFieldDepthDown;
                 @FieldDepthDown.performed += instance.OnFieldDepthDown;
                 @FieldDepthDown.canceled += instance.OnFieldDepthDown;
+                @FieldDepthUp.started += instance.OnFieldDepthUp;
+                @FieldDepthUp.performed += instance.OnFieldDepthUp;
+                @FieldDepthUp.canceled += instance.OnFieldDepthUp;
+                @TakePhoto.started += instance.OnTakePhoto;
+                @TakePhoto.performed += instance.OnTakePhoto;
+                @TakePhoto.canceled += instance.OnTakePhoto;
+                @ActivateDialogue.started += instance.OnActivateDialogue;
+                @ActivateDialogue.performed += instance.OnActivateDialogue;
+                @ActivateDialogue.canceled += instance.OnActivateDialogue;
+                @AskMoonbeam.started += instance.OnAskMoonbeam;
+                @AskMoonbeam.performed += instance.OnAskMoonbeam;
+                @AskMoonbeam.canceled += instance.OnAskMoonbeam;
+                @DialogueOptionOne.started += instance.OnDialogueOptionOne;
+                @DialogueOptionOne.performed += instance.OnDialogueOptionOne;
+                @DialogueOptionOne.canceled += instance.OnDialogueOptionOne;
+                @DialogueOptionTwo.started += instance.OnDialogueOptionTwo;
+                @DialogueOptionTwo.performed += instance.OnDialogueOptionTwo;
+                @DialogueOptionTwo.canceled += instance.OnDialogueOptionTwo;
+                @DialogueOptionThree.started += instance.OnDialogueOptionThree;
+                @DialogueOptionThree.performed += instance.OnDialogueOptionThree;
+                @DialogueOptionThree.canceled += instance.OnDialogueOptionThree;
+                @CloseDialogue.started += instance.OnCloseDialogue;
+                @CloseDialogue.performed += instance.OnCloseDialogue;
+                @CloseDialogue.canceled += instance.OnCloseDialogue;
+                @StoreInteraction.started += instance.OnStoreInteraction;
+                @StoreInteraction.performed += instance.OnStoreInteraction;
+                @StoreInteraction.canceled += instance.OnStoreInteraction;
+                @UpgradeCannon.started += instance.OnUpgradeCannon;
+                @UpgradeCannon.performed += instance.OnUpgradeCannon;
+                @UpgradeCannon.canceled += instance.OnUpgradeCannon;
                 @OpenDungeon.started += instance.OnOpenDungeon;
                 @OpenDungeon.performed += instance.OnOpenDungeon;
                 @OpenDungeon.canceled += instance.OnOpenDungeon;
@@ -1515,6 +1708,11 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGameUI_PauseGame;
     private readonly InputAction m_InGameUI_LoadNextPlanet;
     private readonly InputAction m_InGameUI_MiniMenu;
+    private readonly InputAction m_InGameUI_Controls;
+    private readonly InputAction m_InGameUI_BackBtn;
+    private readonly InputAction m_InGameUI_Keyboard;
+    private readonly InputAction m_InGameUI_PlayStation;
+    private readonly InputAction m_InGameUI_Xbox;
     public struct InGameUIActions
     {
         private @InputProfiler m_Wrapper;
@@ -1525,6 +1723,11 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @PauseGame => m_Wrapper.m_InGameUI_PauseGame;
         public InputAction @LoadNextPlanet => m_Wrapper.m_InGameUI_LoadNextPlanet;
         public InputAction @MiniMenu => m_Wrapper.m_InGameUI_MiniMenu;
+        public InputAction @Controls => m_Wrapper.m_InGameUI_Controls;
+        public InputAction @BackBtn => m_Wrapper.m_InGameUI_BackBtn;
+        public InputAction @Keyboard => m_Wrapper.m_InGameUI_Keyboard;
+        public InputAction @PlayStation => m_Wrapper.m_InGameUI_PlayStation;
+        public InputAction @Xbox => m_Wrapper.m_InGameUI_Xbox;
         public InputActionMap Get() { return m_Wrapper.m_InGameUI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1552,6 +1755,21 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @MiniMenu.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnMiniMenu;
                 @MiniMenu.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnMiniMenu;
                 @MiniMenu.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnMiniMenu;
+                @Controls.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnControls;
+                @Controls.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnControls;
+                @Controls.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnControls;
+                @BackBtn.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnBackBtn;
+                @BackBtn.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnBackBtn;
+                @BackBtn.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnBackBtn;
+                @Keyboard.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnKeyboard;
+                @Keyboard.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnKeyboard;
+                @Keyboard.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnKeyboard;
+                @PlayStation.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnPlayStation;
+                @PlayStation.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnPlayStation;
+                @PlayStation.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnPlayStation;
+                @Xbox.started -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnXbox;
+                @Xbox.performed -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnXbox;
+                @Xbox.canceled -= m_Wrapper.m_InGameUIActionsCallbackInterface.OnXbox;
             }
             m_Wrapper.m_InGameUIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1574,6 +1792,21 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @MiniMenu.started += instance.OnMiniMenu;
                 @MiniMenu.performed += instance.OnMiniMenu;
                 @MiniMenu.canceled += instance.OnMiniMenu;
+                @Controls.started += instance.OnControls;
+                @Controls.performed += instance.OnControls;
+                @Controls.canceled += instance.OnControls;
+                @BackBtn.started += instance.OnBackBtn;
+                @BackBtn.performed += instance.OnBackBtn;
+                @BackBtn.canceled += instance.OnBackBtn;
+                @Keyboard.started += instance.OnKeyboard;
+                @Keyboard.performed += instance.OnKeyboard;
+                @Keyboard.canceled += instance.OnKeyboard;
+                @PlayStation.started += instance.OnPlayStation;
+                @PlayStation.performed += instance.OnPlayStation;
+                @PlayStation.canceled += instance.OnPlayStation;
+                @Xbox.started += instance.OnXbox;
+                @Xbox.performed += instance.OnXbox;
+                @Xbox.canceled += instance.OnXbox;
             }
         }
     }
@@ -1681,20 +1914,20 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnUnarmed(InputAction.CallbackContext context);
         void OnJetPack(InputAction.CallbackContext context);
         void OnPollinate(InputAction.CallbackContext context);
-        void OnDialogueOptionOne(InputAction.CallbackContext context);
-        void OnDialogueOptionTwo(InputAction.CallbackContext context);
-        void OnActivateDialogue(InputAction.CallbackContext context);
-        void OnDialogueOptionThree(InputAction.CallbackContext context);
-        void OnAskMoonbeam(InputAction.CallbackContext context);
-        void OnCloseDialogue(InputAction.CallbackContext context);
-        void OnStoreInteraction(InputAction.CallbackContext context);
         void OnEnableSkip(InputAction.CallbackContext context);
-        void OnUpgradeCannon(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
         void OnTurnOnPhotoMode(InputAction.CallbackContext context);
-        void OnTakePhoto(InputAction.CallbackContext context);
-        void OnFieldDepthUp(InputAction.CallbackContext context);
         void OnFieldDepthDown(InputAction.CallbackContext context);
+        void OnFieldDepthUp(InputAction.CallbackContext context);
+        void OnTakePhoto(InputAction.CallbackContext context);
+        void OnActivateDialogue(InputAction.CallbackContext context);
+        void OnAskMoonbeam(InputAction.CallbackContext context);
+        void OnDialogueOptionOne(InputAction.CallbackContext context);
+        void OnDialogueOptionTwo(InputAction.CallbackContext context);
+        void OnDialogueOptionThree(InputAction.CallbackContext context);
+        void OnCloseDialogue(InputAction.CallbackContext context);
+        void OnStoreInteraction(InputAction.CallbackContext context);
+        void OnUpgradeCannon(InputAction.CallbackContext context);
         void OnOpenDungeon(InputAction.CallbackContext context);
     }
     public interface IInGameUIActions
@@ -1705,6 +1938,11 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnPauseGame(InputAction.CallbackContext context);
         void OnLoadNextPlanet(InputAction.CallbackContext context);
         void OnMiniMenu(InputAction.CallbackContext context);
+        void OnControls(InputAction.CallbackContext context);
+        void OnBackBtn(InputAction.CallbackContext context);
+        void OnKeyboard(InputAction.CallbackContext context);
+        void OnPlayStation(InputAction.CallbackContext context);
+        void OnXbox(InputAction.CallbackContext context);
     }
     public interface IUIActionsActions
     {

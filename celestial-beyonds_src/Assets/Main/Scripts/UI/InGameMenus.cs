@@ -37,6 +37,8 @@ public class InGameMenus : MonoBehaviour
     {
         _controls.InGameUI.PauseGame.started += PauseGame;
         _controls.InGameUI.Resume.started += ResumeGame;
+        _controls.InGameUI.Controls.started += CtrlsMenu;
+        _controls.InGameUI.BackBtn.started += BackBtn;
         _controls.InGameUI.LoadMainMenu.started += LoadMainMenu;
         _controls.InGameUI.MiniMenu.started += MiniMenu;
         _controls.UIActions.Mute.started += MuteGame;
@@ -49,6 +51,8 @@ public class InGameMenus : MonoBehaviour
     {
         _controls.InGameUI.PauseGame.started -= PauseGame;
         _controls.InGameUI.Resume.started -= ResumeGame;
+        _controls.InGameUI.Controls.started -= CtrlsMenu;
+        _controls.InGameUI.BackBtn.started -= BackBtn;
         _controls.InGameUI.LoadMainMenu.started -= LoadMainMenu;
         _controls.InGameUI.MiniMenu.started -= MiniMenu;
         _controls.UIActions.Mute.started += MuteGame;

@@ -34,32 +34,34 @@ public class Jetpack : MonoBehaviour
 
     private void Update()
     {
-        _fuelBarSlider.value = currentFuel;
-        if (jetpackActive && currentFuel > 0f)
+        if (!GetComponent<CaptainAnimAndSound>().pauseMenu.GetComponent<InGameMenus>().pausedActive)
         {
-            GetComponent<CaptainProfiler>().grounded = false;
-            jetpackActive = true;
-            currentFuel -= Time.deltaTime;
-            _rb.AddForce(_rb.transform.up * thrustForce, ForceMode.Impulse);
+            _fuelBarSlider.value = currentFuel;
+            if (jetpackActive && currentFuel > 0f)
+            {
+                GetComponent<CaptainProfiler>().grounded = false;
+                jetpackActive = true;
+                currentFuel -= Time.deltaTime;
+                _rb.AddForce(_rb.transform.up * thrustForce, ForceMode.Impulse);
+            }
+            else if (Physics.Raycast(groundedObj.position, Vector3.down, 0.01f,
+                         LayerMask.GetMask("GroundedObject")) && currentFuel < maxFuel)
+            {
+                jetpackActive = false;
+                if (currentFuel < maxFuel)
+                    currentFuel += Time.deltaTime;
+            }
+            else
+            {
+                jetpackActive = false;
+                if (currentFuel < maxFuel)
+                    currentFuel += Time.deltaTime;
+            }
+            flames.SetActive(jetpackActive);
+            if (!jetpackActive)
+                _jpAudio.Stop();   
         }
-        else if (Physics.Raycast(groundedObj.position, Vector3.down, 0.01f,
-                     LayerMask.GetMask("GroundedObject")) && currentFuel < maxFuel)
-        {
-            jetpackActive = false;
-            if (currentFuel < maxFuel)
-                currentFuel += Time.deltaTime;
-        }
-        else
-        {
-            jetpackActive = false;
-            if (currentFuel < maxFuel)
-                currentFuel += Time.deltaTime;
-        }
-
-        flames.SetActive(jetpackActive);
-
-        if (!jetpackActive)
-            _jpAudio.Stop();
+        else jetpackActive = false;
     }
 
     private void OnEnable()

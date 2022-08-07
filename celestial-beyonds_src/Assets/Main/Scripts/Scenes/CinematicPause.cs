@@ -9,7 +9,7 @@ public class CinematicPause : MonoBehaviour
     public bool pausedCinActive;
     public GameObject pauseMenu, muteBtn, unMuteBtn, fader;
     public AudioSource cinMusic;
-    
+
     private void Awake()
     {
         _controls = new InputProfiler();
@@ -26,6 +26,7 @@ public class CinematicPause : MonoBehaviour
             muteBtn.SetActive(false);
         }
         
+        GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -43,7 +44,7 @@ public class CinematicPause : MonoBehaviour
     private void OnDisable()
     {
         _controls.InGameUI.PauseGame.started -= PauseGame;
-        _controls.InGameUI.LoadMainMenu.started -= LoadMainMenu;
+        _controls.InGameUI.LoadMainMenu.started += LoadMainMenu;
         _controls.UIActions.Mute.started += MuteGame;
         _controls.UIActions.UnMute.started += UnMuteGame;
         _controls.InGameUI.Disable();
@@ -58,8 +59,9 @@ public class CinematicPause : MonoBehaviour
             cinMusic.Pause();
             pausedCinActive = true;   
             pauseMenu.SetActive(true);
-            Time.timeScale = 0f;
-            
+            Time.timeScale = 0;
+
+            GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -69,8 +71,9 @@ public class CinematicPause : MonoBehaviour
             cinMusic.UnPause();
             pausedCinActive = false;
             pauseMenu.SetActive(false);
-            Time.timeScale = 1f;
+            Time.timeScale = 1;
             
+            GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -103,14 +106,14 @@ public class CinematicPause : MonoBehaviour
     private void LoadMainMenu(InputAction.CallbackContext obj)
     {
         print("LoadMainMenu: 101_MainMenu");
-        StartCoroutine(LoadMainMenu());
+        StartCoroutine(GoLoadMainMenu());
     }
     
-    private IEnumerator LoadMainMenu()
+    private IEnumerator GoLoadMainMenu()
     {
         cinMusic.UnPause();
         pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = 1;
         fader.GetComponent<Animator>().SetBool($"FadeIn", false);
         fader.GetComponent<Animator>().SetBool($"FadeOut", true);
         yield return new WaitForSeconds(2f);

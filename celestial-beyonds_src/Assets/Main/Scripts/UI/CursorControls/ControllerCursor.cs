@@ -40,7 +40,7 @@ namespace Main.Scripts.UI.CursorControls
 
         private void MoveLogicMethod()
         {
-            var result = moveInputValue * speed * Time.fixedDeltaTime;
+            var result = moveInputValue * (speed * Time.fixedDeltaTime);
             _rb.velocity = result;
         }
 

@@ -59,6 +59,10 @@ namespace Main.Scripts.UI.CursorControls
                 returnVal = "PlayStation";
             else if (_cursor.GetComponent<ControllerCursor>().clickedElement == "Xbox")
                 returnVal = "Xbox";
+            
+            // CinematicPause
+            if (_cursor.GetComponent<ControllerCursor>().clickedElement == "MainMenuBtn_cn")
+                returnVal = "MainMenuBtn_cn";
 
             return returnVal;
         }

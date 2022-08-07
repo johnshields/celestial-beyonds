@@ -96,81 +96,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DialogueOptionOne",
-                    "type": "Button",
-                    "id": "d4eb482d-3c77-466c-a30a-884dd7e02770",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "DialogueOptionTwo",
-                    "type": "Button",
-                    "id": "e1b888a9-49e9-4227-9191-9bbd435f9b49",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ActivateDialogue",
-                    "type": "Button",
-                    "id": "7ce4b6f2-3777-4a3c-98b2-c3cccf51e619",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "DialogueOptionThree",
-                    "type": "Button",
-                    "id": "d6522fd3-519b-48a0-8e24-73dca8cb989a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "AskMoonbeam",
-                    "type": "Button",
-                    "id": "ddd09c6b-dbc8-4bfc-b87e-6f71e761ce47",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "CloseDialogue",
-                    "type": "Button",
-                    "id": "3b951d3c-7090-46db-a2e0-f3ba9de0f604",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "StoreInteraction",
-                    "type": "Button",
-                    "id": "18e9d62c-414e-4b7a-9df0-b17a30c91170",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "EnableSkip",
                     "type": "Button",
                     "id": "c3a804c7-9da0-424b-b2eb-158a94d50e75",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "UpgradeCannon",
-                    "type": "Button",
-                    "id": "b44dd092-ad57-4631-bc18-65fd663e0dfe",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -195,9 +123,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TakePhoto",
+                    "name": "FieldDepthDown",
                     "type": "Button",
-                    "id": "89d930c5-3fae-47bc-a3a1-e4f687dec3c6",
+                    "id": "d733fd4d-baca-45f7-8830-3c624ef144ad",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -213,9 +141,81 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FieldDepthDown",
+                    "name": "TakePhoto",
                     "type": "Button",
-                    "id": "d733fd4d-baca-45f7-8830-3c624ef144ad",
+                    "id": "89d930c5-3fae-47bc-a3a1-e4f687dec3c6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActivateDialogue",
+                    "type": "Button",
+                    "id": "7ce4b6f2-3777-4a3c-98b2-c3cccf51e619",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AskMoonbeam",
+                    "type": "Button",
+                    "id": "ddd09c6b-dbc8-4bfc-b87e-6f71e761ce47",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DialogueOptionOne",
+                    "type": "Button",
+                    "id": "d4eb482d-3c77-466c-a30a-884dd7e02770",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DialogueOptionTwo",
+                    "type": "Button",
+                    "id": "e1b888a9-49e9-4227-9191-9bbd435f9b49",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DialogueOptionThree",
+                    "type": "Button",
+                    "id": "d6522fd3-519b-48a0-8e24-73dca8cb989a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CloseDialogue",
+                    "type": "Button",
+                    "id": "3b951d3c-7090-46db-a2e0-f3ba9de0f604",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StoreInteraction",
+                    "type": "Button",
+                    "id": "18e9d62c-414e-4b7a-9df0-b17a30c91170",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UpgradeCannon",
+                    "type": "Button",
+                    "id": "b44dd092-ad57-4631-bc18-65fd663e0dfe",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -597,28 +597,6 @@
                 },
                 {
                     "name": "",
-                    "id": "eabb399e-c5b7-421e-a5b9-8e019bfeb2f7",
-                    "path": "<Keyboard>/i",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AskMoonbeam",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0a13734e-9ad8-4924-915b-d5f5872ef1b2",
-                    "path": "<Gamepad>/rightStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AskMoonbeam",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "de35c756-dbd2-4afb-bcdb-9c4a747b7427",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -636,83 +614,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "CloseDialogue",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c5261529-de21-4e99-aa67-3d6ad458ffa1",
-                    "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Skip",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ed173062-3a2a-4a48-b974-4ecb2ba42099",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Skip",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "390a0887-178b-47df-a184-42d9ae14173e",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "EnableSkip",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ac37b8ae-84b1-4363-946d-f15da4030561",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "EnableSkip",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b40d3d3f-e838-4163-bc86-3fdf8b6b80a6",
-                    "path": "<Gamepad>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "EnableSkip",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3c602c61-633d-4931-90a0-5ea9905f6fa7",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ActivateDialogue",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a2eb89b7-5da0-45b9-9775-fe49162b5fa8",
-                    "path": "<Gamepad>/leftStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ActivateDialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -751,45 +652,12 @@
                 },
                 {
                     "name": "",
-                    "id": "1e83e85a-062b-40d0-88bd-2112771385c1",
-                    "path": "<Keyboard>/enter",
+                    "id": "7bb255c5-2ece-4cd3-a981-5706877df174",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TakePhoto",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "68fef0a5-f1fd-42fc-bb9a-8729f12d7c7e",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TurnOnPhotoMode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "98605d93-2a8b-413c-832b-052e2fa50015",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FieldDepthUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "315794d7-ed29-4388-b0c7-c1acd56f775c",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FieldDepthDown",
+                    "action": "UpgradeCannon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -812,6 +680,193 @@
                     "processors": "",
                     "groups": "",
                     "action": "OpenDungeon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c602c61-633d-4931-90a0-5ea9905f6fa7",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2eb89b7-5da0-45b9-9775-fe49162b5fa8",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eabb399e-c5b7-421e-a5b9-8e019bfeb2f7",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AskMoonbeam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a13734e-9ad8-4924-915b-d5f5872ef1b2",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AskMoonbeam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5261529-de21-4e99-aa67-3d6ad458ffa1",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed173062-3a2a-4a48-b974-4ecb2ba42099",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68fef0a5-f1fd-42fc-bb9a-8729f12d7c7e",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TurnOnPhotoMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c177dae2-8a08-4885-bf73-ee66320fa920",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TurnOnPhotoMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1e83e85a-062b-40d0-88bd-2112771385c1",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TakePhoto",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed635c93-2cca-42d6-ac72-773f91e77e58",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TakePhoto",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98605d93-2a8b-413c-832b-052e2fa50015",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FieldDepthUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9249d95-ecc2-4cb7-bde0-6ec397aeb5eb",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FieldDepthUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "315794d7-ed29-4388-b0c7-c1acd56f775c",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FieldDepthDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1bee2da9-4947-44a8-8a35-97db472d0d14",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FieldDepthDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "390a0887-178b-47df-a184-42d9ae14173e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EnableSkip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac37b8ae-84b1-4363-946d-f15da4030561",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EnableSkip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b40d3d3f-e838-4163-bc86-3fdf8b6b80a6",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EnableSkip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -870,6 +925,51 @@
                     "name": "MiniMenu",
                     "type": "Button",
                     "id": "4cb82695-ff8b-4d06-9278-8c5e4eef1ed6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Controls",
+                    "type": "Button",
+                    "id": "47d5a112-a9a2-4079-b6eb-23d9f7b734a2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BackBtn",
+                    "type": "Button",
+                    "id": "66181cf6-c60d-4814-a082-39c4c0ce2fb5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Keyboard",
+                    "type": "Button",
+                    "id": "c39670eb-76d8-426e-8e3a-5126c7af213f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlayStation",
+                    "type": "Button",
+                    "id": "f5cabd3e-d77e-46e9-8ae6-5d7855669c0f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Xbox",
+                    "type": "Button",
+                    "id": "38603cc5-57f7-443a-9b68-2c743b297b23",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -978,6 +1078,17 @@
                 },
                 {
                     "name": "",
+                    "id": "6883ac68-ff02-4769-b743-a30b619331c5",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadMainMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "88a808d2-1e74-4508-a443-3f0145adf5dc",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
@@ -995,6 +1106,83 @@
                     "processors": "",
                     "groups": "",
                     "action": "MiniMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b5ef65e-ce2d-48f4-bcdf-f191b9da4a08",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Controls",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "57b12ab3-e638-4c65-8faf-99c31994cb86",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Controls",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6354e31-6096-4eb5-951d-7b6baa224ce2",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BackBtn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2f5b418-2e11-4474-8d95-619a81b89950",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BackBtn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5fd98f22-4e27-4805-b0e2-877316713942",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Keyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dcb1e818-29ce-4414-9afe-72b947f12f96",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayStation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "353e8574-0710-438b-a0e9-3f6058e3c695",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Xbox",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
