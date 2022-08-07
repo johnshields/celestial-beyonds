@@ -1027,105 +1027,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
             ""id"": ""94475e1e-50bd-40fb-84bb-a6e03404f335"",
             ""actions"": [
                 {
-                    ""name"": ""StartGame"",
-                    ""type"": ""Button"",
-                    ""id"": ""4d97b2ca-8be9-4e22-be5f-40b61d6cfe37"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RestartGame"",
-                    ""type"": ""Button"",
-                    ""id"": ""b3eec5d5-bc63-4d20-923f-e629ac9eb5f7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Yes"",
-                    ""type"": ""Button"",
-                    ""id"": ""88db3052-a28d-46a6-9089-88812f3d24c1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""No"",
-                    ""type"": ""Button"",
-                    ""id"": ""e9a07c92-0142-4d7d-aff5-26116e931a00"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Controls"",
-                    ""type"": ""Button"",
-                    ""id"": ""3715612c-dace-4bb2-aa78-24ef7c7bd661"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LoadPlanet"",
-                    ""type"": ""Button"",
-                    ""id"": ""5394f907-7633-4529-b332-1009823bfb06"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Credits"",
-                    ""type"": ""Button"",
-                    ""id"": ""61455fbf-0693-47c0-8cdf-384696e64811"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Back"",
-                    ""type"": ""Button"",
-                    ""id"": ""4a3fb4d5-16af-4faa-a789-41761fde3771"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""KeyboardControls"",
-                    ""type"": ""Button"",
-                    ""id"": ""adff948e-1131-4950-b5db-2aee868b0425"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PlayStationControls"",
-                    ""type"": ""Button"",
-                    ""id"": ""d62e4890-4a87-4d53-8566-090299e5c68b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""XboxControls"",
-                    ""type"": ""Button"",
-                    ""id"": ""8852a90b-5ed3-48e6-951a-bad644adfab5"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Mute"",
                     ""type"": ""Button"",
                     ""id"": ""98caf485-9edc-460e-839e-bf6da6aec2dd"",
@@ -1144,60 +1045,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""QuitGame"",
-                    ""type"": ""Button"",
-                    ""id"": ""29608661-196f-4664-b429-d1cc0ed251d9"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LoadActOne"",
-                    ""type"": ""Button"",
-                    ""id"": ""8ae0f406-7a1f-4120-9ec6-928c7919bb80"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LoadActTwo"",
-                    ""type"": ""Button"",
-                    ""id"": ""04bed582-d9c1-430b-871d-97d36cc6abd6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LoadActThree"",
-                    ""type"": ""Button"",
-                    ""id"": ""6c5633e2-90f6-417b-ac7a-6ac1ac4fdb6d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LoadEndgame"",
-                    ""type"": ""Button"",
-                    ""id"": ""bb72c0f0-0e34-4232-afa2-bb7ea368a670"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LoadEpilogue"",
-                    ""type"": ""Button"",
-                    ""id"": ""0d75654e-f482-42f1-a1f3-82ab9c8abe99"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""PlayCinematic"",
                     ""type"": ""Button"",
                     ""id"": ""447e6ff1-0c55-4154-845f-22acd7f8881a"",
@@ -1208,149 +1055,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""e926c17f-3e87-4620-baa1-c24056a8ecc4"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""StartGame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bd14ca5b-f77b-4f45-ad21-7f7301860edf"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""StartGame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c4e31bb2-ccfb-4c3e-a3c1-4c9e69155b32"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Controls"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""843e348b-ef48-4f0e-aaf5-838ddea25bfa"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Controls"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""03152725-7416-4171-b186-5bdaf81ed51d"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Credits"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d5068b3b-6d87-415c-a524-0902a6abf280"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Credits"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""62b0d516-345d-4a6a-989c-6f3698497fc1"",
-                    ""path"": ""<Keyboard>/b"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Back"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""be170826-6423-4b47-9540-0236fb6c574e"",
-                    ""path"": ""<Keyboard>/k"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""KeyboardControls"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ed615cd9-3923-440f-a8a3-7500b16a0672"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""KeyboardControls"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8e38be89-24d0-4396-97b4-a38efd18a8e4"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PlayStationControls"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cc873f6c-480d-4fe6-a228-f4a59b042e1d"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PlayStationControls"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5b92d94f-6b2c-4854-96bb-39b77b841fc3"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""XboxControls"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f05ae2e5-162a-4def-afde-26f802c51d74"",
-                    ""path"": ""<Keyboard>/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""XboxControls"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""3ba58c8a-e134-4c1b-b7bc-447d6a823f7a"",
@@ -1397,204 +1101,6 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0b7cb38e-d164-429e-b31f-bbfd0a1cf3d9"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""QuitGame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""172106ee-148c-4940-a838-85b451c2bf6c"",
-                    ""path"": ""<Keyboard>/l"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadPlanet"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4de64f37-1afd-4b70-ad0a-58daac59805d"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadPlanet"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4540abd8-4d62-467e-a5fa-ae3f5dd2db0f"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadActOne"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1a695c97-0d3f-410f-9760-d394e3d23c87"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadActOne"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""32484fc6-a185-43ab-9091-f388a5f5ff54"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadActTwo"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ac602e1a-dda8-45c6-a2fe-5b2651895e66"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadActTwo"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a92d47a2-2163-4e50-9ed1-b1a2ef3fe082"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadActThree"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""17c04e25-6420-4538-b008-b965406d4084"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadActThree"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""534bf12c-0276-4433-a78a-6d979415e15f"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadEndgame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""31c5fa3a-6aaf-4eac-a318-fb72e84e9eb0"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadEndgame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5e67b129-2b91-43fc-81ad-cf490a6db376"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RestartGame"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9f2e709b-d23e-473b-9ae5-ea2498b8b206"",
-                    ""path"": ""<Keyboard>/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Yes"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b438e43a-7868-4171-9a7d-69bb2173b86d"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Yes"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""422553eb-2e6f-4837-a88c-10add688e77b"",
-                    ""path"": ""<Keyboard>/n"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""No"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""37e2a791-aad3-4569-a50f-75381479adef"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""No"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fc120153-46a0-40fd-9ffb-320939f82d97"",
-                    ""path"": ""<Keyboard>/5"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadEpilogue"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6a831ba1-645a-4c73-8995-12cef0fcf025"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LoadEpilogue"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""66f3690e-94ed-479c-8097-368cde6a5a93"",
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
@@ -1625,15 +1131,32 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""PlayCinematic"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""ControllerCursor"",
+            ""id"": ""2018dd22-43b8-43f4-88b5-8537217e0db6"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""ab4c849c-872e-4294-be04-24a35a67f042"",
+                    ""expectedControlType"": ""Stick"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""a63b34ae-a8bf-4dba-8851-7948fe94cce0"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""id"": ""22a5d3ad-0f18-42c8-b071-b82433c67eb5"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RestartGame"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1696,26 +1219,12 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_InGameUI_MiniMenu = m_InGameUI.FindAction("MiniMenu", throwIfNotFound: true);
         // UIActions
         m_UIActions = asset.FindActionMap("UIActions", throwIfNotFound: true);
-        m_UIActions_StartGame = m_UIActions.FindAction("StartGame", throwIfNotFound: true);
-        m_UIActions_RestartGame = m_UIActions.FindAction("RestartGame", throwIfNotFound: true);
-        m_UIActions_Yes = m_UIActions.FindAction("Yes", throwIfNotFound: true);
-        m_UIActions_No = m_UIActions.FindAction("No", throwIfNotFound: true);
-        m_UIActions_Controls = m_UIActions.FindAction("Controls", throwIfNotFound: true);
-        m_UIActions_LoadPlanet = m_UIActions.FindAction("LoadPlanet", throwIfNotFound: true);
-        m_UIActions_Credits = m_UIActions.FindAction("Credits", throwIfNotFound: true);
-        m_UIActions_Back = m_UIActions.FindAction("Back", throwIfNotFound: true);
-        m_UIActions_KeyboardControls = m_UIActions.FindAction("KeyboardControls", throwIfNotFound: true);
-        m_UIActions_PlayStationControls = m_UIActions.FindAction("PlayStationControls", throwIfNotFound: true);
-        m_UIActions_XboxControls = m_UIActions.FindAction("XboxControls", throwIfNotFound: true);
         m_UIActions_Mute = m_UIActions.FindAction("Mute", throwIfNotFound: true);
         m_UIActions_UnMute = m_UIActions.FindAction("UnMute", throwIfNotFound: true);
-        m_UIActions_QuitGame = m_UIActions.FindAction("QuitGame", throwIfNotFound: true);
-        m_UIActions_LoadActOne = m_UIActions.FindAction("LoadActOne", throwIfNotFound: true);
-        m_UIActions_LoadActTwo = m_UIActions.FindAction("LoadActTwo", throwIfNotFound: true);
-        m_UIActions_LoadActThree = m_UIActions.FindAction("LoadActThree", throwIfNotFound: true);
-        m_UIActions_LoadEndgame = m_UIActions.FindAction("LoadEndgame", throwIfNotFound: true);
-        m_UIActions_LoadEpilogue = m_UIActions.FindAction("LoadEpilogue", throwIfNotFound: true);
         m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
+        // ControllerCursor
+        m_ControllerCursor = asset.FindActionMap("ControllerCursor", throwIfNotFound: true);
+        m_ControllerCursor_Move = m_ControllerCursor.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -2073,49 +1582,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     // UIActions
     private readonly InputActionMap m_UIActions;
     private IUIActionsActions m_UIActionsActionsCallbackInterface;
-    private readonly InputAction m_UIActions_StartGame;
-    private readonly InputAction m_UIActions_RestartGame;
-    private readonly InputAction m_UIActions_Yes;
-    private readonly InputAction m_UIActions_No;
-    private readonly InputAction m_UIActions_Controls;
-    private readonly InputAction m_UIActions_LoadPlanet;
-    private readonly InputAction m_UIActions_Credits;
-    private readonly InputAction m_UIActions_Back;
-    private readonly InputAction m_UIActions_KeyboardControls;
-    private readonly InputAction m_UIActions_PlayStationControls;
-    private readonly InputAction m_UIActions_XboxControls;
     private readonly InputAction m_UIActions_Mute;
     private readonly InputAction m_UIActions_UnMute;
-    private readonly InputAction m_UIActions_QuitGame;
-    private readonly InputAction m_UIActions_LoadActOne;
-    private readonly InputAction m_UIActions_LoadActTwo;
-    private readonly InputAction m_UIActions_LoadActThree;
-    private readonly InputAction m_UIActions_LoadEndgame;
-    private readonly InputAction m_UIActions_LoadEpilogue;
     private readonly InputAction m_UIActions_PlayCinematic;
     public struct UIActionsActions
     {
         private @InputProfiler m_Wrapper;
         public UIActionsActions(@InputProfiler wrapper) { m_Wrapper = wrapper; }
-        public InputAction @StartGame => m_Wrapper.m_UIActions_StartGame;
-        public InputAction @RestartGame => m_Wrapper.m_UIActions_RestartGame;
-        public InputAction @Yes => m_Wrapper.m_UIActions_Yes;
-        public InputAction @No => m_Wrapper.m_UIActions_No;
-        public InputAction @Controls => m_Wrapper.m_UIActions_Controls;
-        public InputAction @LoadPlanet => m_Wrapper.m_UIActions_LoadPlanet;
-        public InputAction @Credits => m_Wrapper.m_UIActions_Credits;
-        public InputAction @Back => m_Wrapper.m_UIActions_Back;
-        public InputAction @KeyboardControls => m_Wrapper.m_UIActions_KeyboardControls;
-        public InputAction @PlayStationControls => m_Wrapper.m_UIActions_PlayStationControls;
-        public InputAction @XboxControls => m_Wrapper.m_UIActions_XboxControls;
         public InputAction @Mute => m_Wrapper.m_UIActions_Mute;
         public InputAction @UnMute => m_Wrapper.m_UIActions_UnMute;
-        public InputAction @QuitGame => m_Wrapper.m_UIActions_QuitGame;
-        public InputAction @LoadActOne => m_Wrapper.m_UIActions_LoadActOne;
-        public InputAction @LoadActTwo => m_Wrapper.m_UIActions_LoadActTwo;
-        public InputAction @LoadActThree => m_Wrapper.m_UIActions_LoadActThree;
-        public InputAction @LoadEndgame => m_Wrapper.m_UIActions_LoadEndgame;
-        public InputAction @LoadEpilogue => m_Wrapper.m_UIActions_LoadEpilogue;
         public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
@@ -2126,63 +1601,12 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_UIActionsActionsCallbackInterface != null)
             {
-                @StartGame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnStartGame;
-                @StartGame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnStartGame;
-                @StartGame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnStartGame;
-                @RestartGame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnRestartGame;
-                @RestartGame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnRestartGame;
-                @RestartGame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnRestartGame;
-                @Yes.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnYes;
-                @Yes.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnYes;
-                @Yes.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnYes;
-                @No.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnNo;
-                @No.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnNo;
-                @No.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnNo;
-                @Controls.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnControls;
-                @Controls.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnControls;
-                @Controls.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnControls;
-                @LoadPlanet.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadPlanet;
-                @LoadPlanet.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadPlanet;
-                @LoadPlanet.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadPlanet;
-                @Credits.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnCredits;
-                @Credits.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnCredits;
-                @Credits.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnCredits;
-                @Back.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnBack;
-                @Back.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnBack;
-                @Back.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnBack;
-                @KeyboardControls.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnKeyboardControls;
-                @KeyboardControls.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnKeyboardControls;
-                @KeyboardControls.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnKeyboardControls;
-                @PlayStationControls.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayStationControls;
-                @PlayStationControls.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayStationControls;
-                @PlayStationControls.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayStationControls;
-                @XboxControls.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnXboxControls;
-                @XboxControls.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnXboxControls;
-                @XboxControls.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnXboxControls;
                 @Mute.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnMute;
                 @Mute.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnMute;
                 @Mute.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnMute;
                 @UnMute.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnUnMute;
                 @UnMute.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnUnMute;
                 @UnMute.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnUnMute;
-                @QuitGame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
-                @QuitGame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
-                @QuitGame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
-                @LoadActOne.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActOne;
-                @LoadActOne.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActOne;
-                @LoadActOne.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActOne;
-                @LoadActTwo.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActTwo;
-                @LoadActTwo.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActTwo;
-                @LoadActTwo.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActTwo;
-                @LoadActThree.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActThree;
-                @LoadActThree.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActThree;
-                @LoadActThree.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadActThree;
-                @LoadEndgame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEndgame;
-                @LoadEndgame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEndgame;
-                @LoadEndgame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEndgame;
-                @LoadEpilogue.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEpilogue;
-                @LoadEpilogue.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEpilogue;
-                @LoadEpilogue.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLoadEpilogue;
                 @PlayCinematic.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
@@ -2190,63 +1614,12 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @StartGame.started += instance.OnStartGame;
-                @StartGame.performed += instance.OnStartGame;
-                @StartGame.canceled += instance.OnStartGame;
-                @RestartGame.started += instance.OnRestartGame;
-                @RestartGame.performed += instance.OnRestartGame;
-                @RestartGame.canceled += instance.OnRestartGame;
-                @Yes.started += instance.OnYes;
-                @Yes.performed += instance.OnYes;
-                @Yes.canceled += instance.OnYes;
-                @No.started += instance.OnNo;
-                @No.performed += instance.OnNo;
-                @No.canceled += instance.OnNo;
-                @Controls.started += instance.OnControls;
-                @Controls.performed += instance.OnControls;
-                @Controls.canceled += instance.OnControls;
-                @LoadPlanet.started += instance.OnLoadPlanet;
-                @LoadPlanet.performed += instance.OnLoadPlanet;
-                @LoadPlanet.canceled += instance.OnLoadPlanet;
-                @Credits.started += instance.OnCredits;
-                @Credits.performed += instance.OnCredits;
-                @Credits.canceled += instance.OnCredits;
-                @Back.started += instance.OnBack;
-                @Back.performed += instance.OnBack;
-                @Back.canceled += instance.OnBack;
-                @KeyboardControls.started += instance.OnKeyboardControls;
-                @KeyboardControls.performed += instance.OnKeyboardControls;
-                @KeyboardControls.canceled += instance.OnKeyboardControls;
-                @PlayStationControls.started += instance.OnPlayStationControls;
-                @PlayStationControls.performed += instance.OnPlayStationControls;
-                @PlayStationControls.canceled += instance.OnPlayStationControls;
-                @XboxControls.started += instance.OnXboxControls;
-                @XboxControls.performed += instance.OnXboxControls;
-                @XboxControls.canceled += instance.OnXboxControls;
                 @Mute.started += instance.OnMute;
                 @Mute.performed += instance.OnMute;
                 @Mute.canceled += instance.OnMute;
                 @UnMute.started += instance.OnUnMute;
                 @UnMute.performed += instance.OnUnMute;
                 @UnMute.canceled += instance.OnUnMute;
-                @QuitGame.started += instance.OnQuitGame;
-                @QuitGame.performed += instance.OnQuitGame;
-                @QuitGame.canceled += instance.OnQuitGame;
-                @LoadActOne.started += instance.OnLoadActOne;
-                @LoadActOne.performed += instance.OnLoadActOne;
-                @LoadActOne.canceled += instance.OnLoadActOne;
-                @LoadActTwo.started += instance.OnLoadActTwo;
-                @LoadActTwo.performed += instance.OnLoadActTwo;
-                @LoadActTwo.canceled += instance.OnLoadActTwo;
-                @LoadActThree.started += instance.OnLoadActThree;
-                @LoadActThree.performed += instance.OnLoadActThree;
-                @LoadActThree.canceled += instance.OnLoadActThree;
-                @LoadEndgame.started += instance.OnLoadEndgame;
-                @LoadEndgame.performed += instance.OnLoadEndgame;
-                @LoadEndgame.canceled += instance.OnLoadEndgame;
-                @LoadEpilogue.started += instance.OnLoadEpilogue;
-                @LoadEpilogue.performed += instance.OnLoadEpilogue;
-                @LoadEpilogue.canceled += instance.OnLoadEpilogue;
                 @PlayCinematic.started += instance.OnPlayCinematic;
                 @PlayCinematic.performed += instance.OnPlayCinematic;
                 @PlayCinematic.canceled += instance.OnPlayCinematic;
@@ -2254,6 +1627,39 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         }
     }
     public UIActionsActions @UIActions => new UIActionsActions(this);
+
+    // ControllerCursor
+    private readonly InputActionMap m_ControllerCursor;
+    private IControllerCursorActions m_ControllerCursorActionsCallbackInterface;
+    private readonly InputAction m_ControllerCursor_Move;
+    public struct ControllerCursorActions
+    {
+        private @InputProfiler m_Wrapper;
+        public ControllerCursorActions(@InputProfiler wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_ControllerCursor_Move;
+        public InputActionMap Get() { return m_Wrapper.m_ControllerCursor; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ControllerCursorActions set) { return set.Get(); }
+        public void SetCallbacks(IControllerCursorActions instance)
+        {
+            if (m_Wrapper.m_ControllerCursorActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_ControllerCursorActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_ControllerCursorActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_ControllerCursorActionsCallbackInterface.OnMove;
+            }
+            m_Wrapper.m_ControllerCursorActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+            }
+        }
+    }
+    public ControllerCursorActions @ControllerCursor => new ControllerCursorActions(this);
     private int m_GamepadSchemeIndex = -1;
     public InputControlScheme GamepadScheme
     {
@@ -2302,25 +1708,12 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     }
     public interface IUIActionsActions
     {
-        void OnStartGame(InputAction.CallbackContext context);
-        void OnRestartGame(InputAction.CallbackContext context);
-        void OnYes(InputAction.CallbackContext context);
-        void OnNo(InputAction.CallbackContext context);
-        void OnControls(InputAction.CallbackContext context);
-        void OnLoadPlanet(InputAction.CallbackContext context);
-        void OnCredits(InputAction.CallbackContext context);
-        void OnBack(InputAction.CallbackContext context);
-        void OnKeyboardControls(InputAction.CallbackContext context);
-        void OnPlayStationControls(InputAction.CallbackContext context);
-        void OnXboxControls(InputAction.CallbackContext context);
         void OnMute(InputAction.CallbackContext context);
         void OnUnMute(InputAction.CallbackContext context);
-        void OnQuitGame(InputAction.CallbackContext context);
-        void OnLoadActOne(InputAction.CallbackContext context);
-        void OnLoadActTwo(InputAction.CallbackContext context);
-        void OnLoadActThree(InputAction.CallbackContext context);
-        void OnLoadEndgame(InputAction.CallbackContext context);
-        void OnLoadEpilogue(InputAction.CallbackContext context);
         void OnPlayCinematic(InputAction.CallbackContext context);
+    }
+    public interface IControllerCursorActions
+    {
+        void OnMove(InputAction.CallbackContext context);
     }
 }

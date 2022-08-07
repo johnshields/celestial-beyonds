@@ -1,64 +1,64 @@
 using System.Collections;
+using Main.Scripts.UI.CursorControls;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class ActLoader : MonoBehaviour
 {
     public GameObject actPanel, fader;
-    private InputProfiler _controls;
+    private GameObject _cursor;
 
     private void Awake()
     {
-        _controls = new InputProfiler();
+        _cursor = GameObject.FindGameObjectWithTag("Cursor");
     }
 
-    private void OnEnable()
+    private void Update()
     {
-        _controls.UIActions.LoadActOne.started += LoadActOne;
-        _controls.UIActions.LoadActTwo.started += LoadActTwo;
-        _controls.UIActions.LoadActThree.started += LoadActThree;
-        _controls.UIActions.LoadEndgame.started += LoadEndgame;
-        _controls.UIActions.LoadEpilogue.started += LoadEpilogue;
-        _controls.UIActions.Enable();
+        // Sub Buttons - Close
+        if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "ActOne")
+            LoadActOne();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "ActTwo")
+            LoadActTwo();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "ActThree")
+            LoadActThree();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "Endgame")
+            LoadEndgame();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "Epilogue")
+            LoadEpilogue();
     }
 
-    private void OnDisable()
+    private void LoadActOne()
     {
-        _controls.UIActions.LoadActOne.started -= LoadActOne;
-        _controls.UIActions.LoadActTwo.started -= LoadActTwo;
-        _controls.UIActions.LoadActThree.started -= LoadActThree;
-        _controls.UIActions.LoadEndgame.started -= LoadEndgame;
-        _controls.UIActions.LoadEpilogue.started -= LoadEpilogue;
-        _controls.UIActions.Disable();
-    }
-
-    private void LoadActOne(InputAction.CallbackContext obj)
-    {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (actPanel.activeInHierarchy)
             StartCoroutine(LaunchAct("003_CelestialWaltz"));
     }
 
-    private void LoadActTwo(InputAction.CallbackContext obj)
+    private void LoadActTwo()
     {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (actPanel.activeInHierarchy)
             StartCoroutine(LaunchAct("005_LunarPulse"));
     }
     
-    private void LoadActThree(InputAction.CallbackContext obj)
+    private void LoadActThree()
     {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (actPanel.activeInHierarchy)
             StartCoroutine(LaunchAct("007_Man_of_Celestial_Man_of_Faith"));
     }
     
-    private void LoadEndgame(InputAction.CallbackContext obj)
+    private void LoadEndgame()
     {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (actPanel.activeInHierarchy)
             StartCoroutine(LaunchAct("009_Intro_Endgame"));
     }
     
-    private void LoadEpilogue(InputAction.CallbackContext obj)
+    private void LoadEpilogue()
     {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (actPanel.activeInHierarchy)
             StartCoroutine(LaunchAct("010_TheGoldenRecord"));
     }

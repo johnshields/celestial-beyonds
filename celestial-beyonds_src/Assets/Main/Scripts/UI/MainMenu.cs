@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Main.Scripts.UI.CursorControls;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,14 +23,17 @@ public class MainMenu : MonoBehaviour
     public RawImage sceneImg;
     public Texture[] sceneImgToChange;
     public bool controlsMenu, creditsRolling, loadActs;
-    private bool _launchGameEnabled, _restartEnabled;
+    private bool _launchGameEnabled, _restartEnabled, _alertedRestartMsg, _alertedActsMsg;
     private string _currentScene;
     private InputProfiler _controls;
+    private GameObject _cursor;
 
     private void Awake()
     {
         _launchGameEnabled = true;
         _restartEnabled = true;
+        _alertedRestartMsg = false;
+        _alertedActsMsg = false;
 
         if (PlayerMemory.sceneToLoad == string.Empty)
         {
@@ -78,35 +82,22 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        _cursor = GameObject.FindWithTag("Cursor");
         fader.GetComponent<Animator>().SetBool($"FadeIn", true);
         fader.GetComponent<Animator>().SetBool($"FadeOut", false);
     }
 
     private void OnEnable()
     {
-        _controls.UIActions.StartGame.started += StartGame;
-        _controls.UIActions.Controls.started += CtrlsMenu;
-        _controls.UIActions.RestartGame.started += RestartGame;
-        _controls.UIActions.Yes.started += ConfirmYes;
-        _controls.UIActions.No.started += ConfirmNo;
         _controls.UIActions.Mute.started += MuteGame;
         _controls.UIActions.UnMute.started += UnMuteGame;
-        _controls.UIActions.Credits.started += RollCredits;
-        _controls.UIActions.LoadPlanet.started += LoadAct;
         _controls.UIActions.Enable();
     }
 
     private void OnDisable()
     {
-        _controls.UIActions.StartGame.started -= StartGame;
-        _controls.UIActions.Controls.started -= CtrlsMenu;
-        _controls.UIActions.RestartGame.started -= RestartGame;
-        _controls.UIActions.Yes.started -= ConfirmYes;
-        _controls.UIActions.No.started -= ConfirmNo;
         _controls.UIActions.Mute.started -= MuteGame;
         _controls.UIActions.UnMute.started -= UnMuteGame;
-        _controls.UIActions.Credits.started -= RollCredits;
-        _controls.UIActions.LoadPlanet.started -= LoadAct;
         _controls.UIActions.Disable();
     }
 
@@ -179,16 +170,49 @@ public class MainMenu : MonoBehaviour
         currentGameTxt.text = _currentScene;
     }
 
-    private void StartGame(InputAction.CallbackContext obj)
+    private void Update()
     {
-        if (_launchGameEnabled && !actPanel.activeInHierarchy)
-            StartCoroutine(LaunchGame(PlayerMemory.sceneToLoad));
+        // Main Buttons
+        if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "LaunchBtn")
+            LaunchGame();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "Restart")
+            RestartGame();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "LoadAct")
+            LoadAct();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "Controls")
+            CtrlsMenu();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "Credits")
+            RollCredits();
+        
+        // Sub Buttons - Close
+        if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "CloseActs")
+            CloseActs();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "CloseControls")
+            CloseControls();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "CloseCredits")
+            CloseCredits();
+        
+        if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "ConfirmYes")
+            ConfirmYes();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "ConfirmNo")
+            ConfirmNo();
     }
 
-    private void RestartGame(InputAction.CallbackContext obj)
+    private void LaunchGame()
     {
-        if (PlayerMemory.sceneToLoad == "002_Opening")
+        if (_launchGameEnabled && !actPanel.activeInHierarchy)
         {
+            _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
+            StartCoroutine(LaunchGame(PlayerMemory.sceneToLoad));
+        }
+    }
+
+    private void RestartGame()
+    {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
+        if (PlayerMemory.sceneToLoad == "002_Opening" && !_alertedRestartMsg)
+        {
+            _alertedRestartMsg = true;
             restartLockedMsg.text = "Saved Progress == Null!";
             StartCoroutine(TurnOffLockedMsg(restartLockedMsg));
         }
@@ -197,8 +221,9 @@ public class MainMenu : MonoBehaviour
                 restartPanel.SetActive(true);
     }
 
-    private void ConfirmYes(InputAction.CallbackContext obj)
+    private void ConfirmYes()
     {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (restartPanel.activeInHierarchy)
         {
             _launchGameEnabled = false;
@@ -213,8 +238,9 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private void ConfirmNo(InputAction.CallbackContext obj)
+    private void ConfirmNo()
     {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (restartPanel.activeInHierarchy)
         {
             restartPanel.SetActive(false);
@@ -224,10 +250,12 @@ public class MainMenu : MonoBehaviour
     }
 
 
-    private void LoadAct(InputAction.CallbackContext obj)
+    private void LoadAct()
     {
-        if (PlayerMemory.sceneToLoad != "011_Earth")
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
+        if (PlayerMemory.sceneToLoad != "011_Earth" && !_alertedActsMsg)
         {
+            _alertedActsMsg = true;
             ActsLockedMsg.text = "All Acts must be Completed to Unlock the Act Loader!";
             StartCoroutine(TurnOffLockedMsg(ActsLockedMsg));
         }
@@ -242,14 +270,18 @@ public class MainMenu : MonoBehaviour
                 print("loadPlanet menu active:" + loadActs);
                 Panels(true, false, false);
             }
-            else if (loadActs)
-            {
-                _launchGameEnabled = true;
-                _restartEnabled = true;
-                loadActs = false;
-                print("loadPlanet menu active:" + loadActs);
-                actPanel.SetActive(false);
-            }
+        }
+    }
+    
+    private void CloseActs()
+    {
+        if (loadActs)
+        {
+            _launchGameEnabled = true;
+            _restartEnabled = true;
+            loadActs = false;
+            print("loadPlanet menu active:" + loadActs);
+            actPanel.SetActive(false);
         }
     }
 
@@ -259,8 +291,9 @@ public class MainMenu : MonoBehaviour
         txt.text = string.Empty;
     }
 
-    private void CtrlsMenu(InputAction.CallbackContext obj)
+    private void CtrlsMenu()
     {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (!controlsMenu)
         {
             _launchGameEnabled = false;
@@ -268,7 +301,12 @@ public class MainMenu : MonoBehaviour
             controlsMenu = true;
             Panels(false, true, false);
         }
-        else if (controlsMenu)
+    }
+    
+        
+    private void CloseControls()
+    {
+        if (controlsMenu)
         {
             _launchGameEnabled = true;
             _restartEnabled = true;
@@ -278,8 +316,9 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private void RollCredits(InputAction.CallbackContext obj)
+    private void RollCredits()
     {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (!creditsRolling)
         {
             _launchGameEnabled = false;
@@ -289,7 +328,11 @@ public class MainMenu : MonoBehaviour
             creditsPanel.GetComponentInChildren<Animator>().SetBool($"CreditsRoll", true);
             StartCoroutine(EndCredits());
         }
-        else if (creditsRolling)
+    }
+    
+    private void CloseCredits()
+    {
+        if (creditsRolling)
         {
             _launchGameEnabled = true;
             _restartEnabled = true;

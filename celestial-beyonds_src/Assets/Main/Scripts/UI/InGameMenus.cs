@@ -39,8 +39,6 @@ public class InGameMenus : MonoBehaviour
         _controls.InGameUI.Resume.started += ResumeGame;
         _controls.InGameUI.LoadMainMenu.started += LoadMainMenu;
         _controls.InGameUI.MiniMenu.started += MiniMenu;
-        _controls.UIActions.Controls.started += CtrlsMenu;
-        _controls.UIActions.Back.started += BackBtn;
         _controls.UIActions.Mute.started += MuteGame;
         _controls.UIActions.UnMute.started += UnMuteGame;
         _controls.InGameUI.Enable();
@@ -53,8 +51,6 @@ public class InGameMenus : MonoBehaviour
         _controls.InGameUI.Resume.started -= ResumeGame;
         _controls.InGameUI.LoadMainMenu.started -= LoadMainMenu;
         _controls.InGameUI.MiniMenu.started -= MiniMenu;
-        _controls.UIActions.Controls.started -= CtrlsMenu;
-        _controls.UIActions.Back.started -= BackBtn;
         _controls.UIActions.Mute.started += MuteGame;
         _controls.UIActions.UnMute.started += UnMuteGame;
         _controls.InGameUI.Disable();

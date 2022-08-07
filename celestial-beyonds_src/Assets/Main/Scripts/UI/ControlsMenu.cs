@@ -1,50 +1,42 @@
-using TMPro;
+using Main.Scripts.UI.CursorControls;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class ControlsMenu : MonoBehaviour
 {
     public GameObject keyboard, playstation, xbox, ctrlsPanel, planetPanel;
-    public TextMeshProUGUI[] keyboardTxt, playstationText, xboxTxt;
     public bool isMainMenu;
-    private InputProfiler _controls;
+    private GameObject _cursor;
 
     private void Awake()
     {
-        _controls = new InputProfiler();
-    }
-    
-    private void OnEnable()
-    {
-        _controls.UIActions.KeyboardControls.started += KeyboardControls;
-        _controls.UIActions.PlayStationControls.started += PlayStationControls;
-        _controls.UIActions.XboxControls.started += XboxControls;
-        _controls.UIActions.Enable();
+        _cursor = GameObject.FindGameObjectWithTag("Cursor");
     }
 
-    private void OnDisable()
+    private void Update()
     {
-        _controls.UIActions.KeyboardControls.started -= KeyboardControls;
-        _controls.UIActions.PlayStationControls.started -= PlayStationControls;
-        _controls.UIActions.XboxControls.started -= XboxControls;
-        _controls.UIActions.Disable();
+        if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "Keyboard")
+            KeyboardControls();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "PlayStation")
+            PlayStationControls();
+        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "Xbox")
+            XboxControls();
     }
 
-    private void KeyboardControls(InputAction.CallbackContext obj)
+    private void KeyboardControls()
     {
         if (!ctrlsPanel.activeInHierarchy) return;
         print("Keyboard");
         WhichControls(true, false, false);
     }
 
-    private void PlayStationControls(InputAction.CallbackContext obj)
+    private void PlayStationControls()
     {
         if (!ctrlsPanel.activeInHierarchy) return;
         print("Playstation Controller");
         WhichControls(false, true, false);
     }
 
-    private void XboxControls(InputAction.CallbackContext obj)
+    private void XboxControls()
     {
         if (!ctrlsPanel.activeInHierarchy) return;
         print("Xbox Controller");
@@ -65,32 +57,6 @@ public class ControlsMenu : MonoBehaviour
             keyboard.SetActive(k);
             playstation.SetActive(p);
             xbox.SetActive(x);  
-        }
-
-        Bools.keyboardSelected = k;
-        Bools.playstationSelected = p;
-        Bools.xboxSelected = x;
-    }
-
-    private void OnGUI()
-    {
-        if (Bools.keyboardSelected)
-        {
-            keyboardTxt[0].text = "Keyboard: K";
-            playstationText[0].text = "Playstation: P";
-            xboxTxt[0].text = "Xbox: X";
-        }
-        else if (Bools.playstationSelected)
-        {
-            keyboardTxt[0].text = "Keyboard: ●";
-            playstationText[0].text = "Playstation: ▲";
-            xboxTxt[0].text = "Xbox: X";
-        }
-        else if (Bools.xboxSelected)
-        {
-            keyboardTxt[0].text = "Keyboard: X";
-            playstationText[0].text = "Playstation: Y";
-            xboxTxt[0].text = "Xbox: A";
         }
     }
 }

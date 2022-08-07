@@ -1,0 +1,85 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
+namespace Main.Scripts.UI.CursorControls
+{
+    public class ControllerCursor : MonoBehaviour
+    {
+        public float speed;
+        public GameObject canvasUI;
+        public string clickedElement;
+        private GraphicRaycaster _raycaster;
+        private PointerEventData _pointerEventData;
+        private List<RaycastResult> _raycastResults;
+        private Rigidbody2D _rb;
+        private Vector2 moveInputValue;
+        private bool _leftStickMoved;
+
+        private void Awake()
+        {
+            foreach (var t in Gamepad.all)
+                print(t == null ? $"Connected Gamepad: {false}" : $"Connected Gamepad: {t.name}");
+        }
+        
+        private void Start()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+            _raycaster = canvasUI.GetComponent<GraphicRaycaster>();
+            _pointerEventData = new PointerEventData(EventSystem.current);
+            _raycastResults = new List<RaycastResult>();
+        }
+
+        private void OnMove(InputValue val)
+        {
+            moveInputValue = val.Get<Vector2>();
+            //print($"inputValue moved: {val}");
+        }
+
+        private void MoveLogicMethod()
+        {
+            var result = moveInputValue * speed * Time.fixedDeltaTime;
+            _rb.velocity = result;
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            print(other.gameObject.name);
+        }
+
+        private void FixedUpdate()
+        {
+            MoveLogicMethod();
+            
+            if (Mouse.current.leftButton.wasReleasedThisFrame || Gamepad.current.buttonSouth.IsPressed())
+                GetClickedUI();
+
+            if (Gamepad.current.leftStick.IsPressed())
+                _leftStickMoved = true;
+        }
+
+        private void GetClickedUI()
+        {
+            if (!_leftStickMoved || !Gamepad.current.buttonSouth.IsPressed())
+                _pointerEventData.position = Mouse.current.position.ReadValue();
+            else
+            {
+                _leftStickMoved = false;
+                _pointerEventData.position = transform.position;
+            }
+
+
+            _raycastResults.Clear();
+            
+            _raycaster.Raycast(_pointerEventData, _raycastResults);
+
+            foreach (RaycastResult result in _raycastResults)
+            {
+                clickedElement = result.gameObject.name;
+                print($"Cursor clicked: {clickedElement}");
+            }
+        }
+    }
+}
