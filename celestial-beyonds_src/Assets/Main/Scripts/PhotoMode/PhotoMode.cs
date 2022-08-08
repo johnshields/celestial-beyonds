@@ -153,7 +153,7 @@ public class PhotoMode : MonoBehaviour
         StartCoroutine(CamTimer());
     }
 
-    // ref -  // ref - https://stackoverflow.com/a/71082189
+    // ref - https://stackoverflow.com/a/71082189
     private IEnumerator CamTimer()
     {
         yield return new WaitForSeconds(1);
