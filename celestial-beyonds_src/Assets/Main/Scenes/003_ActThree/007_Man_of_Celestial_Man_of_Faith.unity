@@ -265,7 +265,32 @@ MonoBehaviour:
   photoMode: {fileID: 0}
   closePm: {fileID: 0}
   takePhoto: {fileID: 0}
+  ctrlsBack: {fileID: 0}
+  opt1: {fileID: 0}
+  opt2: {fileID: 0}
+  opt3: {fileID: 0}
+  talk: {fileID: 0}
+  ask: {fileID: 0}
+  quit: {fileID: 0}
+  lightBtn: {fileID: 0}
+  c_openOrClose: {fileID: 0}
+  nextPlanet: {fileID: 0}
+  a_opt1: []
+  a_opt2: []
+  a_opt3: []
+  argylePrompt: {fileID: 0}
+  viktorPrompt: {fileID: 0}
+  upgradePrompt: {fileID: 0}
   cin: 1
+  photoModeInScene: 0
+  moonbeam: 0
+  stores: 0
+  trappist: 0
+  pcb: 0
+  kepler: 0
+  pollinationComplete: 0
+  noArgyle: 0
+  letThereBeLight: 0
 --- !u!1 &111387991
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +517,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 97d5985efa3f66542bc28d6f63b04d08, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 381dce1e6c114704389ff9a56c8f7da7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
