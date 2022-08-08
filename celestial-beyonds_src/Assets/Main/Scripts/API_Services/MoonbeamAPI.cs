@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -14,7 +13,7 @@ public class MoonbeamAPI : MonoBehaviour
 
     private void Awake()
     {
-        disabledMoonbeam = true;
+        //disabledMoonbeam = true;
         _response = string.Empty;
         
         _audio = GetComponent<AudioSource>();
