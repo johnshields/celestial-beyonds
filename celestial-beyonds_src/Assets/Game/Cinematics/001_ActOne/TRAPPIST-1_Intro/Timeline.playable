@@ -5811,7 +5811,7 @@ MonoBehaviour:
     m_Recordable: 1
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
-    m_PostExtrapolationTime: 0.25
+    m_PostExtrapolationTime: 0.05000000000000426
     m_PreExtrapolationTime: 0
     m_DisplayName: Recorded (38)
   - m_Version: 1
@@ -5917,10 +5917,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: Recorded (40)
   - m_Version: 1
-    m_Start: 55.166666666666664
-    m_ClipIn: 54.81963626897581
+    m_Start: 54.96666666666667
+    m_ClipIn: 55.06963626897581
     m_Asset: {fileID: -2899467576364557146}
-    m_Duration: 3.3999999999999986
+    m_Duration: 3.5500000000000043
     m_TimeScale: 0.5
     m_ParentTrack: {fileID: -6904346385138346254}
     m_EaseInDuration: 0
@@ -5946,11 +5946,11 @@ MonoBehaviour:
     m_Recordable: 1
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
-    m_PostExtrapolationTime: 0.44999999999999574
+    m_PostExtrapolationTime: 0.6999999999999957
     m_PreExtrapolationTime: 0
     m_DisplayName: Recorded (41)
   - m_Version: 1
-    m_Start: 59.01666666666666
+    m_Start: 59.21666666666667
     m_ClipIn: 57.5446362689758
     m_Asset: {fileID: -5726925154361925629}
     m_Duration: 0.20000000000000995
@@ -5997,7 +5997,7 @@ MonoBehaviour:
     m_Recordable: 1
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
-    m_PostExtrapolationTime: 2.049235302582389
+    m_PostExtrapolationTime: 1.849235302582379
     m_PreExtrapolationTime: 0
     m_DisplayName: Recorded (42)
   m_Markers:
@@ -48053,25 +48053,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

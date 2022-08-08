@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -22,6 +23,20 @@ public class MiniMenu : MonoBehaviour
     public bool trappist, pcb, kepler;
     private AudioSource _audio;
     private bool _allEnemies, allArtifacts, _allPeridots;
+
+    private void Awake()
+    {
+        enemiesNum = 0;
+        plantsNum = 0;
+        artifactsNum = 0;
+        totalPlants = 20;
+        totalPeridotsTrap = 67;
+        totalPeridotsPCB = 80;
+        totalPeridotsKep = 100;
+        totalEnemiesTrap = 10;
+        totalEnemiesPCB = 12;
+        totalEnemiesKep = 14;
+    }
 
     private void Start()
     {

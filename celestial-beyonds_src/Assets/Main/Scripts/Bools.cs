@@ -2,6 +2,7 @@ public static class Bools
 {
     public static bool muteActive, keyboardSelected, playstationSelected, xboxSelected;
     public static bool pbUpgraded, cdUpgraded, aUpgraded;
+    public static bool cursorRequired;
 
     public static void LoadUpgrades()
     {

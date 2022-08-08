@@ -34,6 +34,7 @@ public class MainMenu : MonoBehaviour
         _restartEnabled = true;
         _alertedRestartMsg = false;
         _alertedActsMsg = false;
+        Bools.cursorRequired = true;
 
         if (PlayerMemory.sceneToLoad == string.Empty)
         {

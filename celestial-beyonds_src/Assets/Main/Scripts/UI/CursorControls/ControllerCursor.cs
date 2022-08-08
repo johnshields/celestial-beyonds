@@ -36,35 +36,39 @@ namespace Main.Scripts.UI.CursorControls
 
         private void OnMove(InputValue val)
         {
-            moveInputValue = val.Get<Vector2>();
-            //print($"inputValue moved: {val}");
+            if (Bools.cursorRequired)
+            {
+                moveInputValue = val.Get<Vector2>();
+                //print($"inputValue moved: {val}");   
+            }
         }
 
         private void MoveLogicMethod()
         {
-            var result = moveInputValue * (speed * Time.fixedDeltaTime);
-            _rb.velocity = result;
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            print(other.gameObject.name);
+            if (Bools.cursorRequired)
+            {
+                var result = moveInputValue * (speed * Time.fixedDeltaTime);
+                _rb.velocity = result;   
+            }
         }
 
         private void FixedUpdate()
         {
-            MoveLogicMethod();
-            
-            if (Mouse.current.leftButton.wasReleasedThisFrame)
-                GetClickedUI();
-
-            if (Gamepad.current != null)
+            if (Bools.cursorRequired)
             {
-                if (Gamepad.current.buttonSouth.IsPressed())
-                {
-                    _leftStickMoved = true; 
+                MoveLogicMethod();
+            
+                if (Mouse.current.leftButton.wasReleasedThisFrame)
                     GetClickedUI();
-                }
+
+                if (Gamepad.current != null)
+                {
+                    if (Gamepad.current.buttonSouth.IsPressed())
+                    {
+                        _leftStickMoved = true; 
+                        GetClickedUI();
+                    }
+                }   
             }
         }
 

@@ -68,6 +68,7 @@ public class CaptainHealth : MonoBehaviour
         GameObject.Find("ControllerCursor/Controller").GetComponent<Rigidbody2D>().constraints =
             RigidbodyConstraints2D.None;
         Cursor.visible = true;
+        Bools.cursorRequired = true;
         gameOver = true;
         GameOverUI.SetActive(true);
     }

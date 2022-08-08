@@ -9,6 +9,7 @@ public class PlayerMemory : MonoBehaviour
     public static string sceneToLoad;
     public bool playerInScene, armourUpgradeInScene, resetMemory;
     private static bool completed;
+    private bool _added;
     private GameObject _player;
     private string _activeScene;
 
@@ -106,14 +107,16 @@ public class PlayerMemory : MonoBehaviour
             {
                 Bools.aUpgraded = true;
                 _player.GetComponent<CaptainAnimAndSound>().aUpgrade = true;
-                StartCoroutine(AddHealth());
+                if (!_added)
+                    StartCoroutine(AddHealth());
             }
         }
     }
 
     private IEnumerator AddHealth()
     {
-        yield return new WaitForSeconds(1.5f);
+        _added = true;
+        yield return new WaitForSeconds(1f);
         _player.GetComponent<CaptainHealth>().maxHealth = 200;
         yield return new WaitForSeconds(.5f);
         _player.GetComponent<CaptainHealth>().currentHealth = 200;

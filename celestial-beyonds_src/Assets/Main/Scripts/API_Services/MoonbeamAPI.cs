@@ -14,6 +14,7 @@ public class MoonbeamAPI : MonoBehaviour
 
     private void Awake()
     {
+        disabledMoonbeam = true;
         _response = string.Empty;
         
         _audio = GetComponent<AudioSource>();
@@ -54,7 +55,8 @@ public class MoonbeamAPI : MonoBehaviour
             using var webRequest = UnityWebRequest.Post(uri, form);
             yield return webRequest.SendWebRequest();
             if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
-                webRequest.result == UnityWebRequest.Result.ProtocolError)
+                webRequest.result == UnityWebRequest.Result.ProtocolError ||  
+                webRequest.result == UnityWebRequest.Result.DataProcessingError)
             {
                 print("Error getting response: " + webRequest.error);
                 _response = "Sorry, there seems to be a screw lose.";
@@ -80,12 +82,12 @@ public class MoonbeamAPI : MonoBehaviour
         if (lastWord == "you?" || lastWord == "You?")
         {
             itIsAQuestion = true;
-            print("itIsAQuestion: " + itIsAQuestion + "Moonbeam asked: " + lastWord);
+            print($"itIsAQuestion: {itIsAQuestion}" + $"Moonbeam asked: {lastWord}");
         }
         else
         {
             itIsAQuestion = false;
-            print("itIsAQuestion: " + itIsAQuestion);
+            print($"itIsAQuestion: {itIsAQuestion}");
         }
     }
 

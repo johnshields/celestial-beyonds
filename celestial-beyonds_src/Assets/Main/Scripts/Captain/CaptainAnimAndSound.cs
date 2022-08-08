@@ -31,7 +31,7 @@ namespace Main.Scripts.Captain
             lookingAtArgyle,
             lookingAtViktor;
 
-        private bool _actionDone, _unarmed, _armed;
+        private bool _actionDone, _unarmed, _armed, _added;
         private Animator _animator;
         private AudioSource _audio;
         private InputProfiler _controls;
@@ -164,9 +164,19 @@ namespace Main.Scripts.Captain
                 print("Armour Upgraded!");
                 armorUpgrade[0].SetActive(true);
                 armorUpgrade[1].SetActive(true);
-                GetComponent<CaptainHealth>().maxHealth = 200;
                 GetComponent<CaptainHealth>().pHealthBarSlider.maxValue = 200;
+                if(!_added)
+                    StartCoroutine(AddHealth());
             }
+        }
+        
+        private IEnumerator AddHealth()
+        {
+            _added = true;
+            yield return new WaitForSeconds(1f);
+            GetComponent<CaptainHealth>().maxHealth = 200;
+            yield return new WaitForSeconds(.5f);
+            GetComponent<CaptainHealth>().currentHealth = 200;
         }
 
         private void IfPauseMenu()

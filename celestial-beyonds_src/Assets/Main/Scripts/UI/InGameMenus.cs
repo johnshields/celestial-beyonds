@@ -21,6 +21,7 @@ public class InGameMenus : MonoBehaviour
         pausedActive = false;
         pauseMenu.SetActive(false);
         _controls = new InputProfiler();
+        Bools.cursorRequired = false;
 
         if (!Bools.muteActive)
         {
@@ -97,6 +98,7 @@ public class InGameMenus : MonoBehaviour
             print("Game paused: " + pausedActive);
             Time.timeScale = 0f;
             if (audioPauseRequired != 0) audioToPause.Pause();
+            Bools.cursorRequired = true;
             if (cursor)
             {
                 GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
@@ -113,6 +115,7 @@ public class InGameMenus : MonoBehaviour
             print("Game paused: " + pausedActive);
             Time.timeScale = 1f;
             if (audioPauseRequired != 0) audioToPause.UnPause();
+            Bools.cursorRequired = false;
             if (cursor)
             {
                 GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
@@ -135,7 +138,7 @@ public class InGameMenus : MonoBehaviour
             Time.timeScale = 1f;
             if (audioPauseRequired != 0)
                 audioToPause.UnPause();
-
+            Bools.cursorRequired = false;
             if (cursor)
             {
                 GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
