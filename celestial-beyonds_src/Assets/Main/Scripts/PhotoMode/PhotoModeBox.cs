@@ -111,7 +111,7 @@ public class PhotoModeBox : MonoBehaviour
         var datetime_stamp = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
         var photo_id = photo_guid + "__" + datetime_stamp + ".jpeg";
         // TakePhoto
-        ScreenCapture.CaptureScreenshot(Path.Combine(folderPath, photo_id), 2);
+        ScreenCapture.CaptureScreenshot(Path.Combine(folderPath, photo_id), 3);
         print("Screenshot taken: " + folderPath + photo_id);
         yield return new WaitForSeconds(1);
         photoModeUI.SetActive(true);
