@@ -7,15 +7,19 @@ public class MiniMenu : MonoBehaviour
     public int enemiesNum,
         plantsNum,
         artifactsNum,
-        peridotsNum,
-        totalEnemies,
+        totalEnemiesTrap,
+        totalEnemiesPCB,
+        totalEnemiesKep,
         totalPlants,
         totalArtifacts,
-        totalPeridots;
+        totalPeridotsTrap,
+        totalPeridotsPCB,
+        totalPeridotsKep;
 
     public TextMeshProUGUI plantNumTxt, enemyNumTxt, artifactsNumTxt, peridotsNumTxt;
     public GameObject allEnemiesPanel, allArtifactsPanel, allPeridotsPanel, upgradeOption, upgradePanel;
     public AudioClip[] achievementSFX;
+    public bool trappist, pcb, kepler;
     private AudioSource _audio;
     private bool _allEnemies, allArtifacts, _allPeridots;
 
@@ -26,29 +30,67 @@ public class MiniMenu : MonoBehaviour
 
     private void OnGUI()
     {
-        if (plantsNum != 0 || enemiesNum != 0 || artifactsNum != 0 || artifactsNum != 0 || peridotsNum != 0)
+        if (plantsNum != 0 || enemiesNum != 0 || artifactsNum != 0 || artifactsNum != 0 || Peridots.peridotsCollectedInLvl != 0)
         {
             plantNumTxt.text = plantsNum + " / " + totalPlants;
-            enemyNumTxt.text = enemiesNum + " / " + totalEnemies;
             artifactsNumTxt.text = artifactsNum + " / " + totalArtifacts;
-            peridotsNumTxt.text = peridotsNum + " / " + totalPeridots;
+
+            if (trappist)
+            {
+                enemyNumTxt.text = enemiesNum + " / " + totalEnemiesTrap;
+                peridotsNumTxt.text = Peridots.peridotsCollectedInLvl + " / " + totalPeridotsTrap;   
+            }
+            
+            if (pcb)
+            {
+                enemyNumTxt.text = enemiesNum + " / " + totalEnemiesPCB;
+                peridotsNumTxt.text = Peridots.peridotsCollectedInLvl + " / " + totalPeridotsPCB;   
+            }
+            
+            if (trappist)
+            {
+                enemyNumTxt.text = enemiesNum + " / " + totalEnemiesKep;
+                peridotsNumTxt.text = Peridots.peridotsCollectedInLvl + " / " + totalPeridotsKep;   
+            }
         }
     }
 
     private void Update()
     {
-        if (enemiesNum == 10 && !_allEnemies)
+        if (enemiesNum == 10 && !_allEnemies && trappist)
         {
             _allEnemies = true;
             print("Upgrade unlocked!");
             StartCoroutine(CloseActivePanel(0));
         }
-        else if (artifactsNum == 10 && !allArtifacts)
+        if (enemiesNum == 12 && !_allEnemies && pcb)
+        {
+            _allEnemies = true;
+            print("Upgrade unlocked!");
+            StartCoroutine(CloseActivePanel(0));
+        }
+        if (enemiesNum == 14 && !_allEnemies && kepler)
+        {
+            _allEnemies = true;
+            print("Upgrade unlocked!");
+            StartCoroutine(CloseActivePanel(0));
+        }
+        if (artifactsNum == 10 && !allArtifacts)
         {
             allArtifacts = true;
             StartCoroutine(CloseActivePanel(1));
         }
-        else if (peridotsNum == 67 && !_allPeridots)
+        if (Peridots.peridotsCollectedInLvl == 67 && !_allPeridots && trappist)
+        {
+            _allPeridots = true;
+            StartCoroutine(CloseActivePanel(2));
+        }
+        if (Peridots.peridotsCollectedInLvl == 80 && !_allPeridots && pcb)
+        {
+            _allPeridots = true;
+            StartCoroutine(CloseActivePanel(2));
+        }
+        if (Peridots.peridotsCollectedInLvl == 100 && !_allPeridots && kepler)
         {
             _allPeridots = true;
             StartCoroutine(CloseActivePanel(2));

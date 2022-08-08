@@ -8,7 +8,7 @@ public class Peridots : MonoBehaviour
     public static int peridotsCollectedInLvl;
     private GameObject _player;
     private Rigidbody _rb;
-    private bool _hasTarget;
+    private bool _hasTarget, _added;
     private Vector3 _targetPos;
 
     private void Awake()
@@ -40,8 +40,11 @@ public class Peridots : MonoBehaviour
         // Destroy peridot and add to the _peridotCounter
         Destroy(gameObject);
         PlayerMemory.peridots += peridotValue;
-        miniMenu.GetComponent<MiniMenu>().peridotsNum += 1;
-        peridotsCollectedInLvl += 1;
+        if (!_added)
+        {
+            peridotsCollectedInLvl += 1;
+            _added = true;
+        }
         print("peridotsCollectedInLvl: " + peridotsCollectedInLvl);
     }
 

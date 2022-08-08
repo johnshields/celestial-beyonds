@@ -168,7 +168,8 @@ public class ControlsUIChanger : MonoBehaviour
             if (Bools.keyboardSelected)
             {
                 c_openOrClose.text = "Open/Close: O";
-                nextPlanet.text = "Next Planet";
+                if (kepler) nextPlanet.text = "Next Scene";
+                else nextPlanet.text = "Next Planet";
             }
 
             if (Bools.playstationSelected || Bools.xboxSelected)
@@ -177,10 +178,12 @@ public class ControlsUIChanger : MonoBehaviour
             }
 
             if (Bools.playstationSelected)
-                nextPlanet.text = "Next Planet: ▲";
+                if (kepler) nextPlanet.text = "Next Scene: ▲";
+                else nextPlanet.text = "Next Planet: ▲";
 
             if (Bools.xboxSelected)
-                nextPlanet.text = "Next Planet: Y";
+                if (kepler) nextPlanet.text = "Next Scene: Y";
+                else nextPlanet.text = "Next Planet: Y";
         }
 
         if (letThereBeLight)

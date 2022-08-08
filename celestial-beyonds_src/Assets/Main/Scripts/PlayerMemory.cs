@@ -91,9 +91,13 @@ public class PlayerMemory : MonoBehaviour
             {
                 Bools.pbUpgraded = true;
                 _player.GetComponent<CaptainAnimAndSound>().pbUpgrade = true;
+                Bools.cdUpgraded = false;
+                _player.GetComponent<CaptainAnimAndSound>().cdUpgrade = false;
             }
             else if (cannonUpgrade == 2)
             {
+                Bools.pbUpgraded = false;
+                _player.GetComponent<CaptainAnimAndSound>().pbUpgrade = false;
                 Bools.cdUpgraded = true;
                 _player.GetComponent<CaptainAnimAndSound>().cdUpgrade = true;
             }

@@ -217,6 +217,7 @@ public class VanGunProfiler : MonoBehaviour
             print("CANNON BLASTER Upgraded to PEPPERBOX BLASTER!");
             Bools.pbUpgraded = true;
             Bools.cdUpgraded = false;
+            PlayerMemory.cannonUpgrade = 1;
         }
         else if (upgrade == 2 && !upgradeCannon)
         {
@@ -226,6 +227,7 @@ public class VanGunProfiler : MonoBehaviour
             print("PEPPERBOX BLASTER Upgraded to THE CELESTIAL DEFIER!");
             Bools.pbUpgraded = false;
             Bools.cdUpgraded = true;
+            PlayerMemory.cannonUpgrade = 2;
         }
         else if (upgrade == 3 && !upgradeArmor)
         {
@@ -235,6 +237,7 @@ public class VanGunProfiler : MonoBehaviour
             upgradeOption.SetActive(false);
             print("ARMOR UPGRADED!");
             Bools.aUpgraded = true;
+            PlayerMemory.armorUpgrade = 1;
         }
     }
     

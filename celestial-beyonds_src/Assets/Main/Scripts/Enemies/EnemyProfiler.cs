@@ -28,7 +28,7 @@ namespace Main.Scripts.Enemies
 
         private Animator _animator;
         private int _idle, _walk, _attack;
-        private bool _walkPointSet, _actionDone, _played;
+        private bool _walkPointSet, _actionDone, _played, _added;
 
         // misc
         public GameObject miniMenu, pauseMenu, photoMode;
@@ -177,7 +177,11 @@ namespace Main.Scripts.Enemies
                 }
 
                 print(enemy.name + " Terminated!");
-                miniMenu.GetComponent<MiniMenu>().enemiesNum += 1;
+                if (!_added)
+                {
+                    miniMenu.GetComponent<MiniMenu>().enemiesNum += 1;
+                    _added = true;
+                }
                 Destroy(enemy);
             }
         }

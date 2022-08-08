@@ -5,7 +5,7 @@ using UnityEngine;
 public class TestingOnly : MonoBehaviour
 {
     public bool enablePepperBox, enableDefier, enableArmor, lotsOfPeridots, lotsOfAmmo, lotsOfPollen, fog;
-    public GameObject pc, ca, pa, player;
+    public GameObject ca, pa, player;
     
     // Testing Cheats
     private void Start()

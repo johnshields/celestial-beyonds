@@ -54,22 +54,29 @@ namespace Main.Scripts.UI.CursorControls
         private void FixedUpdate()
         {
             MoveLogicMethod();
-
-            if (Mouse.current.leftButton.wasReleasedThisFrame || Gamepad.current.buttonSouth.IsPressed())
+            
+            if (Mouse.current.leftButton.wasReleasedThisFrame)
                 GetClickedUI();
 
-            if (Gamepad.current.leftStick.IsPressed())
-                _leftStickMoved = true;
+            if (Gamepad.current != null)
+            {
+                if (Gamepad.current.buttonSouth.IsPressed())
+                {
+                    _leftStickMoved = true; 
+                    GetClickedUI();
+                }
+            }
         }
 
         private void GetClickedUI()
         {
-            if (!_leftStickMoved || !Gamepad.current.buttonSouth.IsPressed())
+            if (!_leftStickMoved)
                 _pointerEventData.position = Mouse.current.position.ReadValue();
             else
             {
+                if (Gamepad.current != null)
+                    _pointerEventData.position = transform.position;
                 _leftStickMoved = false;
-                _pointerEventData.position = transform.position;
             }
 
             _raycastResults.Clear();

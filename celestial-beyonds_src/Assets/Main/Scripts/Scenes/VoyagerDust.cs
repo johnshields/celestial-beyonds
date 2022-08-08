@@ -9,6 +9,7 @@ public class VoyagerDust : MonoBehaviour
     {
         if (dustParticle.activeInHierarchy && !_done)
         {
+            print("do");
             dustParticle.GetComponent<ParticleSystem>().Play();
             _done = true;
         }

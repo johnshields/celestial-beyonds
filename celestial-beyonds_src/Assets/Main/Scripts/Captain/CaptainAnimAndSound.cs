@@ -56,6 +56,7 @@ namespace Main.Scripts.Captain
             _rb = GetComponent<Rigidbody>();
             _controls = new InputProfiler();
             PlayerState(true, false);
+            Bools.LoadUpgrades();
         }
 
         private void Start()
@@ -157,13 +158,14 @@ namespace Main.Scripts.Captain
 
         private void ArmorState()
         {
+            if (Bools.aUpgraded && PlayerMemory.armorUpgrade == 1) aUpgrade = true;
             if (aUpgrade && Bools.aUpgraded && aUpgradeInLevel)
             {
+                print("Armour Upgraded!");
                 armorUpgrade[0].SetActive(true);
                 armorUpgrade[1].SetActive(true);
                 GetComponent<CaptainHealth>().maxHealth = 200;
                 GetComponent<CaptainHealth>().pHealthBarSlider.maxValue = 200;
-                PlayerMemory.armorUpgrade = 1;
             }
         }
 
@@ -209,23 +211,21 @@ namespace Main.Scripts.Captain
         {
             // PepperBox Upgrade
             if (pbUpgrade && !cdUpgrade && _cannon.activeInHierarchy && Bools.pbUpgraded && !Bools.cdUpgraded)
-            {
                 _pepperBox.SetActive(true);
-                PlayerMemory.cannonUpgrade = 1;
-            }
+
             // Celestial Defier Upgrade
-            else if (!pbUpgrade && cdUpgrade && _cannon.activeInHierarchy && !Bools.pbUpgraded && Bools.cdUpgraded)
+            if (!pbUpgrade && cdUpgrade && _cannon.activeInHierarchy && !Bools.pbUpgraded && Bools.cdUpgraded)
             {
-                PlayerMemory.cannonUpgrade = 2;
                 _celestialDefier.SetActive(true);
                 _cannon.GetComponent<CelestialDefier>().SummonCelestialDefier(); // change mesh & mat
             }
+
             // Standard Cannon
-            else if (!pbUpgrade && !cdUpgrade && _cannon.activeInHierarchy && !Bools.pbUpgraded && !Bools.cdUpgraded)
+            if (!pbUpgrade && !cdUpgrade && _cannon.activeInHierarchy && !Bools.pbUpgraded && !Bools.cdUpgraded)
             {
-                PlayerMemory.cannonUpgrade = 0;
                 _pepperBox.SetActive(false);
                 _celestialDefier.SetActive(false);
+                PlayerMemory.cannonUpgrade = 0;
             }
         }
 

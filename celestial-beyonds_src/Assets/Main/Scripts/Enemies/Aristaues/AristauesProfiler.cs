@@ -136,7 +136,6 @@ public class AristauesProfiler : MonoBehaviour
         {
             AnimationState(false, false, true, false, false);
             aristaues.SetDestination(player.position);
-            print("Chase");
         }
     }
 
@@ -153,12 +152,10 @@ public class AristauesProfiler : MonoBehaviour
             switch (attackBool)
             {
                 case 0:
-                    print("Attack 1");
                     AnimationState(false, false, false, true, false);
                     StartCoroutine(AttackComplete(delayAction));
                     break;
                 case 1:
-                    print("Attack 2");
                     AnimationState(false, false, false, false, true);
                     StartCoroutine(AttackComplete(delayAction));
                     break;

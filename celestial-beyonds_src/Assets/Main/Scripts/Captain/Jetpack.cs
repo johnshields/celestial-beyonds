@@ -10,7 +10,8 @@ using UnityEngine.UI;
 public class Jetpack : MonoBehaviour
 {
     public bool jetpackActive;
-    public float maxFuel = 4f, thrustForce = 0.3f, currentFuel, resetSFXTime = 4f;
+    public float maxFuel = 4f, currentFuel, resetSFXTime = 4f;
+    private float _thrustForce = 0.7f;
     public Transform groundedObj;
     public GameObject flames, fuelBar;
     public AudioClip jetpackSFX;
@@ -42,7 +43,7 @@ public class Jetpack : MonoBehaviour
                 GetComponent<CaptainProfiler>().grounded = false;
                 jetpackActive = true;
                 currentFuel -= Time.deltaTime;
-                _rb.AddForce(_rb.transform.up * thrustForce, ForceMode.Impulse);
+                _rb.AddForce(_rb.transform.up * _thrustForce, ForceMode.Impulse);
             }
             else if (Physics.Raycast(groundedObj.position, Vector3.down, 0.01f,
                          LayerMask.GetMask("GroundedObject")) && currentFuel < maxFuel)

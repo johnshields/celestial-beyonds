@@ -25,6 +25,7 @@ public class MoonbeamDialogue : MonoBehaviour
         _responseText = GameObject.FindGameObjectWithTag("ResponseText");
         _moonbeamAPI = GameObject.FindGameObjectWithTag("MoonbeamAPI");
         _pl = GameObject.FindGameObjectWithTag("PollinationLevel");
+        dOptions.SetActive(true);
     }
 
     private void OnEnable()
