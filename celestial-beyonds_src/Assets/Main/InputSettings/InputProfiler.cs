@@ -1240,6 +1240,42 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LaunchGameBtn"",
+                    ""type"": ""Button"",
+                    ""id"": ""0ff01479-9298-4254-b564-8e45e50aadab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""dcd0b518-c6fe-491b-a3ff-aca3e3b868ac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ConfirmYes"",
+                    ""type"": ""Button"",
+                    ""id"": ""a1e678c4-65b4-44d8-a5ed-f92b73992e70"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ConfirmNo"",
+                    ""type"": ""Button"",
+                    ""id"": ""f17c9ed2-2b26-4b54-ab7d-6acd0e07a600"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1317,6 +1353,94 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PlayCinematic"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f636b4a-9799-43ce-9734-342e552af2ee"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LaunchGameBtn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c69985b7-12fc-4fb5-b56a-cf2a1055ce4b"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LaunchGameBtn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90e5bd01-08ae-4c67-8acb-b75ee1a1e1bb"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d88a81e-fbfd-4b87-8f45-410fcd01376f"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5aefcc3-cecb-411b-afab-85982322c03c"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ConfirmYes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f905699-c9c5-4676-9e0c-e8f45dca9551"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ConfirmYes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""daeb65c6-72b0-4755-a1e6-718a2aa77275"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ConfirmNo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""afde208c-ff94-434e-95b9-e5121d16ccd6"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ConfirmNo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1415,6 +1539,10 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_UIActions_Mute = m_UIActions.FindAction("Mute", throwIfNotFound: true);
         m_UIActions_UnMute = m_UIActions.FindAction("UnMute", throwIfNotFound: true);
         m_UIActions_PlayCinematic = m_UIActions.FindAction("PlayCinematic", throwIfNotFound: true);
+        m_UIActions_LaunchGameBtn = m_UIActions.FindAction("LaunchGameBtn", throwIfNotFound: true);
+        m_UIActions_Restart = m_UIActions.FindAction("Restart", throwIfNotFound: true);
+        m_UIActions_ConfirmYes = m_UIActions.FindAction("ConfirmYes", throwIfNotFound: true);
+        m_UIActions_ConfirmNo = m_UIActions.FindAction("ConfirmNo", throwIfNotFound: true);
         // ControllerCursor
         m_ControllerCursor = asset.FindActionMap("ControllerCursor", throwIfNotFound: true);
         m_ControllerCursor_Move = m_ControllerCursor.FindAction("Move", throwIfNotFound: true);
@@ -1818,6 +1946,10 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_UIActions_Mute;
     private readonly InputAction m_UIActions_UnMute;
     private readonly InputAction m_UIActions_PlayCinematic;
+    private readonly InputAction m_UIActions_LaunchGameBtn;
+    private readonly InputAction m_UIActions_Restart;
+    private readonly InputAction m_UIActions_ConfirmYes;
+    private readonly InputAction m_UIActions_ConfirmNo;
     public struct UIActionsActions
     {
         private @InputProfiler m_Wrapper;
@@ -1825,6 +1957,10 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Mute => m_Wrapper.m_UIActions_Mute;
         public InputAction @UnMute => m_Wrapper.m_UIActions_UnMute;
         public InputAction @PlayCinematic => m_Wrapper.m_UIActions_PlayCinematic;
+        public InputAction @LaunchGameBtn => m_Wrapper.m_UIActions_LaunchGameBtn;
+        public InputAction @Restart => m_Wrapper.m_UIActions_Restart;
+        public InputAction @ConfirmYes => m_Wrapper.m_UIActions_ConfirmYes;
+        public InputAction @ConfirmNo => m_Wrapper.m_UIActions_ConfirmNo;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1843,6 +1979,18 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @PlayCinematic.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
                 @PlayCinematic.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnPlayCinematic;
+                @LaunchGameBtn.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLaunchGameBtn;
+                @LaunchGameBtn.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLaunchGameBtn;
+                @LaunchGameBtn.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnLaunchGameBtn;
+                @Restart.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnRestart;
+                @Restart.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnRestart;
+                @Restart.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnRestart;
+                @ConfirmYes.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnConfirmYes;
+                @ConfirmYes.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnConfirmYes;
+                @ConfirmYes.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnConfirmYes;
+                @ConfirmNo.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnConfirmNo;
+                @ConfirmNo.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnConfirmNo;
+                @ConfirmNo.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnConfirmNo;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1856,6 +2004,18 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @PlayCinematic.started += instance.OnPlayCinematic;
                 @PlayCinematic.performed += instance.OnPlayCinematic;
                 @PlayCinematic.canceled += instance.OnPlayCinematic;
+                @LaunchGameBtn.started += instance.OnLaunchGameBtn;
+                @LaunchGameBtn.performed += instance.OnLaunchGameBtn;
+                @LaunchGameBtn.canceled += instance.OnLaunchGameBtn;
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
+                @ConfirmYes.started += instance.OnConfirmYes;
+                @ConfirmYes.performed += instance.OnConfirmYes;
+                @ConfirmYes.canceled += instance.OnConfirmYes;
+                @ConfirmNo.started += instance.OnConfirmNo;
+                @ConfirmNo.performed += instance.OnConfirmNo;
+                @ConfirmNo.canceled += instance.OnConfirmNo;
             }
         }
     }
@@ -1949,6 +2109,10 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnMute(InputAction.CallbackContext context);
         void OnUnMute(InputAction.CallbackContext context);
         void OnPlayCinematic(InputAction.CallbackContext context);
+        void OnLaunchGameBtn(InputAction.CallbackContext context);
+        void OnRestart(InputAction.CallbackContext context);
+        void OnConfirmYes(InputAction.CallbackContext context);
+        void OnConfirmNo(InputAction.CallbackContext context);
     }
     public interface IControllerCursorActions
     {

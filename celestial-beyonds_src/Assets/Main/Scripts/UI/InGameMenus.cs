@@ -77,9 +77,9 @@ public class InGameMenus : MonoBehaviour
         if (cursor)
         {
             if (_cursor.GetComponent<ControllerCursor>().clickedElement == "RestartPlanet")
-                StartCoroutine(GoLoadLevel(reloadPlanet));
+                LoadMainMenuBtn();
             else if (_cursor.GetComponent<ControllerCursor>().clickedElement == "MainMenuTerm")
-                StartCoroutine(GoLoadLevel("101_MainMenu"));   
+                ReloadPlanetBtn();   
         }
 
 
@@ -87,6 +87,16 @@ public class InGameMenus : MonoBehaviour
             Time.timeScale = 0f;
         else if (pausedActive && photoMode.GetComponent<PhotoMode>().photoMode)
             Time.timeScale = 1f;
+    }
+
+    public void LoadMainMenuBtn()
+    {
+        StartCoroutine(GoLoadLevel("101_MainMenu"));
+    }
+
+    public void ReloadPlanetBtn()
+    {
+        StartCoroutine(GoLoadLevel(reloadPlanet));
     }
 
     private void PauseGame(InputAction.CallbackContext obj)
@@ -152,6 +162,7 @@ public class InGameMenus : MonoBehaviour
         }
     }
 
+    // Input System
     private void LoadMainMenu(InputAction.CallbackContext obj)
     {
         if (pausedActive || player.GetComponent<CaptainHealth>().gameOver)
@@ -226,7 +237,7 @@ public class InGameMenus : MonoBehaviour
 
     private IEnumerator GoLoadLevel(string level)
     {
-        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
+        ClickedElementEmpty();
         if (player.GetComponent<CaptainHealth>().gameOver)
             BtnGO.SetActive(false);
 
@@ -239,5 +250,10 @@ public class InGameMenus : MonoBehaviour
         if(player.GetComponent<CaptainHealth>().gameOver)
             player.GetComponent<CaptainHealth>().ResetPeridots();
         SceneManager.LoadScene(level);
+    }
+    
+    private void ClickedElementEmpty()
+    {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
     }
 }

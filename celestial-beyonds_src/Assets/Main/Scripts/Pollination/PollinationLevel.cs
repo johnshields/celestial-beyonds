@@ -38,9 +38,12 @@ public class PollinationLevel : MonoBehaviour
         PlayerPrefs.SetInt("PollinationLevel", pollinationPercent);
         
         if (_cursor.GetComponent<ControllerCursor>().clickedElement == "NextPlanetComp")
-            StartCoroutine(GoLoadLevel(nextPlanet));
-        else if (_cursor.GetComponent<ControllerCursor>().clickedElement == "MainMenuComp")
-            StartCoroutine(GoLoadLevel("101_MainMenu"));
+            NextPlanetBtn();
+    }
+
+    public void NextPlanetBtn()
+    {
+        StartCoroutine(GoLoadLevel(nextPlanet));
     }
 
     private void OnEnable()
@@ -133,6 +136,7 @@ public class PollinationLevel : MonoBehaviour
 
     private IEnumerator GoLoadLevel(string level)
     {
+        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         levelCompleteUI.SetActive(false);
         print("Loading: " + level);
         fader.GetComponent<Animator>().SetBool($"FadeIn", false);

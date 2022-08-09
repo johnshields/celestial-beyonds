@@ -16,47 +16,47 @@ public class ActLoader : MonoBehaviour
     private void Update()
     {
         // Sub Buttons - Close
-        if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "ActOne")
+        if (_cursor.GetComponent<ControllerCursor>().clickedElement == "ActOne")
             LoadActOne();
-        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "ActTwo")
+        else if (_cursor.GetComponent<ControllerCursor>().clickedElement == "ActTwo")
             LoadActTwo();
-        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "ActThree")
+        else if (_cursor.GetComponent<ControllerCursor>().clickedElement == "ActThree")
             LoadActThree();
-        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "Endgame")
+        else if (_cursor.GetComponent<ControllerCursor>().clickedElement == "Endgame")
             LoadEndgame();
-        else if (_cursor.GetComponent<CursorClickedOn>().ReturnClickedElement() == "Epilogue")
+        else if (_cursor.GetComponent<ControllerCursor>().clickedElement == "Epilogue")
             LoadEpilogue();
     }
 
-    private void LoadActOne()
+    public void LoadActOne()
     {
         _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (actPanel.activeInHierarchy)
             StartCoroutine(LaunchAct("003_CelestialWaltz"));
     }
 
-    private void LoadActTwo()
+    public void LoadActTwo()
     {
         _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (actPanel.activeInHierarchy)
             StartCoroutine(LaunchAct("005_LunarPulse"));
     }
     
-    private void LoadActThree()
+    public void LoadActThree()
     {
         _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (actPanel.activeInHierarchy)
             StartCoroutine(LaunchAct("007_Man_of_Celestial_Man_of_Faith"));
     }
     
-    private void LoadEndgame()
+    public void LoadEndgame()
     {
         _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (actPanel.activeInHierarchy)
             StartCoroutine(LaunchAct("009_Intro_Endgame"));
     }
     
-    private void LoadEpilogue()
+    public void LoadEpilogue()
     {
         _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
         if (actPanel.activeInHierarchy)
