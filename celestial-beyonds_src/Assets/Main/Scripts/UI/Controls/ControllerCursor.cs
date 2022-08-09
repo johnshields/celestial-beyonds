@@ -23,7 +23,13 @@ namespace Main.Scripts.UI.CursorControls
         private void Awake()
         {
             foreach (var t in Gamepad.all)
-                print(t == null ? $"Connected Gamepad: {false}" : $"Connected Gamepad: {t.name}");
+                print(t.name);
+            
+            if (Gamepad.all.Count == 0) 
+                print($"Connected Gamepad: {false}");
+            else 
+                print($"Connected Gamepad: {true}");
+
         }
 
         private void Start()
@@ -48,7 +54,7 @@ namespace Main.Scripts.UI.CursorControls
             if (Bools.cursorRequired)
             {
                 var result = moveInputValue * (speed * Time.fixedDeltaTime);
-                _rb.velocity = result;   
+                _rb.velocity = result;
             }
         }
 
@@ -57,7 +63,7 @@ namespace Main.Scripts.UI.CursorControls
             if (Bools.cursorRequired)
             {
                 MoveLogicMethod();
-            
+
                 if (Mouse.current.leftButton.wasReleasedThisFrame)
                     GetClickedUI();
 
@@ -65,10 +71,10 @@ namespace Main.Scripts.UI.CursorControls
                 {
                     if (Gamepad.current.buttonSouth.IsPressed())
                     {
-                        _leftStickMoved = true; 
+                        _leftStickMoved = true;
                         GetClickedUI();
                     }
-                }   
+                }
             }
         }
 

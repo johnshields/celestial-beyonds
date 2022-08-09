@@ -35,7 +35,6 @@ public class MainMenu : MonoBehaviour
         _alertedRestartMsg = false;
         _alertedActsMsg = false;
         Bools.cursorRequired = true;
-        AudioManager.MuteActive();
 
         if (PlayerMemory.sceneToLoad == string.Empty)
         {
@@ -87,6 +86,8 @@ public class MainMenu : MonoBehaviour
         _cursor = GameObject.FindWithTag("Cursor");
         fader.GetComponent<Animator>().SetBool($"FadeIn", true);
         fader.GetComponent<Animator>().SetBool($"FadeOut", false);
+        
+       AudioManager.MuteActive();
     }
 
     private void OnEnable()
