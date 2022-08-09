@@ -50,19 +50,17 @@ public class MiniMenu : MonoBehaviour
             plantNumTxt.text = plantsNum + " / " + totalPlants;
             artifactsNumTxt.text = artifactsNum + " / " + totalArtifacts;
 
-            if (trappist)
+            if (trappist && !pcb && !kepler)
             {
                 enemyNumTxt.text = enemiesNum + " / " + totalEnemiesTrap;
                 peridotsNumTxt.text = Peridots.peridotsCollectedInLvl + " / " + totalPeridotsTrap;   
             }
-            
-            if (pcb)
+            else if (!trappist && pcb && !kepler)
             {
                 enemyNumTxt.text = enemiesNum + " / " + totalEnemiesPCB;
                 peridotsNumTxt.text = Peridots.peridotsCollectedInLvl + " / " + totalPeridotsPCB;   
             }
-            
-            if (trappist)
+            else if (!trappist && !pcb && kepler)
             {
                 enemyNumTxt.text = enemiesNum + " / " + totalEnemiesKep;
                 peridotsNumTxt.text = Peridots.peridotsCollectedInLvl + " / " + totalPeridotsKep;   

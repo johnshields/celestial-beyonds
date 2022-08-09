@@ -27,6 +27,7 @@ public class VanGunProfiler : MonoBehaviour
 
     private void Start()
     {
+        _audio.minDistance = 10;
         _player = GameObject.FindGameObjectWithTag("Player");
         _peridotCounter = _player.GetComponent<PeridotCounter>();
         _animator = GetComponent<Animator>();

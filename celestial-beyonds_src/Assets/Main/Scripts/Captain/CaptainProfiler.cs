@@ -34,7 +34,7 @@ namespace Main.Scripts.Captain
 
         private void FixedUpdate()
         {
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !Bools.cursorRequired)
             {
                 forceDir += GetCameraRight(playerCam) * (_moveKeys.ReadValue<Vector2>().x * movementForce);
                 forceDir += GetCameraForward(playerCam) * (_moveKeys.ReadValue<Vector2>().y * movementForce);
