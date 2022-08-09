@@ -35,6 +35,7 @@ public class MainMenu : MonoBehaviour
         _alertedRestartMsg = false;
         _alertedActsMsg = false;
         Bools.cursorRequired = true;
+        AudioManager.MuteActive();
 
         if (PlayerMemory.sceneToLoad == string.Empty)
         {
