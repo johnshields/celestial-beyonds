@@ -1276,6 +1276,15 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuitGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""4deeb376-7798-4a40-b439-87bd5091ad30"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1443,6 +1452,17 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""action"": ""ConfirmNo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83059825-347a-4060-a367-0b3e6c555be0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuitGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1543,6 +1563,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_UIActions_Restart = m_UIActions.FindAction("Restart", throwIfNotFound: true);
         m_UIActions_ConfirmYes = m_UIActions.FindAction("ConfirmYes", throwIfNotFound: true);
         m_UIActions_ConfirmNo = m_UIActions.FindAction("ConfirmNo", throwIfNotFound: true);
+        m_UIActions_QuitGame = m_UIActions.FindAction("QuitGame", throwIfNotFound: true);
         // ControllerCursor
         m_ControllerCursor = asset.FindActionMap("ControllerCursor", throwIfNotFound: true);
         m_ControllerCursor_Move = m_ControllerCursor.FindAction("Move", throwIfNotFound: true);
@@ -1950,6 +1971,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     private readonly InputAction m_UIActions_Restart;
     private readonly InputAction m_UIActions_ConfirmYes;
     private readonly InputAction m_UIActions_ConfirmNo;
+    private readonly InputAction m_UIActions_QuitGame;
     public struct UIActionsActions
     {
         private @InputProfiler m_Wrapper;
@@ -1961,6 +1983,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         public InputAction @Restart => m_Wrapper.m_UIActions_Restart;
         public InputAction @ConfirmYes => m_Wrapper.m_UIActions_ConfirmYes;
         public InputAction @ConfirmNo => m_Wrapper.m_UIActions_ConfirmNo;
+        public InputAction @QuitGame => m_Wrapper.m_UIActions_QuitGame;
         public InputActionMap Get() { return m_Wrapper.m_UIActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1991,6 +2014,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @ConfirmNo.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnConfirmNo;
                 @ConfirmNo.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnConfirmNo;
                 @ConfirmNo.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnConfirmNo;
+                @QuitGame.started -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
+                @QuitGame.performed -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
+                @QuitGame.canceled -= m_Wrapper.m_UIActionsActionsCallbackInterface.OnQuitGame;
             }
             m_Wrapper.m_UIActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -2016,6 +2042,9 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                 @ConfirmNo.started += instance.OnConfirmNo;
                 @ConfirmNo.performed += instance.OnConfirmNo;
                 @ConfirmNo.canceled += instance.OnConfirmNo;
+                @QuitGame.started += instance.OnQuitGame;
+                @QuitGame.performed += instance.OnQuitGame;
+                @QuitGame.canceled += instance.OnQuitGame;
             }
         }
     }
@@ -2113,6 +2142,7 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnRestart(InputAction.CallbackContext context);
         void OnConfirmYes(InputAction.CallbackContext context);
         void OnConfirmNo(InputAction.CallbackContext context);
+        void OnQuitGame(InputAction.CallbackContext context);
     }
     public interface IControllerCursorActions
     {

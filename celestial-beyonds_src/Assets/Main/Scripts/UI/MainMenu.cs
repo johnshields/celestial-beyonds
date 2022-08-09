@@ -94,6 +94,7 @@ public class MainMenu : MonoBehaviour
         _controls.UIActions.Restart.started += RestartGameInput;
         _controls.UIActions.ConfirmYes.started += ConfirmYesInput;
         _controls.UIActions.ConfirmNo.started += ConfirmNoInput;
+        _controls.UIActions.QuitGame.started += QuitGameInput;
         _controls.UIActions.Mute.started += MuteGame;
         _controls.UIActions.UnMute.started += UnMuteGame;
         _controls.UIActions.Enable();
@@ -105,6 +106,7 @@ public class MainMenu : MonoBehaviour
         _controls.UIActions.Restart.started -= RestartGameInput;
         _controls.UIActions.ConfirmYes.started -= ConfirmYesInput;
         _controls.UIActions.ConfirmNo.started -= ConfirmNoInput;
+        _controls.UIActions.QuitGame.started += QuitGameInput;
         _controls.UIActions.Mute.started -= MuteGame;
         _controls.UIActions.UnMute.started -= UnMuteGame;
         _controls.UIActions.Disable();
@@ -384,6 +386,16 @@ public class MainMenu : MonoBehaviour
         loadActs = acts;
         controlsMenu = ctrls;
         creditsRolling = credits;
+    }
+    
+    // Editor and Windows Build (Esc Key)
+    private void QuitGameInput(InputAction.CallbackContext obj)
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+           Application.Quit();
+#endif
     }
 
     private void MuteGame(InputAction.CallbackContext obj)
