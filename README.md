@@ -19,7 +19,7 @@ alt="GSA Logo" width="600" height="250"/>
 ***
 
 <a href="https://github.com/johnshields/celestial-beyonds" >
-<p align="center"><img src="https://i.ibb.co/NLRz2JT/a-ch-mb-LOGO.png"
+<p align="center"><img src="https://i.ibb.co/FgPfn9Y/cover-full.png"
 alt="cb_logo" width="auto" height="auto"/>
 </p></a>
 
