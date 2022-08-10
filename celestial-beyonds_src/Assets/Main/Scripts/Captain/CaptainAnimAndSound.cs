@@ -31,7 +31,7 @@ namespace Main.Scripts.Captain
             lookingAtArgyle,
             lookingAtViktor;
 
-        private bool _actionDone, _unarmed, _armed, _added;
+        private bool _actionDone, _unarmed, _armed, _added, _alreadyPrinted;
         private Animator _animator;
         private AudioSource _audio;
         private InputProfiler _controls;
@@ -186,10 +186,13 @@ namespace Main.Scripts.Captain
             if (Bools.aUpgraded && PlayerMemory.armorUpgrade == 1) aUpgrade = true;
             if (aUpgrade && Bools.aUpgraded && aUpgradeInLevel)
             {
-                print("Armour Upgraded!");
+                if (!_alreadyPrinted)
+                {
+                    print("Armour Upgraded!");
+                    _alreadyPrinted = true;
+                }
                 armorUpgrade[0].SetActive(true);
                 armorUpgrade[1].SetActive(true);
-                GetComponent<CaptainHealth>().pHealthBarSlider.maxValue = 200;
                 if (!_added)
                     StartCoroutine(AddHealth());
             }
@@ -198,6 +201,7 @@ namespace Main.Scripts.Captain
         private IEnumerator AddHealth()
         {
             _added = true;
+            GetComponent<CaptainHealth>().pHealthBarSlider.maxValue = 200;
             yield return new WaitForSeconds(1f);
             GetComponent<CaptainHealth>().maxHealth = 200;
             yield return new WaitForSeconds(.5f);

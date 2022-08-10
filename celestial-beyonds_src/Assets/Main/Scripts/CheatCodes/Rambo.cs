@@ -69,6 +69,11 @@ public class Rambo : MonoBehaviour
         if (r && a && m && b && o && !cheatActivated)
         {
             cheatActivated = true;
+            r = false;
+            a = false;
+            m = false;
+            b = false;
+            o = false;
             // Defier and Armor
             Bools.cdUpgraded = true;
             GetComponent<CaptainAnimAndSound>().cdUpgrade = true;

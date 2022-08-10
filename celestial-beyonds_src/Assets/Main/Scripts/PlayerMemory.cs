@@ -1,5 +1,6 @@
 using System.Collections;
 using Main.Scripts.Captain;
+using Main.Scripts.Enemies.Aristaues;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -53,6 +54,8 @@ public class PlayerMemory : MonoBehaviour
         peridots = 0;
         cannonUpgrade = 0;
         armorUpgrade = 0;
+        Lemons.cheatActivated = false;
+        Rambo.cheatActivated = false;
         print("Player Memory Reset.");
     }
 

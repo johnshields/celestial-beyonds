@@ -7,7 +7,7 @@ namespace Main.Scripts.Enemies.Aristaues
     public class Lemons : MonoBehaviour
     {
         private static bool l, e, m, o, n, s;
-        public bool cheatActivated;
+        public static bool cheatActivated;
         private InputProfiler _controls;
 
         private void Awake()
@@ -77,6 +77,12 @@ namespace Main.Scripts.Enemies.Aristaues
             if (l && e && m && o && n && s && !cheatActivated)
             {
                 cheatActivated = true;
+                l = false;
+                e = false;
+                m = false;
+                o = false;
+                n = false;
+                s = false;
                 // Weaken Aristaues
                 GetComponent<AristauesProfiler>().aristauesHealth = 100;
                 print($"Cheat Lemons activated: {cheatActivated}");
