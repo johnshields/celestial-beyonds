@@ -8,7 +8,7 @@ public class TestingOnly : MonoBehaviour
     public GameObject ca, pa, player;
     
     // Testing Cheats
-    private void Start()
+    private void Update()
     {
 #if UNITY_EDITOR
         RenderSettings.fog = fog;
@@ -17,12 +17,14 @@ public class TestingOnly : MonoBehaviour
         {
             Bools.pbUpgraded = true;
             player.GetComponent<CaptainAnimAndSound>().pbUpgrade = true;
+            PlayerMemory.cannonUpgrade = 1;
         }
 
         if (enableDefier)
         {
             Bools.cdUpgraded = true;
             player.GetComponent<CaptainAnimAndSound>().cdUpgrade = true;
+            PlayerMemory.cannonUpgrade = 2;
         }
 
         if (enableArmor)
@@ -51,7 +53,10 @@ public class TestingOnly : MonoBehaviour
 
     private IEnumerator AddHealth()
     {
-        yield return new WaitForSeconds(2);
-        player.GetComponent<CaptainHealth>().currentHealth = 200;
+        if (player.GetComponent<CaptainHealth>().currentHealth != 200)
+        {
+            yield return new WaitForSeconds(2);
+            player.GetComponent<CaptainHealth>().currentHealth = 200;   
+        }
     }
 }

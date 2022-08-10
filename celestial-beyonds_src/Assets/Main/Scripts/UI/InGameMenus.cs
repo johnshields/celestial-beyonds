@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class InGameMenus : MonoBehaviour
 {
     private InputProfiler _controls;
-    private GameObject _cursor, pl;
+    private GameObject _cursor, pl, _gamePadCursor;
     public GameObject pauseMenu, miniMenuPanel, fader, player, BtnGO, controlsPanel, muteBtn, unMuteBtn, photoMode;
-    public bool pausedActive, miniMenuActive, controlsMenu;
+    public bool pausedActive, miniMenuActive, controlsMenu, cin;
     public AudioSource audioToPause;
     public int audioPauseRequired;
     public string reloadPlanet;
@@ -17,10 +17,16 @@ public class InGameMenus : MonoBehaviour
 
     private void Awake()
     {
+        _controls = new InputProfiler();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
+    }
+
+    private void Start()
+    {
         pl = GameObject.FindGameObjectWithTag("PollinationLevel");
         pausedActive = false;
         pauseMenu.SetActive(false);
-        _controls = new InputProfiler();
         Bools.cursorRequired = false;
 
         if (!Bools.muteActive)
@@ -33,15 +39,17 @@ public class InGameMenus : MonoBehaviour
             unMuteBtn.SetActive(true);
             muteBtn.SetActive(false);
         }
-
+        
         if (cursor)
         {
             _cursor = GameObject.FindGameObjectWithTag("Cursor");
-            _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-            GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
+            _cursor.SetActive(false);
+            if (Gamepad.all.Count != 0)
+            {
+                _gamePadCursor = GameObject.Find("ControllerCursor/Controller/Cursor");
+                _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            }
         }
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = false;
     }
 
     private void OnEnable()
@@ -109,9 +117,9 @@ public class InGameMenus : MonoBehaviour
             Time.timeScale = 0f;
             if (audioPauseRequired != 0) audioToPause.Pause();
             Bools.cursorRequired = true;
-            if (cursor)
+            if (cursor && Gamepad.all.Count != 0)
             {
-                GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
+                _gamePadCursor.SetActive(true);
                 _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             }
             Cursor.visible = true;
@@ -126,9 +134,9 @@ public class InGameMenus : MonoBehaviour
             Time.timeScale = 1f;
             if (audioPauseRequired != 0) audioToPause.UnPause();
             Bools.cursorRequired = false;
-            if (cursor)
+            if (cursor && Gamepad.all.Count != 0)
             {
-                GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
+                _gamePadCursor.SetActive(false);
                 _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;   
             }
             Cursor.visible = false;
@@ -149,9 +157,9 @@ public class InGameMenus : MonoBehaviour
             if (audioPauseRequired != 0)
                 audioToPause.UnPause();
             Bools.cursorRequired = false;
-            if (cursor)
+            if (cursor && Gamepad.all.Count != 0)
             {
-                GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(false);
+                _gamePadCursor.SetActive(false);
                 _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;  
             }
             Cursor.visible = false;
@@ -247,13 +255,17 @@ public class InGameMenus : MonoBehaviour
         fader.GetComponent<Animator>().SetBool($"FadeIn", false);
         fader.GetComponent<Animator>().SetBool($"FadeOut", true);
         yield return new WaitForSeconds(2f);
-        if(player.GetComponent<CaptainHealth>().gameOver)
-            player.GetComponent<CaptainHealth>().ResetPeridots();
+        if (!cin)
+        {
+            if(player.GetComponent<CaptainHealth>().gameOver)
+                player.GetComponent<CaptainHealth>().ResetPeridots();   
+        }
         SceneManager.LoadScene(level);
     }
     
     private void ClickedElementEmpty()
     {
-        _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
+        if (cursor)
+            _cursor.GetComponent<ControllerCursor>().clickedElement = string.Empty;
     }
 }

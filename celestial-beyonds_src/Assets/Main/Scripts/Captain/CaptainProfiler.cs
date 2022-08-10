@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,14 +29,18 @@ namespace Main.Scripts.Captain
 
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody>();
             _controls = new InputProfiler();
+        }
+
+        private void Start()
+        {
+            _rb = GetComponent<Rigidbody>();
             grounded = true;
         }
 
         private void FixedUpdate()
         {
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !Bools.cursorRequired)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
             {
                 forceDir += GetCameraRight(playerCam) * (_moveKeys.ReadValue<Vector2>().x * movementForce);
                 forceDir += GetCameraForward(playerCam) * (_moveKeys.ReadValue<Vector2>().y * movementForce);

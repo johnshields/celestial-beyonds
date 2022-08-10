@@ -11,7 +11,7 @@ public class Jetpack : MonoBehaviour
 {
     public bool jetpackActive;
     public float maxFuel = 4f, currentFuel, resetSFXTime = 4f;
-    private const float _thrustForce = 0.7f;
+    private const float _thrustForce = 0.8f;
     public Transform groundedObj;
     public GameObject flames, fuelBar;
     public AudioClip jetpackSFX;

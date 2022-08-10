@@ -5,12 +5,13 @@ public class RainFade : MonoBehaviour
     private Animator _animator;
     private int _fadeIn, _fadeOut;
 
-    private void Awake()
+    private void Start()
     {
         _animator = GetComponent<Animator>();
         _fadeIn = Animator.StringToHash("FadeIn");
         _fadeOut = Animator.StringToHash("FadeOut");
         RainFader(0);
+        print($"RainFaded in {true}");
     }
 
     public void RainFader(int fade)

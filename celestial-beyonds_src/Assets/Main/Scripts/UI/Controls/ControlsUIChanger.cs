@@ -92,12 +92,12 @@ public class ControlsUIChanger : MonoBehaviour
         {
             if (Bools.keyboardSelected)
             {
-                opt1.text = "1";
-                opt2.text = "2";
-                opt3.text = "3";
-                for (var i = 0; i < 10; i++) a_opt1[i].text = "1";
-                for (var i = 0; i < 10; i++) a_opt2[i].text = "2";
-                for (var i = 0; i < 10; i++) a_opt3[i].text = "3";
+                opt1.text = "1:";
+                opt2.text = "2:";
+                opt3.text = "3:";
+                for (var i = 0; i < 10; i++) a_opt1[i].text = "1:";
+                for (var i = 0; i < 10; i++) a_opt2[i].text = "2:";
+                for (var i = 0; i < 10; i++) a_opt3[i].text = "3:";
                 talk.text = "Talk to Moonbeam: T";
                 ask.text = "Ask Moonbeam: I";
                 quit.text = "quit: Q";

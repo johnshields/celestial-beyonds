@@ -27,9 +27,12 @@ public class MainMenu : MonoBehaviour
     private string _currentScene;
     private InputProfiler _controls;
     private GameObject _cursor;
+    private bool calledTest1, calledTest2, calledTest3;
 
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         _launchGameEnabled = true;
         _restartEnabled = true;
         _alertedRestartMsg = false;
@@ -70,9 +73,9 @@ public class MainMenu : MonoBehaviour
 
         if (PlayerMemory.sceneToLoad == "011_Earth")
         {
-            // ColorUtility.TryParseHtmlString("#2A2E4E", out var blue);
-            // actBtn.GetComponent<Button>().interactable = true;
-            // actBtn.GetComponent<Image>().color = blue;
+            ColorUtility.TryParseHtmlString("#2A2E4E", out var blue);
+            actBtn.GetComponent<Button>().interactable = true;
+            actBtn.GetComponent<Image>().color = blue;
         }
         else
         {
@@ -108,7 +111,7 @@ public class MainMenu : MonoBehaviour
         _controls.UIActions.Restart.started -= RestartGameInput;
         _controls.UIActions.ConfirmYes.started -= ConfirmYesInput;
         _controls.UIActions.ConfirmNo.started -= ConfirmNoInput;
-        _controls.UIActions.QuitGame.started += QuitGameInput;
+        _controls.UIActions.QuitGame.started -= QuitGameInput;
         _controls.UIActions.Mute.started -= MuteGame;
         _controls.UIActions.UnMute.started -= UnMuteGame;
         _controls.UIActions.Disable();
@@ -286,15 +289,15 @@ public class MainMenu : MonoBehaviour
     public void LoadAct()
     {
         ClickedElementEmpty();
-        // if (PlayerMemory.sceneToLoad != "011_Earth" && !_alertedActsMsg)
-        // {
-        //     _alertedActsMsg = true;
-        //     ActsLockedMsg.text = "All Acts must be Completed to Unlock the Act Loader!";
-        //     StartCoroutine(TurnOffLockedMsg(ActsLockedMsg));
-        // }
+        if (PlayerMemory.sceneToLoad != "011_Earth" && !_alertedActsMsg)
+        {
+            _alertedActsMsg = true;
+            ActsLockedMsg.text = "All Acts must be Completed to Unlock the Act Loader!";
+            StartCoroutine(TurnOffLockedMsg(ActsLockedMsg));
+        }
 
-        // if (PlayerMemory.sceneToLoad == "011_Earth")
-        // {
+        if (PlayerMemory.sceneToLoad == "011_Earth")
+        {
             if (!loadActs)
             {
                 _launchGameEnabled = false;
@@ -303,7 +306,7 @@ public class MainMenu : MonoBehaviour
                 print("loadPlanet menu active:" + loadActs);
                 Panels(true, false, false);
             }
-        //}
+        }
     }
     
     public void CloseActs()

@@ -103,6 +103,7 @@ public class CinematicPause : MonoBehaviour
     private void LoadMainMenu(InputAction.CallbackContext obj)
     {
         print("LoadMainMenu: 101_MainMenu");
+        Time.timeScale = 1;
         StartCoroutine(GoLoadMainMenu());
     }
     
@@ -110,7 +111,6 @@ public class CinematicPause : MonoBehaviour
     {
         cinMusic.UnPause();
         pauseMenu.SetActive(false);
-        Time.timeScale = 1;
         fader.GetComponent<Animator>().SetBool($"FadeIn", false);
         fader.GetComponent<Animator>().SetBool($"FadeOut", true);
         yield return new WaitForSeconds(2f);

@@ -1493,6 +1493,134 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Lemons"",
+            ""id"": ""cb9b546e-49e2-416e-9150-c7f6c66c15f0"",
+            ""actions"": [
+                {
+                    ""name"": ""LetterL"",
+                    ""type"": ""Button"",
+                    ""id"": ""72d2479d-21ab-4c9c-9e5a-68e245821b70"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LetterE"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d9e0c62-2b6d-477e-95fd-5b4efa9bff60"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LetterM"",
+                    ""type"": ""Button"",
+                    ""id"": ""8e85edf4-8026-416f-b94b-158bf5c1d2cf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LetterO"",
+                    ""type"": ""Button"",
+                    ""id"": ""818cb70b-3aff-473c-b091-d9a15cf2d56f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LetterN"",
+                    ""type"": ""Button"",
+                    ""id"": ""40174459-9713-486a-aa32-6f4fd61d78a7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LetterS"",
+                    ""type"": ""Button"",
+                    ""id"": ""71523dd8-f01f-4a44-b6a7-b10ae24ac651"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""77467972-0cc5-4b30-ac74-2cae13f66371"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LetterL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cfa1903d-09de-421b-a96e-5b6d839a7d10"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LetterE"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26e2b50a-069b-4278-a723-4707cbc6a1b0"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LetterM"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b84f19a-c52f-4f29-9d9b-09b201d571b0"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LetterO"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8eadba74-3478-4766-af9b-2db5ebaef1e5"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LetterN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9bb9ff40-a04e-4fee-be2e-9f6884801f41"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LetterS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1567,6 +1695,14 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         // ControllerCursor
         m_ControllerCursor = asset.FindActionMap("ControllerCursor", throwIfNotFound: true);
         m_ControllerCursor_Move = m_ControllerCursor.FindAction("Move", throwIfNotFound: true);
+        // Lemons
+        m_Lemons = asset.FindActionMap("Lemons", throwIfNotFound: true);
+        m_Lemons_LetterL = m_Lemons.FindAction("LetterL", throwIfNotFound: true);
+        m_Lemons_LetterE = m_Lemons.FindAction("LetterE", throwIfNotFound: true);
+        m_Lemons_LetterM = m_Lemons.FindAction("LetterM", throwIfNotFound: true);
+        m_Lemons_LetterO = m_Lemons.FindAction("LetterO", throwIfNotFound: true);
+        m_Lemons_LetterN = m_Lemons.FindAction("LetterN", throwIfNotFound: true);
+        m_Lemons_LetterS = m_Lemons.FindAction("LetterS", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -2082,6 +2218,79 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         }
     }
     public ControllerCursorActions @ControllerCursor => new ControllerCursorActions(this);
+
+    // Lemons
+    private readonly InputActionMap m_Lemons;
+    private ILemonsActions m_LemonsActionsCallbackInterface;
+    private readonly InputAction m_Lemons_LetterL;
+    private readonly InputAction m_Lemons_LetterE;
+    private readonly InputAction m_Lemons_LetterM;
+    private readonly InputAction m_Lemons_LetterO;
+    private readonly InputAction m_Lemons_LetterN;
+    private readonly InputAction m_Lemons_LetterS;
+    public struct LemonsActions
+    {
+        private @InputProfiler m_Wrapper;
+        public LemonsActions(@InputProfiler wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LetterL => m_Wrapper.m_Lemons_LetterL;
+        public InputAction @LetterE => m_Wrapper.m_Lemons_LetterE;
+        public InputAction @LetterM => m_Wrapper.m_Lemons_LetterM;
+        public InputAction @LetterO => m_Wrapper.m_Lemons_LetterO;
+        public InputAction @LetterN => m_Wrapper.m_Lemons_LetterN;
+        public InputAction @LetterS => m_Wrapper.m_Lemons_LetterS;
+        public InputActionMap Get() { return m_Wrapper.m_Lemons; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LemonsActions set) { return set.Get(); }
+        public void SetCallbacks(ILemonsActions instance)
+        {
+            if (m_Wrapper.m_LemonsActionsCallbackInterface != null)
+            {
+                @LetterL.started -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterL;
+                @LetterL.performed -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterL;
+                @LetterL.canceled -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterL;
+                @LetterE.started -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterE;
+                @LetterE.performed -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterE;
+                @LetterE.canceled -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterE;
+                @LetterM.started -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterM;
+                @LetterM.performed -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterM;
+                @LetterM.canceled -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterM;
+                @LetterO.started -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterO;
+                @LetterO.performed -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterO;
+                @LetterO.canceled -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterO;
+                @LetterN.started -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterN;
+                @LetterN.performed -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterN;
+                @LetterN.canceled -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterN;
+                @LetterS.started -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterS;
+                @LetterS.performed -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterS;
+                @LetterS.canceled -= m_Wrapper.m_LemonsActionsCallbackInterface.OnLetterS;
+            }
+            m_Wrapper.m_LemonsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @LetterL.started += instance.OnLetterL;
+                @LetterL.performed += instance.OnLetterL;
+                @LetterL.canceled += instance.OnLetterL;
+                @LetterE.started += instance.OnLetterE;
+                @LetterE.performed += instance.OnLetterE;
+                @LetterE.canceled += instance.OnLetterE;
+                @LetterM.started += instance.OnLetterM;
+                @LetterM.performed += instance.OnLetterM;
+                @LetterM.canceled += instance.OnLetterM;
+                @LetterO.started += instance.OnLetterO;
+                @LetterO.performed += instance.OnLetterO;
+                @LetterO.canceled += instance.OnLetterO;
+                @LetterN.started += instance.OnLetterN;
+                @LetterN.performed += instance.OnLetterN;
+                @LetterN.canceled += instance.OnLetterN;
+                @LetterS.started += instance.OnLetterS;
+                @LetterS.performed += instance.OnLetterS;
+                @LetterS.canceled += instance.OnLetterS;
+            }
+        }
+    }
+    public LemonsActions @Lemons => new LemonsActions(this);
     private int m_GamepadSchemeIndex = -1;
     public InputControlScheme GamepadScheme
     {
@@ -2147,5 +2356,14 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
     public interface IControllerCursorActions
     {
         void OnMove(InputAction.CallbackContext context);
+    }
+    public interface ILemonsActions
+    {
+        void OnLetterL(InputAction.CallbackContext context);
+        void OnLetterE(InputAction.CallbackContext context);
+        void OnLetterM(InputAction.CallbackContext context);
+        void OnLetterO(InputAction.CallbackContext context);
+        void OnLetterN(InputAction.CallbackContext context);
+        void OnLetterS(InputAction.CallbackContext context);
     }
 }

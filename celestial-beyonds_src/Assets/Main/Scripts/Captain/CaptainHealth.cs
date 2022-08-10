@@ -1,6 +1,7 @@
 using System.Collections;
 using Main.Scripts.Captain;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class CaptainHealth : MonoBehaviour
@@ -64,9 +65,12 @@ public class CaptainHealth : MonoBehaviour
     private IEnumerator GameOverScreen()
     {
         yield return new WaitForSeconds(3f);
-        GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
-        GameObject.Find("ControllerCursor/Controller").GetComponent<Rigidbody2D>().constraints =
-            RigidbodyConstraints2D.None;
+        if (Gamepad.all.Count != 0)
+        {
+            GameObject.Find("ControllerCursor/Controller/Cursor").SetActive(true);
+            GameObject.Find("ControllerCursor/Controller").GetComponent<Rigidbody2D>().constraints =
+                RigidbodyConstraints2D.None;   
+        }
         Cursor.visible = true;
         Bools.cursorRequired = true;
         gameOver = true;

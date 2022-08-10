@@ -15,6 +15,7 @@ public class DungeonPuzzle : MonoBehaviour
         _animator = GetComponent<Animator>();
         _lights = Animator.StringToHash("Light");
         _door = Animator.StringToHash("DoorOpen");
+        print("Dungeon Puzzle Setup.");
     }
 
     private void Update()

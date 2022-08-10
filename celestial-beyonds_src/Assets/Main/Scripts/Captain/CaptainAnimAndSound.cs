@@ -53,14 +53,15 @@ namespace Main.Scripts.Captain
 
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody>();
             _controls = new InputProfiler();
-            PlayerState(true, false);
-            Bools.LoadUpgrades();
         }
 
         private void Start()
         {
+            PlayerState(true, false);
+            Bools.LoadUpgrades();
+
+            _rb = GetComponent<Rigidbody>();
             _audio = GetComponent<AudioSource>();
             _animator = GetComponent<Animator>();
 
@@ -132,6 +133,8 @@ namespace Main.Scripts.Captain
                 Debug.Log($"looking at {obj.name}", this);
             }
             else lookingAtViktor = false;
+
+            SetScraper();
         }
 
         private void OnEnable()
@@ -156,6 +159,28 @@ namespace Main.Scripts.Captain
             _controls.Profiler.Disable();
         }
 
+        private void SetScraper()
+        {
+            if (!_scraper.activeInHierarchy)
+            {
+                _scraper.SetActive(false);
+            }
+            if (_scraper.activeInHierarchy)
+            {
+                _scraper.SetActive(true);
+                cannonFire = false;
+                pollenFire = false;
+                _unarmed = false;
+            }
+            
+            if(cannonFire)
+                _scraper.SetActive(false);
+            if(pollenFire)
+                _scraper.SetActive(false);
+            if(_unarmed)
+                _scraper.SetActive(false);
+        }
+
         private void ArmorState()
         {
             if (Bools.aUpgraded && PlayerMemory.armorUpgrade == 1) aUpgrade = true;
@@ -165,11 +190,11 @@ namespace Main.Scripts.Captain
                 armorUpgrade[0].SetActive(true);
                 armorUpgrade[1].SetActive(true);
                 GetComponent<CaptainHealth>().pHealthBarSlider.maxValue = 200;
-                if(!_added)
+                if (!_added)
                     StartCoroutine(AddHealth());
             }
         }
-        
+
         private IEnumerator AddHealth()
         {
             _added = true;
@@ -264,7 +289,8 @@ namespace Main.Scripts.Captain
             if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && _mb.GetComponent<MoonbeamDialogue>().convEnd)
             {
                 PlayerState(true, false);
-                if (_unarmed) WeaponSelect(false, false, false);
+                if (_unarmed)
+                    WeaponSelect(false, false, false);
             }
         }
 

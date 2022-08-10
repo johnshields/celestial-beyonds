@@ -12,8 +12,8 @@ using Random = UnityEngine.Random;
  */
 public class AristauesProfiler : MonoBehaviour
 {
-    public int aristauesMaxHealth = 3000, AristauesHealth, meleeDamage, cannonDamage;
-    public GameObject aHealthBar, vvg, fader;
+    public int aristauesMaxHealth = 3000, aristauesHealth, meleeDamage, cannonDamage;
+    public GameObject aHealthBar, fader;
     public Slider aHealthBarSlider;
     public NavMeshAgent aristaues;
     public Transform player;
@@ -39,7 +39,7 @@ public class AristauesProfiler : MonoBehaviour
 
     private void Awake()
     {
-        AristauesHealth = aristauesMaxHealth;
+        aristauesHealth = aristauesMaxHealth;
         aHealthBarSlider = aHealthBar.GetComponent<Slider>();
         aristaues = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -57,7 +57,7 @@ public class AristauesProfiler : MonoBehaviour
     private void Update()
     {
         // Health
-        aHealthBarSlider.value = AristauesHealth;
+        aHealthBarSlider.value = aristauesHealth;
 
         if (!terminated)
         {
@@ -179,17 +179,16 @@ public class AristauesProfiler : MonoBehaviour
     public void TakeDamage(GameObject enemy)
     {
         if (player.GetComponent<CaptainAnimAndSound>().meleeActive)
-            AristauesHealth -= meleeDamage;
+            aristauesHealth -= meleeDamage;
         else if (player.GetComponent<CaptainAnimAndSound>().cannonFire)
-            AristauesHealth -= cannonDamage;
+            aristauesHealth -= cannonDamage;
 
-        print(enemy.name + " Health: " + AristauesHealth);
+        print(enemy.name + " Health: " + aristauesHealth);
 
-        if (AristauesHealth <= 0 && !terminated)
+        if (aristauesHealth <= 0 && !terminated)
         {
             terminated = true;
             print(enemy.name + " Defeated!");
-            AnimationState(true, false, false, false, false);
             _animator.SetTrigger(_fall);
         }
     }

@@ -9,9 +9,9 @@ public class PuzzleInit : MonoBehaviour
     public GameObject mbAPI, lightControl;
     public AudioSource holyGrailMusic;
 
-    private void Awake()
+    private void Start()
     {
-        holyGrailMusic.Pause();
+        Invoke(nameof(PauseDungeonMusic), 5);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,6 +28,12 @@ public class PuzzleInit : MonoBehaviour
                 StartCoroutine(CloseDialogue());
             }   
         }
+    }
+
+    private void PauseDungeonMusic()
+    {
+        holyGrailMusic.Pause();
+        print("Dungeon Music Paused until interaction.");
     }
 
     private IEnumerator CloseDialogue()
