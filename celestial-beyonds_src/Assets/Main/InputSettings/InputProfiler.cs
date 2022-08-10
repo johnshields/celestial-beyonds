@@ -1621,6 +1621,114 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Rambo"",
+            ""id"": ""c3d5eddd-7e68-47c1-917f-2bdf05f32772"",
+            ""actions"": [
+                {
+                    ""name"": ""LetterR"",
+                    ""type"": ""Button"",
+                    ""id"": ""d62f109c-4b3f-42e9-9d13-dde2766fe26c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LetterA"",
+                    ""type"": ""Button"",
+                    ""id"": ""98252fee-9091-49ec-aaee-948940ca0383"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LetterM"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c352201-3b82-4555-a6b2-c7ded9b5eb52"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LetterB"",
+                    ""type"": ""Button"",
+                    ""id"": ""28a5329b-e239-459b-9951-5029072fd6fb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LetterO"",
+                    ""type"": ""Button"",
+                    ""id"": ""760af866-28fa-4385-9a6b-556b10165a16"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""dcd0258d-7146-4135-8f60-ee5e319429fc"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LetterR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""674a3e71-a56a-4b28-99d5-9cebe4130a89"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LetterA"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34778bb3-b30f-4ed1-b1b2-87fc399a21af"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LetterM"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47041fcb-24a5-4c8f-a07d-129e65f7df6f"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LetterB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f065c8e-8d4a-40e6-8f0b-3d07179772c8"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LetterO"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1703,6 +1811,13 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         m_Lemons_LetterO = m_Lemons.FindAction("LetterO", throwIfNotFound: true);
         m_Lemons_LetterN = m_Lemons.FindAction("LetterN", throwIfNotFound: true);
         m_Lemons_LetterS = m_Lemons.FindAction("LetterS", throwIfNotFound: true);
+        // Rambo
+        m_Rambo = asset.FindActionMap("Rambo", throwIfNotFound: true);
+        m_Rambo_LetterR = m_Rambo.FindAction("LetterR", throwIfNotFound: true);
+        m_Rambo_LetterA = m_Rambo.FindAction("LetterA", throwIfNotFound: true);
+        m_Rambo_LetterM = m_Rambo.FindAction("LetterM", throwIfNotFound: true);
+        m_Rambo_LetterB = m_Rambo.FindAction("LetterB", throwIfNotFound: true);
+        m_Rambo_LetterO = m_Rambo.FindAction("LetterO", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -2291,6 +2406,71 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         }
     }
     public LemonsActions @Lemons => new LemonsActions(this);
+
+    // Rambo
+    private readonly InputActionMap m_Rambo;
+    private IRamboActions m_RamboActionsCallbackInterface;
+    private readonly InputAction m_Rambo_LetterR;
+    private readonly InputAction m_Rambo_LetterA;
+    private readonly InputAction m_Rambo_LetterM;
+    private readonly InputAction m_Rambo_LetterB;
+    private readonly InputAction m_Rambo_LetterO;
+    public struct RamboActions
+    {
+        private @InputProfiler m_Wrapper;
+        public RamboActions(@InputProfiler wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LetterR => m_Wrapper.m_Rambo_LetterR;
+        public InputAction @LetterA => m_Wrapper.m_Rambo_LetterA;
+        public InputAction @LetterM => m_Wrapper.m_Rambo_LetterM;
+        public InputAction @LetterB => m_Wrapper.m_Rambo_LetterB;
+        public InputAction @LetterO => m_Wrapper.m_Rambo_LetterO;
+        public InputActionMap Get() { return m_Wrapper.m_Rambo; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(RamboActions set) { return set.Get(); }
+        public void SetCallbacks(IRamboActions instance)
+        {
+            if (m_Wrapper.m_RamboActionsCallbackInterface != null)
+            {
+                @LetterR.started -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterR;
+                @LetterR.performed -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterR;
+                @LetterR.canceled -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterR;
+                @LetterA.started -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterA;
+                @LetterA.performed -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterA;
+                @LetterA.canceled -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterA;
+                @LetterM.started -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterM;
+                @LetterM.performed -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterM;
+                @LetterM.canceled -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterM;
+                @LetterB.started -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterB;
+                @LetterB.performed -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterB;
+                @LetterB.canceled -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterB;
+                @LetterO.started -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterO;
+                @LetterO.performed -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterO;
+                @LetterO.canceled -= m_Wrapper.m_RamboActionsCallbackInterface.OnLetterO;
+            }
+            m_Wrapper.m_RamboActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @LetterR.started += instance.OnLetterR;
+                @LetterR.performed += instance.OnLetterR;
+                @LetterR.canceled += instance.OnLetterR;
+                @LetterA.started += instance.OnLetterA;
+                @LetterA.performed += instance.OnLetterA;
+                @LetterA.canceled += instance.OnLetterA;
+                @LetterM.started += instance.OnLetterM;
+                @LetterM.performed += instance.OnLetterM;
+                @LetterM.canceled += instance.OnLetterM;
+                @LetterB.started += instance.OnLetterB;
+                @LetterB.performed += instance.OnLetterB;
+                @LetterB.canceled += instance.OnLetterB;
+                @LetterO.started += instance.OnLetterO;
+                @LetterO.performed += instance.OnLetterO;
+                @LetterO.canceled += instance.OnLetterO;
+            }
+        }
+    }
+    public RamboActions @Rambo => new RamboActions(this);
     private int m_GamepadSchemeIndex = -1;
     public InputControlScheme GamepadScheme
     {
@@ -2365,5 +2545,13 @@ public partial class @InputProfiler : IInputActionCollection2, IDisposable
         void OnLetterO(InputAction.CallbackContext context);
         void OnLetterN(InputAction.CallbackContext context);
         void OnLetterS(InputAction.CallbackContext context);
+    }
+    public interface IRamboActions
+    {
+        void OnLetterR(InputAction.CallbackContext context);
+        void OnLetterA(InputAction.CallbackContext context);
+        void OnLetterM(InputAction.CallbackContext context);
+        void OnLetterB(InputAction.CallbackContext context);
+        void OnLetterO(InputAction.CallbackContext context);
     }
 }

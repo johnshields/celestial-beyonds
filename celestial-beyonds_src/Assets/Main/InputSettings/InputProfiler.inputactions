@@ -1599,6 +1599,114 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Rambo",
+            "id": "c3d5eddd-7e68-47c1-917f-2bdf05f32772",
+            "actions": [
+                {
+                    "name": "LetterR",
+                    "type": "Button",
+                    "id": "d62f109c-4b3f-42e9-9d13-dde2766fe26c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LetterA",
+                    "type": "Button",
+                    "id": "98252fee-9091-49ec-aaee-948940ca0383",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LetterM",
+                    "type": "Button",
+                    "id": "4c352201-3b82-4555-a6b2-c7ded9b5eb52",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LetterB",
+                    "type": "Button",
+                    "id": "28a5329b-e239-459b-9951-5029072fd6fb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LetterO",
+                    "type": "Button",
+                    "id": "760af866-28fa-4385-9a6b-556b10165a16",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dcd0258d-7146-4135-8f60-ee5e319429fc",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LetterR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "674a3e71-a56a-4b28-99d5-9cebe4130a89",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LetterA",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34778bb3-b30f-4ed1-b1b2-87fc399a21af",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LetterM",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47041fcb-24a5-4c8f-a07d-129e65f7df6f",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LetterB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f065c8e-8d4a-40e6-8f0b-3d07179772c8",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LetterO",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

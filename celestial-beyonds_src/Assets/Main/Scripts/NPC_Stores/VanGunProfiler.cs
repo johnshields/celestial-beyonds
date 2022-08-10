@@ -147,7 +147,8 @@ public class VanGunProfiler : MonoBehaviour
             _audio.PlayOneShot(sale, 0.1f);
             _peridotCounter.GetComponent<PeridotCounter>().SellPeridots(upgradeCost);
             canAmmo.GetComponent<CannonAmmo>().cannonAmmo = canAmmo.GetComponent<CannonAmmo>().maxAmmo;
-            UpgradeCannon(upgradeNum);
+            if(!Rambo.cheatActivated)
+                UpgradeCannon(upgradeNum);
         }
         else if(PlayerMemory.peridots < upgradeCost && _player.GetComponent<CaptainAnimAndSound>().lookingAtViktor)
         {

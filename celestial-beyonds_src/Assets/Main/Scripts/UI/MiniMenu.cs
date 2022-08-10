@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -114,9 +113,12 @@ public class MiniMenu : MonoBehaviour
     {
         if (PlayerMemory.cannonUpgrade != 1 || PlayerMemory.cannonUpgrade != 2 || PlayerMemory.armorUpgrade != 1)
         {
-            upgradePanel.SetActive(true);
-            upgradeOption.SetActive(true);
-            _audio.PlayOneShot(achievementSFX[3]);
+            if (!Rambo.cheatActivated)
+            {
+                upgradePanel.SetActive(true);
+                upgradeOption.SetActive(true);
+                _audio.PlayOneShot(achievementSFX[3]);   
+            }
         }
     }
 
