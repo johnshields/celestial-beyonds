@@ -26,7 +26,7 @@ alt="cb_logo" width="auto" height="auto"/>
 ***
 The Celestial Beyonds mixes Space Hub Exploration, Platformers, Action, and Bees in one game! However, the research and delivery focuses on A.I. companionship in Serious Games.
 
-[Play the Game on Itch.io!](https://shieldsdev.itch.io/the-celestial-beyonds-td)
+[Play 'The Celestial Beyonds' on Game Jolt!](https://gamejolt.com/games/celestial-beyonds/740687)
 ***
 
 ###### END OF README
