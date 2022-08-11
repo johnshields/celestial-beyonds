@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class ControlsMenu : MonoBehaviour
 {
     public GameObject keyboard, playstation, xbox, ctrlsPanel, planetPanel;
+    public GameObject[] buttons;
     public bool isMainMenu;
     public bool noCursor;
     private GameObject _cursor;
@@ -16,6 +17,24 @@ public class ControlsMenu : MonoBehaviour
         _controls = new InputProfiler();
         if (!noCursor)
             _cursor = GameObject.FindGameObjectWithTag("Cursor");
+        
+        Bools.IsWebGL();
+    }
+
+    private void Start()
+    {
+        if (Bools.isWebGL)
+        {
+            buttons[0].SetActive(false);
+            buttons[1].SetActive(false);
+            buttons[2].SetActive(false);
+        }
+        else
+        {
+            buttons[0].SetActive(true);
+            buttons[1].SetActive(true);
+            buttons[2].SetActive(true);
+        }
     }
 
     private void Update()
@@ -37,7 +56,6 @@ public class ControlsMenu : MonoBehaviour
         _controls.InGameUI.PlayStation.started += PlayStationCtrls;
         _controls.InGameUI.Xbox.started += XboxCtrls;
         _controls.InGameUI.Enable();
-        _controls.UIActions.Enable();
     }
 
     private void OnDisable()
@@ -46,27 +64,27 @@ public class ControlsMenu : MonoBehaviour
         _controls.InGameUI.PlayStation.started += PlayStationCtrls;
         _controls.InGameUI.Xbox.started += XboxCtrls;
         _controls.InGameUI.Disable();
-        _controls.UIActions.Disable();
     }
-
+    
+    
     // Controller
     private void KeyboardCtrls(InputAction.CallbackContext obj)
     {
-        if (!ctrlsPanel.activeInHierarchy) return;
+        if (!ctrlsPanel.activeInHierarchy && Bools.isWebGL) return;
         print("Keyboard");
         WhichControls(true, false, false);
     }
 
     private void PlayStationCtrls(InputAction.CallbackContext obj)
     {
-        if (!ctrlsPanel.activeInHierarchy) return;
+        if (!ctrlsPanel.activeInHierarchy  && Bools.isWebGL) return;
         print("Playstation Controller");
         WhichControls(false, true, false);
     }
 
     private void XboxCtrls(InputAction.CallbackContext obj)
     {
-        if (!ctrlsPanel.activeInHierarchy) return;
+        if (!ctrlsPanel.activeInHierarchy  && Bools.isWebGL) return;
         print("Xbox Controller");
         WhichControls(false, false, true);
     }
@@ -75,7 +93,7 @@ public class ControlsMenu : MonoBehaviour
     public void KeyboardControls()
     {
         ClickedElementEmpty();
-        if (!ctrlsPanel.activeInHierarchy) return;
+        if (!ctrlsPanel.activeInHierarchy && Bools.isWebGL) return;
         print("Keyboard");
         WhichControls(true, false, false);
     }
@@ -83,7 +101,7 @@ public class ControlsMenu : MonoBehaviour
     public void PlayStationControls()
     {
         ClickedElementEmpty();
-        if (!ctrlsPanel.activeInHierarchy) return;
+        if (!ctrlsPanel.activeInHierarchy && Bools.isWebGL) return;
         print("Playstation Controller");
         WhichControls(false, true, false);
     }
@@ -91,7 +109,7 @@ public class ControlsMenu : MonoBehaviour
     public void XboxControls()
     {
         ClickedElementEmpty();
-        if (!ctrlsPanel.activeInHierarchy) return;
+        if (!ctrlsPanel.activeInHierarchy && Bools.isWebGL) return;
         print("Xbox Controller");
         WhichControls(false, false, true);
     }

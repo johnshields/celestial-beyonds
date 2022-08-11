@@ -1,7 +1,7 @@
 public static class Bools
 {
     public static bool muteActive, keyboardSelected, playstationSelected, xboxSelected;
-    public static bool pbUpgraded, cdUpgraded, aUpgraded;
+    public static bool pbUpgraded, cdUpgraded, aUpgraded, isWebGL;
     public static bool cursorRequired;
 
     public static void LoadUpgrades()
@@ -22,5 +22,14 @@ public static class Bools
         {
             aUpgraded = true;
         }
+    }
+    
+    public static void IsWebGL()
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        isWebGL = true;
+#else
+        isWebGL = false;
+#endif
     }
 }

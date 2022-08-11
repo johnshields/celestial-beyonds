@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class InGameMenus : MonoBehaviour
 {
     private InputProfiler _controls;
-    private GameObject _cursor, pl, _gamePadCursor;
+    private GameObject _cursor, pl;
     public GameObject pauseMenu, miniMenuPanel, fader, player, BtnGO, controlsPanel, muteBtn, unMuteBtn, photoMode;
     public bool pausedActive, miniMenuActive, controlsMenu, cin;
     public AudioSource audioToPause;
@@ -41,15 +41,7 @@ public class InGameMenus : MonoBehaviour
         }
         
         if (cursor)
-        {
             _cursor = GameObject.FindGameObjectWithTag("Cursor");
-            _cursor.SetActive(false);
-            if (Gamepad.all.Count != 0)
-            {
-                _gamePadCursor = GameObject.Find("ControllerCursor/Controller/Cursor");
-                _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-            }
-        }
     }
 
     private void OnEnable()
@@ -117,11 +109,6 @@ public class InGameMenus : MonoBehaviour
             Time.timeScale = 0f;
             if (audioPauseRequired != 0) audioToPause.Pause();
             Bools.cursorRequired = true;
-            if (cursor && Gamepad.all.Count != 0)
-            {
-                _gamePadCursor.SetActive(true);
-                _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-            }
             Cursor.visible = true;
         }
         else if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
@@ -134,11 +121,6 @@ public class InGameMenus : MonoBehaviour
             Time.timeScale = 1f;
             if (audioPauseRequired != 0) audioToPause.UnPause();
             Bools.cursorRequired = false;
-            if (cursor && Gamepad.all.Count != 0)
-            {
-                _gamePadCursor.SetActive(false);
-                _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;   
-            }
             Cursor.visible = false;
         }
     }
@@ -157,11 +139,6 @@ public class InGameMenus : MonoBehaviour
             if (audioPauseRequired != 0)
                 audioToPause.UnPause();
             Bools.cursorRequired = false;
-            if (cursor && Gamepad.all.Count != 0)
-            {
-                _gamePadCursor.SetActive(false);
-                _cursor.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;  
-            }
             Cursor.visible = false;
         }
         else if (player.GetComponent<CaptainHealth>().gameOver)

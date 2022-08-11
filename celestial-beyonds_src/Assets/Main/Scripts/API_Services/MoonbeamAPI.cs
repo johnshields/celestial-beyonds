@@ -41,6 +41,15 @@ public class MoonbeamAPI : MonoBehaviour
             }
             else
                 print("Connection to API: " + webRequest.result);   
+            
+            // When server is down.
+            if (webRequest.error == "Request timeout")
+            {
+                print("Error timeout: " + webRequest.error);
+                _response = "Sorry, my API is down.";
+                _mb.GetComponent<MoonbeamDialogue>().response = _response;
+                PlayRandomClip(0.5f);
+            }
         }
     }
 
@@ -68,6 +77,15 @@ public class MoonbeamAPI : MonoBehaviour
                 _response = webRequest.downloadHandler.text;
                 _mb.GetComponent<MoonbeamDialogue>().response = _response;
                 IsItAQuestion();
+                PlayRandomClip(0.5f);
+            }
+
+            // When server is down.
+            if (webRequest.error == "Request timeout")
+            {
+                print("Error timeout: " + webRequest.error);
+                _response = "Sorry, my API is down.";
+                _mb.GetComponent<MoonbeamDialogue>().response = _response;
                 PlayRandomClip(0.5f);
             }
         }

@@ -97,8 +97,6 @@ public class MainMenu : MonoBehaviour
     {
         _controls.UIActions.LaunchGameBtn.started += LaunchGameInput;
         _controls.UIActions.Restart.started += RestartGameInput;
-        _controls.UIActions.ConfirmYes.started += ConfirmYesInput;
-        _controls.UIActions.ConfirmNo.started += ConfirmNoInput;
         _controls.UIActions.QuitGame.started += QuitGameInput;
         _controls.UIActions.Mute.started += MuteGame;
         _controls.UIActions.UnMute.started += UnMuteGame;
@@ -109,8 +107,6 @@ public class MainMenu : MonoBehaviour
     {
         _controls.UIActions.LaunchGameBtn.started -= LaunchGameInput;
         _controls.UIActions.Restart.started -= RestartGameInput;
-        _controls.UIActions.ConfirmYes.started -= ConfirmYesInput;
-        _controls.UIActions.ConfirmNo.started -= ConfirmNoInput;
         _controls.UIActions.QuitGame.started -= QuitGameInput;
         _controls.UIActions.Mute.started -= MuteGame;
         _controls.UIActions.UnMute.started -= UnMuteGame;
@@ -223,16 +219,6 @@ public class MainMenu : MonoBehaviour
     private void RestartGameInput(InputAction.CallbackContext obj)
     {
         RestartGame();
-    }
-
-    private void ConfirmYesInput(InputAction.CallbackContext obj)
-    {
-       ConfirmYes();
-    }
-
-    private void ConfirmNoInput(InputAction.CallbackContext obj)
-    {
-        ConfirmNo();
     }
 
     // Cursor
