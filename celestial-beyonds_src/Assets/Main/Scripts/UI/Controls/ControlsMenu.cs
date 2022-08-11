@@ -28,12 +28,7 @@ public class ControlsMenu : MonoBehaviour
             buttons[0].SetActive(false);
             buttons[1].SetActive(false);
             buttons[2].SetActive(false);
-        }
-        else
-        {
-            buttons[0].SetActive(true);
-            buttons[1].SetActive(true);
-            buttons[2].SetActive(true);
+            keyboard.GetComponent<RectTransform>().localPosition = new Vector3(0, -10, 0);
         }
     }
 
