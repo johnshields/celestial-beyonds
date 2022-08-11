@@ -23,16 +23,22 @@ with open('data/general.json') as f:
 with open('data/trappist.json') as f:
     trappist_data = json.load(f)
 
-    with open('data/pcb.json') as f:
-        pcb_data = json.load(f)
+with open('data/pcb.json') as f:
+    pcb_data = json.load(f)
 
+with open('data/kepler.json') as f:
+    kepler_data = json.load(f)
 
 trainer.train(general_data)
 trainer.train(trappist_data)
 trainer.train(pcb_data)
-print('[INFO] Training complete!' + '\n Chat with Moonbeam!' +
-      '\n Local: http://0.0.0.0:5000/' + '\n Hosted: https://api.moonbeambot.live/' +
-      '\n Awaiting request...')
+trainer.train(kepler_data)
+print('[INFO] Training complete!' +
+      '\n Chat with Moonbeam!' +
+      '\n Local: http://0.0.0.0:5000/' +
+      '\n Hosted: https://api.moonbeambot.live/' +
+      '\n Awaiting request...'
+      )
 
 # create a new web app
 app = Flask(__name__, static_folder="static", template_folder="templates")
