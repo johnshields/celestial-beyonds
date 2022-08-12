@@ -231,6 +231,7 @@ namespace Main.Scripts.Captain
             _armed = armed;
         }
 
+        // Allow Hume to freely select between weapons
         public void WeaponSelect(bool s, bool c, bool p)
         {
             if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
@@ -288,6 +289,7 @@ namespace Main.Scripts.Captain
             }
         }
 
+        // Disable all weapons
         private void Unarmed(InputAction.CallbackContext obj)
         {
             if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && _mb.GetComponent<MoonbeamDialogue>().convEnd)
@@ -429,12 +431,20 @@ namespace Main.Scripts.Captain
             if (!pauseMenu.GetComponent<InGameMenus>().pausedActive && !GetComponent<CaptainHealth>().capDead)
             {
                 if (_actionDone) return;
-                AnimWeight(1f, 0f);
+                AnimWeight(1f, 0f); // alter layer
                 _animator.SetTrigger(_dodge);
                 StartCoroutine(WaitToDodge());
                 _actionDone = true;
                 Invoke(nameof(ResetAction), delayAction);
             }
+        }
+        
+        private IEnumerator WaitToDodge()
+        {
+            // have hume dodge back his current position
+            yield return new WaitForSeconds(.25f);
+            _rb.velocity = transform.TransformDirection(0, 0, dodge);
+            Invoke(nameof(ResetAnimWeight), delayAction);
         }
 
         public void CapDeath()
@@ -462,13 +472,6 @@ namespace Main.Scripts.Captain
             }
 
             ResetAnimWeight();
-        }
-
-        private IEnumerator WaitToDodge()
-        {
-            yield return new WaitForSeconds(.25f);
-            _rb.velocity = transform.TransformDirection(0, 0, dodge);
-            Invoke(nameof(ResetAnimWeight), delayAction);
         }
 
         private void AnimWeight(float actions, float shoot)

@@ -19,9 +19,11 @@ namespace Main.Scripts.Combat
 
         private void OnTriggerEnter(Collider other)
         {
+            // Only allow Scraper to hit off Enemies
             if (other.gameObject.CompareTag("Enemy") && _player.GetComponent<CaptainAnimAndSound>().meleeActive && 
                 !_player.GetComponent<CaptainAnimAndSound>().endgame)
             {
+                // Enemies take damage and play a 'blood' particle effect
                 other.gameObject.GetComponent<EnemyProfiler>().TakeDamage(other.gameObject);
                 other.gameObject.GetComponent<ParticleSystem>().Play();
             }

@@ -62,6 +62,7 @@ public class MoonbeamAPI : MonoBehaviour
             // Send POST request.
             using var webRequest = UnityWebRequest.Post(uri, form);
             yield return webRequest.SendWebRequest();
+            // if there is a Request error
             if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
                 webRequest.result == UnityWebRequest.Result.ProtocolError ||  
                 webRequest.result == UnityWebRequest.Result.DataProcessingError)
@@ -71,12 +72,14 @@ public class MoonbeamAPI : MonoBehaviour
                 _mb.GetComponent<MoonbeamDialogue>().response = _response;
                 PlayRandomClip(0.5f);
             }
+            // if Moonbeam can indeed respond.
             else
             {
+                // response from API.
                 print("Moonbeam says: " + webRequest.downloadHandler.text);
                 _response = webRequest.downloadHandler.text;
                 _mb.GetComponent<MoonbeamDialogue>().response = _response;
-                IsItAQuestion();
+                IsItAQuestion(); // checks to see if its a question for Dialogue Trees.
                 PlayRandomClip(0.5f);
             }
 

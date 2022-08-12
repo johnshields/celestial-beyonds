@@ -74,12 +74,13 @@ public class PollinationLevel : MonoBehaviour
 
     public void IncreasePollination()
     {
+        // Increase the pollination lvl
         pollinationPercent += pollenIncrease;
         print("PollinationLevel: " + pollinationPercent);
 
         if (pollinationPercent == maxPollination)
         {
-            // level complete
+            // once the pollinationPercent is max the planet is complete
             levelCompleted = true;
             print("Level complete! " + levelCompleted);
             StartCoroutine(LevelCompleteUI());

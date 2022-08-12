@@ -30,21 +30,25 @@ public class CaptainHealth : MonoBehaviour
             currentHealth = 200;
     }
 
+    // Allow Hume to take damage from Enemies and terminated him if his health goes to 0.
+    // Accessed in EnemyCombat and SpiderCombat.  
     public void PlayerTakeDamage(int amount)
     {
         if (!capDead)
-            currentHealth -= amount;
+            currentHealth -= amount; // take damage
 
+        // if Cap's Health is below or equal to 0 terminate him.
         if (currentHealth <= 0)
         {
             capDead = true;
             print("Player Terminated!");
+            // reset Peridots collected in level.
             if (!peridotsReset)
             {
                 peridotsReset = true;
                 PlayerMemory.peridots -= Peridots.peridotsCollectedInLvl;
             }
-
+            // Death animation.
             _player.GetComponent<CaptainAnimAndSound>().CapDeath();
             StartCoroutine(GameOverScreen());
         }
