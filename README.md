@@ -25,10 +25,17 @@ alt="cb_logo" width="auto" height="auto"/>
 
 ***
 # About
-The Celestial Beyonds mixes Space Hub Exploration, Platformers, Action, and Bees in one game! However, the research and delivery focuses on A.I. companionship in Serious Games.
+The Celestial Beyonds is a Space Hub Exploration and Action Platformer, with a theme and style of Bees. The research and delivery behind the game focuses on AI companionship in Serious Games.
 
 # Narrative
-The Celestial Beyonds may be the title of the game, but it is also the name of the world the game is set in. The Celestial Beyonds (The Beyonds for short) is set in the distant future, deep in interstellar space and is far, far away from Planet Earth. Throughout The Beyonds there are scattered remains of humanity and its history. One of these remains is NASA's Voyager 1 that has a Golden Record on board, which is a key element in the narrative. The Record contains sounds and images selected to portray the life and culture of Earth. In 1977, NASA sent out the Voyager into space in the hope that if extraterrestrial life exists, they will one day come across and view what the Record holds. The lore behind the creation of The Beyonds is that there are these 'God' like figures called The Celestial Beings who created The Beyonds and all living things in it. The Celestial Beings are inspired by Gods and Goddesses from Greek, Roman and Norse mythology, as well as Kings and Queens from real-world history. The antagonist of the narrative, Aristaeus, (inspired by the Greek God of bee-keeping) a Celestial Being has gone rogue after seeing the planets' plants and nature in The Beyonds wither away and die. Aristaeus was once the leader and founding father of The Apis Rangers (Apis is Latin for bee). The Rangers explore planets and attempt to pollinate their plants throughout The Beyonds. The game's protagonist, Captain Hume, is a Ranger himself and Moonbeam is his loyal AI companion and the narrative follows the duo on their mission to pollinate planets.
+The Celestial Beyonds is the world the game is set in. The Celestial Beyonds (‘The Beyonds’ for short) is set in the distant future, in deep interstellar space and is far, far away from Planet Earth. Throughout The Beyonds, there are scattered remains of humanity and its history. One of these remains is NASA's Voyager 1 that has a Golden Record on board, which is a key element to the narrative. The Record contains sounds and images selected to portray the life and culture of Earth. 
+
+In 1977, NASA sent the Voyager into space. To this day, they still have hope that if extraterrestrial life exists, an alien life will come across The Record and view what it holds. 
+
+The lore behind the creation of The Beyonds is that there are these 'God-like’ figures called The Celestial Beings. They created The Beyonds and all living things in it. The Celestial Beings are inspired by Gods and Goddesses from Greek, Roman, Norse and Celtic mythology, as well as Kings and Queens from real-world history. 
+
+The antagonist of the narrative, Aristaeus, (inspired by the Greek God of bee-keeping) is a Celestial Being who has gone rogue after seeing the planets' plants and nature wither away and die. Aristaeus was once the leader and founding father of The Apis Rangers (Apis is Latin for bee). The Rangers explore planets and attempt to pollinate their plants throughout The Beyonds. The game's protagonist, Captain Hume, is a Ranger himself and Moonbeam is his loyal AI companion. The narrative follows the duo on their mission to pollinate planets and save The Beyonds!
+
 
 [Play 'The Celestial Beyonds' on Game Jolt!](https://gamejolt.com/games/celestial-beyonds/740687)
 ***
