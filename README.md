@@ -15,6 +15,7 @@ alt="GSA Logo" width="600" height="250"/>
 | **University**           | [The Glasgow School of Art (SimVis)](https://www.gsa.ac.uk/) |
 | **Students**             | John Shields |
 | **Supervisor**           | Dr. Sandy Louchart |
+| **Grade Achieved**     | B |
 
 ***
 
