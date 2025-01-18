@@ -37,8 +37,6 @@ The lore behind the creation of The Beyonds is that there are these 'God-like’
 
 The antagonist of the narrative, Aristaeus, (inspired by the Greek God of bee-keeping) is a Celestial Being who has gone rogue after seeing the planets' plants and nature wither away and die. Aristaeus was once the leader and founding father of The Apis Rangers (Apis is Latin for bee). The Rangers explore planets and attempt to pollinate their plants. The game's protagonist, Captain Hume, is a Ranger himself and Moonbeam is his loyal AI companion. The narrative follows the duo on their mission to pollinate planets and save The Beyonds!
 
-
-[Play 'The Celestial Beyonds' on Game Jolt!](https://gamejolt.com/games/celestial-beyonds/740687)
 ***
 
 ###### END OF README
