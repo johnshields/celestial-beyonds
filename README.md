@@ -1,7 +1,7 @@
 <h1 align="center">MSc Dissertation</h1>
 
 <a href="https://www.gsa.ac.uk/" >
-<p align="center"><img src="https://d4ya733yr7s0y.cloudfront.net/images/made/images/uploads/general/Uni-logo-GSA_730_290_80.jpg"
+<p align="center"><img src="https://www.scotland.org/images/made/images/uploads/general/Uni-logo-GSA_730_290_80.jpg"
 alt="GSA Logo" width="600" height="250"/>
 </p></a>
 
