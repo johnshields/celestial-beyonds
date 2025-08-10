@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class MoonbeamDialogue : MonoBehaviour
 {
-    private const string _uri = "https://api.moonbeambot.live/api/chat";
+    private const string _uri = "https://moonbeam.pythonanywhere.com/api/chat";
     private GameObject _responseText, _moonbeamAPI, _pl;
     private InputProfiler _controls;
     public GameObject dialogueBoxes, dOptions, askPrompt, pauseMenu, dialogueColor;

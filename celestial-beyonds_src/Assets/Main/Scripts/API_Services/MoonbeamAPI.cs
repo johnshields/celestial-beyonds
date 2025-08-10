@@ -6,7 +6,7 @@ public class MoonbeamAPI : MonoBehaviour
 {
     private AudioSource _audio;
     private string _response;
-    private const string _uri = "https://api.moonbeambot.live/api/chat";
+    private const string _uri = "https://moonbeam.pythonanywhere.com/api/chat";
     private GameObject _mb;
     public GameObject randoAudio;
     public bool itIsAQuestion, disabledMoonbeam;
