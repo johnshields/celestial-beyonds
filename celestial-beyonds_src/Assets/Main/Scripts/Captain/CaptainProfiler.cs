@@ -77,7 +77,7 @@ namespace Main.Scripts.Captain
         {
             if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
             {
-                var direction = _rb.velocity;
+                var direction = _rb.linearVelocity;
                 direction.y = 0f;
 
                 if (_moveKeys.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
@@ -116,7 +116,7 @@ namespace Main.Scripts.Captain
         private IEnumerator DoAction()
         {
             yield return new WaitForSeconds(0.5f);
-            _rb.velocity = transform.TransformDirection(0, jumpForce, 0f);
+            _rb.linearVelocity = transform.TransformDirection(0, jumpForce, 0f);
         }
     }
 }

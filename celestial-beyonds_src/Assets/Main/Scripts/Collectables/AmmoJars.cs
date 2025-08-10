@@ -21,7 +21,7 @@ public class AmmoJars : MonoBehaviour
     {
         if (!_hasTarget) return;
         var targetDir = (_targetPos - transform.position).normalized;
-        _rb.velocity = new Vector3(targetDir.x, targetDir.y, targetDir.z) * 8f;
+        _rb.linearVelocity = new Vector3(targetDir.x, targetDir.y, targetDir.z) * 8f;
     }
     
     private void OnTriggerEnter(Collider other)

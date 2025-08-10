@@ -54,7 +54,7 @@ namespace Main.Scripts.UI.CursorControls
             if (Bools.cursorRequired)
             {
                 var result = moveInputValue * (speed * Time.fixedDeltaTime);
-                _rb.velocity = result;
+                _rb.linearVelocity = result;
             }
         }
 

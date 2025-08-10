@@ -28,7 +28,7 @@ public class Peridots : MonoBehaviour
         // ref - https://youtu.be/x8_LJ22QnlE
         if (!_hasTarget || gameObject.name == "BigPeridot") return;
         var targetDir = (_targetPos - transform.position).normalized;
-        _rb.velocity = new Vector3(targetDir.x, targetDir.y, targetDir.z) * 8f;
+        _rb.linearVelocity = new Vector3(targetDir.x, targetDir.y, targetDir.z) * 8f;
     }
 
     // Allows only the Player to collect the _peridotCounter.

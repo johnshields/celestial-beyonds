@@ -98,7 +98,7 @@ namespace Main.Scripts.Captain
         private void Update()
         {
             if (!GetComponent<Jetpack>().jetpackActive)
-                _animator.SetFloat(_profile, _rb.velocity.magnitude / maxSpeed);
+                _animator.SetFloat(_profile, _rb.linearVelocity.magnitude / maxSpeed);
             else
                 _rb.angularVelocity = Vector3.zero;
 
@@ -356,7 +356,7 @@ namespace Main.Scripts.Captain
                         if (!_actionDone && _armed && cannonFire && !callMoonbeam)
                         {
                             callMoonbeam = true;
-                            _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
+                            _animator.SetTrigger(_rb.linearVelocity.magnitude >= 1f ? _rShoot : _shoot);
                             // call CannonBlaster
                             _cannon.GetComponent<CannonBlaster>().FireCannon();
                             _actionDone = true;
@@ -392,7 +392,7 @@ namespace Main.Scripts.Captain
                             pollenFire = true;
                             if (!_actionDone && _armed && pollenFire)
                             {
-                                _animator.SetTrigger(_rb.velocity.magnitude >= 1f ? _rShoot : _shoot);
+                                _animator.SetTrigger(_rb.linearVelocity.magnitude >= 1f ? _rShoot : _shoot);
                                 _pollinator.GetComponent<Pollinator>().FirePollinator();
                                 _actionDone = true;
                                 Invoke(nameof(ResetAction), delayAction);
@@ -443,7 +443,7 @@ namespace Main.Scripts.Captain
         {
             // have hume dodge back his current position
             yield return new WaitForSeconds(.25f);
-            _rb.velocity = transform.TransformDirection(0, 0, dodge);
+            _rb.linearVelocity = transform.TransformDirection(0, 0, dodge);
             Invoke(nameof(ResetAnimWeight), delayAction);
         }
 
