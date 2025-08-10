@@ -160,7 +160,12 @@ public class PhotoMode : MonoBehaviour
         // Setup directory.
         const string folderPath = "/celestial-beyonds-photos/";
         if (!Directory.Exists(folderPath))
+        {
             Directory.CreateDirectory(folderPath);
+        }
+        
+        print(folderPath);
+
         Guid.NewGuid();
         var photo_guid = Guid.NewGuid().ToString();
         // 25-07-2022_13-58-10
@@ -170,11 +175,12 @@ public class PhotoMode : MonoBehaviour
         ScreenCapture.CaptureScreenshot(Path.Combine(folderPath, photo_id), 2);
         print("Screenshot taken: " + folderPath + photo_id);
         photoID = datetime_stamp;
+        
         yield return new WaitForSeconds(1);
+        
         done = true;
         photoModeUI.SetActive(true);
         link.SetActive(true);
-        GetComponent<ScarlettPhotographerBot>().SendPhotoToGram(folderPath, photo_id);
         CopyToClipBoard(datetime_stamp);
     }
 

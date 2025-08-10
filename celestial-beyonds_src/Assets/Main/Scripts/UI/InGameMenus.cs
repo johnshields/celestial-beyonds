@@ -8,7 +8,7 @@ public class InGameMenus : MonoBehaviour
 {
     private InputProfiler _controls;
     private GameObject _cursor, pl;
-    public GameObject pauseMenu, miniMenuPanel, fader, player, BtnGO, controlsPanel, muteBtn, unMuteBtn, photoMode;
+    public GameObject pauseMenu, miniMenuPanel, fader, player, BtnGO, controlsPanel, muteBtn, unMuteBtn;
     public bool pausedActive, miniMenuActive, controlsMenu, cin;
     public AudioSource audioToPause;
     public int audioPauseRequired;
@@ -39,7 +39,7 @@ public class InGameMenus : MonoBehaviour
             unMuteBtn.SetActive(true);
             muteBtn.SetActive(false);
         }
-        
+
         if (cursor)
             _cursor = GameObject.FindGameObjectWithTag("Cursor");
     }
@@ -79,14 +79,8 @@ public class InGameMenus : MonoBehaviour
             if (_cursor.GetComponent<ControllerCursor>().clickedElement == "RestartPlanet")
                 LoadMainMenuBtn();
             else if (_cursor.GetComponent<ControllerCursor>().clickedElement == "MainMenuTerm")
-                ReloadPlanetBtn();   
+                ReloadPlanetBtn();
         }
-
-
-        if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
-            Time.timeScale = 0f;
-        else if (pausedActive && photoMode.GetComponent<PhotoMode>().photoMode)
-            Time.timeScale = 1f;
     }
 
     public void LoadMainMenuBtn()
@@ -111,7 +105,7 @@ public class InGameMenus : MonoBehaviour
             Bools.cursorRequired = true;
             Cursor.visible = true;
         }
-        else if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
+        else if (pausedActive)
         {
             pausedActive = false;
             pauseMenu.SetActive(false);
@@ -127,8 +121,7 @@ public class InGameMenus : MonoBehaviour
 
     private void ResumeGame(InputAction.CallbackContext obj)
     {
-        if (pausedActive && !player.GetComponent<CaptainHealth>().capDead &&
-            !photoMode.GetComponent<PhotoMode>().photoMode)
+        if (pausedActive && !player.GetComponent<CaptainHealth>().capDead)
         {
             pausedActive = false;
             pauseMenu.SetActive(false);
@@ -157,7 +150,7 @@ public class InGameMenus : MonoBehaviour
             if (pl.GetComponent<PollinationLevel>().pollinationPercent != 100)
             {
                 PlayerMemory.peridots -= Peridots.peridotsCollectedInLvl;
-                Peridots.peridotsCollectedInLvl = 0;   
+                Peridots.peridotsCollectedInLvl = 0;
             }
         }
     }
@@ -178,7 +171,7 @@ public class InGameMenus : MonoBehaviour
 
     private void CtrlsMenu(InputAction.CallbackContext obj)
     {
-        if (!controlsMenu && pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
+        if (!controlsMenu && pausedActive)
         {
             print("Controls menu active:" + controlsMenu);
             controlsMenu = true;
@@ -188,7 +181,7 @@ public class InGameMenus : MonoBehaviour
 
     private void BackBtn(InputAction.CallbackContext obj)
     {
-        if (controlsMenu && pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
+        if (controlsMenu && pausedActive)
         {
             print("Controls menu active: " + controlsMenu);
             controlsMenu = false;
@@ -198,7 +191,7 @@ public class InGameMenus : MonoBehaviour
 
     private void MuteGame(InputAction.CallbackContext obj)
     {
-        if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
+        if (pausedActive)
         {
             print("Mute Active: " + Bools.muteActive);
             Bools.muteActive = true;
@@ -210,7 +203,7 @@ public class InGameMenus : MonoBehaviour
 
     private void UnMuteGame(InputAction.CallbackContext obj)
     {
-        if (pausedActive && !photoMode.GetComponent<PhotoMode>().photoMode)
+        if (pausedActive)
         {
             print("Mute Active: " + Bools.muteActive);
             Bools.muteActive = false;
@@ -234,12 +227,13 @@ public class InGameMenus : MonoBehaviour
         yield return new WaitForSeconds(2f);
         if (!cin)
         {
-            if(player.GetComponent<CaptainHealth>().gameOver)
-                player.GetComponent<CaptainHealth>().ResetPeridots();   
+            if (player.GetComponent<CaptainHealth>().gameOver)
+                player.GetComponent<CaptainHealth>().ResetPeridots();
         }
+
         SceneManager.LoadScene(level);
     }
-    
+
     private void ClickedElementEmpty()
     {
         if (cursor)

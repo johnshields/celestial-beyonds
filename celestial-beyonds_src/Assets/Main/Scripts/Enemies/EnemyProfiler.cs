@@ -31,7 +31,7 @@ namespace Main.Scripts.Enemies
         private bool _walkPointSet, _actionDone, _played, _added;
 
         // misc
-        public GameObject miniMenu, pauseMenu, photoMode;
+        public GameObject miniMenu, pauseMenu;
         public AudioClip deathSFX;
 
         private void Awake()
@@ -58,7 +58,7 @@ namespace Main.Scripts.Enemies
                 playerInAttackRange = Physics.CheckSphere(tp, attackRange, playerMask);
 
                 if (!playerInSightRange && !playerInAttackRange) Patrol();
-                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive || !photoMode.GetComponent<PhotoMode>().photoMode)
+                if (!pauseMenu.GetComponent<InGameMenus>().pausedActive)
                 {
                     if (playerInSightRange && !playerInAttackRange && !player.GetComponent<CaptainHealth>().capDead)
                         ChasePlayer();
@@ -72,15 +72,6 @@ namespace Main.Scripts.Enemies
                     _distanceToEdge = _hit.distance;
                 if (_distanceToEdge < 2f) SearchWalkPoint();
             }
-
-            if (photoMode.GetComponent<PhotoMode>().photoMode)
-                agent.stoppingDistance = 5f;
-            else if (isSpider && photoMode.GetComponent<PhotoMode>().photoMode)
-                agent.stoppingDistance = 15f;
-            else if (isSpider && !photoMode.GetComponent<PhotoMode>().photoMode)
-                agent.stoppingDistance = 5f;
-            else if (!isSpider && !photoMode.GetComponent<PhotoMode>().photoMode)
-                agent.stoppingDistance = 1f;
         }
 
         private void AnimationState(bool idle, bool walk, bool attack)

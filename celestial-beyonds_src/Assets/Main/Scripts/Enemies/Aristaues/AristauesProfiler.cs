@@ -34,7 +34,7 @@ public class AristauesProfiler : MonoBehaviour
     private int _idle, _walk, _run, _attack_1, _attack_2, _fall;
 
     // misc
-    public GameObject pauseMenu, photoMode;
+    public GameObject pauseMenu;
     private Rigidbody _rb;
 
     private void Awake()
@@ -65,8 +65,8 @@ public class AristauesProfiler : MonoBehaviour
             playerInSightRange = Physics.CheckSphere(tp, sightRange, playerMask);
             playerInAttackRange = Physics.CheckSphere(tp, attackRange, playerMask);
 
-            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive || !player.GetComponent<CaptainHealth>().capDead
-                || !photoMode.GetComponent<PhotoMode>().photoMode || !terminated)
+            if (!pauseMenu.GetComponent<InGameMenus>().pausedActive || !player.GetComponent<CaptainHealth>().capDead ||
+                !terminated)
             {
                 if (!playerInSightRange && !playerInAttackRange) Patrol();
                 if (playerInSightRange && !playerInAttackRange) ChasePlayer();
@@ -77,15 +77,8 @@ public class AristauesProfiler : MonoBehaviour
                     _rb.constraints = RigidbodyConstraints.FreezeAll;
                 }
             }
-            
-            // Stop Aristaues during PhotoMode.
-            if (photoMode.GetComponent<PhotoMode>().photoMode)
-            {
-                aristaues.stoppingDistance = 15;   
-                AnimationState(true, false, false, false, false);
-            }
-            else
-                aristaues.stoppingDistance = 3;
+
+            aristaues.stoppingDistance = 3;
         }
     }
 
@@ -162,7 +155,7 @@ public class AristauesProfiler : MonoBehaviour
             }
         }
     }
-    
+
     private IEnumerator AttackComplete(float time)
     {
         yield return new WaitForSeconds(time);
@@ -197,7 +190,7 @@ public class AristauesProfiler : MonoBehaviour
     {
         StartCoroutine(LoadGoldenRecord());
     }
-    
+
     private IEnumerator LoadGoldenRecord()
     {
         print("Loading: 010_TheGoldenRecord...");
