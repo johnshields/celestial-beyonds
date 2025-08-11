@@ -1,6 +1,6 @@
 import os, re, json, joblib
 from typing import List, Tuple
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -18,11 +18,13 @@ def origin_allowed(origin: str | None) -> bool:
     """Return True if request origin is allowlisted."""
     if not origin:
         return False
+
     for pat in ALLOWED_ORIGINS:
         if isinstance(pat, str) and origin == pat:
             return True
         if hasattr(pat, "match") and pat.match(origin):
             return True
+
     return False
 
 
@@ -64,6 +66,7 @@ def load_pairs(paths: List[str]) -> List[Tuple[str, str]]:
             data = json.load(f)
         if not isinstance(data, list):
             continue
+
         # Object format
         if data and isinstance(data[0], dict) and "q" in data[0] and "a" in data[0]:
             for it in data:
@@ -78,6 +81,7 @@ def load_pairs(paths: List[str]) -> List[Tuple[str, str]]:
                 a = str(data[i + 1]).strip()
                 if q and a:
                     pairs.append((q, a))
+
     return pairs
 
 
@@ -85,10 +89,13 @@ def train_if_needed() -> None:
     """Train TF-IDF model once; skip if cached on disk."""
     if all(os.path.exists(p) for p in (VEC_PATH, MAT_PATH, RESP_PATH)):
         return
+
     print("[INFO] Training Moonbeam (TF-IDF retrieval)…")
     pairs = load_pairs(DATA_FILES)
+
     if not pairs:
         raise RuntimeError("[ERROR] No training data found in data/*.json")
+
     questions = [q for q, _ in pairs]
     responses = [a for _, a in pairs]
     vectorizer = TfidfVectorizer(
@@ -97,11 +104,13 @@ def train_if_needed() -> None:
         max_df=0.9,
         strip_accents="unicode"
     )
-    X = vectorizer.fit_transform(questions)
+    x = vectorizer.fit_transform(questions)
     joblib.dump(vectorizer, VEC_PATH)
-    joblib.dump(X, MAT_PATH)
+    joblib.dump(x, MAT_PATH)
+
     with open(RESP_PATH, "w", encoding="utf-8") as f:
         json.dump(responses, f, ensure_ascii=False)
+
     print(f"[INFO] Training complete. {len(pairs)} pairs saved.")
 
 
@@ -109,23 +118,27 @@ def load_model_into_memory() -> None:
     """Load trained artifacts into RAM for fast lookups."""
     if MODEL_CACHE["vectorizer"] is not None:
         return
+
     MODEL_CACHE["vectorizer"] = joblib.load(VEC_PATH)
     MODEL_CACHE["matrix"] = joblib.load(MAT_PATH)
     with open(RESP_PATH, "r", encoding="utf-8") as f:
         MODEL_CACHE["responses"] = json.load(f)
+
     print("[INFO] Model loaded into memory.")
 
 
 def get_reply(text: str, threshold: float = DEFAULT_THRESHOLD) -> str:
     """Return best-matching reply or fallback message."""
     vec = MODEL_CACHE["vectorizer"]
-    X = MODEL_CACHE["matrix"]
+    x = MODEL_CACHE["matrix"]
     res = MODEL_CACHE["responses"]
-    sims = cosine_similarity(vec.transform([text]), X)[0]
+    sims = cosine_similarity(vec.transform([text]), x)[0]
     best_i = int(sims.argmax())
     best_score = float(sims[best_i])
+
     if best_score < threshold:
         return "Sorry, I’m not sure about that yet."
+
     return res[best_i]
 
 
@@ -147,11 +160,13 @@ def add_cors_headers(resp):
     """Attach CORS headers to API responses for allowed origins."""
     if request.path.startswith("/api/"):
         origin = request.headers.get("Origin")
+
         if origin_allowed(origin):
             resp.headers["Access-Control-Allow-Origin"] = origin
             resp.headers["Vary"] = "Origin"
             resp.headers["Access-Control-Allow-Methods"] = "GET,POST,OPTIONS"
             resp.headers["Access-Control-Allow-Headers"] = "Content-Type"
+
     return resp
 
 
@@ -159,6 +174,11 @@ def add_cors_headers(resp):
 def index():
     """Landing page with info or UI."""
     return render_template("index.html")
+
+
+@app.route("/play")
+def play():
+    return redirect("https://gamejolt.com/games/celestial-beyonds/740687", code=302)
 
 
 @app.route("/api/chat")
@@ -172,9 +192,11 @@ def chat():
     """POST: get chatbot reply; OPTIONS: handle CORS preflight."""
     if request.method == "OPTIONS":
         return "", 204
+
     user_input = (request.form.get("value") or "").strip()
     if not user_input:
         return "Please say something."
+
     reply = get_reply(user_input)
     print(f"User: {user_input}")
     print(f"Moonbeam: {reply}")
