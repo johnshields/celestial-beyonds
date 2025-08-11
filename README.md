@@ -26,7 +26,8 @@ alt="cb_logo" width="auto" height="auto"/>
 
 ***
 # About
-The Celestial Beyonds is a Space Hub Exploration and Action Platformer, with a theme and style of Bees! The research and delivery behind the game focuses on AI companionship in Serious Games.
+A bee-themed space hub exploration and action platformer created for my MSc dissertation, exploring AI companionship in Serious Games. 
+Built in Unity and deployed to WebGL, featuring real-time AI dialogue powered by a Python–Flask chatbot via REST APIs and hosted on AWS EC2 with NGINX.
 
 # Narrative
 The Celestial Beyonds is the world the game is set in. The Celestial Beyonds (‘The Beyonds’ for short) is set in the distant future, in deep interstellar space and is far, far away from Planet Earth. Throughout The Beyonds, there are scattered remains of humanity and its history. One of these remains is NASA's Voyager 1 that has a Golden Record on board, which is a key element to the narrative. The Record contains sounds and images selected to portray the life and culture of Earth. 
