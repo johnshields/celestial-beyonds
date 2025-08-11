@@ -19,7 +19,7 @@ alt="GSA Logo" width="600" height="250"/>
 
 ***
 
-<a href="https://github.com/johnshields/celestial-beyonds" >
+<a href="https://moonbeam.pythonanywhere.com/play" >
 <p align="center"><img src="workings/art/logos/cover_full.jpeg"
 alt="cb_logo" width="auto" height="auto"/>
 </p></a>
