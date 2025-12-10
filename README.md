@@ -24,6 +24,8 @@ alt="GSA Logo" width="600" height="250"/>
 alt="cb_logo" width="auto" height="auto"/>
 </p></a>
 
+[Play The Celestial Beyonds!](https://gamejolt.com/games/celestial-beyonds/740687)
+
 ***
 # About
 A bee-themed space hub exploration and action platformer created for my MSc dissertation, exploring AI companionship in Serious Games. 
