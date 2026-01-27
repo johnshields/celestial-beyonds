@@ -3,122 +3,46 @@ using UnityEngine;
 
 public class DialogueForm : MonoBehaviour
 {
-    private GameObject _mb;
+    [SerializeField] private string moonbeamTag = "Moonbeam";
+
+    private MoonbeamDialogue _dialogue;
 
     private void Awake()
     {
-        _mb = GameObject.FindGameObjectWithTag("Moonbeam");
+        var mb = GameObject.FindGameObjectWithTag(moonbeamTag);
+        _dialogue = mb != null ? mb.GetComponent<MoonbeamDialogue>() : null;
+
+        if (_dialogue == null)
+            Debug.LogError($"DialogueForm: Could not find MoonbeamDialogue on tag '{moonbeamTag}'.");
     }
 
     public void SetUpForm(WWWForm form)
     {
+        if (_dialogue == null || form == null) return;
+
         // General
-        if (_mb.GetComponent<MoonbeamDialogue>().generalQ && !_mb.GetComponent<MoonbeamDialogue>().artifactQ)
+        if (_dialogue.generalQ && !_dialogue.artifactQ)
         {
-            if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 100)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().dialogueOptions[0].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 101)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().dialogueOptions[1].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 102)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().dialogueOptions[2].GetComponent<TextMeshProUGUI>().text);
+            int index = _dialogue.whichDialogue - 100;
+            AddValueFromOptions(form, _dialogue.dialogueOptions, index);
+            return;
         }
 
         // Artifacts
-        if (!_mb.GetComponent<MoonbeamDialogue>().generalQ && _mb.GetComponent<MoonbeamDialogue>().artifactQ)
+        if (!_dialogue.generalQ && _dialogue.artifactQ)
         {
-            if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 0)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[0].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 1)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[1].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 2)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[2].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 3)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[3].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 4)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[4].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 5)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[5].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 6)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[6].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 7)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[7].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 8)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[8].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 9)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[9].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 10)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[10].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 11)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[11].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 12)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[12].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 13)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[13].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 14)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[14].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 15)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[15].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 16)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[16].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 17)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[17].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 18)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[18].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 19)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[19].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 20)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[20].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 21)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[21].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 22)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[22].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 23)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[23].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 24)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[24].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 25)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[25].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 26)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[26].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 27)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[27].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 28)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[28].GetComponent<TextMeshProUGUI>().text);
-            else if (_mb.GetComponent<MoonbeamDialogue>().whichDialogue == 29)
-                form.AddField("value",
-                    _mb.GetComponent<MoonbeamDialogue>().artifactQuestions[29].GetComponent<TextMeshProUGUI>().text);
+            int index = _dialogue.whichDialogue;
+            AddValueFromOptions(form, _dialogue.artifactQuestions, index);
         }
+    }
+
+    private static void AddValueFromOptions(WWWForm form, GameObject[] options, int index)
+    {
+        if (options == null || index < 0 || index >= options.Length) return;
+
+        var tmp = options[index].GetComponent<TextMeshProUGUI>();
+        if (tmp == null) return;
+
+        form.AddField("value", tmp.text);
     }
 }
