@@ -1,9 +1,6 @@
 <h1 align="center">MSc Dissertation</h1>
 
-<a href="https://www.gsa.ac.uk/" >
-<p align="center"><img src="https://www.scotland.org/images/made/images/uploads/general/Uni-logo-GSA_730_290_80.jpg"
-alt="GSA Logo" width="600" height="250"/>
-</p></a>
+[<p align="center"><img src="https://www.scotland.org/images/made/images/uploads/general/Uni-logo-GSA_730_290_80.jpg" width="600" height="250" alt="GSA Logo"></p>](https://www.gsa.ac.uk/)
 
 ***
 
@@ -19,10 +16,7 @@ alt="GSA Logo" width="600" height="250"/>
 
 ***
 
-<a href="https://moonbeam.pythonanywhere.com/play" >
-<p align="center"><img src="workings/art/logos/cover_full.jpeg"
-alt="cb_logo" width="auto" height="auto"/>
-</p></a>
+[<p align="center"><img src="workings/art/logos/cover_full.jpeg" alt="cb_logo"></p>](https://moonbeam.pythonanywhere.com/play)
 
 [Play The Celestial Beyonds!](https://gamejolt.com/games/celestial-beyonds/740687)
 
