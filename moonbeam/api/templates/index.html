@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- linking css style script and icon-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Moonbeam</title>
+</head>
+
+<body>
+    <img src="{{ url_for('static', filename='hi.png') }}" alt="hi" class="image">
+    <h1 class="tag_line">Hi!</h1>
+    <hr>
+    <h3><a href="/api/chat">Go to - /api/chat</a></h3>
+</body>
+<footer>
+    <hr>
+    <p>
+        Moonbeam is a character from
+        <a href="/play">The Celestial Beyonds.</a>
+    </p>
+    <!-- jQuery Script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- JS Script -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/middle_man.js') }}"></script>
+</footer>
+
+</html>
