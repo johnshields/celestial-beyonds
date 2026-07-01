@@ -34,8 +34,8 @@ def load_pairs(paths: List[str]) -> List[Tuple[str, str]]:
                 if q and a:
                     pairs.append((q, a))
         else:
-            # Alternating lines format
-            for i in range(len(data) - 1):
+            # Alternating lines format: [q, a, q, a, ...]
+            for i in range(0, len(data) - 1, 2):
                 q = str(data[i]).strip()
                 a = str(data[i + 1]).strip()
                 if q and a:
