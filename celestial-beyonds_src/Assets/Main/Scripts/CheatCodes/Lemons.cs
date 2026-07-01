@@ -1,14 +1,28 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Main.Scripts.Enemies.Aristaues
 {
-    // Script for Aristaues Battle Cheat (if players find it too hard)
+    // Aristaues battle cheat: softens the boss when the fight is too hard.
     public class Lemons : MonoBehaviour
     {
         private static bool l, e, m, o, n, s;
         public static bool cheatActivated;
         private InputProfiler _controls;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void HookSceneLoad()
+        {
+            SceneManager.sceneLoaded += (_, __) => ResetForNewLevel();
+        }
+
+        // Per-level: cheat must be retyped on every Aristaues attempt.
+        private static void ResetForNewLevel()
+        {
+            cheatActivated = false;
+            l = e = m = o = n = s = false;
+        }
 
         private void Awake()
         {
@@ -25,7 +39,7 @@ namespace Main.Scripts.Enemies.Aristaues
             _controls.Lemons.LetterS.started += LetterS;
             _controls.Lemons.Enable();
         }
-        
+
         private void OnDisable()
         {
             _controls.Lemons.LetterL.started -= LetterL;
@@ -37,11 +51,6 @@ namespace Main.Scripts.Enemies.Aristaues
             _controls.Lemons.Disable();
         }
 
-        private void Update()
-        {
-            ActivateLemons();
-        }
-
         private void LetterL(InputAction.CallbackContext obj)
         {
             l = true;
@@ -49,44 +58,41 @@ namespace Main.Scripts.Enemies.Aristaues
 
         private void LetterE(InputAction.CallbackContext obj)
         {
-            if(l) e = true;
+            if (l) e = true;
         }
 
         private void LetterM(InputAction.CallbackContext obj)
         {
-            if(l && e) m = true;
+            if (l && e) m = true;
         }
 
         private void LetterO(InputAction.CallbackContext obj)
         {
-            if(l && e && m) o = true;
+            if (l && e && m) o = true;
         }
 
         private void LetterN(InputAction.CallbackContext obj)
         {
-            if(l && e && m && o) n = true;
+            if (l && e && m && o) n = true;
         }
 
         private void LetterS(InputAction.CallbackContext obj)
         {
-            if(l && e && m && o && n) s = true;
+            if (l && e && m && o && n)
+            {
+                s = true;
+                Activate();
+            }
         }
 
-        private void ActivateLemons()
+        private void Activate()
         {
-            if (l && e && m && o && n && s && !cheatActivated)
-            {
-                cheatActivated = true;
-                l = false;
-                e = false;
-                m = false;
-                o = false;
-                n = false;
-                s = false;
-                // Weaken Aristaues
-                GetComponent<AristauesProfiler>().aristauesHealth = 100;
-                print($"Cheat Lemons activated: {cheatActivated}");
-            }
-        }    
+            if (cheatActivated) return;
+            cheatActivated = true;
+            l = e = m = o = n = s = false;
+            var boss = GetComponent<AristauesProfiler>();
+            if (boss != null) boss.aristauesHealth = 100;
+            print($"Cheat Lemons activated: {cheatActivated}");
+        }
     }
 }

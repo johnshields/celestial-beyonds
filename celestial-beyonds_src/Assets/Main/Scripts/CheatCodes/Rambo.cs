@@ -1,12 +1,28 @@
 using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Rambo : MonoBehaviour
 {
     private static bool r, a, m, b, o;
     public static bool cheatActivated;
     private InputProfiler _controls;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void HookSceneLoad()
+    {
+        SceneManager.sceneLoaded += (_, __) => ResetForNewLevel();
+    }
+
+    // Per-level: wipe cheat state and any Bools leakage, then rebase to persisted upgrades.
+    private static void ResetForNewLevel()
+    {
+        cheatActivated = false;
+        r = a = m = b = o = false;
+        Bools.cdUpgraded = PlayerMemory.cannonUpgrade == 2;
+        Bools.aUpgraded = PlayerMemory.armorUpgrade == 1;
+    }
 
     private void Awake()
     {
@@ -30,12 +46,7 @@ public class Rambo : MonoBehaviour
         _controls.Rambo.LetterM.started -= LetterM;
         _controls.Rambo.LetterB.started -= LetterB;
         _controls.Rambo.LetterO.started -= LetterO;
-        _controls.Lemons.Disable();
-    }
-
-    private void Update()
-    {
-        ActivateRambo();
+        _controls.Rambo.Disable();
     }
 
     private void LetterR(InputAction.CallbackContext obj)
@@ -60,27 +71,27 @@ public class Rambo : MonoBehaviour
 
     private void LetterO(InputAction.CallbackContext obj)
     {
-        if (r && a && m && b) o = true;
+        if (r && a && m && b)
+        {
+            o = true;
+            Activate();
+        }
     }
 
-
-    private void ActivateRambo()
+    // Defier and Armor granted in-memory only; no PlayerPrefs write, wiped on next scene load.
+    private void Activate()
     {
-        if (r && a && m && b && o && !cheatActivated)
+        if (cheatActivated) return;
+        cheatActivated = true;
+        r = a = m = b = o = false;
+        Bools.cdUpgraded = true;
+        Bools.aUpgraded = true;
+        var cas = GetComponent<CaptainAnimAndSound>();
+        if (cas != null)
         {
-            cheatActivated = true;
-            r = false;
-            a = false;
-            m = false;
-            b = false;
-            o = false;
-            // Defier and Armor
-            Bools.cdUpgraded = true;
-            GetComponent<CaptainAnimAndSound>().cdUpgrade = true;
-            PlayerMemory.cannonUpgrade = 2;
-            Bools.aUpgraded = true;
-            GetComponent<CaptainAnimAndSound>().aUpgrade = true;
-            print($"Cheat Rambo activated: {cheatActivated}");
+            cas.cdUpgrade = true;
+            cas.aUpgrade = true;
         }
+        print($"Cheat Rambo activated: {cheatActivated}");
     }
 }
