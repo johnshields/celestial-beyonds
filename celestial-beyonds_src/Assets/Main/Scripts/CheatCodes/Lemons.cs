@@ -7,7 +7,7 @@ namespace Main.Scripts.Enemies.Aristaues
     // Aristaues battle cheat: softens the boss when the fight is too hard.
     public class Lemons : MonoBehaviour
     {
-        private static bool l, e, m, o, n, s;
+        private static bool l, e, m, o, n;
         public static bool cheatActivated;
         private InputProfiler _controls;
 
@@ -21,7 +21,7 @@ namespace Main.Scripts.Enemies.Aristaues
         private static void ResetForNewLevel()
         {
             cheatActivated = false;
-            l = e = m = o = n = s = false;
+            l = e = m = o = n = false;
         }
 
         private void Awake()
@@ -79,17 +79,14 @@ namespace Main.Scripts.Enemies.Aristaues
         private void LetterS(InputAction.CallbackContext obj)
         {
             if (l && e && m && o && n)
-            {
-                s = true;
                 Activate();
-            }
         }
 
         private void Activate()
         {
             if (cheatActivated) return;
             cheatActivated = true;
-            l = e = m = o = n = s = false;
+            l = e = m = o = n = false;
             var boss = GetComponent<AristauesProfiler>();
             if (boss != null) boss.aristauesHealth = 100;
             print($"Cheat Lemons activated: {cheatActivated}");

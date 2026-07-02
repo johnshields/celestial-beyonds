@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Rambo : MonoBehaviour
 {
-    private static bool r, a, m, b, o;
+    private static bool r, a, m, b;
     public static bool cheatActivated;
     private InputProfiler _controls;
 
@@ -19,7 +19,7 @@ public class Rambo : MonoBehaviour
     private static void ResetForNewLevel()
     {
         cheatActivated = false;
-        r = a = m = b = o = false;
+        r = a = m = b = false;
         Bools.cdUpgraded = PlayerMemory.cannonUpgrade == 2;
         Bools.aUpgraded = PlayerMemory.armorUpgrade == 1;
     }
@@ -72,10 +72,7 @@ public class Rambo : MonoBehaviour
     private void LetterO(InputAction.CallbackContext obj)
     {
         if (r && a && m && b)
-        {
-            o = true;
             Activate();
-        }
     }
 
     // Defier and Armor granted in-memory only; no PlayerPrefs write, wiped on next scene load.
@@ -83,7 +80,7 @@ public class Rambo : MonoBehaviour
     {
         if (cheatActivated) return;
         cheatActivated = true;
-        r = a = m = b = o = false;
+        r = a = m = b = false;
         Bools.cdUpgraded = true;
         Bools.aUpgraded = true;
         var cas = GetComponent<CaptainAnimAndSound>();

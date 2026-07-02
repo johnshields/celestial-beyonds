@@ -1,16 +1,17 @@
+using System;
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
-// API URI loaded from StreamingAssets/moonbeam.json so builds can retarget without recompile.
 public static class MoonbeamConfig
 {
-    private const string _configFile = "moonbeam.json";
+    private const string ConfigFile = "moonbeam.json";
     private static bool _loaded;
 
     public static string ApiUri { get; private set; }
 
-    [System.Serializable]
+    [Serializable]
     private class Payload
     {
         public string apiUri;
@@ -20,12 +21,28 @@ public static class MoonbeamConfig
     {
         if (_loaded) yield break;
 
-        var path = System.IO.Path.Combine(Application.streamingAssetsPath, _configFile);
+        var path = Path.Combine(Application.streamingAssetsPath, ConfigFile);
+
+        if (!path.Contains("://"))
+            path = "file://" + path;
+
         using var req = UnityWebRequest.Get(path);
         yield return req.SendWebRequest();
 
-        var p = JsonUtility.FromJson<Payload>(req.downloadHandler.text);
-        ApiUri = p.apiUri;
+        if (req.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"MoonbeamConfig: failed to load {ConfigFile} — {req.error}");
+            yield break;
+        }
+
+        var payload = JsonUtility.FromJson<Payload>(req.downloadHandler.text);
+        if (payload == null || string.IsNullOrEmpty(payload.apiUri))
+        {
+            Debug.LogError($"MoonbeamConfig: {ConfigFile} missing or invalid apiUri");
+            yield break;
+        }
+
+        ApiUri = payload.apiUri;
         _loaded = true;
     }
 }
