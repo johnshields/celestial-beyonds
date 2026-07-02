@@ -9,6 +9,7 @@ ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     re.compile(r"^https://([a-z0-9-]+\.)*gamejolt\.com$"),
     re.compile(r"^https://([a-z0-9-]+\.)*gamejolt\.net$"),
+    re.compile(r"^https://([a-z0-9-]+\.)*workers\.dev$"),
 ]
 
 

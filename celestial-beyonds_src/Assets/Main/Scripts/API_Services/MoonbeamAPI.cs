@@ -6,7 +6,6 @@ public class MoonbeamAPI : MonoBehaviour
 {
     private AudioSource _audio;
     private string _response;
-    private const string _uri = "https://moonbeam.pythonanywhere.com/api/chat";
     private GameObject _mb;
     public GameObject randoAudio;
     public bool itIsAQuestion, disabledMoonbeam;
@@ -19,7 +18,13 @@ public class MoonbeamAPI : MonoBehaviour
         _audio = GetComponent<AudioSource>();
         _mb = GameObject.FindGameObjectWithTag("Moonbeam");
         if (!disabledMoonbeam)
-            StartCoroutine(GetRequest(_uri));
+            StartCoroutine(Boot());
+    }
+
+    private IEnumerator Boot()
+    {
+        yield return MoonbeamConfig.EnsureLoaded();
+        yield return GetRequest();
     }
 
     private void Start()
@@ -27,12 +32,12 @@ public class MoonbeamAPI : MonoBehaviour
         PlayRandomClip(0f);
     }
 
-    private IEnumerator GetRequest(string uri)
+    private IEnumerator GetRequest()
     {
         if (!disabledMoonbeam)
         {
             // Send GET request.
-            using var webRequest = UnityWebRequest.Get(uri);
+            using var webRequest = UnityWebRequest.Get(MoonbeamConfig.ApiUri);
             yield return webRequest.SendWebRequest();
             if (webRequest.result == UnityWebRequest.Result.ConnectionError)
             {
@@ -53,14 +58,15 @@ public class MoonbeamAPI : MonoBehaviour
         }
     }
 
-    public IEnumerator PostRequest(string uri)
+    public IEnumerator PostRequest()
     {
         if (!disabledMoonbeam)
         {
+            yield return MoonbeamConfig.EnsureLoaded();
             var form = new WWWForm();
             GetComponent<DialogueForm>().SetUpForm(form);
             // Send POST request.
-            using var webRequest = UnityWebRequest.Post(uri, form);
+            using var webRequest = UnityWebRequest.Post(MoonbeamConfig.ApiUri, form);
             yield return webRequest.SendWebRequest();
             // if there is a Request error
             if (webRequest.result == UnityWebRequest.Result.ConnectionError ||

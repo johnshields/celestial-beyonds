@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "moonbeam-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-05-01",
+  "containers": [
+    {
+      "class_name": "MoonbeamContainer",
+      "image": "../api/Dockerfile",
+      "max_instances": 1,
+      "name": "moonbeam"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      { "class_name": "MoonbeamContainer", "name": "MOONBEAM" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["MoonbeamContainer"] }
+  ],
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": true, "invocation_logs": true }
+  }
+}
