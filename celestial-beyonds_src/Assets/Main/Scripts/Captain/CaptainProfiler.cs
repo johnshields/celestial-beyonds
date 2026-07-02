@@ -4,9 +4,6 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/*
- * ref - https://youtu.be/WIl6ysorTE0
- */
 namespace Main.Scripts.Captain
 {
     public class CaptainProfiler : MonoBehaviour
@@ -19,7 +16,11 @@ namespace Main.Scripts.Captain
         [SerializeField] private float jumpDelay = 0.25f;
         [SerializeField] private float jumpRelockTime = 0.2f;
 
-        // Length of the jump clip windup; playback is compressed so takeoff lands on jumpDelay.
+        [SerializeField] private float camRotationSpeed = 180f;
+        [SerializeField] private float camAccelTime = 0.25f;
+        [SerializeField] private float camDecelTime = 0.2f;
+
+        // Jump clip windup length; playback compresses so takeoff lands on jumpDelay.
         private const float _jumpWindup = 0.5f;
 
         // input
@@ -47,6 +48,24 @@ namespace Main.Scripts.Captain
             _animator = GetComponent<Animator>();
             _menus = pauseMenu.GetComponent<InGameMenus>();
             grounded = true;
+            TuneCameraAxes();
+        }
+
+        // Overrides scene FreeLook axes (300deg/s, 0.1s ramps) so all scenes share one camera feel.
+        private void TuneCameraAxes()
+        {
+            var freeLook = playerCam.GetComponent<CinemachineFreeLook>();
+            if (freeLook == null)
+            {
+                Debug.LogWarning("CaptainProfiler: no CinemachineFreeLook on playerCam, camera axes left untouched", this);
+                return;
+            }
+
+            freeLook.m_XAxis.m_MaxSpeed = camRotationSpeed;
+            freeLook.m_XAxis.m_AccelTime = camAccelTime;
+            freeLook.m_XAxis.m_DecelTime = camDecelTime;
+            freeLook.m_YAxis.m_AccelTime = camAccelTime;
+            freeLook.m_YAxis.m_DecelTime = camDecelTime;
         }
 
         private void FixedUpdate()
