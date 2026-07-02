@@ -1,0 +1,71 @@
+name: moonbeam CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "moonbeam/**"
+      - ".github/workflows/moonbeam.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "moonbeam/**"
+      - ".github/workflows/moonbeam.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: moonbeam/api
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check for syntax errors
+        run: find . -name "*.py" -not -path "./.venv/*" -not -path "./__pycache__/*" -not -path "./model_cache/*" | xargs python -m py_compile
+
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [lint]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy Worker + Container to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          workingDirectory: moonbeam/worker
+
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [deploy]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Test /api/chat endpoint
+        run: |
+          set -e
+          WORKER_URL="${{ secrets.MOONBEAM_WORKER_URL }}"
+
+          echo "POST /api/chat ..."
+          REPLY=$(curl -sS -X POST -F "value=Hi Moonbeam" "$WORKER_URL/api/chat")
+          echo "Reply: $REPLY"
+          [ -n "$REPLY" ] && echo "Chat endpoint passed" || (echo "Empty response" && exit 1)
