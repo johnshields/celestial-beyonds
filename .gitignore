@@ -83,3 +83,10 @@ moonbeam/scripts/set-gh-secrets.sh
 # Unity per-developer editor state
 /celestial-beyonds_src/[Uu]serSettings/
 *.slnx
+
+# Local game builds
+/beyonds-build/
+/beyonds-build.zip
+
+# macOS
+.DS_Store
