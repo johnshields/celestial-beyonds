@@ -98,9 +98,14 @@ namespace Main.Scripts.Captain
         private void Update()
         {
             if (!GetComponent<Jetpack>().jetpackActive)
+            {
                 _animator.SetFloat(_profile, _rb.linearVelocity.magnitude / maxSpeed);
+            }
             else
+            {
+                _animator.SetFloat(_profile, 0f, 0.25f, Time.deltaTime);
                 _rb.angularVelocity = Vector3.zero;
+            }
 
             // unarmed/armed status
             if (_unarmed)

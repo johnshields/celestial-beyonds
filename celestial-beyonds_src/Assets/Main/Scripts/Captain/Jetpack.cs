@@ -1,23 +1,27 @@
-using System.Collections;
 using Main.Scripts.Captain;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-/*
- * https://youtu.be/8j_NhBVYz8o
- */
 public class Jetpack : MonoBehaviour
 {
     public bool jetpackActive;
-    public float maxFuel = 4f, currentFuel, resetSFXTime = 4f;
-    private const float _thrustForce = 0.8f;
-    public Transform groundedObj;
+    public float maxFuel = 4f, currentFuel;
     public GameObject flames, fuelBar;
     public AudioClip jetpackSFX;
     public AudioSource _jpAudio;
+
+    [SerializeField] private float thrustForce = 48f;
+    [SerializeField] private float maxRiseSpeed = 4f;
+    [SerializeField] private float fallMultiplier = 2.5f;
+
+    // Minimum fuel before the pack can fire again, stops empty-tank stutter spam.
+    private const float _minActivationFuel = 0.5f;
+
+    private bool _fastFall;
     private Rigidbody _rb;
-    private bool _alreadyPlayed;
+    private CaptainProfiler _profiler;
+    private InGameMenus _menus;
     private InputProfiler _controls;
     private Slider _fuelBarSlider;
 
@@ -29,73 +33,95 @@ public class Jetpack : MonoBehaviour
     private void Start()
     {
         currentFuel = maxFuel;
+        flames.SetActive(false);
         _rb = GetComponent<Rigidbody>();
+        _profiler = GetComponent<CaptainProfiler>();
+        _menus = GetComponent<CaptainAnimAndSound>().pauseMenu.GetComponent<InGameMenus>();
         _fuelBarSlider = fuelBar.GetComponent<Slider>();
-    }
-
-    private void Update()
-    {
-        if (!GetComponent<CaptainAnimAndSound>().pauseMenu.GetComponent<InGameMenus>().pausedActive)
-        {
-            _fuelBarSlider.value = currentFuel;
-            if (jetpackActive && currentFuel > 0f)
-            {
-                GetComponent<CaptainProfiler>().grounded = false;
-                jetpackActive = true;
-                currentFuel -= Time.deltaTime;
-                _rb.AddForce(_rb.transform.up * _thrustForce, ForceMode.Impulse);
-            }
-            else if (Physics.Raycast(groundedObj.position, Vector3.down, 0.01f,
-                         LayerMask.GetMask("GroundedObject")) && currentFuel < maxFuel)
-            {
-                jetpackActive = false;
-                if (currentFuel < maxFuel)
-                    currentFuel += Time.deltaTime;
-            }
-            else
-            {
-                jetpackActive = false;
-                if (currentFuel < maxFuel)
-                    currentFuel += Time.deltaTime;
-            }
-            flames.SetActive(jetpackActive);
-            if (!jetpackActive)
-                _jpAudio.Stop();   
-        }
-        else jetpackActive = false;
     }
 
     private void OnEnable()
     {
-        _controls.Profiler.JetPack.started += JetpackActive;
+        _controls.Profiler.JetPack.started += ToggleJetpack;
         _controls.Profiler.JetPack.Enable();
     }
 
     private void OnDisable()
     {
-        _controls.Profiler.JetPack.started -= JetpackActive;
+        _controls.Profiler.JetPack.started -= ToggleJetpack;
         _controls.Profiler.JetPack.Disable();
     }
 
-    private void JetpackActive(InputAction.CallbackContext obj)
+    private void Update()
     {
-        if (!jetpackActive && !_alreadyPlayed)
+        if (_menus.pausedActive)
         {
-            jetpackActive = true;
-            _jpAudio.PlayOneShot(jetpackSFX, 0.1f);
-            _alreadyPlayed = true;
-            StartCoroutine(ResetAudio());
+            Deactivate();
+            return;
         }
-        else if (jetpackActive)
+
+        if (jetpackActive)
         {
-            jetpackActive = false;
-            resetSFXTime = 0f;
+            currentFuel -= Time.deltaTime;
+            if (currentFuel <= 0f)
+            {
+                currentFuel = 0f;
+                Deactivate();
+            }
         }
+        else if (currentFuel < maxFuel)
+        {
+            currentFuel = Mathf.Min(currentFuel + Time.deltaTime, maxFuel);
+        }
+
+        _fuelBarSlider.value = currentFuel;
     }
 
-    private IEnumerator ResetAudio()
+    private void FixedUpdate()
     {
-        yield return new WaitForSeconds(resetSFXTime);
-        _alreadyPlayed = false;
+        var up = transform.up;
+        var riseSpeed = Vector3.Dot(_rb.linearVelocity, up);
+
+        if (jetpackActive)
+        {
+            _profiler.grounded = false;
+
+            if (riseSpeed < maxRiseSpeed)
+                _rb.AddForce(up * thrustForce, ForceMode.Force);
+            else
+                _rb.linearVelocity += up * (maxRiseSpeed - riseSpeed);
+            return;
+        }
+
+        if (_fastFall && _profiler.grounded)
+            _fastFall = false;
+
+        if (_fastFall && riseSpeed < 0f)
+            _rb.AddForce(-up * (fallMultiplier * -Physics.gravity.y), ForceMode.Acceleration);
+    }
+
+    private void ToggleJetpack(InputAction.CallbackContext obj)
+    {
+        if (jetpackActive)
+        {
+            Deactivate();
+            return;
+        }
+
+        if (currentFuel < _minActivationFuel) return;
+
+        jetpackActive = true;
+        _fastFall = false;
+        flames.SetActive(true);
+        _jpAudio.PlayOneShot(jetpackSFX, 0.1f);
+    }
+
+    private void Deactivate()
+    {
+        if (!jetpackActive) return;
+        jetpackActive = false;
+        _fastFall = !_profiler.grounded;
+        flames.SetActive(false);
+        _jpAudio.Stop();
     }
 }
