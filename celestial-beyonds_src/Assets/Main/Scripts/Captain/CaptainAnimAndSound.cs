@@ -19,6 +19,9 @@ namespace Main.Scripts.Captain
         public GameObject pollenMeter, pauseMenu, pollenAmmo, cannonMeter, cannonAmmo, pbUI, cdUI;
         public LayerMask argyle, viktor;
 
+        [SerializeField] private float lockOnRange = 12f;
+        [SerializeField] private float lockOnAngle = 75f;
+
         public bool meleeActive,
             cannonFire,
             pollenFire,
@@ -346,6 +349,32 @@ namespace Main.Scripts.Captain
             }
         }
 
+        // Turns the player towards the nearest target on the given layer within range and view cone.
+        private void LockOnNearest(int layerMask)
+        {
+            var up = transform.up;
+            var hits = Physics.OverlapSphere(transform.position, lockOnRange, layerMask);
+            Transform target = null;
+            var closest = float.MaxValue;
+
+            foreach (var hit in hits)
+            {
+                var dir = hit.transform.position - transform.position;
+                dir -= up * Vector3.Dot(dir, up);
+                if (dir.sqrMagnitude < 0.01f) continue;
+                if (Vector3.Angle(transform.forward, dir) > lockOnAngle) continue;
+                if (dir.sqrMagnitude >= closest) continue;
+                closest = dir.sqrMagnitude;
+                target = hit.transform;
+            }
+
+            if (target == null) return;
+
+            var look = target.position - transform.position;
+            look -= up * Vector3.Dot(look, up);
+            _rb.rotation = Quaternion.LookRotation(look.normalized, up);
+        }
+
         private void ShootCannon(InputAction.CallbackContext obj)
         {
             if (!GetComponent<CaptainHealth>().capDead)
@@ -361,6 +390,7 @@ namespace Main.Scripts.Captain
                         if (!_actionDone && _armed && cannonFire && !callMoonbeam)
                         {
                             callMoonbeam = true;
+                            LockOnNearest(LayerMask.GetMask("Enemy"));
                             _animator.SetTrigger(_rb.linearVelocity.magnitude >= 1f ? _rShoot : _shoot);
                             // call CannonBlaster
                             _cannon.GetComponent<CannonBlaster>().FireCannon();
@@ -397,6 +427,7 @@ namespace Main.Scripts.Captain
                             pollenFire = true;
                             if (!_actionDone && _armed && pollenFire)
                             {
+                                LockOnNearest(LayerMask.GetMask("Plants"));
                                 _animator.SetTrigger(_rb.linearVelocity.magnitude >= 1f ? _rShoot : _shoot);
                                 _pollinator.GetComponent<Pollinator>().FirePollinator();
                                 _actionDone = true;
